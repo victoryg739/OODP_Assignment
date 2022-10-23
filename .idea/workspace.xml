@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="commit admin">
+    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/mainProgram.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/MainMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/MenuBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Quit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffLogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/test3.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +75,35 @@
       <option name="project" value="LOCAL" />
       <updated>1666420611430</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="commit helloworld">
+      <created>1666420950128</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1666420950128</updated>
+    </task>
+    <task id="LOCAL-00004" summary="remove admin and test">
+      <created>1666421052522</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666421052522</updated>
+    </task>
+    <task id="LOCAL-00005" summary="test">
+      <created>1666421154373</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1666421154373</updated>
+    </task>
+    <task id="LOCAL-00006" summary="test">
+      <created>1666421205627</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1666421205627</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -85,6 +120,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hello test" />
     <MESSAGE value="commit admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit admin" />
+    <MESSAGE value="commit helloworld" />
+    <MESSAGE value="remove admin and test" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
