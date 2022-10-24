@@ -4,8 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="Added BookingHistoryMenu, MovieListTopSale, MoviesListTopRatings, MoviesReviewsMenu">
-      <change beforePath="$PROJECT_DIR$/src/view/BookingHistoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BookingHistoryMenu.java" afterDir="false" />
+    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="test">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/BookingHistoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/BookingHistoryMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MovieGoerMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/MovieGoerMainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MovieInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/MovieInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MovieListTopSale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/MovieListTopSale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MovieSearchMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/MovieSearchMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MoviesListMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/MoviesListMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MoviesListTopRatings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/MoviesListTopRatings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MoviesReviewsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/MoviesReviewsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/PurchaseTicketMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/customer/PurchaseTicketMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +57,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\riven\IdeaProjects\OODP_Assignment\src\view\customer" />
       <recent name="C:\Users\Victor\IdeaProjects\OODP_Assignment\src" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="view.customer" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -151,5 +165,16 @@
     <MESSAGE value="Added BookingHistoryMenu, MovieListTopSale, MoviesListTopRatings, MoviesReviewsMenu" />
     <MESSAGE value="Updated" />
     <option name="LAST_COMMIT_MESSAGE" value="Updated" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/view/customer/MovieInfo.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

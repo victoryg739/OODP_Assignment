@@ -1,4 +1,7 @@
-package view;
+package view.customer;
+import view.MenuBase;
+import view.Quit;
+
 import java.util.*;
 import static view.utilF.*;
 
