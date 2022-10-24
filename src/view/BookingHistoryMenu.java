@@ -1,5 +1,4 @@
 package view;
-import Modal.Customer;
 import modal.Customer;
 
 import java.util.*;
@@ -10,16 +9,14 @@ public class BookingHistoryMenu extends MenuBase {
 
     public BookingHistoryMenu(MenuBase initialMenu) {
         super(initialMenu);
-    }
+    };
 
-    /**
+    /*
      Display user booking history menu
      Ask user for login information
      Display all user booking detail
      Return to previous menu when done
      */
-
-    //
 
     /*
     public MenuBase execute() {
