@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="Added BookingHistoryMenu, MovieListTopSale, MoviesListTopRatings, MoviesReviewsMenu">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/BookingHistoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BookingHistoryMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MovieListTopSale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MovieListTopSale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MoviesListTopRatings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MoviesListTopRatings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MoviesReviewsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MoviesReviewsMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,14 +128,7 @@
       <option name="project" value="LOCAL" />
       <updated>1666600279022</updated>
     </task>
-    <task id="LOCAL-00010" summary="Added BookingHistoryMenu, MovieListTopSale, MoviesListTopRatings, MoviesReviewsMenu">
-      <created>1666617710122</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1666617710122</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

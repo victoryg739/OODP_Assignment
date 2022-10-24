@@ -4,8 +4,8 @@ import java.util.*;
 import static view.utilF.*;
 public class MoviesListMenu extends MenuBase {
 
-    public MoviesListMenu(MenuBase previousMenu) {
-        super(previousMenu);
+    public MoviesListMenu(MenuBase initialMenu) {
+        super(initialMenu);
     }
 
     /*
@@ -20,13 +20,14 @@ public class MoviesListMenu extends MenuBase {
     public MenuBase execute() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Movie Listing");
-        Manager mg = Manager.getInstance(); //get a manager object to access the database
+        //Manager mg = Manager.getInstance(); //get a manager object to access the database
 
         ArrayList<String> choices = new ArrayList<String>();
         //.getAll() is to retrieve all the movies
-        ArrayList<Movie> movies = mg.getAll();
+        //ArrayList<Movie> movies = mg.getAll();
 
         //list all the movies out
+        /*
         for (Movie m : movies) {
             //get the current time
             Date currentTime = Calendar.getInstance().getTime();
@@ -40,6 +41,8 @@ public class MoviesListMenu extends MenuBase {
             String title = m.getTitle() + (m.getShowingStatus().equals(Constant.ShowingStatus.END_SHOWING) ? " (End Showing)" : "");
             choices.add(title); //add the movie as part of the option
         }
+
+         */
 
         choices.add("Show Top 5 Movies by sale");
         choices.add("Shop Top 5 Movies by ratings");
@@ -59,6 +62,7 @@ public class MoviesListMenu extends MenuBase {
         int c = readIntInput(choice);
 
         MenuBase nextMenu = this;
+        /*
         if (c <= movies.size()) //Selecting 1 of the movies
             nextMenu = new MovieInfo(this, movies.get(c));
         else if (c == movies.size() + 1) //Select Top5 Movies by sale
@@ -69,7 +73,7 @@ public class MoviesListMenu extends MenuBase {
             nextMenu = this.getPreviousMenu();
         else if (c == movies.size() + 4) //Quit the App
             nextMenu = new Quit(null);
-
+        */
         return nextMenu;
     }
 
