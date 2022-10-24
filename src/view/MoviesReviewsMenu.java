@@ -3,6 +3,7 @@ package view;
 import java.util.*;
 import static view.utilF.*;
 
+/*
 public class MoviesReviewsMenu extends MenuBase {
     private final Movie movie;
 
@@ -15,6 +16,7 @@ public class MoviesReviewsMenu extends MenuBase {
      Ask user to input reviews and rating
      */
 
+/*
     public MenuBase execute() {
         System.out.println(movie.getTitle());
 
