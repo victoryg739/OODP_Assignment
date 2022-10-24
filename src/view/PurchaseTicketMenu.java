@@ -1,23 +1,26 @@
 package view;
 
+import modal.Customer;
 import java.util.*;
 import static view.utilF.*;
 
 public class PurchaseTicketMenu extends MenuBase {
-    private final Movie movie;
-    private Manager manager = Manager.getInstance();
-    private PriceManager priceManager = PriceManager.getInstance();
-    public PurchaseTicketMenu(MenuBase previousMenu, Movie movie) {
+    //private final Movie movie;
+    //private Manager manager = Manager.getInstance();
+    //private PriceManager priceManager = PriceManager.getInstance();
+
+    public PurchaseTicketMenu(MenuBase previousMenu) {
         super(previousMenu);
-        this.movie = movie;
+        //this.movie = movie;
     }
+
+
     /*
-     List all the slots availble according to the movie information
+     List all the slots available according to the movie information
      Ask user to select slots, seats.
-     Ask user information whether they are student or senoir
+     Ask user information whether they are student or senior
      Get user's information about name, email and phone number
      Provide the total ticket price to the user
-
      */
     public MenuBase execute() {
 
@@ -26,26 +29,33 @@ public class PurchaseTicketMenu extends MenuBase {
         System.out.println("Menu for Purchasing Ticket:");
 
         //.getSlots() is to check for the available slots for that movie timeslot
+        /*
         if(movie.getSlots().isEmpty())
         {
             System.out.println("Sorry, there is no available slot currently.");
             return this.getPreviousMenu();
         }
 
+         */
+
         //For the info on the movie and the slots
+        /*
         for(Slot slot:movie.getSlots())
         {
             choices.add(slot.getCinema().getName() + " -- " + slot.getFormattedDate() + " " + slot.getFormattedTime());
         }
-        printMenu(choices, 1);
-        c = readChoice("Please Choose a slot", 0, choices.size());
-        Slot slot = movie.getSlots().get(c);
 
-        ArrayList<ArrayList<Seat>> seats = slot.getSeats();
-        int col = seats.get(0).size(), row=seats.size();
+         */
+        printMenu(choices, 1);
+        //c = readChoice("Please Choose a slot", 0, choices.size());
+        //Slot slot = movie.getSlots().get(c);
+
+        //ArrayList<ArrayList<Seat>> seats = slot.getSeats();
+        //int col = seats.get(0).size(), row=seats.size();
 
         //find seat & select seat
-        ArrayList<Seat>selected = new ArrayList<>(); //List of all the selected seats
+        //ArrayList<Seat>selected = new ArrayList<>(); //List of all the selected seats
+        /*
         while(confirm("Continue to select seats?"))
         {
             displaySeats(seats,row,col);
@@ -55,6 +65,7 @@ public class PurchaseTicketMenu extends MenuBase {
             Model for buying tickets:
             When selecting a few seats, they have to belong to 1 ticket type (Senior/Student/Normal)
          */
+        /*
         if (selected.size() != 0) {
             ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 
@@ -85,57 +96,56 @@ public class PurchaseTicketMenu extends MenuBase {
                 }
             }
 
+         */
+
             //Get the first ticket to calculate the totalprice
-            Ticket ticket = tickets.get(0);
+            //Ticket ticket = tickets.get(0);
             /*
             Calculate the price of 1 ticket with the various factors: TicketType, MovieType, Platinum, Sneakpeek/FirstWeek/Blockbuster, ...
             After that, multiply by the # of seats
             */
-            double totalprice = priceManager.getPrice(ticket.getTickettype(), ticket.getMovietype(), slot.isPlatinum(), slot.isSneakOrFirstWeekorblockbuster()) * tickets.size();
+            //double totalprice = priceManager.getPrice(ticket.getTickettype(), ticket.getMovietype(), slot.isPlatinum(), slot.isSneakOrFirstWeekorblockbuster()) * tickets.size();
 
             //Get the current Date/time to generate the tid according to the format XXXYYYYMMDDhhmm
             Date currentTime = Calendar.getInstance().getTime();
-            String timeStamp = new SimpleDateFormat("YYYYMMDDhhmm").format(currentTime);
-            String tid = slot.getCinema().getCinemaCode() + timeStamp;
+            //String timeStamp = new SimpleDateFormat("YYYYMMDDhhmm").format(currentTime);
+            //String tid = slot.getCinema().getCinemaCode() + timeStamp;
             //Generate the booking
-            Booking booking = new Booking(tid, slot, currentTime, totalprice, movie, slot.getCinema(), tickets);
+            //Booking booking = new Booking(tid, slot, currentTime, totalprice, movie, slot.getCinema(), tickets);
 
             //Log into the account if have
-            User user; //Need to create User class
+            Customer customer; //Need to create User class
             if (confirm("Do you have an account")) {
-                user = login();
+                customer = login();
             }
             else {
                 String name = read("New Name: ");
                 String email = read("New Email: ");
-                String phone = read("New Phone number: ");
-                while(Character.isLetter(phone.charAt(0))){
-                    phone = read("Phone number should start with the numeric value, please re-enter ");
-                }
-                user = new User(name, phone, email);
-                manager.add(Constant.Tables.USER, user);
+
+                customer = new Customer(name, email);
+                //manager.add(Constant.Tables.USER, customer);
             }
 
-            System.out.println("Total price is S$" + booking.getTotalPrice() + " (Inclusive of GST).");
-            if (confirm("Confirm booking? ")) {
-                for (Seat seat : selected) {
-                    seat.setSelected(false);
-                    seat.setOcccupied(true);
-                }
-                user.addBookings(booking);
-                booking.setUser(user);
-                manager.add(Constant.Tables.BOOKING, booking);
-                movie.addTicketSales(tickets.size());
-                for (Ticket ticket1 : tickets) manager.add(Constant.Tables.TICKET, ticket1);
-                System.out.println("Booking successful, tid=" + tid);
+            //System.out.println("Total price is S$" + booking.getTotalPrice() + " (Inclusive of GST).");
+            //if (confirm("Confirm booking? ")) {
+            //    for (Seat seat : selected) {
+            //        seat.setSelected(false);
+            //        seat.setOcccupied(true);
+            //    }
+            //    customer.addBookings(booking);
+            //    booking.setUser(user);
+            //    manager.add(Constant.Tables.BOOKING, booking);
+            //    movie.addTicketSales(tickets.size());
+            //    for (Ticket ticket1 : tickets) manager.add(Constant.Tables.TICKET, ticket1);
+            //    System.out.println("Booking successful, tid=" + tid);
 
-            }
-            else {
-                for (Seat seat : selected)
-                    seat.setSelected(false);
-            }
+            //}
+            //else {
+            //    for (Seat seat : selected)
+            //        seat.setSelected(false);
+            //}
             while (readIntInput("Press 0 to return to previous menu: ") != 0) ;
-        }
+
         return this.getPreviousMenu();
     }
     /*
@@ -143,6 +153,7 @@ public class PurchaseTicketMenu extends MenuBase {
      including seats available, seats occupied and seats chosen
      With corridor printed out in the middle of the layout
      */
+    /*
     private void displaySeats(ArrayList<ArrayList<Seat>> seats, int row, int col)
     {
         Seat seat;
@@ -210,10 +221,10 @@ public class PurchaseTicketMenu extends MenuBase {
         System.out.println("([ ] Available  [#] Seat Selected  [X] Sold)");
     }
 
-    /*
-     Method to ask user to select a row and column,
-     check whether the seat is available, and update the information in the data base
      */
+
+    // Method to ask user to select a row and column,check whether the seat is available, and update the information in the data base
+    /*
     private Seat chooseSeats(ArrayList<ArrayList<Seat>> seats, int row, int col) {
         System.out.println("Please choose your seat(s).");
         int i,j;
@@ -231,4 +242,6 @@ public class PurchaseTicketMenu extends MenuBase {
 
         return seats.get(i).get(j);
     }
+
+     */
 }

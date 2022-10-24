@@ -3,8 +3,8 @@ import java.util.*;
 import static view.utilF.*;
 
 public class MovieGoerMainMenu extends MenuBase {
-    public MovieGoerMainMenu(MenuBase previousMenu) {
-        super(previousMenu);
+    public MovieGoerMainMenu(MenuBase initialMenu) {
+        super(initialMenu);
     }
 
     /*
