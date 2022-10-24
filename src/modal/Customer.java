@@ -1,5 +1,5 @@
 package modal;
-import java.util.*
+import java.util.*;
 
 public class Customer {
     private String name, phone, email;
