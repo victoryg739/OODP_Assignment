@@ -19,10 +19,13 @@ public class Enums {
     }
 
     public enum Day{
-        MON_TO_THURS,
+        MON_WED_BEF_SIX,
+        MON_WED_AFT_SIX,
+        THU_BEF_SIX,
+        THU_AFT_SIX,
         FRI_BEF_SIX,
         FRI_AFT_SIX,
-        SAT_TO_SUN,
+        SAT_SUN,
         PH
     }
 
