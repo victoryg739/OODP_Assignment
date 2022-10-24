@@ -4,16 +4,18 @@ import java.util.Scanner;
 import java.util.*;
 import static view.utilF.*;
 
+/*
 public class MoviesListTopRatings extends MenuBase {
-    public MoviesListTopRatings(MenuBase previousMenu) {
-        super(previousMenu);
+    public MoviesListTopRatings(MenuBase initialMenu) {
+        super(initialMenu);
     }
 
-    /*
+
      Display the top five movies by rating to the user
      @return return the corresponding menu that the user has selected
      */
 
+    /*
     public MenuBase execute() {
         Scanner sc = new Scanner(System.in);
         Manager manager = Manager.getInstance();
@@ -66,6 +68,7 @@ public class MoviesListTopRatings extends MenuBase {
            Option 8: Quit The Application
          */
 
+        /*
         if (c <= choices.size() - 3) {
             nextMenu = new MovieInfo(this, movies.get(c));
         } else if (c == choices.size() - 2) {

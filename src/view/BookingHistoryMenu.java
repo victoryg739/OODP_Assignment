@@ -1,4 +1,5 @@
 package view;
+import modal.Customer;
 
 import java.util.*;
 import static view.utilF.*;
@@ -6,28 +7,29 @@ import static view.utilF.*;
 public class BookingHistoryMenu extends MenuBase {
 
 
-    public BookingHistoryMenu(MenuBase previousMenu) {
-        super(previousMenu);
-    }
+    public BookingHistoryMenu(MenuBase initialMenu) {
+        super(initialMenu);
+    };
 
-    /**
+    /*
      Display user booking history menu
      Ask user for login information
      Display all user booking detail
      Return to previous menu when done
      */
 
+    /*
     public MenuBase execute() {
         System.out.println("History");
         System.out.println("Please Login Using Username and Email");
 
-        User user;
+        Customer customer;
 
-        user = login(); //login
+        customer = login(); //login
 
-        if (user != null) { //if login successful
-            ArrayList<Booking> booking = user.getBookings();
-            System.out.println("In total "+booking.size() +" bookings found under "+user.getName()+".");
+        if (customer != null) { //if login successful
+            ArrayList<Booking> booking = customer.getBookings();
+            System.out.println("In total "+booking.size() +" bookings found under "+customer.getName()+".");
             int count=1;
 
             //Once the user login, for each booking made, display the respective details:
@@ -53,3 +55,5 @@ public class BookingHistoryMenu extends MenuBase {
     }
 
 }
+
+     */

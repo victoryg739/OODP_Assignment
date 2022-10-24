@@ -5,14 +5,15 @@ import static view.utilF.*;
 
 //Menu to list the top five movies by sales
 
+    /*
 public class MovieListTopSale extends MenuBase {
-    public MovieListTopSale(MenuBase previousMenu) {
-        super(previousMenu);
+    public MovieListTopSale(MenuBase initialMenu) {
+        super(initialMenu);
     }
 
-    /*
-     Display the top five menu by sales
-     */
+
+     //Display the top five menu by sales
+
 
     public MenuBase execute() {
         Scanner sc = new Scanner(System.in);
@@ -69,6 +70,7 @@ public class MovieListTopSale extends MenuBase {
            Option 8: Quit The Application
          */
 
+        /*
         //Depending on the c input, display the relevant options by subtracting
         if (c <= choices.size() - 3) {
             nextMenu = new MovieInfo(this, movies.get(c));
@@ -87,3 +89,6 @@ public class MovieListTopSale extends MenuBase {
         Collections.sort(movies, (m1, m2) -> (m2.getTicketSales() - m1.getTicketSales()));
     }
 }
+         */
+
+

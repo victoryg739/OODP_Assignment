@@ -3,9 +3,10 @@ import java.util.*;
 import static view.utilF.*;
 
 public class MovieInfo extends MenuBase {
-    private final Movie movie;
-    public MovieInfo(MenuBase previousMenu, Movie movie) {
-        super(previousMenu);
+    //private final Movie movie;
+    /*
+    public MovieInfo(MenuBase initialMenu, Movie movie) {
+        super(initialMenu);
         this.movie = movie;
     }
 
@@ -14,32 +15,33 @@ public class MovieInfo extends MenuBase {
      */
     public void printMovieInformation() {
         //Movie Title
-        System.out.println("Title: " + this.movie.getTitle());
+        //System.out.println("Title: " + this.movie.getTitle());
         //Movie Status
-        System.out.println("Showing Status: " + this.movie.getShowingStatus().toString());
+        //System.out.println("Showing Status: " + this.movie.getShowingStatus().toString());
         //Movie Content Rating (PG13, N16, R21, ...)
-        System.out.println("Content Rating: " + this.movie.getContentRating().toString());
+        //System.out.println("Content Rating: " + this.movie.getContentRating().toString());
         //Movie Runtime
-        System.out.println("Runtime: " + this.movie.getRuntime() + " minutes");
+        //System.out.println("Runtime: " + this.movie.getRuntime() + " minutes");
         //Movie Director
-        System.out.println("Director: " + this.movie.getDirector());
+        //System.out.println("Director: " + this.movie.getDirector());
         //Movie Cast
-        System.out.println("Cast: ");
-        StringBuilder s = new StringBuilder();
-        for (String r : movie.getCasts()) { //get list of the entire cast for the movie
-            s.append(r + "; ");
-        }
+        //System.out.println("Cast: ");
+        //StringBuilder s = new StringBuilder();
+        //for (String r : movie.getCasts()) { //get list of the entire cast for the movie
+        //    s.append(r + "; ");
+        //}
         //print the list of cast
-        System.out.println(s.toString());
+        //System.out.println(s.toString());
         //What language the movie is in
-        System.out.println("Language: " + this.movie.getLanguage());
+        //System.out.println("Language: " + this.movie.getLanguage());
         //Opening date of the movie
-        System.out.println("Opening: " + this.movie.getFormattedDate());
+        //System.out.println("Opening: " + this.movie.getFormattedDate());
         //Movie Synopsis
-        System.out.println("Synopsis: ");
-        System.out.println(this.movie.getSynopsis(), 16);
+        //System.out.println("Synopsis: ");
+        //System.out.println(this.movie.getSynopsis(), 16);
 
         //Movie Overall Rating
+        /*
         if(movie.getOverAllRating() != 0 ){
             System.out.println("Overall Rating:");
             printStars(movie.getOverAllRating());
@@ -56,6 +58,8 @@ public class MovieInfo extends MenuBase {
                 System.out.println(r.getRating());
             }
         }
+
+         */
     }
 
     //Show the rating in terms of *
@@ -78,7 +82,7 @@ public class MovieInfo extends MenuBase {
 
     public MenuBase execute() {
         //.getTitle() == get the movie title
-        System.out.println(movie.getTitle());
+        //System.out.println(movie.getTitle());
         Scanner sc = new Scanner(System.in);
 
         printMovieInformation();
@@ -86,10 +90,10 @@ public class MovieInfo extends MenuBase {
         int flag = 0;
         ArrayList<String> choices = new ArrayList<>();
         //If the movie is currently showing or coming soon => Allow customers to buy tickets
-        if (((movie.getShowingStatus().equals(Constant.ShowingStatus.CURRENTLY_SHOWING)) || (movie.getShowingStatus().equals(Constant.ShowingStatus.COMING_SOON)))) {
-            choices.add("Buy Tickets");
-            flag = 1;
-        }
+        //if (((movie.getShowingStatus().equals(Constant.ShowingStatus.CURRENTLY_SHOWING)) || (movie.getShowingStatus().equals(Constant.ShowingStatus.COMING_SOON)))) {
+        //    choices.add("Buy Tickets");
+        //    flag = 1;
+        //}
         choices.add("Write a review");
         choices.add("Go Back");
         choices.add("Quit The Application");
@@ -110,10 +114,10 @@ public class MovieInfo extends MenuBase {
             do{
                 switch (c) {
                     case 1:
-                        nextMenu = new PurchaseTicketMenu(this, movie);
+                        //nextMenu = new PurchaseTicketMenu(this, movie);
                         break;
                     case 2:
-                        nextMenu = new ReviewsMenu(this, movie);
+                        //nextMenu = new MoviesReviewsMenu(this, movie);
                         break;
                     case 3:
                         nextMenu = this.getPreviousMenu();
@@ -138,7 +142,7 @@ public class MovieInfo extends MenuBase {
             do{
                 switch (c) {
                     case 1:
-                        nextMenu = new ReviewsMenu(this, movie);
+                        //nextMenu = new MoviesReviewsMenu(this, movie);
                         break;
                     case 2:
                         nextMenu = this.getPreviousMenu();
