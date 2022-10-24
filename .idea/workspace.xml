@@ -5,16 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="Added BookingHistoryMenu, MovieListTopSale, MoviesListTopRatings, MoviesReviewsMenu">
-      <change afterPath="$PROJECT_DIR$/src/view/BookingHistoryMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/MovieListTopSale.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/MoviesListTopRatings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/MoviesReviewsMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modal/Enums.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modal/Seat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modal/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/test2.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
