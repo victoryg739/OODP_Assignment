@@ -1,5 +1,6 @@
 package modal;
 
+// Might need to change MovieType - Blockbuster
 public class Enums {
     public enum AgeType{
         SENIOR,
@@ -10,6 +11,7 @@ public class Enums {
     public enum MovieType{
         THREE_D,
         TWO_D,
+        BLOCKBUSTER
 
     }
 
@@ -28,6 +30,7 @@ public class Enums {
         SAT_SUN,
         PH
     }
+
 
 
 

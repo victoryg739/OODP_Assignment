@@ -1,7 +1,6 @@
 package view.admin;
 
 import view.MenuBase;
-import view.Quit;
 
 import java.util.Scanner;
 
@@ -16,10 +15,11 @@ public class MenuStaffMain extends MenuBase {
         System.out.println("Staff Menu");
 
         System.out.println("======================= Staff Menu =======================\n" +
-                " 1. List Movies (STAFF)                                        \n" +
-                " 2. Add Movie                                            \n" +
-                " 3. Configure                                             \n" +
-                " 4. Back                                                   \n" +
+                " 1. Create/Update/Remove Listing                                     \n" +
+                " 2. Create/Update/Remove Session                                            \n" +
+                " 3. Configure system settings                                          \n" +
+                " 4. List movies                                                   \n" +
+                " 5. Back                                                           \n " +
                 "===========================================================");
 
         System.out.println("Enter choice: ");
@@ -33,7 +33,7 @@ public class MenuStaffMain extends MenuBase {
         switch (choice) {
             case 1:
                 // List movies (STAFF)
-                // nextMenu = new MovieListing(this);
+                nextMenu = new MenuStaffMovieListFunction(this);
 
                 break;
             case 2:
@@ -41,6 +41,9 @@ public class MenuStaffMain extends MenuBase {
                 break;
             case 3:
 
+                break;
+            case 4:
+                nextMenu = new MenuStaffMovieList(this);
                 break;
             default:
                 nextMenu = this.getPreviousMenu();

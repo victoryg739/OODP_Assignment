@@ -15,7 +15,7 @@ public class MenuStaffLogin extends MenuBase{
         final String username = read("Username: ");
         final String password = read("Password: ");
         System.out.println("username is " + username + "password is " + password);
-        if(username.equals("allah") && password.equals("password")){
+        if(username.equals("a") && password.equals("a")){
             MenuStaffMain msm = new MenuStaffMain(this.getPreviousMenu());
             return msm;
         }else {
