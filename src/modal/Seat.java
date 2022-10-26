@@ -1,6 +1,8 @@
 package modal;
 
-public class Seat {
+import java.io.Serializable;
+
+public class Seat implements Serializable {
 
     private int col;
     private int row;

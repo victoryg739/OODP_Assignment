@@ -1,7 +1,8 @@
 package modal;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cinema {
+public class Cinema implements Serializable {
     private String cinemaNo; //e.g your ticket writes E35 cinema
     private Movie movie;
     private Enums.ClassCinema classCinema;

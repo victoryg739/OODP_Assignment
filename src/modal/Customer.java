@@ -1,7 +1,7 @@
 package modal;
 import java.util.*;
 
-public class Customer {
+public class Customer  {
     private String name, phone, email;
     //private ArrayList<Booking> bookings;
 

@@ -1,6 +1,7 @@
 package modal;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Cineplex {
+public class Cineplex implements Serializable {
 
     private String location;
     private ArrayList<Cinema> cinemas;
