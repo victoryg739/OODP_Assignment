@@ -12,7 +12,7 @@ public class MenuStaffMovieList extends MenuBase {
         super(initialMenu);
     }
     public MenuBase execute() {
-        AdminController ac = new AdminController();
+        MovieController ac = new MovieController();
         System.out.println("List all movie title");
         ArrayList<Movie> movieList = ac.read();
         if(movieList.isEmpty()){
@@ -25,6 +25,7 @@ public class MenuStaffMovieList extends MenuBase {
     }
 
     public void printMovie(Movie movie){
+        int id = movie.getID();
         String title = movie.getTitle();
         MovieType movieType = movie.getType();
         MovieRating movieRating = movie.getRating();
@@ -39,7 +40,7 @@ public class MenuStaffMovieList extends MenuBase {
             castString = castString.concat(movie.getCast().get(i) + ",");
         castString = castString.substring(0, castString.length()-1);
 
-        String movieString = "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
+        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
                 + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
                 + "Cast: " + castString;
         System.out.println(movieString);

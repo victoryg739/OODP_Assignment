@@ -2,7 +2,6 @@ package view.admin;
 
 import modal.Enums.*;
 import controller.*;
-import modal.Movie;
 import view.MenuBase;
 
 import java.util.*;
@@ -17,7 +16,7 @@ public class MenuStaffMovieCreate extends MenuBase {
 
     MovieType movieType;
     MovieRating movieRating;
-    AdminController adminC = new AdminController();
+    MovieController adminC = new MovieController();
 
     public MenuBase execute() {
 

@@ -16,7 +16,7 @@ public class Movie implements Serializable {
     private ArrayList<String> cast;
 
 
-    public Movie(String title, MovieType type, MovieRating rating, String synopsis, int runtime, Date DateStart, Date DateEnd, String director, ArrayList<String> cast){
+    public Movie(int id,String title, MovieType type, MovieRating rating, String synopsis, int runtime, Date DateStart, Date DateEnd, String director, ArrayList<String> cast){
         this.id = id;
         this.title = title;
         this.type = type;

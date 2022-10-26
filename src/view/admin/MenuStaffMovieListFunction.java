@@ -27,10 +27,10 @@ public class MenuStaffMovieListFunction extends MenuBase {
                 nextMenu = new MenuStaffMovieCreate(this);
                 break;
             case 2:
-                //updateMovie();
+                //nextMenu = new MenuStaffMovieU
                 break;
             case 3:
-                //removeMovie();
+                nextMenu = new MenuStaffMovieRemove(this);
                 break;
             case 4:
                 nextMenu = this.getPreviousMenu();
