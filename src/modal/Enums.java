@@ -8,6 +8,16 @@ public class Enums {
         NORMAL
     }
 
+    public enum MovieRating{
+        G,
+        PG13,
+        NC16,
+        M18,
+        R21
+
+
+    }
+
     public enum MovieType{
         THREE_D,
         TWO_D,
