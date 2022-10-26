@@ -15,8 +15,8 @@ public class MenuStaffMain extends MenuBase {
         System.out.println("Staff Menu");
 
         System.out.println("======================= Staff Menu =======================\n" +
-                " 1. Create/Update/Remove Movie Listing                                     \n" +
-                " 2. Create/Update/Remove Session                                            \n" +
+                " 1. Create/Update/Remove Movie Listing                               \n" + //shows what movies there are
+                " 2. Create/Update/Remove Movie Session                               \n" + //shows the timing of each movie
                 " 3. Configure system settings                                          \n" +
                 " 4. List movies                                                   \n" +
                 " 5. Back                                                           \n " +
@@ -32,12 +32,12 @@ public class MenuStaffMain extends MenuBase {
         MenuBase nextMenu = this;
         switch (choice) {
             case 1:
-                // Movie Listing Functions (STAFF)
+                // List movies (STAFF)
                 nextMenu = new MenuStaffMovieListFunction(this);
 
                 break;
             case 2:
-                // nextMenu = new MenuStaffCreateSession(this);
+                nextMenu = new MenuStaffMovieSessionFunction(this);
                 break;
             case 3:
 
