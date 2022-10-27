@@ -1,5 +1,6 @@
-package view;
+package view.Customer;
 import modal.Customer;
+import view.MenuBase;
 
 import java.util.*;
 import static view.utilF.*;
