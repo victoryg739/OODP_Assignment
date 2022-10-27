@@ -1,6 +1,11 @@
 package view;
+import modal.Constant;
 import modal.Customer;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /* Functions to help us to process printing/reading inputs */
@@ -35,6 +40,47 @@ public class utilF {
             }
         }
     }
+
+    /**
+     * This method will only read in a format of the date with label
+     * wrapper of readDate(String label, String format)
+     * @param label is the message to be printed when asking for input
+     * @return Date when a correct format if entered, Otherwise keep prompting
+     */
+    public static Date readDate(String label) {
+        return readDate(label, "");
+    }
+
+    /**
+     * This method will only read in a format of the date with label
+     *
+     * @param label is the message to be printed when asking for input
+     * @param format format of date datatype refer to Constant
+     * @return Date when a correct format if entered, Otherwise keep prompting
+     */
+    public static Date readDate(String label, String format) {
+        SimpleDateFormat sdf;
+
+        if (format.isEmpty()) { // default value
+            sdf = Constant.dateFormatShort;
+            format = Constant.FORMAT_DATE_SHORT;
+        } else {
+            sdf = new SimpleDateFormat(format);
+        }
+        sdf.setLenient(false);
+        do {
+            try {
+                String date = read(label + " (" + format + "): ");
+                return sdf.parse(date);
+            } catch (ParseException ime) {
+                System.out.println("Please enter a correct date format");
+                sc.nextLine();
+            }
+        } while (true);
+    }
+
+
+
 
     /*
      method to notify user the allowable range of seat input
@@ -95,6 +141,8 @@ public class utilF {
 
         return customer;
     }
+
+
 
 
 
