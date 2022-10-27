@@ -6,7 +6,7 @@ import static view.utilF.*;
 
 public class MovieSearchMenu extends MenuBase {
 
-    //private Manager manager = Manager.getInstance();
+
     private String movieName;
     public MovieSearchMenu(MenuBase initialMenu) {
         super(initialMenu);

@@ -31,6 +31,7 @@ public class PurchaseTicketMenu extends MenuBase {
         System.out.println("Menu for Purchasing Ticket:");
 
         //.getSlots() is to check for the available slots for that movie timeslot
+        //Slot == Session
         /*
         if(movie.getSlots().isEmpty())
         {
@@ -40,7 +41,7 @@ public class PurchaseTicketMenu extends MenuBase {
 
          */
 
-        //For the info on the movie and the slots
+        //For all the available movie sessions with seats
         /*
         for(Slot slot:movie.getSlots())
         {
@@ -50,9 +51,10 @@ public class PurchaseTicketMenu extends MenuBase {
          */
         printMenu(choices, 1);
         //c = readChoice("Please Choose a slot", 0, choices.size());
-        //Slot slot = movie.getSlots().get(c);
+        //Session session = movie.getSlots().get(c);
 
-        //ArrayList<ArrayList<Seat>> seats = slot.getSeats();
+        //get all the available seats for the selected session
+        //ArrayList<ArrayList<Seat>> seats = session.getSeats();
         //int col = seats.get(0).size(), row=seats.size();
 
         //find seat & select seat
