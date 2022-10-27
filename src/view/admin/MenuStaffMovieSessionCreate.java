@@ -1,6 +1,6 @@
 package view.admin;
 
-import controller.AdminController;
+//import controller.AdminController;
 import controller.CineplexController;
 import modal.Cinema;
 import modal.Cineplex;
@@ -44,7 +44,7 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 
         System.out.println("\nCinemas in " + cineplex.getLocation()+ ": \n");
         ArrayList<Cinema> cinemaArray = cineplex.getCinemas();
-        cinemaArray.forEach(Cinema -> System.out.println("Cinema No:" + Cinema.getCinemaNo());
+        cinemaArray.forEach(Cinema -> System.out.println("Cinema No:" + Cinema.getCinemaNo()));
 
         int cinemaNo = readIntInput("Enter Cinema No: ");
 

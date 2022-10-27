@@ -31,7 +31,7 @@ public class MainMenu extends MenuBase {
 
             switch (choice) {
                 case 1:
-                    // nextMenu = new Customer(this);
+                    nextMenu = new MovieGoerMainMenu(this);
                     break;
                 case 2:
                     nextMenu = new MenuStaffLogin(this);
