@@ -1,4 +1,7 @@
-package view;
+package view.Customer;
+import view.MenuBase;
+import view.admin.MenuStaffMovieList;
+
 import java.util.*;
 import static view.utilF.*;
 
@@ -38,10 +41,11 @@ public class MovieGoerMainMenu extends MenuBase {
                 nextMenu = new MovieSearchMenu(this);
                 break;
             case 1:
-                nextMenu = new MoviesListMenu(this);
+                //MenuStaffMovieList = ListMovieMenu
+                nextMenu = new MenuStaffMovieList(this);
                 break;
             case 2:
-                nextMenu = new BookingHistoryMenu(this);
+                //nextMenu = new BookingHistoryMenu(this);
                 break;
             case 3:
                 nextMenu = this.getPreviousMenu();

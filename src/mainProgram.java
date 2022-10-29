@@ -2,7 +2,6 @@ import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
 
-import java.util.Scanner;
 
 /*
 
@@ -11,6 +10,7 @@ The start of the program
 
 public class mainProgram {
     public static void main(String[] args) {
+
         // Create first Main Menu
         MainMenu mm = new MainMenu(null);
         // Upcast to a MenuBase
