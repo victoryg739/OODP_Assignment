@@ -88,7 +88,6 @@ public class MovieController {
         }
         return null;
     }
-
     public int getLastId() {
         int lastId = -1;
         int movieID;

@@ -1,6 +1,7 @@
 package view;
 import modal.Constant;
 import modal.Customer;
+import modal.Enums.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,6 +42,76 @@ public class utilF {
         }
     }
 
+
+    public static MovieRating readMovieRatingInput(String Message) {
+        MovieRating movieRating;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+
+                switch(c) {
+                    case 1:
+                         movieRating = MovieRating.G;
+                        break;
+                    case 2:
+                         movieRating = MovieRating.PG13;
+                        break;
+                    case 3:
+                         movieRating = MovieRating.NC16;
+                        break;
+                    case 4:
+                         movieRating = MovieRating.M18;
+                        break;
+                    case 5:
+                        movieRating = MovieRating.R21;
+                        break;
+                    default:
+                        System.out.println("Default Moving Rating (PG) selected! ");
+                        movieRating = MovieRating.G;
+                        break;
+                }
+
+                return movieRating;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
+
+    public static MovieType readMovieTypeInput(String Message) {
+        MovieType movieType;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+
+                switch(c) {
+                    case 1:
+                        movieType = MovieType.TWO_D;
+                        break;
+                    case 2:
+                        movieType = MovieType.THREE_D;
+                        break;
+                    case 3:
+                        movieType = MovieType.BLOCKBUSTER;
+                        break;
+                    default:
+                        System.out.println("Default Moving Type (2D) selected! ");
+                        movieType = MovieType.TWO_D;
+                        break;
+                }
+
+                return movieType;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
+
+
     /**
      * This method will only read in a format of the date with label
      * wrapper of readDate(String label, String format)
@@ -51,13 +122,7 @@ public class utilF {
         return readDate(label, "");
     }
 
-    /**
-     * This method will only read in a format of the date with label
-     *
-     * @param label is the message to be printed when asking for input
-     * @param format format of date datatype refer to Constant
-     * @return Date when a correct format if entered, Otherwise keep prompting
-     */
+
     public static Date readDate(String label, String format) {
         SimpleDateFormat sdf;
 
@@ -74,10 +139,39 @@ public class utilF {
                 return sdf.parse(date);
             } catch (ParseException ime) {
                 System.out.println("Please enter a correct date format");
+                //sc.nextLine();
+            }
+        } while (true);
+    }
+
+
+
+    /* Tester function */
+
+    public static Date readDate() {
+        String label = "01/05/1998";
+        String format = Constant.FORMAT_DATE_SHORT;
+        SimpleDateFormat sdf;
+
+        if (format.isEmpty()) { // default value
+            sdf = Constant.dateFormatShort;
+            format = Constant.FORMAT_DATE_SHORT;
+        } else {
+            sdf = new SimpleDateFormat(format);
+        }
+        sdf.setLenient(false);
+        do {
+            try {
+                String date = label + " (" + format + "): ";
+                //String date = read(label + " (" + format + "): ");
+                return sdf.parse(date);
+            } catch (ParseException ime) {
+                System.out.println("Please enter a correct date format");
                 sc.nextLine();
             }
         } while (true);
     }
+
 
 
 
