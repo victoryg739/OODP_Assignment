@@ -37,7 +37,7 @@ public class MovieGoerMainMenu extends MenuBase {
         MenuBase nextMenu = this;
         switch (choice) {
             case 0:
-                nextMenu = new MovieSearchMenu(this);
+                //nextMenu = new MovieSearchMenu(this);
                 break;
             case 1:
                 //MenuStaffMovieList = ListMovieMenu

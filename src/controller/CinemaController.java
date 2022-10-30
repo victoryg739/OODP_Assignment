@@ -1,9 +1,6 @@
 package controller;
 
-import modal.Cinema;
-import modal.Cineplex;
-import modal.Enums;
-import modal.Movie;
+import modal.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,7 +8,6 @@ import java.util.Date;
 
 public class CinemaController {
 
-    private CineplexController cineplexCtrl;
 
 
         public final static String FILENAME = "data/cinema.txt";
@@ -20,9 +16,29 @@ public class CinemaController {
         public final static int NAME = 0;
         public final static int CINEMAS = 1;
 
-        public void create(){
+        public void create(String cinemaNo, Movie movie, Enums.ClassCinema classCinema, ArrayList<Session> sessions ){
+            Cinema cinema  = new Cinema(cinemaNo,movie,classCinema,sessions);
+
+            // Creates an ArrayList of movie
+            ArrayList<Cinema> allData = new ArrayList<Cinema>();
+            File tempFile = new File(FILENAME);
+
+            // If it exists then read() the existing data
+            if (tempFile.exists())
+                allData = read();
+            try {
+                // Write the data to the movie
+                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+                allData.add(cinema);
+                out.writeObject(allData);
+                out.flush();
+                out.close();
+            } catch (IOException e) {
+                // ignore error
+            }
 
         }
+
     /**
      * READ and return every Cinema in the Database file
      * @return Model.{@link Cinema}    Return list of Cinemas if found, else empty list

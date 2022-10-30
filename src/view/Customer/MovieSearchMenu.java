@@ -1,4 +1,4 @@
-package view.Customer;
+/*package view.Customer;
 
 import controller.MovieController;
 import modal.Movie;
@@ -48,13 +48,13 @@ public class MovieSearchMenu extends MenuBase {
                 printMenu(choices, 1); //print menu for the options
 
                 int choice = sc.nextInt();
-                /* eg. Menu Choices
+                *//* eg. Menu Choices
                     movies.size == 2
                     Option 1: Movie 1
                     Option 2: Movie 2
                     Option 3: Go Back
                     Option 4: Quit The Application
-                */
+                *//*
                 if (choice <= movies.size()) {
                     //go to MovieInfo Menu
                     nextMenu = new MovieInfo(this, movies.get(choice));
@@ -76,4 +76,4 @@ public class MovieSearchMenu extends MenuBase {
         else //when the choice input is invalid
             return this.getPreviousMenu(); //go back
     }
-}
+}*/

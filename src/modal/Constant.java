@@ -17,8 +17,8 @@ public class Constant {
 
     public static SimpleDateFormat bookingFormat = new SimpleDateFormat(FORMAT_BOOKING_ID);
     public static SimpleDateFormat holidayFormat = new SimpleDateFormat(FORMAT_HOLIDAY);
-    public static SimpleDateFormat datetimeFormat = new SimpleDateFormat("dd MMM yyyy, hh:mma");
+    public static SimpleDateFormat datetimeFormat = new SimpleDateFormat("dd MM yyyy hh:mm");
 
-    //Date Time format : DD/MM/YY hh:mm PM
+
     public static DateFormat dateTimeFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
 }
