@@ -1,12 +1,16 @@
 package view.Customer;
-import view.MenuBase;
 
-import java.util.*;
+import controller.MovieController;
+import modal.Movie;
+import view.MenuBase;
+import view.Quit;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import static view.utilF.*;
 
 public class MovieSearchMenu extends MenuBase {
-
-
     private String movieName;
     public MovieSearchMenu(MenuBase initialMenu) {
         super(initialMenu);
@@ -15,14 +19,14 @@ public class MovieSearchMenu extends MenuBase {
     public MenuBase execute() {
         Scanner sc = new Scanner(System.in);
         MenuBase nextMenu = null;
-        //ArrayList<Movie> movies; //List of Movies objects
+        ArrayList<Movie> movies; //List of Movies objects
         movieName = null;
         System.out.println("Movie Search");
         movieName = read("Input movie name to search: ");
 
-        /*
         while (true) {
-            movies = manager.getEntries(); //get movie with the same name as the input name
+            //obtain a ArrayList of Movie objects with the same name list
+            movies = MovieController.read();
             if (movies.isEmpty()) { //if movie not found
                 System.out.println("Sorry, no result found. Press 0 to go back.");
                 movieName = read("Input movie name to search: ");
@@ -43,29 +47,30 @@ public class MovieSearchMenu extends MenuBase {
                 choices.add("Quit The Application");
                 printMenu(choices, 1); //print menu for the options
 
-                String choice = sc.next();
-                int c = readIntInput(choice);
-
+                int choice = sc.nextInt();
                 /* eg. Menu Choices
                     movies.size == 2
                     Option 1: Movie 1
                     Option 2: Movie 2
                     Option 3: Go Back
                     Option 4: Quit The Application
-
-
-                if (c <= movies.size())
+                */
+                if (choice <= movies.size()) {
                     //go to MovieInfo Menu
-                    //movies.get() == to get the respective movie class
-                    nextMenu = new MovieInfo(this, movies.get(c));
-                else if (c == movies.size() + 1) //select Go Back option
+                    nextMenu = new MovieInfo(this, movies.get(choice));
+                }
+                else if (choice == movies.size() + 1) {
+                    //select Go Back option
                     nextMenu = getPreviousMenu();
-                else if (c == movies.size() + 2) //Quit the App
+                }
+                else if (choice == movies.size() + 2) {
+                    //Quit the App
                     nextMenu = new Quit(null);
+                }
                 break;
             }
         }
-         */
+
         if(nextMenu!=null)
             return nextMenu; //move to the next Menu (MovieInfo of the selected movie)
         else //when the choice input is invalid
