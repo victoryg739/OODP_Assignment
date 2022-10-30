@@ -16,8 +16,8 @@ public class MovieController {
     public final static String FILENAME = "data/movies.txt";
 
     public MovieController() {
-    }
 
+    }
     // Creates a movie and writes it to movies.txt
     public void createMovie(String title, MovieType type, MovieRating rating, String synopsis, int runtime, Date DateStart, Date DateEnd, ArrayList<String> cast, String director) {
         // Creates a movie object
@@ -48,7 +48,7 @@ public class MovieController {
         MovieType movieType = movie.getType();
         MovieRating movieRating = movie.getRating();
         String synopsis = movie.getSynopsis();
-        int runtime = movie.runtime();
+        int runtime = movie.runTime();
         Date DateStart = movie.getDateStart();
         Date DateEnd = movie.getDateEnd();
         String director = movie.getDirector();
@@ -79,7 +79,15 @@ public class MovieController {
         return new ArrayList<Movie>();
     }
 
-
+    public Movie readByID(int valueToSearch) {
+        ArrayList<Movie> allData = read();
+        for (int i=0; i<allData.size(); i++){
+            Movie m = allData.get(i);
+            if (m.getID() == valueToSearch)
+                return m;
+        }
+        return null;
+    }
     public int getLastId() {
         int lastId = -1;
         int movieID;
@@ -106,7 +114,7 @@ public class MovieController {
         replaceExistingFile(FILENAME, returnData);
     }
 
-    public void updateMovie(int column, int movieID, Object newValue) {
+    public void updateMovie(int choice, int movieID, Object newValue) {
         ArrayList<Movie> dataList = read();
         ArrayList<Movie> updateList = new ArrayList<Movie>();
 
@@ -119,10 +127,34 @@ public class MovieController {
             // If the movie is the same as the UpdateMovie ID
             if (m.getID() == movieID) {
                 // Start updating the values
-                switch (column) {
+                switch (choice) {
 
                     case 1:
                        m.setTitle((String) newValue);
+                        break;
+                    case 2:
+                        m.setType((MovieType) newValue);
+                        break;
+                    case 3:
+                        m.setSynopsis((String) newValue);
+                        break;
+                    case 4:
+                        m.setRating((MovieRating) newValue);
+                        break;
+                    case 5:
+                        m.setRunTime((int) newValue);
+                        break;
+                    case 6:
+                        m.setDateStart((Date) newValue);
+                        break;
+                    case 7:
+                        m.setDateEnd((Date) newValue);
+                        break;
+                    case 8:
+                        m.setCast((ArrayList<String>) newValue);
+                        break;
+                    case 9:
+                        m.setDirector((String) newValue);
                         break;
                 }
 
@@ -149,20 +181,24 @@ public class MovieController {
         }
     }
 
-    /**
-     * READ and return every Movie of a given ID in the Database file
-     * @param valueToSearch     Id of movie to search for
-     * @return Movie            Return Movie if found, else null object
-     */
-    public Movie readByID(int valueToSearch) {
-        ArrayList<Movie> allData = read();
-        for (int i=0; i<allData.size(); i++){
-            Movie m = allData.get(i);
-            if (m.getID() == valueToSearch)
-                return m;
+
+    // Tester Function //
+    public void createMovie(Movie movie){
+        ArrayList<Movie> allData = new ArrayList<Movie>();
+        File tempFile = new File(FILENAME);
+        // If it exists then read() the existing data
+        if (tempFile.exists())
+            allData = read();
+        try {
+            // Write the data to the movie
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            allData.add(movie);
+            out.writeObject(allData);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            // ignore error
         }
-        return null;
+
     }
-
-
 }
