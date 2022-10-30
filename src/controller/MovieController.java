@@ -102,4 +102,20 @@ public class MovieController {
         }
     }
 
+    /**
+     * READ and return every Movie of a given ID in the Database file
+     * @param valueToSearch     Id of movie to search for
+     * @return Movie            Return Movie if found, else null object
+     */
+    public Movie readByID(int valueToSearch) {
+        ArrayList<Movie> allData = read();
+        for (int i=0; i<allData.size(); i++){
+            Movie m = allData.get(i);
+            if (m.getID() == valueToSearch)
+                return m;
+        }
+        return null;
+    }
+
+
 }
