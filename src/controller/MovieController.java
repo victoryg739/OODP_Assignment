@@ -67,7 +67,7 @@ public class MovieController {
 
 
     // Read a movie object from movies.txt//
-    public ArrayList<Movie> read() {
+    public static ArrayList<Movie> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
             ArrayList<Movie> movieListing = (ArrayList<Movie>) ois.readObject();
