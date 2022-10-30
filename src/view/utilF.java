@@ -50,7 +50,7 @@ public class utilF {
 
         do {
             try {
-                String date = read(msg + " (" + sdf + "): ");
+                String date = read(msg + " (" + sdf.toPattern()+ "): ");
                 return sdf.parse(date);
             } catch (ParseException ime) {
                 System.out.println("Please enter a correct date format");
