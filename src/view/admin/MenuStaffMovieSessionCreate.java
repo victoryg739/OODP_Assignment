@@ -1,9 +1,11 @@
 package view.admin;
 
 //import controller.AdminController;
+import controller.CinemaController;
 import controller.CineplexController;
-import modal.Cinema;
-import modal.Cineplex;
+import controller.MovieController;
+import controller.SessionController;
+import modal.*;
 import view.MenuBase;
 
 import java.util.ArrayList;
@@ -18,6 +20,10 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
             super(initialMenu);
         }
         private CineplexController cineplexCtrler = new CineplexController();
+        private CinemaController cinemaCtrler = new CinemaController();
+        private MovieController movieCtrler = new MovieController();
+        private SessionController sessionCtrler = new SessionController();
+        private Constant datetimeFormat;
 
 
     public MenuBase execute() {
@@ -46,28 +52,49 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         ArrayList<Cinema> cinemaArray = cineplex.getCinemas();
         cinemaArray.forEach(Cinema -> System.out.println("Cinema No:" + Cinema.getCinemaNo()));
 
-        int cinemaNo = readIntInput("Enter Cinema No: ");
+        String cinemaNo = read("Enter Cinema No: ");
+        Cinema cinema = cinemaCtrler.readByCinemaNo(cinemaNo);
 
-/*        if (cineplexCtrler.readByAttribute(0, cinemaCode).isEmpty()) {
+        //added
+
+
+        if (cinemaCtrler.readByAttribute(cinemaNo).isEmpty()) {
             System.out.println("Cinema does not exist!\n"+
                     "Returning to menu...");
-            return;
-        }*/
+            return getPreviousMenu();
+        }
 
 
         int movie_id  = readIntInput("Enter movie id: ");
         //need to implement movie controller not done
-//        if (movieCtrl.readByID(movie_id) == null) {
-//            System.out.println("Movie does not exist!\n"+
-//                    "Returning to menu...");
-//            return;
-//        };
-
-        System.out.println("Enter session date and time: ");
+        if (movieCtrler.readByID(movie_id) == null) {
+            System.out.println("Movie does not exist!\n"+
+                    "Returning to menu...");
+            return getPreviousMenu();
+        };
 
 
+        Date sessionDateTime  = readDateTime("Enter session date and time");
+        Movie movie = movieCtrler.readByID(movie_id);
+        ArrayList<Seat> seat = new ArrayList<Seat>(100);
+        int row  = 5;
+        int column  = 5;
+        for(int i = 0; i < row ;i++){
+            for (int j = 0; j < column; j++){
+                Seat s = new Seat(j,i,false);
+                seat.add(s);
 
-          return getPreviousMenu();
+            }
+        }
+
+
+
+
+
+        sessionCtrler.createSession(cinema,movie,1, sessionDateTime,seat);
+
+        System.out.println("Session successfully created!");
+        return getPreviousMenu();
         }
 
 }

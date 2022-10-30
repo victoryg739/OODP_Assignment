@@ -74,33 +74,6 @@ public class CineplexController {
         return null;
     };
 
-    /**
-     * READ and return every Cinema based on a certain value of a given attribute in the Database file
-     * @param col                   Given attribute to be check for (based on constant as defined)
-     * @param valueToSearch         Value of given attribute to search for
-     * @return Model.{@link Cinema}    Return list of Cinemas if any, else empty list
-     */
-/*    public ArrayList<Cinema> readByAttribute(int col, Object valueToSearch) {
-        ArrayList<Cinema> returnData = new ArrayList<Cinema>();
-        ArrayList<Cinema> cinemaListing = read();
-        Cinema cinema = null;
 
-        for (int j=0; j<cinemaListing.size(); j++){
-            cinema = cinemaListing.get(j);
-            switch (col) {
-                case CODE:
-                    if (cinema.getCode().equals((String) valueToSearch))
-                        returnData.add(cinema);
-                    break;
-                case CINEMA_TYPE:
-                    if (cinema.getCinemaType().equals((CinemaType) valueToSearch))
-                        returnData.add(cinema);
-                    break;
-                default:
-                    break;
-            }
-        }
-        return returnData;
-    }*/
 
 }

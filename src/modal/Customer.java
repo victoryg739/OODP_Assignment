@@ -2,24 +2,26 @@ package modal;
 import java.util.*;
 
 public class Customer  {
-    private String name, phone, email;
-    //private ArrayList<Booking> bookings;
+    public String getId;
+    private String customerId, phoneNumber, email;
+    private ArrayList<Booking> bookings;
 
 
-    public Customer(String name, String email)
+    public Customer(String customerId, String email, String phoneNumber)
     {
-        this.name = name;
+        this.customerId = customerId;
+        this.phoneNumber = phoneNumber;
         this.email = email;
-        //this.bookings = new ArrayList<>();
+        this.bookings = new ArrayList<>();
     }
 
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return customerId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String customerId) {
+        this.customerId = customerId;
     }
 
     public String getEmail() {
@@ -30,7 +32,14 @@ public class Customer  {
         this.email = email;
     }
 
-    /*
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public ArrayList<Booking> getBookings() {
         return bookings;
     }
@@ -49,15 +58,13 @@ public class Customer  {
         }
     }
 
-    public void removeBookings(Booking remove_bookings){
-        for(int i = 0; i < this.bookings.size(); i++){
-            if(this.bookings.get(i) == remove_bookings){
-                this.bookings.remove(i);
-                return;
-            }
-        }
-    }
-
-     */
+//    public void removeBookings(Booking remove_bookings){
+//        for(int i = 0; i < this.bookings.size(); i++){
+//            if(this.bookings.get(i) == remove_bookings){
+//                this.bookings.remove(i);
+//                return;
+//            }
+//        }
+//    }
 
 }

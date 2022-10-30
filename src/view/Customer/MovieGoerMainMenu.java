@@ -32,17 +32,16 @@ public class MovieGoerMainMenu extends MenuBase {
         printMenu(choices, 0);
 
         //read the input
-        String choice = sc.next();
-        int c = readIntInput(choice);
+        int choice = sc.nextInt();
 
         MenuBase nextMenu = this;
-        switch (c) {
+        switch (choice) {
             case 0:
                 nextMenu = new MovieSearchMenu(this);
                 break;
             case 1:
                 //MenuStaffMovieList = ListMovieMenu
-                nextMenu = new MenuStaffMovieList(this);
+                nextMenu = new MoviesListMenu(this);
                 break;
             case 2:
                 //nextMenu = new BookingHistoryMenu(this);
