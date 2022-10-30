@@ -4,6 +4,7 @@ import modal.Customer;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -40,6 +41,24 @@ public class utilF {
             }
         }
     }
+
+    //wrong change later
+    public static Date readDateTime(String msg) {
+        SimpleDateFormat sdf;
+
+        sdf = Constant.datetimeFormat;
+
+        do {
+            try {
+                String date = read(msg + " (" + sdf + "): ");
+                return sdf.parse(date);
+            } catch (ParseException ime) {
+                System.out.println("Please enter a correct date format");
+                sc.nextLine();
+            }
+        } while (true);
+    }
+
 
     /**
      * This method will only read in a format of the date with label

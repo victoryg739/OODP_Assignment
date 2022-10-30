@@ -20,26 +20,50 @@ public class MovieController {
 
     // Creates a movie and writes it to movies.txt
     public void createMovie(String title, MovieType type, MovieRating rating, String synopsis, int runtime, Date DateStart, Date DateEnd, ArrayList<String> cast, String director) {
-            // Creates a movie object
-            Movie movie = new Movie(getLastId() +1, title, type, rating, synopsis, runtime, DateStart, DateEnd, director, cast);
-            // Creates an ArrayList of movie
-            ArrayList<Movie> allData = new ArrayList<Movie>();
-            File tempFile = new File(FILENAME);
+        // Creates a movie object
+        Movie movie = new Movie(getLastId() + 1, title, type, rating, synopsis, runtime, DateStart, DateEnd, director, cast);
+        // Creates an ArrayList of movie
+        ArrayList<Movie> allData = new ArrayList<Movie>();
+        File tempFile = new File(FILENAME);
 
-            // If it exists then read() the existing data
-            if (tempFile.exists())
-                allData = read();
-            try {
+        // If it exists then read() the existing data
+        if (tempFile.exists())
+            allData = read();
+        try {
             // Write the data to the movie
-                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-                allData.add(movie);
-                out.writeObject(allData);
-                out.flush();
-                out.close();
-            } catch (IOException e) {
-                // ignore error
-            }
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            allData.add(movie);
+            out.writeObject(allData);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            // ignore error
         }
+    }
+
+
+    public void printMovie(Movie movie){
+        int id = movie.getID();
+        String title = movie.getTitle();
+        MovieType movieType = movie.getType();
+        MovieRating movieRating = movie.getRating();
+        String synopsis = movie.getSynopsis();
+        int runtime = movie.runtime();
+        Date DateStart = movie.getDateStart();
+        Date DateEnd = movie.getDateEnd();
+        String director = movie.getDirector();
+        //ArrayList<String> casts = movie.getCast();
+        String castString = "";
+        for (int i=0; i< movie.getCast().size(); i++)
+            castString = castString.concat(movie.getCast().get(i) + ",");
+        castString = castString.substring(0, castString.length()-1);
+
+        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
+                + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
+                + "Cast: " + castString;
+        System.out.println(movieString);
+        System.out.println("-------------------");
+    }
 
 
     // Read a movie object from movies.txt//
@@ -56,12 +80,11 @@ public class MovieController {
     }
 
 
-
-    public int getLastId(){
+    public int getLastId() {
         int lastId = -1;
         int movieID;
         ArrayList<Movie> allData = read();
-        for (int i=0; i<allData.size(); i++){
+        for (int i = 0; i < allData.size(); i++) {
             movieID = allData.get(i).getID();
             if (movieID > lastId)
                 lastId = movieID;
@@ -73,7 +96,7 @@ public class MovieController {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
 
-        for (int i=0; i<allData.size(); i++){
+        for (int i = 0; i < allData.size(); i++) {
             Movie m = allData.get(i);
             if (!(m.getID() == id))
                 returnData.add(m);
@@ -83,11 +106,35 @@ public class MovieController {
         replaceExistingFile(FILENAME, returnData);
     }
 
-    /**
-     * Overwrite Database file with new data of list of Admin
-     * @param filename      Filename to check for
-     * @param data          New ArrayList of Movies to be written to the file
-     */
+    public void updateMovie(int column, int movieID, Object newValue) {
+        ArrayList<Movie> dataList = read();
+        ArrayList<Movie> updateList = new ArrayList<Movie>();
+
+        // Delete Sessions with MovieID equal to MovieID passed in
+
+        // Loop through the array list
+        for (int i = 0; i < dataList.size(); i++) {
+            // Get first object of the array list
+            Movie m = dataList.get(i);
+            // If the movie is the same as the UpdateMovie ID
+            if (m.getID() == movieID) {
+                // Start updating the values
+                switch (column) {
+
+                    case 1:
+                       m.setTitle((String) newValue);
+                        break;
+                }
+
+            }
+            // Add this new data to new ArrayList
+            updateList.add(m);
+        }
+        replaceExistingFile(FILENAME, updateList);
+    }
+
+
+    /* Replace existing file to a new file */
     public void replaceExistingFile(String filename, ArrayList<Movie> data) {
         File tempFile = new File(filename);
         if (tempFile.exists())
@@ -101,5 +148,21 @@ public class MovieController {
             //
         }
     }
+
+    /**
+     * READ and return every Movie of a given ID in the Database file
+     * @param valueToSearch     Id of movie to search for
+     * @return Movie            Return Movie if found, else null object
+     */
+    public Movie readByID(int valueToSearch) {
+        ArrayList<Movie> allData = read();
+        for (int i=0; i<allData.size(); i++){
+            Movie m = allData.get(i);
+            if (m.getID() == valueToSearch)
+                return m;
+        }
+        return null;
+    }
+
 
 }
