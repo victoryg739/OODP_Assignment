@@ -1,12 +1,11 @@
 package view.Customer;
 import view.MenuBase;
-import view.admin.MenuStaffMovieList;
 
 import java.util.*;
 import static view.utilF.*;
 
-public class MovieGoerMainMenu extends MenuBase {
-    public MovieGoerMainMenu(MenuBase initialMenu) {
+public class MenuCustomerMain extends MenuBase {
+    public MenuCustomerMain(MenuBase initialMenu) {
         super(initialMenu);
     }
 
@@ -32,16 +31,16 @@ public class MovieGoerMainMenu extends MenuBase {
         printMenu(choices, 0);
 
         //read the input
-        int choice = sc.nextInt();
+        int choice = readIntInput("Enter your choice");
 
         MenuBase nextMenu = this;
         switch (choice) {
             case 0:
-                //nextMenu = new MovieSearchMenu(this);
+                nextMenu = new MenuSearchMovie(this);
                 break;
             case 1:
                 //MenuStaffMovieList = ListMovieMenu
-                nextMenu = new MoviesListMenu(this);
+                nextMenu = new MenuListMovie(this);
                 break;
             case 2:
                 //nextMenu = new BookingHistoryMenu(this);

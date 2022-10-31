@@ -6,10 +6,10 @@ import modal.*;
 import java.util.*;
 import static view.utilF.*;
 
-public class MovieInfo extends MenuBase {
+public class MenuMovieInfo extends MenuBase {
     private final Movie movie;
 
-    public MovieInfo(MenuBase initialMenu, Movie movie) {
+    public MenuMovieInfo(MenuBase initialMenu, Movie movie) {
         super(initialMenu);
         this.movie = movie;
     }
@@ -122,7 +122,7 @@ public class MovieInfo extends MenuBase {
             do{
                 switch (choice) {
                     case 0:
-                        nextMenu = new PurchaseTicketMenu(this, this.movie);
+                        nextMenu = new MenuPurchaseTicket(this, this.movie);
                         break;
                     case 1:
                         //nextMenu = new MoviesReviewsMenu(this, this.movie);

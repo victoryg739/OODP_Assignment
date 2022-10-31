@@ -1,12 +1,14 @@
 package view.Customer;
 
+import controller.MovieController;
+import modal.Movie;
 import view.MenuBase;
 
 import java.util.*;
 import static view.utilF.*;
-public class MoviesListMenu extends MenuBase {
+public class MenuListMovie extends MenuBase {
 
-    public MoviesListMenu(MenuBase initialMenu) {
+    public MenuListMovie(MenuBase initialMenu) {
         super(initialMenu);
     }
 
@@ -22,29 +24,28 @@ public class MoviesListMenu extends MenuBase {
     public MenuBase execute() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Movie Listing");
-        //Manager mg = Manager.getInstance(); //get a manager object to access the database
-
         ArrayList<String> choices = new ArrayList<String>();
-        //.getAll() is to retrieve all the movies
-        //ArrayList<Movie> movies = mg.getAll();
+
+        //Retrieve the entire list of movies in the database
+        ArrayList<Movie> movies = MovieController.read();
 
         //list all the movies out
-        /*
+
         for (Movie m : movies) {
             //get the current time
             Date currentTime = Calendar.getInstance().getTime();
             //.getEnding is to retrieve the last showing date
-            if(m.getEnding().compareTo(currentTime) < 0) { //not showing anymore
+            if(m.getDateEnd().compareTo(currentTime) < 0) { //not showing anymore
                 m.setShowingStatus(Constant.ShowingStatus.NOT_SHOWING); //set the status to NOT SHOWING
             }
-            else if (m.getEnding().compareTO(currentTime) >= 0) { //currently showing
+            else if (m.getDateEnd().compareTo(currentTime) >= 0) { //currently showing
                 m.setShowingStatus(Constant.ShowingStatus.CURRENTLY_SHOWING);
             }
             String title = m.getTitle() + (m.getShowingStatus().equals(Constant.ShowingStatus.END_SHOWING) ? " (End Showing)" : "");
             choices.add(title); //add the movie as part of the option
         }
 
-         */
+
 
         choices.add("Show Top 5 Movies by sale");
         choices.add("Shop Top 5 Movies by ratings");

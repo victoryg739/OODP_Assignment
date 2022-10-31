@@ -48,7 +48,7 @@ public class MovieController {
         MovieType movieType = movie.getType();
         MovieRating movieRating = movie.getRating();
         String synopsis = movie.getSynopsis();
-        int runtime = movie.runTime();
+        int runtime = movie.runtime();
         Date DateStart = movie.getDateStart();
         Date DateEnd = movie.getDateEnd();
         String director = movie.getDirector();

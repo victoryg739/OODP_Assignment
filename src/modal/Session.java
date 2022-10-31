@@ -12,6 +12,7 @@ public class Session implements Serializable {
     private Cinema cinema;
     private int sessionId;
     private Date datetimeFormat;
+
     private ArrayList<Seat> seat;
 
     public Session(Cinema cinema, Movie movie, int sessionId, Date datetimeFormat, ArrayList<Seat> seat) {

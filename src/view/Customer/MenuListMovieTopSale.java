@@ -1,8 +1,5 @@
 package view.Customer;
 
-import java.util.*;
-import static view.utilF.*;
-
 //Menu to list the top five movies by sales
 
     /*

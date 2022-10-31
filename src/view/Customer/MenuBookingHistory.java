@@ -6,10 +6,10 @@ import view.MenuBase;
 import java.util.*;
 import static view.utilF.*;
 
-public class BookingHistoryMenu extends MenuBase {
+public class MenuBookingHistory extends MenuBase {
 
 
-    public BookingHistoryMenu(MenuBase initialMenu) {
+    public MenuBookingHistory(MenuBase initialMenu) {
         super(initialMenu);
     }
 

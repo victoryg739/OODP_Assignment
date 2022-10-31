@@ -12,7 +12,6 @@ public class Movie implements Serializable {
     private MovieType type;
     private MovieRating rating;
     private Date DateStart, DateEnd;
-
     private ArrayList<String> cast;
 
 
@@ -63,6 +62,10 @@ public class Movie implements Serializable {
 
     public String getSynopsis(){
         return this.synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
     }
 
     public int runtime(){

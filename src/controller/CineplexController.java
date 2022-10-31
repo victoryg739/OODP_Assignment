@@ -47,7 +47,7 @@ public class CineplexController {
         }
     }
 
-    public ArrayList<Cineplex> read() {
+    public static ArrayList<Cineplex> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
             ArrayList<Cineplex> cineplex = (ArrayList<Cineplex>) ois.readObject();

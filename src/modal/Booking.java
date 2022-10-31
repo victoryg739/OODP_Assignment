@@ -31,7 +31,7 @@ public class Booking implements Serializable{
     private double totalPrice;
 
     //Constructor
-    public Booking (String cinemaNo, String customerId, String email, String phoneNumber, Movie movie,
+    public Booking (String cinemaNo, String tid, String email, String password, Movie movie,
                     ArrayList<Ticket> ticket, Session session, double totalPrice) {
         SimpleDateFormat bookingFormat = new SimpleDateFormat(Constant.FORMAT_BOOKING_ID);
         this.tid = cinemaNo.concat(String.valueOf(bookingFormat));

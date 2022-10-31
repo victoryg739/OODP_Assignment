@@ -1,9 +1,5 @@
 package view.Customer;
 
-import java.util.Scanner;
-import java.util.*;
-import static view.utilF.*;
-
 ///*
 //public class MoviesListTopRatings extends MenuBase {
 //    public MoviesListTopRatings(MenuBase initialMenu) {

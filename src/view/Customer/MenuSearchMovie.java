@@ -1,4 +1,4 @@
-/*package view.Customer;
+package view.Customer;
 
 import controller.MovieController;
 import modal.Movie;
@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 import static view.utilF.*;
 
-public class MovieSearchMenu extends MenuBase {
+public class MenuSearchMovie extends MenuBase {
     private String movieName;
-    public MovieSearchMenu(MenuBase initialMenu) {
+    public MenuSearchMovie(MenuBase initialMenu) {
         super(initialMenu);
     }
 
@@ -47,17 +47,17 @@ public class MovieSearchMenu extends MenuBase {
                 choices.add("Quit The Application");
                 printMenu(choices, 1); //print menu for the options
 
-                int choice = sc.nextInt();
-                *//* eg. Menu Choices
+                int choice = readIntInput("Please enter your choice: ");
+                /* eg. Menu Choices
                     movies.size == 2
                     Option 1: Movie 1
                     Option 2: Movie 2
                     Option 3: Go Back
                     Option 4: Quit The Application
-                *//*
+                */
                 if (choice <= movies.size()) {
                     //go to MovieInfo Menu
-                    nextMenu = new MovieInfo(this, movies.get(choice));
+                    nextMenu = new MenuMovieInfo(this, movies.get(choice));
                 }
                 else if (choice == movies.size() + 1) {
                     //select Go Back option
@@ -76,4 +76,4 @@ public class MovieSearchMenu extends MenuBase {
         else //when the choice input is invalid
             return this.getPreviousMenu(); //go back
     }
-}*/
+}
