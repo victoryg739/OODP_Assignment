@@ -2,6 +2,8 @@ package view;
 
 import view.Customer.MenuCustomerMain;
 import view.admin.MenuStaffLogin;
+// import view.Customer.MenuCustomerRegister;
+
 import java.util.Scanner;
 
 public class MainMenu extends MenuBase {
@@ -17,7 +19,8 @@ public class MainMenu extends MenuBase {
             System.out.println("======================= MOBLIMA APP =======================\n" +
                     " 1. Customer App                                          \n" +
                     " 2. Staff App                                             \n" +
-                    " 3. Quit App                                              \n" +
+                    " 3. Register Customer App                                          \n" +
+                    " 4. Quit App                                              \n" +
                     "===========================================================");
 
             System.out.println("Enter choice: ");
@@ -38,6 +41,9 @@ public class MainMenu extends MenuBase {
                     nextMenu = new MenuStaffLogin(this);
                     break;
                 case 3:
+                    // nextMenu = new MenuCustomerRegister(this);
+                    break;
+                case 4:
                     nextMenu = new Quit(this);
                     System.out.println("Thank you for using our MOBLIMA APP");
                     break;

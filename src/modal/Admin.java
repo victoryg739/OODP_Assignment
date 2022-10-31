@@ -1,10 +1,12 @@
 package modal;
 
-public class Customer {
+
+public class Admin {
+
     private String username;
     private String password;
 
-    public Customer(String username, String password)  {
+    public Admin(String username, String password)  {
         this.username = username;
         this.password = password;
     }
