@@ -1,9 +1,11 @@
 package view;
 import modal.Constant;
 import modal.Customer;
+import modal.Enums;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -40,6 +42,24 @@ public class utilF {
             }
         }
     }
+
+    public static Date readDateTime(String msg) {
+        SimpleDateFormat sdf;
+
+        sdf = Constant.datetimeFormat;
+
+        do {
+            try {
+                String date = read(msg + " (" + sdf.toPattern()+ "): ");
+                return sdf.parse(date);
+            } catch (ParseException ime) {
+                System.out.println("Please enter a correct date format");
+                sc.nextLine();
+            }
+        } while (true);
+    }
+
+
 
     /**
      * This method will only read in a format of the date with label
@@ -78,7 +98,73 @@ public class utilF {
             }
         } while (true);
     }
+    public static Enums.MovieRating readMovieRatingInput(String Message) {
+        Enums.MovieRating movieRating;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
 
+                switch(c) {
+                    case 1:
+                        movieRating = Enums.MovieRating.G;
+                        break;
+                    case 2:
+                        movieRating = Enums.MovieRating.PG13;
+                        break;
+                    case 3:
+                        movieRating = Enums.MovieRating.NC16;
+                        break;
+                    case 4:
+                        movieRating = Enums.MovieRating.M18;
+                        break;
+                    case 5:
+                        movieRating = Enums.MovieRating.R21;
+                        break;
+                    default:
+                        System.out.println("Default Moving Rating (PG) selected! ");
+                        movieRating = Enums.MovieRating.G;
+                        break;
+                }
+
+                return movieRating;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
+
+    public static Enums.MovieType readMovieTypeInput(String Message) {
+        Enums.MovieType movieType;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+
+                switch(c) {
+                    case 1:
+                        movieType = Enums.MovieType.TWO_D;
+                        break;
+                    case 2:
+                        movieType = Enums.MovieType.THREE_D;
+                        break;
+                    case 3:
+                        movieType = Enums.MovieType.BLOCKBUSTER;
+                        break;
+                    default:
+                        System.out.println("Default Moving Type (2D) selected! ");
+                        movieType = Enums.MovieType.TWO_D;
+                        break;
+                }
+
+                return movieType;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
 
 
 

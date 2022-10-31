@@ -27,7 +27,7 @@ public class MenuStaffMovieListFunction extends MenuBase {
                 nextMenu = new MenuStaffMovieCreate(this);
                 break;
             case 2:
-                //nextMenu = new MenuStaffMovieU
+                nextMenu = new MenuStaffMovieUpdate(this);
                 break;
             case 3:
                 nextMenu = new MenuStaffMovieRemove(this);
