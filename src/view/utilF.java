@@ -1,15 +1,18 @@
 package view;
 import modal.Constant;
 import modal.Customer;
-import modal.Enums.*;
+import modal.Enums;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
 /* Functions to help us to process printing/reading inputs */
+@SuppressWarnings("deprecation")
 public class utilF {
     private static Scanner sc = new Scanner(System.in);
 
@@ -42,74 +45,50 @@ public class utilF {
         }
     }
 
+    public static Date readDateTime(String msg) {
+        SimpleDateFormat sdf;
 
-    public static MovieRating readMovieRatingInput(String Message) {
-        MovieRating movieRating;
-        System.out.println(Message);
-        while (true) {
+        sdf = Constant.datetimeFormat;
+
+        do {
             try {
-                String s = sc.next();
-                int c = Integer.parseInt(s);
-
-                switch(c) {
-                    case 1:
-                         movieRating = MovieRating.G;
-                        break;
-                    case 2:
-                         movieRating = MovieRating.PG13;
-                        break;
-                    case 3:
-                         movieRating = MovieRating.NC16;
-                        break;
-                    case 4:
-                         movieRating = MovieRating.M18;
-                        break;
-                    case 5:
-                        movieRating = MovieRating.R21;
-                        break;
-                    default:
-                        System.out.println("Default Moving Rating (PG) selected! ");
-                        movieRating = MovieRating.G;
-                        break;
-                }
-
-                return movieRating;
-            } catch (NumberFormatException e) {
-                System.out.println("Please, input a valid decimal number. ");
+                String date = read(msg + " (" + sdf.toPattern()+ "): ");
+                return sdf.parse(date);
+            } catch (ParseException ime) {
+                System.out.println("Please enter a correct date format");
+                sc.nextLine();
             }
+        } while (true);
+    }
+
+    public static Enums.Day returnEnumsDay(Date date){
+        System.out.println("dayofweek" + date.getDay());
+        System.out.println("timeofday" + date.getHours());
+        int dayOfWeek = date.getDay();
+        int hours  = date.getHours();
+        if(dayOfWeek >= 1 && dayOfWeek <= 3){
+            if(hours < 18 ) {
+                return Enums.Day.MON_WED_BEF_SIX;
+            }else{
+                return Enums.Day.MON_WED_AFT_SIX;
+            }
+        }else if(dayOfWeek == 4){
+            if(hours < 18 ) {
+                return Enums.Day.THU_BEF_SIX;
+            }else{
+                return Enums.Day.THU_AFT_SIX;
+            }
+        }else if(dayOfWeek == 5){
+            if(hours < 18 ) {
+                return Enums.Day.FRI_BEF_SIX;
+            }else{
+                return Enums.Day.FRI_AFT_SIX;
+            }
+        }else{
+            return Enums.Day.SAT_SUN;
         }
     }
 
-    public static MovieType readMovieTypeInput(String Message) {
-        MovieType movieType;
-        System.out.println(Message);
-        while (true) {
-            try {
-                String s = sc.next();
-                int c = Integer.parseInt(s);
-
-                switch(c) {
-                    case 1:
-                        movieType = MovieType.TWO_D;
-                        break;
-                    case 2:
-                        movieType = MovieType.THREE_D;
-                        break;
-                    case 3:
-                        movieType = MovieType.BLOCKBUSTER;
-                        break;
-                    default:
-                        System.out.println("Default Moving Type (2D) selected! ");
-                        movieType = MovieType.TWO_D;
-                        break;
-                }
-
-                return movieType;
-            } catch (NumberFormatException e) {
-                System.out.println("Please, input a valid decimal number. ");
-            }
-        }
-    }
 
 
     /**
@@ -122,7 +101,13 @@ public class utilF {
         return readDate(label, "");
     }
 
-
+    /**
+     * This method will only read in a format of the date with label
+     *
+     * @param label is the message to be printed when asking for input
+     * @param format format of date datatype refer to Constant
+     * @return Date when a correct format if entered, Otherwise keep prompting
+     */
     public static Date readDate(String label, String format) {
         SimpleDateFormat sdf;
 
@@ -139,13 +124,10 @@ public class utilF {
                 return sdf.parse(date);
             } catch (ParseException ime) {
                 System.out.println("Please enter a correct date format");
-                //sc.nextLine();
+                sc.nextLine();
             }
         } while (true);
     }
-
-
-
     /* Tester function */
 
     public static Date readDate() {
@@ -172,7 +154,73 @@ public class utilF {
         } while (true);
     }
 
+    public static Enums.MovieRating readMovieRatingInput(String Message) {
+        Enums.MovieRating movieRating;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
 
+                switch(c) {
+                    case 1:
+                        movieRating = Enums.MovieRating.G;
+                        break;
+                    case 2:
+                        movieRating = Enums.MovieRating.PG13;
+                        break;
+                    case 3:
+                        movieRating = Enums.MovieRating.NC16;
+                        break;
+                    case 4:
+                        movieRating = Enums.MovieRating.M18;
+                        break;
+                    case 5:
+                        movieRating = Enums.MovieRating.R21;
+                        break;
+                    default:
+                        System.out.println("Default Moving Rating (PG) selected! ");
+                        movieRating = Enums.MovieRating.G;
+                        break;
+                }
+
+                return movieRating;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
+
+    public static Enums.MovieType readMovieTypeInput(String Message) {
+        Enums.MovieType movieType;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+
+                switch(c) {
+                    case 1:
+                        movieType = Enums.MovieType.TWO_D;
+                        break;
+                    case 2:
+                        movieType = Enums.MovieType.THREE_D;
+                        break;
+                    case 3:
+                        movieType = Enums.MovieType.BLOCKBUSTER;
+                        break;
+                    default:
+                        System.out.println("Default Moving Type (2D) selected! ");
+                        movieType = Enums.MovieType.TWO_D;
+                        break;
+                }
+
+                return movieType;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
 
 
 
@@ -180,6 +228,19 @@ public class utilF {
      method to notify user the allowable range of seat input
      */
     public static int readSeatInput(String message, int min, int max) {
+        int c = 0;
+        do {
+            if(min == max)
+                readIntInput(message + " (" + max + "):");
+            else
+                c = readIntInput(message + " (" + min + "~" + max + "): ");
+            if (!(c >= min && c <= max))
+                System.out.println("Please enter valid option. ");
+        } while (!(c >= min && c <= max));
+        return c;
+    }
+
+    public static int readReviewInput(String message, int min, int max) {
         int c = 0;
         do {
             if(min == max)
@@ -221,7 +282,7 @@ public class utilF {
      //request user for username and email to verify a user
     public static Customer login() {
         // Login
-        //Manager manager = Manager.getInstance();
+        // Manager manager = Manager.getInstance();
         Customer customer = null;
         do {
             String name = read("Name: ");

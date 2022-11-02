@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static view.utilF.*;
+
 import static view.utilF.readDate;
 
 public class MenuStaffMovieSessionCreate extends MenuBase {
@@ -27,14 +28,24 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 
 
     public MenuBase execute() {
-        System.out.println("Creating a new session");
+        System.out.println("Creating a new movie session");
         System.out.println("List of Cinplexes");
-        ArrayList<Cineplex> cinplexArray = cineplexCtrler.read(); //using cinplexcontroller to read the cineplex object from the dat file
-        if (cinplexArray.isEmpty()) {
+        ArrayList<Cineplex> cineplexArray = cineplexCtrler.read(); //using cinplexcontroller to read the cineplex object from the dat file
+        if (cineplexArray.isEmpty()) {
             System.out.println("There are no cineplexes registered!");
             return getPreviousMenu();
         }
-        cinplexArray.forEach(Cineplex -> System.out.println("Location:" + Cineplex.getCinemas()));
+
+        for(int i = 0; i<cineplexArray.size(); i++) {
+            cineplexArray.get(i);
+            System.out.print(cineplexArray.get(i).getLocation()+":");
+            ArrayList<Cinema> cinemaArray = cineplexArray.get(i).getCinemas();
+            for(int j= 0;j < cinemaArray.size();j++){
+                System.out.print(cinemaArray.get(i).getCinemaNo()+ " ");
+
+            }
+            System.out.print("\n");
+        }
 
 
 
@@ -74,13 +85,18 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         };
 
 
-        //Date sessionDateTime  = readDateTime("Enter session date and time");
+        Date sessionDateTime  = readDateTime("Enter session date and time");
+        Enums.Day enumsDay  = returnEnumsDay(sessionDateTime);
+
+        System.out.println("hi" + enumsDay);
         Movie movie = movieCtrler.readByID(movie_id);
+        //hard coded change later
+        //should get seat plan from Cinema class
         ArrayList<Seat> seat = new ArrayList<Seat>(100);
         int row  = 5;
         int column  = 5;
-        for(int i = 0; i < row ;i++){
-            for (int j = 0; j < column; j++){
+        for(int i = 1; i <= row ;i++){
+            for (int j = 0; j <= column; j++){
                 Seat s = new Seat(j,i,false);
                 seat.add(s);
 
@@ -90,10 +106,20 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 
 
 
-
-       // sessionCtrler.createSession(cinema,movie,1, sessionDateTime,seat);
+        //fix enums.day for now
+        sessionCtrler.createSession(cinema,movie,1, sessionDateTime,enumsDay,seat);
 
         System.out.println("Session successfully created!");
+        // for debugging later remove
+        ArrayList<Session> sessionList = sessionCtrler.read();
+        for(int i =0; i< sessionList.size();i++){ //return one section by one for the whole session file
+            System.out.println(sessionList.get(i).getSessionId());
+            //GIVe aloy later
+            ArrayList<Seat>  s = sessionList.get(i).getSeat();
+            System.out.println(s.get(s.size() - 1).getCol());
+            System.out.println(s.get(s.size() - 1).getRow());
+
+        }
         return getPreviousMenu();
         }
 

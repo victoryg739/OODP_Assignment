@@ -47,7 +47,7 @@ public class CineplexController {
         }
     }
 
-    public ArrayList<Cineplex> read() {
+    public static ArrayList<Cineplex> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
             ArrayList<Cineplex> cineplex = (ArrayList<Cineplex>) ois.readObject();
@@ -74,6 +74,40 @@ public class CineplexController {
         return null;
     };
 
+    //Read the cineplex.txt file and gather the appropriate objects ArrayList
+//    public ArrayList<Cineplex> readByAttribute(Object valueToSearch) {
+//        ArrayList<Cineplex> returnData = new ArrayList<Cineplex>();
+//        // pls check if it is NULL
+//        ArrayList<Cineplex> cinemaListing = read();
+//        Cinema cinema = null;
+//
+//
+//        for (int j=0; j<cinemaListing.size(); j++){
+//            cinema = cinemaListing.get(j);
+//            switch (col) {
+//                case CODE:
+//                    if (cinema.getCode().equals((String) valueToSearch))
+//                        returnData.add(cinema);
+//                    break;
+//                case CINEMA_TYPE:
+//                    if (cinema.getCinemaType().equals((CinemaType) valueToSearch))
+//                        returnData.add(cinema);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//        return returnData;
+//    }
 
-
+//    public ArrayList<Cinema> readByCineplexName(String cineplexName){
+//        ArrayList<Cineplex> allData = read();
+//        ArrayList<Cinema> returnData = new ArrayList<Cinema>();
+//        for (int i=0; i<allData.size(); i++){
+//            Cineplex c = allData.get(i);
+//            if (c.getLocation().equals(cineplexName))
+//                returnData.add(c);
+//        }
+//        return null;
+//    };
 }
