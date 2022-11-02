@@ -43,12 +43,12 @@ public class MovieController {
 
 
     public void printMovie(Movie movie){
-        int id = movie.getID();
+        int id = movie.getId();
         String title = movie.getTitle();
         MovieType movieType = movie.getType();
         MovieRating movieRating = movie.getRating();
         String synopsis = movie.getSynopsis();
-        int runtime = movie.runTime();
+        int runtime = movie.getRuntime();
         Date DateStart = movie.getDateStart();
         Date DateEnd = movie.getDateEnd();
         String director = movie.getDirector();
@@ -83,7 +83,7 @@ public class MovieController {
         ArrayList<Movie> allData = read();
         for (int i=0; i<allData.size(); i++){
             Movie m = allData.get(i);
-            if (m.getID() == valueToSearch)
+            if (m.getId() == valueToSearch)
                 return m;
         }
         return null;
@@ -93,7 +93,7 @@ public class MovieController {
         int movieID;
         ArrayList<Movie> allData = read();
         for (int i = 0; i < allData.size(); i++) {
-            movieID = allData.get(i).getID();
+            movieID = allData.get(i).getId();
             if (movieID > lastId)
                 lastId = movieID;
         }
@@ -106,7 +106,7 @@ public class MovieController {
 
         for (int i = 0; i < allData.size(); i++) {
             Movie m = allData.get(i);
-            if (!(m.getID() == id))
+            if (!(m.getId() == id))
                 returnData.add(m);
         }
 
@@ -125,7 +125,7 @@ public class MovieController {
             // Get first object of the array list
             Movie m = dataList.get(i);
             // If the movie is the same as the UpdateMovie ID
-            if (m.getID() == movieID) {
+            if (m.getId() == movieID) {
                 // Start updating the values
                 switch (choice) {
 
@@ -142,7 +142,7 @@ public class MovieController {
                         m.setRating((MovieRating) newValue);
                         break;
                     case 5:
-                        m.setRunTime((int) newValue);
+                        m.setRuntime((int) newValue);
                         break;
                     case 6:
                         m.setDateStart((Date) newValue);

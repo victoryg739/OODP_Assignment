@@ -40,7 +40,7 @@ public class MenuStaffMain extends MenuBase {
                 nextMenu = new MenuStaffMovieSessionFunction(this);
                 break;
             case 3:
-
+                nextMenu = new MenuStaffConfigureSettings(this);
                 break;
             case 4:
                 nextMenu = new MenuStaffMovieList(this);

@@ -74,7 +74,7 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         };
 
 
-        Date sessionDateTime  = readDateTime("Enter session date and time");
+        //Date sessionDateTime  = readDateTime("Enter session date and time");
         Movie movie = movieCtrler.readByID(movie_id);
         ArrayList<Seat> seat = new ArrayList<Seat>(100);
         int row  = 5;
@@ -91,7 +91,7 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 
 
 
-        sessionCtrler.createSession(cinema,movie,1, sessionDateTime,seat);
+       // sessionCtrler.createSession(cinema,movie,1, sessionDateTime,seat);
 
         System.out.println("Session successfully created!");
         return getPreviousMenu();

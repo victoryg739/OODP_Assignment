@@ -9,12 +9,15 @@ public class Movie implements Serializable {
 
     private int id, runtime;
     private String title, synopsis, director, language;
+
     private MovieType type;
     private MovieRating rating;
     private Date DateStart, DateEnd;
 
     private ArrayList<String> cast;
 
+
+    private ShowingStatus showingStatus;
 
     public Movie(int id,String title, MovieType type, MovieRating rating, String synopsis, int runtime, Date DateStart, Date DateEnd, String director, ArrayList<String> cast){
         this.id = id;
@@ -32,63 +35,100 @@ public class Movie implements Serializable {
     public Movie() {
     }
 
-    public void setID(int id){
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getID(){
-        return this.id;
-    }
-    public String getTitle() {
-        return this.title;
+    public int getRuntime() {
+        return runtime;
     }
 
-    public void setTitle(String title){
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     public MovieType getType() {
-        return this.type;
+        return type;
     }
 
-    public void setType(MovieType type){
-        this.type =type;
-    }
-    public MovieRating getRating(){
-        return this.rating;
+    public void setType(MovieType type) {
+        this.type = type;
     }
 
-    public void setRating(MovieRating rating){
-        this.rating =rating;
+    public MovieRating getRating() {
+        return rating;
     }
 
-    public String getSynopsis(){
-        return this.synopsis;
+    public void setRating(MovieRating rating) {
+        this.rating = rating;
     }
 
-    public int runtime(){
-        return this.runtime;
+    public Date getDateStart() {
+        return DateStart;
     }
 
-    public Date getDateStart(){
-        return this.DateStart;
+    public void setDateStart(Date dateStart) {
+        DateStart = dateStart;
     }
 
-    public Date getDateEnd(){
-        return this.DateEnd;
-    }
-    public ArrayList<String> getCast(){
-        return this.cast;
+    public Date getDateEnd() {
+        return DateEnd;
     }
 
-    public void setCast(ArrayList<String> cast){
+    public void setDateEnd(Date dateEnd) {
+        DateEnd = dateEnd;
+    }
+
+    public ArrayList<String> getCast() {
+        return cast;
+    }
+
+    public void setCast(ArrayList<String> cast) {
         this.cast = cast;
     }
 
-    public String getDirector(){
-        return this.director;
+    public ShowingStatus getShowingStatus() {
+        return showingStatus;
     }
 
-    public void setDirector(String director){
-        this.director = director;
+    public void setShowingStatus(ShowingStatus showingStatus) {
+        this.showingStatus = showingStatus;
     }
+
 }

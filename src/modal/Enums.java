@@ -7,7 +7,6 @@ public class Enums {
         STUDENT,
         NORMAL
     }
-
     public enum MovieRating{
         G,
         PG13,
@@ -19,8 +18,8 @@ public class Enums {
     }
 
     public enum MovieType{
-        THREE_D,
         TWO_D,
+        THREE_D,
         BLOCKBUSTER
 
     }
@@ -39,6 +38,24 @@ public class Enums {
         FRI_AFT_SIX,
         SAT_SUN,
         PH
+    }
+
+    public enum ShowingStatus {
+
+        COMING_SOON("Coming Soon"),
+        PREVIEW("Preview"),
+        NOW_SHOWING("Now Showing"),
+        END_SHOWING("Showing Ended");
+
+        private String s;
+
+        ShowingStatus(String s) {
+            this.s = s;
+        }
+
+        public String toString() {
+            return this.s;
+        }
     }
 
 
