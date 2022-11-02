@@ -3,11 +3,11 @@ package view.Customer;
 import controller.MovieController;
 import modal.Movie;
 import view.MenuBase;
-
+import view.Quit;
 import java.util.*;
 import static view.utilF.*;
 public class MenuListMovie extends MenuBase {
-
+    MovieController mc = new MovieController();
     public MenuListMovie(MenuBase initialMenu) {
         super(initialMenu);
     }
@@ -27,7 +27,7 @@ public class MenuListMovie extends MenuBase {
         ArrayList<String> choices = new ArrayList<String>();
 
         //Retrieve the entire list of movies in the database
-        ArrayList<Movie> movies = MovieController.read();
+        ArrayList<Movie> movies = mc.read();
 
         //list all the movies out
 
@@ -35,13 +35,14 @@ public class MenuListMovie extends MenuBase {
             //get the current time
             Date currentTime = Calendar.getInstance().getTime();
             //.getEnding is to retrieve the last showing date
-            if(m.getDateEnd().compareTo(currentTime) < 0) { //not showing anymore
-                m.setShowingStatus(Constant.ShowingStatus.NOT_SHOWING); //set the status to NOT SHOWING
-            }
-            else if (m.getDateEnd().compareTo(currentTime) >= 0) { //currently showing
-                m.setShowingStatus(Constant.ShowingStatus.CURRENTLY_SHOWING);
-            }
-            String title = m.getTitle() + (m.getShowingStatus().equals(Constant.ShowingStatus.END_SHOWING) ? " (End Showing)" : "");
+//            if(m.getDateEnd().compareTo(currentTime) < 0) { //not showing anymore
+//                m.setShowingStatus(Constant.ShowingStatus.NOT_SHOWING); //set the status to NOT SHOWING
+//            }
+//            else if (m.getDateEnd().compareTo(currentTime) >= 0) { //currently showing
+//                m.setShowingStatus(Constant.ShowingStatus.CURRENTLY_SHOWING);
+//            }
+            String title = m.getTitle();
+            //+ (m.getShowingStatus().equals(Constant.ShowingStatus.END_SHOWING) ? " (End Showing)" : "");
             choices.add(title); //add the movie as part of the option
         }
 
@@ -52,6 +53,7 @@ public class MenuListMovie extends MenuBase {
         choices.add("Go Back");
         choices.add("Quit The Application");
         printMenu(choices, 1);
+        int choice = readIntInput("Enter the choice: ");
 
         /* eg. movies.size == 2
            Option 1: Movie 1
@@ -61,22 +63,20 @@ public class MenuListMovie extends MenuBase {
            Option 5: Go Back
            Option 6: Quit The Application
          */
-        String choice = sc.next();
-        int c = readIntInput(choice);
 
         MenuBase nextMenu = this;
-        /*
-        if (c <= movies.size()) //Selecting 1 of the movies
-            nextMenu = new MovieInfo(this, movies.get(c));
-        else if (c == movies.size() + 1) //Select Top5 Movies by sale
-            nextMenu = new MovieListTopSale(this.getPreviousMenu());
-        else if (c == movies.size() + 2) //Select Top5 Movies by rating
-            nextMenu = new MoviesListTopRatings(this.getPreviousMenu());
-        else if (c == movies.size() + 3) //GO back to the previous menu
+
+        if (choice <= movies.size()) //Selecting 1 of the movies
+            nextMenu = new MenuMovieInfo(this, movies.get(choice - 1));
+        else if (choice == movies.size() + 1) //Select Top5 Movies by sale
+            nextMenu = new MenuListMovieTopSale(this.getPreviousMenu());
+        else if (choice == movies.size() + 2) //Select Top5 Movies by rating
+            nextMenu = new MenuListMovieTopRating(this.getPreviousMenu());
+        else if (choice == movies.size() + 3) //GO back to the previous menu
             nextMenu = this.getPreviousMenu();
-        else if (c == movies.size() + 4) //Quit the App
+        else if (choice == movies.size() + 4) //Quit the App
             nextMenu = new Quit(null);
-        */
+
         return nextMenu;
     }
 

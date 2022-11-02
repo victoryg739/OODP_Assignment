@@ -29,7 +29,7 @@ public class MenuBookingHistory extends MenuBase {
 
         if (customer != null) { //if login successful
             ArrayList<Booking> booking = customer.getBookings();
-            System.out.println("In total "+booking.size() +" bookings found under "+customer.getId()+".");
+            System.out.println("In total "+booking.size() +" bookings found under "+customer.getEmail()+".");
             int count=1;
 
             //Once the user login, for each booking made, display the respective details:

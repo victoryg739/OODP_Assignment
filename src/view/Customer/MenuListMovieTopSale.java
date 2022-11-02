@@ -1,10 +1,15 @@
 package view.Customer;
 
+import view.*;
+import modal.*;
+import java.util.*;
+import controller.*;
+import static view.utilF.*;
+
 //Menu to list the top five movies by sales
 
-    /*
-public class MovieListTopSale extends MenuBase {
-    public MovieListTopSale(MenuBase initialMenu) {
+public class MenuListMovieTopSale extends MenuBase {
+    public MenuListMovieTopSale(MenuBase initialMenu) {
         super(initialMenu);
     }
 
@@ -13,48 +18,42 @@ public class MovieListTopSale extends MenuBase {
 
 
     public MenuBase execute() {
-        Scanner sc = new Scanner(System.in);
-        Manager manager = Manager.getInstance();
-        ArrayList<Movie> movies = manager.getAll(Constant.Tables.MOVIE);
+        MovieController mc = new MovieController();
+
+        ArrayList<Movie> movies = mc.read();
         System.out.println("Top 5 by Sales");
-        ArrayList<String> choices = new ArrayList<>();
+        ArrayList<String> options = new ArrayList<>();
 
         try {
 
-            sortTicketSales(movies);
+            mc.sortTicketSales(movies);
 
             //top refers to the top 5 movies
             int top = 1;
 
             //For each movie, if the movie is still currently showing, we display the top 5 movies
             for (Movie movie : movies) {
-                if(movie.getShowingStatus() != Constant.ShowingStatus.END_SHOWING && movie.getShowingStatus() != Constant.ShowingStatus.COMING_SOON)
-                {
-                    choices.add(movie.getTicketSales() + " Tickets for " + movie.getTitle());
+                options.add(movie.getTicketSales() + " Tickets for " + movie.getTitle());
 
-                    //If top < 5, break
-                    if (top++ == 5) {
-                        break;
-                    }
+                //If top < 5, break
+                if (top++ == 5) {
+                    break;
                 }
-
             }
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
 
-        choices.add("List Top 5 Movies By Ratings");
-        choices.add("Go Back to Previous Menu");
-        choices.add("Quit The Application");
-        printMenu(choices, 1);
+        options.add("List Top 5 Movies By Ratings");
+        options.add("Go Back to Previous Menu");
+        options.add("Quit The Application");
+        printMenu(options, 1);
 
-        String choice = sc.next();
-        int c = readIntInput(choice);
-
+        int choice = readIntInput("Enter your choice: ");
 
         MenuBase nextMenu = null;
 
-        System.out.println(choices.size());
+        System.out.println(options.size());
 
         /*
            Option 1: Movie 1
@@ -67,25 +66,25 @@ public class MovieListTopSale extends MenuBase {
            Option 8: Quit The Application
          */
 
-        /*
+
         //Depending on the c input, display the relevant options by subtracting
-        if (c <= choices.size() - 3) {
-            nextMenu = new MovieInfo(this, movies.get(c));
-        } else if (c == choices.size() - 2) {
-            nextMenu = new MoviesListTopRatings(this.getPreviousMenu());
-        } else if (c == choices.size() - 1) {
+        if (choice <= options.size() - 3) {
+            nextMenu = new MenuMovieInfo(this, movies.get(choice));
+        }
+        else if (choice == options.size() - 2) {
+            //nextMenu = new MenuListTopRating(this.getPreviousMenu());
+        }
+        else if (choice == options.size() - 1) {
             nextMenu = this.getPreviousMenu();
         }
-        else if (c == choices.size()) {
+        else if (choice == options.size()) {
             nextMenu = new Quit(null);
         }
         return nextMenu;
     }
 
-    private void sortTicketSales(ArrayList<Movie> movies) {
-        Collections.sort(movies, (m1, m2) -> (m2.getTicketSales() - m1.getTicketSales()));
-    }
+
 }
-         */
+
 
 

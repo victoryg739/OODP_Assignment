@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 /* Functions to help us to process printing/reading inputs */
+@SuppressWarnings("deprecation")
 public class utilF {
     private static Scanner sc = new Scanner(System.in);
 
@@ -227,6 +228,19 @@ public class utilF {
      method to notify user the allowable range of seat input
      */
     public static int readSeatInput(String message, int min, int max) {
+        int c = 0;
+        do {
+            if(min == max)
+                readIntInput(message + " (" + max + "):");
+            else
+                c = readIntInput(message + " (" + min + "~" + max + "): ");
+            if (!(c >= min && c <= max))
+                System.out.println("Please enter valid option. ");
+        } while (!(c >= min && c <= max));
+        return c;
+    }
+
+    public static int readReviewInput(String message, int min, int max) {
         int c = 0;
         do {
             if(min == max)

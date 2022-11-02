@@ -76,9 +76,11 @@ public class CineplexController {
 
     //Read the cineplex.txt file and gather the appropriate objects ArrayList
 //    public ArrayList<Cineplex> readByAttribute(Object valueToSearch) {
-//        ArrayList<Cineplex> returnData = new ArrayList<Cinema>();
+//        ArrayList<Cineplex> returnData = new ArrayList<Cineplex>();
+//        // pls check if it is NULL
 //        ArrayList<Cineplex> cinemaListing = read();
 //        Cinema cinema = null;
+//
 //
 //        for (int j=0; j<cinemaListing.size(); j++){
 //            cinema = cinemaListing.get(j);
@@ -97,4 +99,15 @@ public class CineplexController {
 //        }
 //        return returnData;
 //    }
+
+//    public ArrayList<Cinema> readByCineplexName(String cineplexName){
+//        ArrayList<Cineplex> allData = read();
+//        ArrayList<Cinema> returnData = new ArrayList<Cinema>();
+//        for (int i=0; i<allData.size(); i++){
+//            Cineplex c = allData.get(i);
+//            if (c.getLocation().equals(cineplexName))
+//                returnData.add(c);
+//        }
+//        return null;
+//    };
 }

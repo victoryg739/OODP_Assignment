@@ -4,6 +4,7 @@ import modal.*;
 import java.io.*;
 import java.util.*;
 import modal.Enums.*;
+import java.lang.Double.*;
 
 /* ToDO list:
     1. Change getLastID code
@@ -46,7 +47,7 @@ public class MovieController {
         int id = movie.getID();
         String title = movie.getTitle();
         MovieType movieType = movie.getType();
-        MovieRating movieRating = movie.getRating();
+        MovieRating movieContentRating = movie.getContentRating();
         String synopsis = movie.getSynopsis();
         int runtime = movie.getRuntime();
         Date DateStart = movie.getDateStart();
@@ -58,7 +59,7 @@ public class MovieController {
             castString = castString.concat(movie.getCast().get(i) + ",");
         castString = castString.substring(0, castString.length()-1);
 
-        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
+        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieContentRating + " | " + "Synopsis: " + synopsis + " | "
                 + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
                 + "Cast: " + castString;
         System.out.println(movieString);
@@ -136,10 +137,10 @@ public class MovieController {
                         m.setType((MovieType) newValue);
                         break;
                     case 3:
-                        m.setSynopsis((String) newValue);
+                        //m.setSynopsis((String) newValue);
                         break;
                     case 4:
-                        m.setRating((MovieRating) newValue);
+                        m.setContentRating((MovieRating) newValue);
                         break;
                     case 5:
                         m.setRuntime((int) newValue);
@@ -201,4 +202,55 @@ public class MovieController {
         }
 
     }
+
+    public ArrayList<Movie> readByTitle(Object valueToSearch) {
+        ArrayList<Movie> allData = read();
+        ArrayList<Movie> returnData = new ArrayList<Movie>();
+        for (int i = 0; i < allData.size(); i++) {
+            Movie m = allData.get(i);
+            if (m.getTitle().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
+                returnData.add(m);
+            }
+        }
+
+        return returnData;
+    }
+
+    public void sortTicketSales(ArrayList<Movie> movies){
+        Collections.sort(movies , new Comparator<Movie>() {
+            @Override
+            public int compare(Movie m1, Movie m2) {
+                return Double.compare(m1.getTicketSales(), m2.getTicketSales());
+            }
+        });
+
+    }
+
+
+    public void sortRating(ArrayList<Movie> movies) {
+        Collections.sort(movies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie m1, Movie m2) {
+                return Double.compare(m2.getRating(), m1.getRating());
+            }
+        });
+    }
+
+    public void printStars(double rating) {
+        String s = String.format("%.1f", rating);
+        if(rating <= 1)
+            System.out.println("★☆☆☆☆(" + s + ")");
+        else if(rating <= 2)
+            System.out.println("★★☆☆☆(" + s + ")");
+        else if(rating <= 3)
+            System.out.println("★★★☆☆(" + s + ")");
+        else if(rating <= 4)
+            System.out.println("★★★★☆(" + s + ")");
+        else
+            System.out.println("★★★★★(" + s + ")");
+        System.out.println(" ");
+    }
+
+
+
 }
