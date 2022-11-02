@@ -18,8 +18,9 @@ public class MenuStaffMain extends MenuBase {
                 " 1. Create/Update/Remove Movie Listing                               \n" + //shows what movies there are
                 " 2. Create/Update/Remove Movie Session                               \n" + //shows the timing of each movie
                 " 3. Configure system settings                                          \n" +
-                " 4. List movies                                                   \n" +
-                " 5. Back                                                           \n " +
+                " 4. List movies                                                        \n" +
+                " 5. Create Staff Account                                               \n" +
+                " 6. Back                                                               \n " +
                 "===========================================================");
 
         System.out.println("Enter choice: ");
@@ -40,11 +41,13 @@ public class MenuStaffMain extends MenuBase {
                 nextMenu = new MenuStaffMovieSessionFunction(this);
                 break;
             case 3:
-
+                nextMenu = new MenuStaffConfigureSettings(this);
                 break;
             case 4:
                 nextMenu = new MenuStaffMovieList(this);
                 break;
+            case 5 :
+                nextMenu = new MenuStaffRegister(this);
             default:
                 nextMenu = this.getPreviousMenu();
                 break;

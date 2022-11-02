@@ -1,5 +1,6 @@
 package view.admin;
 
+import controller.AdminController;
 import view.MenuBase;
 
 import static view.utilF.read;
@@ -15,8 +16,10 @@ public class MenuStaffLogin extends MenuBase{
         final String username = read("Username: ");
         final String password = read("Password: ");
         System.out.println("username is " + username + "password is " + password);
+        AdminController adminCtrl = new AdminController();
 
-        if(username.equals("a") && password.equals("a")){
+        System.out.println(adminCtrl.readByUsername(username));
+        if(username.equals(adminCtrl.readByUsername(username)) && password.equals(adminCtrl.readByPassword(password))){
             MenuStaffMain msm = new MenuStaffMain(this.getPreviousMenu());
             return msm;
         }else {

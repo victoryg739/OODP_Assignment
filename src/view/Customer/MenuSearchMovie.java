@@ -1,4 +1,4 @@
-/*package view.Customer;
+package view.Customer;
 
 import controller.MovieController;
 import modal.Movie;
@@ -9,10 +9,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static view.utilF.*;
+/* ToDO list:
+    1. Remove the space in the input name and search
+    eg. Iron Man == IronMan
 
-public class MovieSearchMenu extends MenuBase {
+
+*/
+
+public class MenuSearchMovie extends MenuBase {
     private String movieName;
-    public MovieSearchMenu(MenuBase initialMenu) {
+
+    private MovieController mc = new MovieController();
+    public MenuSearchMovie(MenuBase initialMenu) {
         super(initialMenu);
     }
 
@@ -26,44 +34,46 @@ public class MovieSearchMenu extends MenuBase {
 
         while (true) {
             //obtain a ArrayList of Movie objects with the same name list
-            movies = MovieController.read();
-            if (movies.isEmpty()) { //if movie not found
+            ArrayList<Movie> movieList = mc.readByTitle(movieName);
+            if (movieList.isEmpty()) { //if movie not found
                 System.out.println("Sorry, no result found. Press 0 to go back.");
                 movieName = read("Input movie name to search: ");
                 if(movieName.equals("0"))
                     break;
             }
             else { //if movie is found
+                //search through the ArrayList and output the searched movie
+
                 //showing the list of movies found
-                System.out.println("Found " + movies.size() + " results:");
+                System.out.println("Found " + movieList.size() + " results:");
 
                 //List of possible options to choose from
                 ArrayList<String> choices = new ArrayList<String>();
 
-                for (Movie m : movies) { //iterate through the list of movies
+                for (Movie m : movieList) { //iterate through the list of movies
                     choices.add(m.getTitle()); //get the title from the movie class
                 }
                 choices.add("Go Back");
                 choices.add("Quit The Application");
                 printMenu(choices, 1); //print menu for the options
 
-                int choice = sc.nextInt();
-                *//* eg. Menu Choices
+                int choice = readIntInput("Please enter your choice: ");
+                /* eg. Menu Choices
                     movies.size == 2
                     Option 1: Movie 1
                     Option 2: Movie 2
                     Option 3: Go Back
                     Option 4: Quit The Application
-                *//*
-                if (choice <= movies.size()) {
+                */
+                if (choice <= movieList.size()) {
                     //go to MovieInfo Menu
-                    nextMenu = new MovieInfo(this, movies.get(choice));
+                    nextMenu = new MenuMovieInfo(this, movieList.get(choice));
                 }
-                else if (choice == movies.size() + 1) {
+                else if (choice == movieList.size() + 1) {
                     //select Go Back option
                     nextMenu = getPreviousMenu();
                 }
-                else if (choice == movies.size() + 2) {
+                else if (choice == movieList.size() + 2) {
                     //Quit the App
                     nextMenu = new Quit(null);
                 }
@@ -76,4 +86,4 @@ public class MovieSearchMenu extends MenuBase {
         else //when the choice input is invalid
             return this.getPreviousMenu(); //go back
     }
-}*/
+}

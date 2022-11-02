@@ -1,12 +1,11 @@
 package view.Customer;
 import view.MenuBase;
-import view.admin.MenuStaffMovieList;
 
 import java.util.*;
 import static view.utilF.*;
 
-public class MovieGoerMainMenu extends MenuBase {
-    public MovieGoerMainMenu(MenuBase initialMenu) {
+public class MenuCustomerMain extends MenuBase {
+    public MenuCustomerMain(MenuBase initialMenu) {
         super(initialMenu);
     }
 
@@ -29,24 +28,23 @@ public class MovieGoerMainMenu extends MenuBase {
         choices.add("Booking History");
         choices.add("Go Back");
         //print the menu interface
-        printMenu(choices, 0);
+        printMenu(choices, 1);
 
         //read the input
-        int choice = sc.nextInt();
+        int choice = readIntInput("Enter your choice");
 
         MenuBase nextMenu = this;
         switch (choice) {
-            case 0:
-                //nextMenu = new MovieSearchMenu(this);
-                break;
             case 1:
-                //MenuStaffMovieList = ListMovieMenu
-                nextMenu = new MoviesListMenu(this);
+                nextMenu = new MenuSearchMovie(this);
                 break;
             case 2:
-                //nextMenu = new BookingHistoryMenu(this);
+                nextMenu = new MenuListMovie(this);
                 break;
             case 3:
+                nextMenu = new MenuBookingHistory(this);
+                break;
+            case 4:
                 nextMenu = this.getPreviousMenu();
                 break;
         }

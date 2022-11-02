@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class CinemaController {
 
 
-
+        private CineplexController cineplexController = new CineplexController();
         public final static String FILENAME = "data/cinema.txt";
 
 
@@ -137,6 +137,26 @@ public class CinemaController {
         }
         return null;
     }
+
+    /**
+     * READ and return every Cinema of a given Cineplex in the Database file
+     * @param name                  Name of cineplex to search for
+     * @return Model.{@link Cinema}    Return list of Cinemas if found, else empty list
+     */
+    public ArrayList<Cinema> readByCineplexName(String name){
+        ArrayList<Cinema> returnData = new ArrayList<Cinema>();
+        ArrayList<Cineplex> cineplexListing = this.cineplexController.read();
+        Cineplex cineplex = null;
+
+        for (int i=0; i<cineplexListing.size(); i++){
+            cineplex = cineplexListing.get(i);
+            if(cineplex.getLocation().equals(name)){
+                cineplex.getCinemas().forEach(n->returnData.add(n));
+            }
+        }
+        return returnData;
+    }
+
 
 
 

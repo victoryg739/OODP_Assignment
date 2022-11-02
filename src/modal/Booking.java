@@ -9,14 +9,8 @@ public class Booking implements Serializable{
     //minutes, XXX : cinema code in letters)
     private  String tid;
 
-    //unique customerId
-    private String customerId;
-
     //unique customer email
     private String email;
-
-    //unique phone number
-    private String phoneNumber;
 
     //movie title
     private Movie movie;
@@ -27,17 +21,18 @@ public class Booking implements Serializable{
     //Get the details of the session (Date and Show Time)
     private Session session;
 
+    //CinemaNo
+    private String cinemaNo;
+
     //total price for the entire booking transaction
     private double totalPrice;
 
     //Constructor
-    public Booking (String cinemaNo, String customerId, String email, String phoneNumber, Movie movie,
+    public Booking (String cinemaNo, String tid, String email, String password, Movie movie,
                     ArrayList<Ticket> ticket, Session session, double totalPrice) {
-        SimpleDateFormat bookingFormat = new SimpleDateFormat(Constant.FORMAT_BOOKING_ID);
-        this.tid = cinemaNo.concat(String.valueOf(bookingFormat));
-        this.customerId = customerId;
+        this.tid = tid;
+        this.cinemaNo = cinemaNo;
         this.email = email;
-        this.phoneNumber = phoneNumber;
         this.movie = movie;
         this.ticket = ticket;
         this.session = session;
@@ -52,13 +47,7 @@ public class Booking implements Serializable{
         this.tid = tid;
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
 
     public String getEmail() {
         return email;
@@ -66,14 +55,6 @@ public class Booking implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public Movie getMovie() {

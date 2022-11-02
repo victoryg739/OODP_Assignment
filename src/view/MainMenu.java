@@ -1,6 +1,6 @@
 package view;
 
-import view.Customer.MovieGoerMainMenu;
+import view.Customer.MenuCustomerMain;
 import view.admin.MenuStaffLogin;
 // import view.Customer.MenuCustomerRegister;
 
@@ -35,7 +35,7 @@ public class MainMenu extends MenuBase {
 
             switch (choice) {
                 case 1:
-                    nextMenu = new MovieGoerMainMenu(this);
+                    nextMenu = new MenuCustomerMain(this);
                     break;
                 case 2:
                     nextMenu = new MenuStaffLogin(this);
