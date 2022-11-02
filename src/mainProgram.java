@@ -1,5 +1,6 @@
 import controller.CinemaController;
 import controller.CineplexController;
+//import controller.MovieController;
 import controller.MovieController;
 import modal.Cinema;
 import modal.Cineplex;
@@ -14,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static view.utilF.*;
+
 
 /*
 
@@ -22,21 +25,30 @@ The start of the program
 
 public class mainProgram {
     public static void main(String[] args) {
+
+
+        /* For Testing Purposes */
         ArrayList<String> casts = new ArrayList<>();
-        casts.add("a");
-        SimpleDateFormat sdf;
-        sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date d;
-        try {
-            d = sdf.parse("01/01/2021");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+        for (int i = 0; i < 2; i++) {
+            casts.add("Bryan");
         }
-        Movie m = new Movie(1,"a", Enums.MovieType.TWO_D, Enums.MovieRating.M18,"a",2,d,d,"a",casts);
-        MovieController movieCtrler  =new MovieController();
-        movieCtrler.createMovie("a", Enums.MovieType.TWO_D, Enums.MovieRating.M18,"a",2,d,d,casts,"a");
-        Cinema cinemaJem1  = new Cinema("A1",m, Enums.ClassCinema.PLATINUM,null);
-        Cinema cinemaJem2  = new Cinema("A2",m, Enums.ClassCinema.PLATINUM,null);
+
+        Movie movie0 = new Movie(0, "Spiderman", Enums.MovieType.TWO_D, Enums.MovieRating.M18, "Away from you", 300, readDate(), readDate(), "Bryan Tay", casts);
+        Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
+        Movie movie2 = new Movie(2, "Chickenman", Enums.MovieType.TWO_D, Enums.MovieRating.M18, "Fuck you victor", 300, readDate(), readDate(), "Bryan Tay", casts);
+        Movie movie3 = new Movie(3, "Allahman", Enums.MovieType.BLOCKBUSTER, Enums.MovieRating.G, "Allahu akbar", 300, readDate(), readDate(), "Bryan Tay", casts);
+        Movie movie4 = new Movie(4, "Hohoman", Enums.MovieType.TWO_D, Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
+
+        MovieController mc = new MovieController();
+        mc.createMovie(movie0);
+        mc.createMovie(movie1);
+        mc.createMovie(movie2);
+        mc.createMovie(movie3);
+        mc.createMovie(movie4);
+
+
+        Cinema cinemaJem1  = new Cinema("A1",movie0, Enums.ClassCinema.PLATINUM,null);
+        Cinema cinemaJem2  = new Cinema("A2",movie1, Enums.ClassCinema.PLATINUM,null);
         ArrayList <Cinema> cinemaJemArray = new ArrayList<Cinema>();
         cinemaJemArray.add(cinemaJem1);
         cinemaJemArray.add(cinemaJem2);

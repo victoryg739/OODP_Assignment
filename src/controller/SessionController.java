@@ -10,9 +10,8 @@ public class SessionController {
     public final static String FILENAME = "data/session.txt";
 
 
-    public void createSession(Cinema cinema, Movie movie, int sessionID, Date sessionDateTime, ArrayList<Seat> seat) {
-        Session session = new Session(cinema,movie,sessionID,sessionDateTime,seat);
-
+    public void createSession(Cinema cinema, Movie movie, int sessionID, Date sessionDateTime,Enums.Day day, ArrayList<Seat> seat) {
+        Session session = new Session(cinema,movie,sessionID,sessionDateTime,day,seat);
         ArrayList<Session> allData = new ArrayList<Session>();
         File tempFile = new File(FILENAME);
 

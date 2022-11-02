@@ -48,7 +48,7 @@ public class MovieController {
         MovieType movieType = movie.getType();
         MovieRating movieRating = movie.getRating();
         String synopsis = movie.getSynopsis();
-        int runtime = movie.runtime();
+        int runtime = movie.getRuntime();
         Date DateStart = movie.getDateStart();
         Date DateEnd = movie.getDateEnd();
         String director = movie.getDirector();
@@ -67,7 +67,7 @@ public class MovieController {
 
 
     // Read a movie object from movies.txt//
-    public static ArrayList<Movie> read() {
+    public ArrayList<Movie> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
             ArrayList<Movie> movieListing = (ArrayList<Movie>) ois.readObject();
@@ -142,7 +142,7 @@ public class MovieController {
                         m.setRating((MovieRating) newValue);
                         break;
                     case 5:
-                        m.setRunTime((int) newValue);
+                        m.setRuntime((int) newValue);
                         break;
                     case 6:
                         m.setDateStart((Date) newValue);

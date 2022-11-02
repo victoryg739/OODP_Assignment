@@ -7,10 +7,16 @@ import java.util.Date;
 
 public class Movie implements Serializable {
 
-    private int id, runtime;
-    private String title, synopsis, director, language;
+    private int id;
+    private int runtime;
+    private String title;
+    private String synopsis;
+    private String director;
+    private String language;
     private MovieType type;
     private MovieRating rating;
+
+
     private Date DateStart, DateEnd;
     private ArrayList<String> cast;
 
@@ -72,6 +78,7 @@ public class Movie implements Serializable {
         return this.runtime;
     }
 
+
     public Date getDateStart(){
         return this.DateStart;
     }
@@ -94,4 +101,23 @@ public class Movie implements Serializable {
     public void setDirector(String director){
         this.director = director;
     }
+
+    public int getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
+    }
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+    public void setDateStart(Date dateStart){
+        this.DateStart = dateStart;
+    }
+
+    public void setDateEnd(Date dateEnd){
+        this.DateEnd = dateEnd;
+    }
+
 }
