@@ -282,7 +282,7 @@ public class utilF {
      //request user for username and email to verify a user
     public static Customer login() {
         // Login
-        //Manager manager = Manager.getInstance();
+        // Manager manager = Manager.getInstance();
         Customer customer = null;
         do {
             String name = read("Name: ");
