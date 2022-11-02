@@ -59,7 +59,7 @@ public class MenuMovieInfo extends MenuBase {
                         break;
                     case 2:
                         nextMenu = new MenuMovieReviews(this, this.movie);
-                        //break;
+                        break;
                     case 3:
                         nextMenu = this.getPreviousMenu();
                         break;

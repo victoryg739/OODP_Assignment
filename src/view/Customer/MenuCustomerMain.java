@@ -28,24 +28,23 @@ public class MenuCustomerMain extends MenuBase {
         choices.add("Booking History");
         choices.add("Go Back");
         //print the menu interface
-        printMenu(choices, 0);
+        printMenu(choices, 1);
 
         //read the input
         int choice = readIntInput("Enter your choice");
 
         MenuBase nextMenu = this;
         switch (choice) {
-            case 0:
+            case 1:
                 nextMenu = new MenuSearchMovie(this);
                 break;
-            case 1:
-                //MenuStaffMovieList = ListMovieMenu
+            case 2:
                 nextMenu = new MenuListMovie(this);
                 break;
-            case 2:
+            case 3:
                 nextMenu = new MenuBookingHistory(this);
                 break;
-            case 3:
+            case 4:
                 nextMenu = this.getPreviousMenu();
                 break;
         }
