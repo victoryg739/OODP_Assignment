@@ -2,18 +2,12 @@ import controller.CinemaController;
 import controller.CineplexController;
 //import controller.MovieController;
 import controller.MovieController;
-import modal.Cinema;
-import modal.Cineplex;
-import modal.Enums;
-import modal.Movie;
+import modal.*;
 import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import static view.utilF.*;
 
@@ -46,18 +40,29 @@ public class mainProgram {
         mc.createMovie(movie3);
         mc.createMovie(movie4);
 
-
-        Cinema cinemaJem1  = new Cinema("A1",movie0, Enums.ClassCinema.PLATINUM,null);
-        Cinema cinemaJem2  = new Cinema("A2",movie1, Enums.ClassCinema.PLATINUM,null);
-        ArrayList <Cinema> cinemaJemArray = new ArrayList<Cinema>();
-        cinemaJemArray.add(cinemaJem1);
-        cinemaJemArray.add(cinemaJem2);
-        Cineplex cineplex = new Cineplex("JEM",cinemaJemArray);
+        Cinema cinema1  = new Cinema("A1",null, Enums.ClassCinema.PLATINUM,null);
+        Cinema cinema2  = new Cinema("A2",null, Enums.ClassCinema.PLATINUM,null);
+        Cinema cinema3 =  new Cinema("A3",null, Enums.ClassCinema.NORMAL,null);
+        ArrayList<Cinema> cinemaArrayList = new ArrayList<Cinema>();
+        cinemaArrayList.add(cinema1);
+        cinemaArrayList.add(cinema2);
+        cinemaArrayList.add(cinema3);
 
         CinemaController cinemaCtrler = new CinemaController();
-        cinemaCtrler.create("A1",null, Enums.ClassCinema.PLATINUM,null);
+        cinemaCtrler.replace(cinemaArrayList);
+
+        Cineplex cineplex1 = new Cineplex("Jem",cinemaArrayList);
+        Cineplex cineplex2 = new Cineplex("Orchard",cinemaArrayList);
+        Cineplex cineplex3 = new Cineplex("Funan",cinemaArrayList);
+        ArrayList<Cineplex> cineplexArrayList = new ArrayList<Cineplex>();
+        cineplexArrayList.add(cineplex1);
+        cineplexArrayList.add(cineplex2);
+        cineplexArrayList.add(cineplex3);
+
+
         CineplexController cinplexController = new CineplexController();
-        cinplexController.create("JEM",cinemaJemArray);
+        cinplexController.replace(cineplexArrayList);
+
 
         // Create first Main Menu
         MainMenu mm = new MainMenu(null);

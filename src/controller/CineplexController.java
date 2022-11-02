@@ -24,7 +24,7 @@ public class CineplexController {
     public final static int CINEMAS = 1;
 
 
-    public void create(String location, ArrayList<Cinema> cinemas) {
+    public void append(String location, ArrayList<Cinema> cinemas) {
         // Creates a movie object
         Cineplex cineplex = new Cineplex(location,cinemas);
 
@@ -44,6 +44,20 @@ public class CineplexController {
             out.close();
         } catch (IOException e) {
             // ignore error
+        }
+    }
+
+    public void replace(ArrayList<Cineplex> data) {
+        File tempFile = new File(FILENAME);
+        if (tempFile.exists())
+            tempFile.delete();
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            out.writeObject(data);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+
         }
     }
 

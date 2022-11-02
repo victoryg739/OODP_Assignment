@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4e09fc4-309e-488e-8451-f3b445085990" name="Changes" comment="fix bug for MenuStaff">
+    <list default="true" id="a4e09fc4-309e-488e-8451-f3b445085990" name="Changes" comment="added session enums">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/customerAccounts.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/movies.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CinemaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CineplexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CineplexController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SessionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mainProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Cinema.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modal/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/BookingHistoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/BookingHistoryMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +82,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c2e671e7-bcc7-449b-9069-138411888b0a" name="Changes" comment="" />
+      <changelist id="a4e09fc4-309e-488e-8451-f3b445085990" name="Changes" comment="added session enums" />
       <created>1666417652481</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -171,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666808385704</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added session enums">
+      <created>1667289454326</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1667289454326</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,7 +214,8 @@
     <MESSAGE value="Updated" />
     <MESSAGE value="Added create movie functionality" />
     <MESSAGE value="Finished AddMovie functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished AddMovie functionality" />
+    <MESSAGE value="added session enums" />
+    <option name="LAST_COMMIT_MESSAGE" value="added session enums" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -220,6 +225,10 @@
           <line>11</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassCastException" package="java.lang" />
+          <option name="timeStamp" value="7" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
