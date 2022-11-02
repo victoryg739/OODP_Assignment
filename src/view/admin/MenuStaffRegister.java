@@ -1,6 +1,7 @@
 package view.admin;
 
 import controller.AdminController;
+import modal.Admin;
 import view.MenuBase;
 import java.util.Scanner;
 import static view.utilF.read;
@@ -17,6 +18,7 @@ public class MenuStaffRegister extends MenuBase {
     private int role;
     private boolean consistentPassword = false;
 
+    // Instantiate AdminController object to use methods
     private AdminController adminsCtrl = new AdminController();
 
     private static Scanner sc = new Scanner(System.in);
@@ -26,16 +28,17 @@ public class MenuStaffRegister extends MenuBase {
         do {
 
             // Display to get new account Username and Password
-            // Note : Currently there is no input validation
-            //        => Suppose to create InputController to check inputs
             staffUsername = read("Create staffUsername: ");
             password = read("Create Password: ");
             password2 = read("Re-Enter Password: ");
             consistentPassword = password.equals(password2);
 
+            // Creating new staff account object
+            Admin admin = new Admin(staffUsername, password);
+
             // Create new admin account when the 2 input passwords match
             if(consistentPassword){
-                adminsCtrl.create(staffUsername, password);
+                adminsCtrl.create(admin);
                 System.out.println("You have registered Staff Account successfully");
             }
             else {

@@ -1,11 +1,9 @@
+import controller.AdminController;
 import controller.CinemaController;
 import controller.CineplexController;
 //import controller.MovieController;
 import controller.MovieController;
-import modal.Cinema;
-import modal.Cineplex;
-import modal.Enums;
-import modal.Movie;
+import modal.*;
 import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
@@ -25,6 +23,11 @@ The start of the program
 
 public class mainProgram {
     public static void main(String[] args) {
+
+        // Create the root admin account
+        Admin rootAdmin = new Admin("rootUser", "rootPass");
+        AdminController rootAdminCtrl = new AdminController();
+        rootAdminCtrl.create(rootAdmin);
 
 
         /* For Testing Purposes */
