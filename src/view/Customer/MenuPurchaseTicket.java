@@ -1,6 +1,7 @@
 package view.Customer;
 
 import controller.CineplexController;
+import controller.CustomerController;
 import controller.MovieController;
 import controller.PriceManager;
 import modal.Customer;
@@ -23,6 +24,7 @@ public class MenuPurchaseTicket extends MenuBase {
     private CineplexController cineplexController;
     private PriceManager priceManager;
     private MovieController movieController;
+    private CustomerController customerController;
 
     public MenuPurchaseTicket(MenuBase previousMenu, Movie movie) {
         super(previousMenu);
@@ -30,6 +32,7 @@ public class MenuPurchaseTicket extends MenuBase {
         this.cineplexController = new CineplexController();
         this.movieController  = new MovieController();
         this.priceManager = new PriceManager();
+        this.customerController = new CustomerController();
     }
 
 
@@ -70,6 +73,7 @@ public class MenuPurchaseTicket extends MenuBase {
                     System.out.println("No available sessions for this cineplex! Please choose another.");
             }
         }
+        //Get the input for cinema
 
         //SessionController.read() to get the ArrayList<Session>
         //.Sessions() is to check for the available sessions for that movie
@@ -171,27 +175,23 @@ public class MenuPurchaseTicket extends MenuBase {
                 String password1 = read("Confirm your password again: ");
 
                 customer = new Customer(email, password);
+
                 //Need to add the customer detail into the database
+                CustomerController.createCustomer(customer);
             }
             //Create the booking transaction
-            //Booking (String cinemaNo, String customerId, String email, String phoneNumber, Movie movie,
-            //                    ArrayList<Ticket> ticket, Session session, double totalPrice)
-            Booking booking = new Booking(cinema.getCinemaNo(), tid, customer.getEmail(),
-                    customer.getPhoneNumber(), movie, tickets, session, totalPrice);
+            Booking booking = new Booking(cinema.getCinemaNo(), tid,
+                    customer.getUsername(),customer.getPassword(), movie, tickets, session, totalPrice);
 
             System.out.println("Total price is S$" + booking.getTotalPrice() + " (Inclusive of GST).");
             if (confirm("Confirm booking? ")) {
                 seat.setTaken(true);
             }
             customer.addBookings(booking);
-            booking.setTID(tid);
-
             //Create a CustomerController to accept the customer object
-            //Add the booking into the database
-            //manager.add(Constant.Tables.BOOKING, booking);
 
-            //movie.addTicketSales(tickets.size());
-            //for (Ticket ticket1 : tickets) manager.add(Constant.Tables.TICKET, ticket1);
+            //Need this function to update the total sale for that particular movie
+            movie.addTicketSales(tickets.size());
             System.out.println("Booking successful, tid=" + booking.getTID());
 
         }while (readIntInput("Press 0 to return to previous menu: ") != 0) ;
@@ -204,9 +204,10 @@ public class MenuPurchaseTicket extends MenuBase {
      With corridor printed out in the middle of the layout
      */
 
-    private void displaySeats(ArrayList<ArrayList<Seat>> seats, int row, int col)
+    private void displaySeats(ArrayList<Seat> seats, int row, int col)
     {
         Seat seat;
+        int seatNumber;
         System.out.println(" Select Seats");
         for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++)
             System.out.println(" ");
@@ -237,7 +238,8 @@ public class MenuPurchaseTicket extends MenuBase {
             for(int j=0; j<col; j++)
             {
                 if (new_row != col / 2 - 1) {
-                    seat = seats.get(i).get(j);
+                    seatNumber = (i - 1) * 5 + j;
+                    seat = seats.get(seatNumber);
                     //Seat not available
                     if (seat.isTaken()) {
                         System.out.println("[X]");
@@ -273,20 +275,23 @@ public class MenuPurchaseTicket extends MenuBase {
 
     private Seat chooseSeats(ArrayList<Seat> seats, int row, int col) {
         System.out.println("Please choose your seat(s).");
-        int i,j;
+        int i, j;
+        int seatNumber;
         do {
-            i = readSeatInput("Please input row number",1,row);
-            j = readSeatInput("Please input col number",1,col);
-            i--;j--;
-            if (seats.get(i).get(j).isTaken())
+            i = readSeatInput("Please input row number", 1, row);
+            j = readSeatInput("Please input col number", 1, col);
+            i--;
+            j--;
+            seatNumber = (i - 1) * 5 + j;
+            if (seats.get(seatNumber).isTaken())
                 System.out.println("Already been taken/selected please choose another seats.");
             else break;
         } while (true);
 
-        seats.get(i).get(j).setTaken(true);
-        System.out.println("Selected Seat: Row: " + (i+1) + " Col: " + (j+1));
+        seats.get(seatNumber).setTaken(true);
+        System.out.println("Selected Seat: Row: " + (i + 1) + " Col: " + (j + 1));
 
-        return seats.get(i).get(j);
+        return seats.get(seatNumber);
     }
 
     public ArrayList<Cinema> showAvailableSessions(String cineplexName) {
@@ -310,7 +315,7 @@ public class MenuPurchaseTicket extends MenuBase {
                         System.out.println();
                     }
                     printedCinemaCode = true;
-                    System.out.println("	Date: " + tempSession.getSessionDateTimeToString());
+                    System.out.println("	Date: " + tempSession.getDatetimeFormat());
                     System.out.println();
                     tempCinemaList.add(tempCinema);
                     printSeparator = true;

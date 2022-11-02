@@ -74,6 +74,27 @@ public class CineplexController {
         return null;
     };
 
-
-
+    //Read the cineplex.txt file and gather the appropriate objects ArrayList
+//    public ArrayList<Cineplex> readByAttribute(Object valueToSearch) {
+//        ArrayList<Cineplex> returnData = new ArrayList<Cinema>();
+//        ArrayList<Cineplex> cinemaListing = read();
+//        Cinema cinema = null;
+//
+//        for (int j=0; j<cinemaListing.size(); j++){
+//            cinema = cinemaListing.get(j);
+//            switch (col) {
+//                case CODE:
+//                    if (cinema.getCode().equals((String) valueToSearch))
+//                        returnData.add(cinema);
+//                    break;
+//                case CINEMA_TYPE:
+//                    if (cinema.getCinemaType().equals((CinemaType) valueToSearch))
+//                        returnData.add(cinema);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//        return returnData;
+//    }
 }
