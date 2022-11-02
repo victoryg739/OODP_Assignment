@@ -8,7 +8,6 @@ import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
 
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,12 +31,12 @@ public class mainProgram {
             casts.add("Bryan");
         }
 
-        Movie movie0 = new Movie(0, "Spiderman", Enums.MovieType.TWO_D, Enums.MovieRating.M18, "Away from you", 300, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie2 = new Movie(2, "Chickenman", Enums.MovieType.TWO_D, Enums.MovieRating.M18, "Fuck you victor", 300, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie3 = new Movie(3, "Allahman", Enums.MovieType.BLOCKBUSTER, Enums.MovieRating.G, "Allahu akbar", 300, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie4 = new Movie(4, "Hohoman", Enums.MovieType.TWO_D, Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie5 = new Movie(1, "Ironman 2", Enums.MovieType.THREE_D, Enums.MovieRating.M18, "Ironman 2 is better than Ironman", 150, readDate(), readDate(), "Bryan Tay", casts);
+        Movie movie0 = new Movie(0, "Spiderman", Enums.MovieType.TWO_D, Enums.ShowingStatus.NOW_SHOWING, Enums.MovieRating.M18, "Away from you", 300, readDate(), readDate(), "Bryan Tay", casts);
+        Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D,  Enums.ShowingStatus.NOW_SHOWING, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
+        Movie movie2 = new Movie(2, "Chickenman", Enums.MovieType.TWO_D, Enums.ShowingStatus.NOW_SHOWING,  Enums.MovieRating.M18, "Fuck you victor", 300, readDate(), readDate(), "Bryan Tay", casts);
+        Movie movie3 = new Movie(3, "Allahman", Enums.MovieType.BLOCKBUSTER,  Enums.ShowingStatus.NOW_SHOWING ,Enums.MovieRating.G, "Allahu akbar", 300, readDate(), readDate(), "Bryan Tay", casts);
+        Movie movie4 = new Movie(4, "Hohoman", Enums.MovieType.TWO_D,  Enums.ShowingStatus.NOW_SHOWING, Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
+        Movie movie5 = new Movie(5, "Ironman 2", Enums.MovieType.THREE_D,  Enums.ShowingStatus.NOW_SHOWING,  Enums.MovieRating.M18, "Ironman 2 is better than Ironman", 150, readDate(), readDate(), "Bryan Tay", casts);
 
         MovieController mc = new MovieController();
         mc.createMovie(movie0);

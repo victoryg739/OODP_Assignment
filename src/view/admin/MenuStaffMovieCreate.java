@@ -40,7 +40,11 @@ public class MenuStaffMovieCreate extends MenuBase {
         int runtime = readIntInput("Enter movie runtime(minutes):");
         Date DateStart = readDate("Input opening: ");
         Date DateEnd = readDate("Input ending date:");
-
+        ShowingStatus ss = readShowingStatus("\nEnter Showing status : \n" +
+                "	1. COMING SOON\n" +
+                "	2. PREVIEW\n" +
+                "	3. NOW_SHOWING\n" +
+                "Select movie type (number): ");
         if(DateEnd.before(DateStart)){
             System.out.println("Invalid Movie End Date!");
             return this.getPreviousMenu();
@@ -61,7 +65,7 @@ public class MenuStaffMovieCreate extends MenuBase {
         String director = read("Enter Director:");
 
 
-       adminC.createMovie(title, movieType, movieRating, synopsis, runtime, DateStart, DateEnd, casts, director );
+       adminC.createMovie(title, movieType, movieRating, ss,synopsis, runtime, DateStart, DateEnd, casts, director);
 
        return this.getPreviousMenu();
     }

@@ -4,7 +4,6 @@ import modal.*;
 import java.io.*;
 import java.util.*;
 import modal.Enums.*;
-import java.lang.Double.*;
 
 /* ToDO list:
     1. Change getLastID code
@@ -20,9 +19,9 @@ public class MovieController {
 
     }
     // Creates a movie and writes it to movies.txt
-    public void createMovie(String title, MovieType type, MovieRating rating, String synopsis, int runtime, Date DateStart, Date DateEnd, ArrayList<String> cast, String director) {
+    public void createMovie(String title, MovieType type, MovieRating rating, ShowingStatus ss,String synopsis, int runtime, Date DateStart, Date DateEnd, ArrayList<String> cast, String director) {
         // Creates a movie object
-        Movie movie = new Movie(getLastId() + 1, title, type, rating, synopsis, runtime, DateStart, DateEnd, director, cast);
+        Movie movie = new Movie(getLastId() + 1, title, type, ss, rating, synopsis, runtime, DateStart, DateEnd, director, cast);
         // Creates an ArrayList of movie
         ArrayList<Movie> allData = new ArrayList<Movie>();
         File tempFile = new File(FILENAME);
@@ -47,21 +46,22 @@ public class MovieController {
         int id = movie.getId();
         String title = movie.getTitle();
         MovieType movieType = movie.getType();
-        MovieRating movieContentRating = movie.getContentRating();
+        MovieRating movieRating = movie.getContentRating();
         String synopsis = movie.getSynopsis();
         int runtime = movie.getRuntime();
         Date DateStart = movie.getDateStart();
         Date DateEnd = movie.getDateEnd();
         String director = movie.getDirector();
+        ShowingStatus ss = movie.getShowingStatus();
         //ArrayList<String> casts = movie.getCast();
         String castString = "";
         for (int i=0; i< movie.getCast().size(); i++)
             castString = castString.concat(movie.getCast().get(i) + ",");
-        castString = castString.substring(0, castString.length()-1);
 
-        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieContentRating + " | " + "Synopsis: " + synopsis + " | "
+        castString = castString.substring(0, castString.length()-1);
+        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
                 + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
-                + "Cast: " + castString;
+                + "Cast: " + castString + " | " + "Showing: " + ss;
         System.out.println(movieString);
         System.out.println("-------------------");
     }
@@ -103,15 +103,13 @@ public class MovieController {
 
     public void deleteMovie(int id) {
         ArrayList<Movie> allData = read();
-        ArrayList<Movie> returnData = new ArrayList<Movie>();
+            ArrayList<Movie> returnData = new ArrayList<Movie>();
 
-        for (int i = 0; i < allData.size(); i++) {
-            Movie m = allData.get(i);
-            if (!(m.getId() == id))
-                returnData.add(m);
+            for (int i = 0; i < allData.size(); i++) {
+                Movie m = allData.get(i);
+                if (!(m.getId() == id))
+                    returnData.add(m);
         }
-
-
         replaceExistingFile(FILENAME, returnData);
     }
 
@@ -137,7 +135,7 @@ public class MovieController {
                         m.setType((MovieType) newValue);
                         break;
                     case 3:
-                        //m.setSynopsis((String) newValue);
+                        m.setSynopsis((String) newValue);
                         break;
                     case 4:
                         m.setContentRating((MovieRating) newValue);
@@ -157,6 +155,10 @@ public class MovieController {
                     case 9:
                         m.setDirector((String) newValue);
                         break;
+                    case 10:
+                        m.setShowingStatus((ShowingStatus) newValue);
+                        break;
+
                 }
 
             }
@@ -202,55 +204,4 @@ public class MovieController {
         }
 
     }
-
-    public ArrayList<Movie> readByTitle(Object valueToSearch) {
-        ArrayList<Movie> allData = read();
-        ArrayList<Movie> returnData = new ArrayList<Movie>();
-        for (int i = 0; i < allData.size(); i++) {
-            Movie m = allData.get(i);
-            if (m.getTitle().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
-                returnData.add(m);
-            }
-        }
-
-        return returnData;
-    }
-
-    public void sortTicketSales(ArrayList<Movie> movies){
-        Collections.sort(movies , new Comparator<Movie>() {
-            @Override
-            public int compare(Movie m1, Movie m2) {
-                return Double.compare(m1.getTicketSales(), m2.getTicketSales());
-            }
-        });
-
-    }
-
-
-    public void sortRating(ArrayList<Movie> movies) {
-        Collections.sort(movies, new Comparator<Movie>() {
-            @Override
-            public int compare(Movie m1, Movie m2) {
-                return Double.compare(m2.getRating(), m1.getRating());
-            }
-        });
-    }
-
-    public void printStars(double rating) {
-        String s = String.format("%.1f", rating);
-        if(rating <= 1)
-            System.out.println("★☆☆☆☆(" + s + ")");
-        else if(rating <= 2)
-            System.out.println("★★☆☆☆(" + s + ")");
-        else if(rating <= 3)
-            System.out.println("★★★☆☆(" + s + ")");
-        else if(rating <= 4)
-            System.out.println("★★★★☆(" + s + ")");
-        else
-            System.out.println("★★★★★(" + s + ")");
-        System.out.println(" ");
-    }
-
-
-
 }

@@ -45,6 +45,7 @@ public class utilF {
         }
     }
 
+
     public static Date readDateTime(String msg) {
         SimpleDateFormat sdf;
 
@@ -128,6 +129,8 @@ public class utilF {
             }
         } while (true);
     }
+
+
     /* Tester function */
 
     public static Date readDate() {
@@ -154,6 +157,40 @@ public class utilF {
         } while (true);
     }
 
+    public static Enums.ShowingStatus readShowingStatus(String message){
+        Enums.ShowingStatus ss;
+        System.out.println(message);
+
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+                switch(c) {
+                    case 1:
+                        ss = Enums.ShowingStatus.COMING_SOON;
+                        break;
+                    case 2:
+                        ss = Enums.ShowingStatus.PREVIEW;
+                        break;
+                    case 3:
+                        ss = Enums.ShowingStatus.NOW_SHOWING;
+                        break;
+                    case 4:
+                        ss = Enums.ShowingStatus.END_SHOWING;
+                        break;
+                    default:
+                        System.out.println("Default Showing Status selected! ");
+                        ss = Enums.ShowingStatus.NOW_SHOWING;
+                        break;
+                }
+
+                return ss;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+
+    }
     public static Enums.MovieRating readMovieRatingInput(String Message) {
         Enums.MovieRating movieRating;
         System.out.println(Message);

@@ -11,7 +11,7 @@ public class Movie implements Serializable {
     private String title, synopsis, director, language;
 
     private MovieType type;
-    private MovieRating rating;
+    private MovieRating ContentRating;
     private Date DateStart, DateEnd;
 
     private ArrayList<String> cast;
@@ -19,17 +19,18 @@ public class Movie implements Serializable {
 
     private ShowingStatus showingStatus;
 
-    public Movie(int id,String title, MovieType type, MovieRating rating, String synopsis, int runtime, Date DateStart, Date DateEnd, String director, ArrayList<String> cast){
+    public Movie(int id,String title, MovieType type, ShowingStatus ss,MovieRating ContentRating, String synopsis, int runtime, Date DateStart, Date DateEnd, String director, ArrayList<String> cast){
         this.id = id;
         this.title = title;
         this.type = type;
-        this.rating = rating;
+        this.ContentRating = ContentRating;
         this.synopsis = synopsis;
         this.runtime = runtime;
         this.DateStart = DateStart;
         this.DateEnd = DateEnd;
         this.director = director;
         this.cast = cast;
+        this.showingStatus = ss;
     }
 
     public Movie() {
@@ -91,12 +92,12 @@ public class Movie implements Serializable {
         this.type = type;
     }
 
-    public MovieRating getRating() {
-        return rating;
+    public MovieRating getContentRating() {
+        return ContentRating;
     }
 
-    public void setRating(MovieRating rating) {
-        this.rating = rating;
+    public void setContentRating(MovieRating ContentRating) {
+        this.ContentRating = ContentRating;
     }
 
     public Date getDateStart() {
@@ -130,5 +131,4 @@ public class Movie implements Serializable {
     public void setShowingStatus(ShowingStatus showingStatus) {
         this.showingStatus = showingStatus;
     }
-
 }

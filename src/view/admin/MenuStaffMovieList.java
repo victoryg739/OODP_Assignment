@@ -20,7 +20,12 @@ public class MenuStaffMovieList extends MenuBase {
             System.out.println("No movies to be listed!");
         }
         else{
-            movieList.forEach(movie -> ac.printMovie(movie));
+            for(int i=0; i< movieList.size(); i++){
+                if(movieList.get(i).getShowingStatus() != ShowingStatus.END_SHOWING){
+                    ac.printMovie(movieList.get(i));
+                }
+            }
+
         }
         return this.getPreviousMenu();
     }
