@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static view.utilF.*;
+
 import static view.utilF.readDate;
 
 public class MenuStaffMovieSessionCreate extends MenuBase {
@@ -85,6 +86,9 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 
 
         Date sessionDateTime  = readDateTime("Enter session date and time");
+        Enums.Day enumsDay  = returnEnumsDay(sessionDateTime);
+
+        System.out.println("hi" + enumsDay);
         Movie movie = movieCtrler.readByID(movie_id);
         //hard coded change later
         //should get seat plan from Cinema class
@@ -102,8 +106,8 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 
 
 
-
-        sessionCtrler.createSession(cinema,movie,1, sessionDateTime,seat);
+        //fix enums.day for now
+        sessionCtrler.createSession(cinema,movie,1, sessionDateTime,enumsDay,seat);
 
         System.out.println("Session successfully created!");
         // for debugging later remove
@@ -114,7 +118,6 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
             ArrayList<Seat>  s = sessionList.get(i).getSeat();
             System.out.println(s.get(s.size() - 1).getCol());
             System.out.println(s.get(s.size() - 1).getRow());
-
 
         }
         return getPreviousMenu();

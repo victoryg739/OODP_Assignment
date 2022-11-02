@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -59,6 +60,34 @@ public class utilF {
         } while (true);
     }
 
+    public static Enums.Day returnEnumsDay(Date date){
+        System.out.println("dayofweek" + date.getDay());
+        System.out.println("timeofday" + date.getHours());
+        int dayOfWeek = date.getDay();
+        int hours  = date.getHours();
+        if(dayOfWeek >= 1 && dayOfWeek <= 3){
+            if(hours < 18 ) {
+                return Enums.Day.MON_WED_BEF_SIX;
+            }else{
+                return Enums.Day.MON_WED_AFT_SIX;
+            }
+        }else if(dayOfWeek == 4){
+            if(hours < 18 ) {
+                return Enums.Day.THU_BEF_SIX;
+            }else{
+                return Enums.Day.THU_AFT_SIX;
+            }
+        }else if(dayOfWeek == 5){
+            if(hours < 18 ) {
+                return Enums.Day.FRI_BEF_SIX;
+            }else{
+                return Enums.Day.FRI_AFT_SIX;
+            }
+        }else{
+            return Enums.Day.SAT_SUN;
+        }
+    }
+
 
 
     /**
@@ -98,6 +127,32 @@ public class utilF {
             }
         } while (true);
     }
+    /* Tester function */
+
+    public static Date readDate() {
+        String label = "01/05/1998";
+        String format = Constant.FORMAT_DATE_SHORT;
+        SimpleDateFormat sdf;
+
+        if (format.isEmpty()) { // default value
+            sdf = Constant.dateFormatShort;
+            format = Constant.FORMAT_DATE_SHORT;
+        } else {
+            sdf = new SimpleDateFormat(format);
+        }
+        sdf.setLenient(false);
+        do {
+            try {
+                String date = label + " (" + format + "): ";
+                //String date = read(label + " (" + format + "): ");
+                return sdf.parse(date);
+            } catch (ParseException ime) {
+                System.out.println("Please enter a correct date format");
+                sc.nextLine();
+            }
+        } while (true);
+    }
+
     public static Enums.MovieRating readMovieRatingInput(String Message) {
         Enums.MovieRating movieRating;
         System.out.println(Message);
