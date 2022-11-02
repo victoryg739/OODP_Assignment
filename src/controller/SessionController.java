@@ -4,14 +4,12 @@ import modal.*;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class SessionController {
     public final static String FILENAME = "data/session.txt";
 
 
-    public void createSession(Cinema cinema, Movie movie, int sessionID, Date sessionDateTime,Enums.Day day, ArrayList<Seat> seat) {
-        Session session = new Session(cinema,movie,sessionID,sessionDateTime,day,seat);
+    public void append(Object obj) {
         ArrayList<Session> allData = new ArrayList<Session>();
         File tempFile = new File(FILENAME);
 
@@ -20,13 +18,28 @@ public class SessionController {
             allData = read();
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-            allData.add(session);
+            allData.add((Session) obj);
             out.writeObject(allData);
             out.flush();
             out.close();
         } catch (IOException e) {
             // ignore error
         }
+    }
+
+    public int getLastSessionId() {
+        int lastId = -1;
+        int sessionId;
+        ArrayList<Session> allData = read();
+        if(allData == null){
+            return 0;
+        }
+        for (int i = 0; i < allData.size(); i++) {
+            sessionId = allData.get(i).getSessionId();
+            if (sessionId > lastId)
+                lastId = sessionId;
+        }
+        return lastId;
     }
     public ArrayList<Session> read() {
         try {

@@ -88,7 +88,6 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         Date sessionDateTime  = readDateTime("Enter session date and time");
         Enums.Day enumsDay  = returnEnumsDay(sessionDateTime);
 
-        System.out.println("hi" + enumsDay);
         Movie movie = movieCtrler.readByID(movie_id);
         //hard coded change later
         //should get seat plan from Cinema class
@@ -104,22 +103,42 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         }
 
 
+        int lastSessionId = sessionCtrler.getLastSessionId();
+
+        Session session = new Session(cinema,movie,lastSessionId+1, sessionDateTime,enumsDay,seat);
+
+        //update both session and cinema txt file
+        sessionCtrler.append(session);
+        cinemaCtrler.cinemaUpdateSession(cinemaNo,session);
+
+       ArrayList< Session> sessionFile = sessionCtrler.read();
+        for(int i =0; i< sessionFile.size();i++){ //return one section by one for the whole session file
+            System.out.print(sessionFile.get(i).getSessionId() + "\t" );
+            System.out.print(sessionFile.get(i).getCinema() + "\t");
+            System.out.print(sessionFile.get(i).getMovie() + "\t");
+            System.out.print(sessionFile.get(i).getDateTime() + "\t");
+            System.out.print(sessionFile.get(i).getDay() + "\t");
 
 
-        //fix enums.day for now
-        sessionCtrler.createSession(cinema,movie,1, sessionDateTime,enumsDay,seat);
+            System.out.printf("\n");
 
-        System.out.println("Session successfully created!");
-        // for debugging later remove
-        ArrayList<Session> sessionList = sessionCtrler.read();
-        for(int i =0; i< sessionList.size();i++){ //return one section by one for the whole session file
-            System.out.println(sessionList.get(i).getSessionId());
+
             //GIVe aloy later
-            ArrayList<Seat>  s = sessionList.get(i).getSeat();
-            System.out.println(s.get(s.size() - 1).getCol());
-            System.out.println(s.get(s.size() - 1).getRow());
+
 
         }
+
+        System.out.println("Session successfully created!");
+//        // for debugging later remove
+//        ArrayList<Session> sessionList = sessionCtrler.read();
+//        for(int i =0; i< sessionList.size();i++){ //return one section by one for the whole session file
+//            System.out.println(sessionList.get(i).getSessionId());
+//            //GIVe aloy later
+//            ArrayList<Seat>  s = sessionList.get(i).getSeat();
+//            System.out.println(s.get(s.size() - 1).getCol());
+//            System.out.println(s.get(s.size() - 1).getRow());
+//
+//        }
         return getPreviousMenu();
         }
 
