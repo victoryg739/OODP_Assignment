@@ -1,32 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2e671e7-bcc7-449b-9069-138411888b0a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data/adminAccounts.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/customerAccounts.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/CustomerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modal/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Customer/MenuCustomerRegister.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffRegister.java" afterDir="false" />
+    <list default="true" id="a4e09fc4-309e-488e-8451-f3b445085990" name="Changes" comment="fix bug for MenuStaff">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,10 +17,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectId" id="2GTflwLqGVndff4xA2FpXobaoym" />
+  <component name="ProjectId" id="2Gr1zWHAVGivPVZWi4NgzUwkz1G" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -45,28 +25,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "18",
-    "last_opened_file_path": "C:/Users/aloys/OneDrive - Nanyang Technological University/NTU/Year 2 Sem 1/SC2002 Object Oriented Design and Programming/Assignment/MenuConsole",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\riven\IdeaProjects\OODP_Assignment\src\view\customer" />
-      <recent name="C:\Users\Victor\IdeaProjects\OODP_Assignment\src" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="view.customer" />
-    </key>
-  </component>
+}</component>
   <component name="RunManager">
     <configuration name="mainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mainProgram" />
@@ -83,94 +48,24 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="c2e671e7-bcc7-449b-9069-138411888b0a" name="Changes" comment="" />
-      <created>1666417652481</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1666417652481</updated>
-      <workItem from="1666538442252" duration="238000" />
-      <workItem from="1666591451198" duration="5390000" />
-      <workItem from="1667108903653" duration="17137000" />
-    </task>
-    <task id="LOCAL-00001" summary="hello test">
-      <created>1666420532309</created>
+    <task id="LOCAL-00001" summary="fix bug for MenuStaff">
+      <created>1667126349441</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1666420532309</updated>
+      <updated>1667126349441</updated>
     </task>
-    <task id="LOCAL-00002" summary="commit admin">
-      <created>1666420611430</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1666420611430</updated>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a4e09fc4-309e-488e-8451-f3b445085990" name="Changes" comment="fix bug for MenuStaff" />
+      <created>1667132155698</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667132155698</updated>
+      <workItem from="1667196034497" duration="1174000" />
+      <workItem from="1667368207693" duration="146000" />
+      <workItem from="1667372983194" duration="4004000" />
     </task>
-    <task id="LOCAL-00003" summary="commit helloworld">
-      <created>1666420950128</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1666420950128</updated>
-    </task>
-    <task id="LOCAL-00004" summary="remove admin and test">
-      <created>1666421052522</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1666421052522</updated>
-    </task>
-    <task id="LOCAL-00005" summary="test">
-      <created>1666421154373</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1666421154373</updated>
-    </task>
-    <task id="LOCAL-00006" summary="test">
-      <created>1666421205627</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1666421205627</updated>
-    </task>
-    <task id="LOCAL-00007" summary="done test 2">
-      <created>1666538516803</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1666538516803</updated>
-    </task>
-    <task id="LOCAL-00008" summary="done test 2">
-      <created>1666538575199</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1666538575199</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Added BookingHistoryMenu, MovieListTopSale, MoviesListTopRatings, MoviesReviewsMenu">
-      <created>1666600279021</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1666600279022</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added create movie functionality">
-      <created>1666710122310</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1666710122310</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Finished AddMovie functionality">
-      <created>1666808385704</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1666808385704</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,27 +83,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="hello test" />
-    <MESSAGE value="commit admin" />
-    <MESSAGE value="commit helloworld" />
-    <MESSAGE value="remove admin and test" />
-    <MESSAGE value="test" />
-    <MESSAGE value="done test 2" />
-    <MESSAGE value="Added BookingHistoryMenu, MovieListTopSale, MoviesListTopRatings, MoviesReviewsMenu" />
-    <MESSAGE value="Updated" />
-    <MESSAGE value="Added create movie functionality" />
-    <MESSAGE value="Finished AddMovie functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished AddMovie functionality" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/view/customer/MovieInfo.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="fix bug for MenuStaff" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug for MenuStaff" />
   </component>
 </project>
