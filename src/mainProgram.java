@@ -50,25 +50,73 @@ public class mainProgram {
         Cinema cinema1  = new Cinema("A1",null, Enums.ClassCinema.PLATINUM,null);
         Cinema cinema2  = new Cinema("A2",null, Enums.ClassCinema.PLATINUM,null);
         Cinema cinema3 =  new Cinema("A3",null, Enums.ClassCinema.NORMAL,null);
-        ArrayList<Cinema> cinemaArrayList = new ArrayList<Cinema>();
-        cinemaArrayList.add(cinema1);
-        cinemaArrayList.add(cinema2);
-        cinemaArrayList.add(cinema3);
+        Cinema cinema4  = new Cinema("A4",null, Enums.ClassCinema.PLATINUM,null);
+        Cinema cinema5  = new Cinema("A5",null, Enums.ClassCinema.PLATINUM,null);
+        Cinema cinema6 =  new Cinema("A6",null, Enums.ClassCinema.NORMAL,null);
+        Cinema cinema7 = new Cinema("A7",null, Enums.ClassCinema.PLATINUM,null);
+        Cinema cinema8 =  new Cinema("A8",null, Enums.ClassCinema.NORMAL,null);
+        Cinema cinema9 =  new Cinema("A9",null, Enums.ClassCinema.NORMAL,null);
 
+        ArrayList<Cinema> cinemaArrayList1 = new ArrayList<Cinema>();
+        cinemaArrayList1.add(cinema1);
+        cinemaArrayList1.add(cinema2);
+        cinemaArrayList1.add(cinema3);
+
+        ArrayList<Cinema> cinemaArrayList2 = new ArrayList<Cinema>();
+        cinemaArrayList2.add(cinema4);
+        cinemaArrayList2.add(cinema5);
+        cinemaArrayList2.add(cinema6);
+
+        ArrayList<Cinema> cinemaArrayList3 = new ArrayList<Cinema>();
+        cinemaArrayList3.add(cinema7);
+        cinemaArrayList3.add(cinema8);
+        cinemaArrayList3.add(cinema9);
+
+        ArrayList<Cinema> cinemaArrayListAll = new ArrayList<Cinema>();
+        cinemaArrayListAll.addAll(cinemaArrayList1);
+        cinemaArrayListAll.addAll(cinemaArrayList2);
+        cinemaArrayListAll.addAll(cinemaArrayList3);
         CinemaController cinemaCtrler = new CinemaController();
-        cinemaCtrler.replace(cinemaArrayList);
+        cinemaCtrler.replace(cinemaArrayListAll);
 
-        Cineplex cineplex1 = new Cineplex("Jem",cinemaArrayList);
-        Cineplex cineplex2 = new Cineplex("Orchard",cinemaArrayList);
-        Cineplex cineplex3 = new Cineplex("Funan",cinemaArrayList);
+        Cineplex cineplex1 = new Cineplex("Jem",cinemaArrayList1);
+        Cineplex cineplex2 = new Cineplex("Orchard",cinemaArrayList2);
+        Cineplex cineplex3 = new Cineplex("Funan",cinemaArrayList3);
         ArrayList<Cineplex> cineplexArrayList = new ArrayList<Cineplex>();
         cineplexArrayList.add(cineplex1);
         cineplexArrayList.add(cineplex2);
         cineplexArrayList.add(cineplex3);
 
 
-        CineplexController cinplexController = new CineplexController();
-        cinplexController.replace(cineplexArrayList);
+        CineplexController cinplexCtrler = new CineplexController();
+        cinplexCtrler.replace(cineplexArrayList);
+
+        ArrayList<Cinema> cinemaFile = cinemaCtrler.read();
+        for(int a =0 ; a<cinemaFile.size();a++){
+            System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
+            System.out.print(cinemaFile.get(a).getCinemaNo()+ "\t");
+            System.out.print(cinemaFile.get(a).getMovie()+ "\t");
+            System.out.print(cinemaFile.get(a).getSessions()+ "\t");
+            System.out.printf("\n");
+        }
+
+        ArrayList<Cineplex> cineplexFile = cinplexCtrler.read();
+        for(int i =0; i< cineplexFile.size();i++){ //return one section by one for the whole session file
+            System.out.print(cineplexFile.get(i).getLocation()+ "\t" );
+            System.out.print(cineplexFile.get(i).getCinemas()+ "\t");
+            ArrayList<Cinema> cinemasA = new ArrayList<Cinema>();
+            cinemasA= cineplexFile.get(i).getCinemas();
+
+
+            for(int  j=0; j<cinemasA.size();j++){
+                System.out.print(cinemasA.get(j).getCinemaNo()+ "\t");
+
+            }
+            System.out.printf("\n");
+
+
+            //GIVe aloy later
+        }
 
 
         // Create first Main Menu
