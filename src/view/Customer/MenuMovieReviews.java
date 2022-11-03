@@ -32,7 +32,7 @@ public class MenuMovieReviews extends MenuBase {
         Review review = new Review(read("Please Enter your comment for " + movie.getTitle() + ": ")  , readReviewInput("Please enter your rating for " + movie.getTitle() ,1,5));
 
         MovieController mc = new MovieController();
-        mc.updateMovie(11, movie.getId(), review);
+        mc.updateMovie(12, movie.getId(), review);
         //a way to update the movie.txt file
         return this.getPreviousMenu();
     }

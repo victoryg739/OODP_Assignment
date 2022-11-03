@@ -23,7 +23,7 @@ public class MenuStaffMain extends MenuBase {
                 " 2. Create/Update/Remove Movie Session                               \n" + //shows the timing of each movie
                 " 3. Configure system settings                                          \n" +
                 " 4. List movies                                                        \n" +
-                " 6. Back                                                               \n " +
+                " 5. Back                                                               \n " +
                 "===========================================================");
 
         System.out.println("Enter choice: ");
