@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a4e09fc4-309e-488e-8451-f3b445085990" name="Changes" comment="added session enums">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CineplexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CineplexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SessionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Cinema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667289454326</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added session enums">
+      <created>1667413574110</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1667413574110</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
