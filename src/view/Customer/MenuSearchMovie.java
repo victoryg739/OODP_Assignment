@@ -12,8 +12,6 @@ import static view.utilF.*;
 /* ToDO list:
     1. Remove the space in the input name and search
     eg. Iron Man == IronMan
-
-
 */
 
 public class MenuSearchMovie extends MenuBase {
@@ -25,7 +23,6 @@ public class MenuSearchMovie extends MenuBase {
     }
 
     public MenuBase execute() {
-        Scanner sc = new Scanner(System.in);
         MenuBase nextMenu = null;
         ArrayList<Movie> movies; //List of Movies objects
         movieName = null;
@@ -48,14 +45,14 @@ public class MenuSearchMovie extends MenuBase {
                 System.out.println("Found " + movieList.size() + " results:");
 
                 //List of possible options to choose from
-                ArrayList<String> choices = new ArrayList<String>();
+                ArrayList<String> options = new ArrayList<String>();
 
                 for (Movie m : movieList) { //iterate through the list of movies
-                    choices.add(m.getTitle()); //get the title from the movie class
+                    options.add(m.getTitle()); //get the title from the movie class
                 }
-                choices.add("Go Back");
-                choices.add("Quit The Application");
-                printMenu(choices, 1); //print menu for the options
+                options.add("Go Back");
+                options.add("Quit The Application");
+                printMenu(options, 1); //print menu for the options
 
                 int choice = readIntInput("Please enter your choice: ");
                 /* eg. Menu Choices
@@ -67,7 +64,7 @@ public class MenuSearchMovie extends MenuBase {
                 */
                 if (choice <= movieList.size()) {
                     //go to MovieInfo Menu
-                    nextMenu = new MenuMovieInfo(this, movieList.get(choice));
+                    nextMenu = new MenuMovieInfo(this, movieList.get(choice - 1));
                 }
                 else if (choice == movieList.size() + 1) {
                     //select Go Back option

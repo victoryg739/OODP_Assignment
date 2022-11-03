@@ -2,22 +2,22 @@ package modal;
 import java.util.*;
 
 public class Customer {
-    private String email;
+    private String username;
     private String password;
     private ArrayList<Booking> bookings;
 
-    public Customer(String email, String password)  {
-        this.email = email;
+    public Customer(String username, String password)  {
+        this.username = username;
         this.password = password;
         this.bookings = new ArrayList<>();
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getUsername() {
+        return username;
     }
 
-    public String getEmail() {
-        return email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {

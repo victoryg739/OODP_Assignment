@@ -24,7 +24,7 @@ public class MenuListMovie extends MenuBase {
     public MenuBase execute() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Movie Listing");
-        ArrayList<String> choices = new ArrayList<String>();
+        ArrayList<String> options = new ArrayList<String>();
 
         //Retrieve the entire list of movies in the database
         ArrayList<Movie> movies = mc.read();
@@ -43,16 +43,16 @@ public class MenuListMovie extends MenuBase {
 //            }
             String title = m.getTitle();
             //+ (m.getShowingStatus().equals(Constant.ShowingStatus.END_SHOWING) ? " (End Showing)" : "");
-            choices.add(title); //add the movie as part of the option
+            options.add(title); //add the movie as part of the option
         }
 
 
 
-        choices.add("Show Top 5 Movies by sale");
-        choices.add("Shop Top 5 Movies by ratings");
-        choices.add("Go Back");
-        choices.add("Quit The Application");
-        printMenu(choices, 1);
+        options.add("Show Top 5 Movies by sale");
+        options.add("Shop Top 5 Movies by ratings");
+        options.add("Go Back");
+        options.add("Quit The Application");
+        printMenu(options, 1);
         int choice = readIntInput("Enter the choice: ");
 
         /* eg. movies.size == 2

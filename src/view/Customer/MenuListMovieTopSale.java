@@ -31,7 +31,7 @@ public class MenuListMovieTopSale extends MenuBase {
             //top refers to the top 5 movies
             int top = 1;
 
-            //For each movie, if the movie is still currently showing, we display the top 5 movies
+            //We display the top 5 movies of all time
             for (Movie movie : movies) {
                 options.add(movie.getTicketSales() + " Tickets for " + movie.getTitle());
 

@@ -279,23 +279,7 @@ public class utilF {
     }
 
 
-     //request user for username and email to verify a user
-    public static Customer login() {
-        // Login
-        // Manager manager = Manager.getInstance();
-        Customer customer = null;
-        do {
-            String name = read("Name: ");
-            String phone = read("Email: ");
-            //customer = manager.getEntry(USER, (User u) -> (u.getName().equals(name)));
-            if (customer == null) {
-                System.out.println("Incorrect username or phone number, please try again.");
-            }
 
-        } while (customer == null);
-
-        return customer;
-    }
 
 
 
