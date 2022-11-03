@@ -74,6 +74,7 @@ public class MenuPurchaseTicket extends MenuBase {
             else { //valid choice
                 cinemaList = showAvailableSessions(cineplexes.get(choice-1).getLocation(), movie);
                 if (cinemaList.size() == 0)
+
                     System.out.println("No available sessions for this cineplex! Please choose another.");
             }
         }
@@ -315,7 +316,6 @@ public class MenuPurchaseTicket extends MenuBase {
 
         System.out.println("Available screening times of " + movie.getTitle() + " in this cinema:");
             System.out.println();
-            System.out.println("this is " + tempCinema.getSessions());
             for(int j = 0; j < tempCinema.getSessions().size(); j++) {
                 tempSession = tempCinema.getSessions().get(j);
                 if (tempSession.getMovie().getTitle().equals(movie)) {
