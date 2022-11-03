@@ -1,3 +1,4 @@
+import controller.AdminController;
 import controller.CinemaController;
 import controller.CineplexController;
 //import controller.MovieController;
@@ -70,6 +71,12 @@ public class mainProgram {
 
         CineplexController cinplexController = new CineplexController();
         cinplexController.replace(cineplexArrayList);
+
+
+
+        Admin adm = new Admin("abc","abc");
+        AdminController ac = new AdminController();
+        ac.createAdmin(adm);
 
 
         // Create first Main Menu

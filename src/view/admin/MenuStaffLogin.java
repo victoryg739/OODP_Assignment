@@ -5,12 +5,12 @@ import view.MenuBase;
 
 import static view.utilF.read;
 
-public class MenuStaffLogin extends MenuBase{
-    public MenuStaffLogin(MenuBase initialMenu){
+public class MenuStaffLogin extends MenuBase {
+    public MenuStaffLogin(MenuBase initialMenu) {
         super(initialMenu);
     }
 
-    public MenuBase execute(){
+    public MenuBase execute() {
 
         System.out.println("Please login using username and password");
         final String username = read("Username: ");
@@ -19,13 +19,15 @@ public class MenuStaffLogin extends MenuBase{
         AdminController adminCtrl = new AdminController();
 
         System.out.println(adminCtrl.readByUsername(username));
-        //if(username.equals(adminCtrl.readByUsername(username)) && password.equals(adminCtrl.readByPassword(password))){
+        if (username.equals(adminCtrl.readByUsername(username)) && password.equals(adminCtrl.readByPassword(password))) {
 
             MenuStaffMain msm = new MenuStaffMain(this.getPreviousMenu());
             return msm;
-       // }else {
+        } else {
             //System.out.println("Wrong username or password");
 
         }
-    }
 
+        return this.getPreviousMenu();
+    }
+}
