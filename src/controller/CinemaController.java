@@ -9,7 +9,8 @@ public class CinemaController {
 
 
         private CineplexController cineplexController = new CineplexController();
-        public final static String FILENAME = "data/cinema.txt";
+
+    public final static String FILENAME = "data/cinema.txt";
 
 
         public final static int NAME = 0;
@@ -84,7 +85,7 @@ public class CinemaController {
         return returnData;
     }
 
-    public boolean cinemaUpdateSession(Object valueToSearch, Session newSession) {
+    public boolean cinemaUpdateSession(Object valueToSearch,Session newSession) {
         ArrayList<Cinema> cinemaListing = read();
         ArrayList<Session> sessionList = new ArrayList<Session>();
 
@@ -98,13 +99,6 @@ public class CinemaController {
                 cinemaListing.get(j).setSessions(sessionList);
                 flag = true;
             }
-        }
-        for(int a =0 ; a<cinemaListing.size();a++){
-            System.out.print(cinemaListing.get(a).getClassCinema() + "\t");
-            System.out.print(cinemaListing.get(a).getCinemaNo()+ "\t");
-            System.out.print(cinemaListing.get(a).getMovie()+ "\t");
-            System.out.print(cinemaListing.get(a).getSessions()+ "\t");
-            System.out.printf("\n");
         }
         if (flag  == false){
             return false;
@@ -145,18 +139,30 @@ public class CinemaController {
      */
     public ArrayList<Cinema> readByCineplexName(String name){
         ArrayList<Cinema> returnData = new ArrayList<Cinema>();
-        ArrayList<Cineplex> cineplexListing = this.cineplexController.read();
-        Cineplex cineplex = null;
+        ArrayList<Cineplex> cineplexListing = cineplexController.read();
+        ArrayList<Cinema> cinemaListing = this.read();
 
+
+        Cineplex cineplex = null;
+        ArrayList<Cinema> cinema = new ArrayList<Cinema>();
         for (int i=0; i<cineplexListing.size(); i++){
             cineplex = cineplexListing.get(i);
-            if(cineplex.getLocation().equals(name)){
-                cineplex.getCinemas().forEach(n->returnData.add(n));
+            if(cineplex.getLocation().equals(name)){ // Find list of cineplex of same name
+                cinema = cineplex.getCinemas();
+
             }
         }
+        for(int j =0; j < cinema.size(); j++) {
+            for(int a =0; a < cinemaListing.size(); a++){
+                if(cinemaListing.get(a).getCinemaNo().equals(cinema.get(j).getCinemaNo())){
+                    returnData.add(cinemaListing.get(a));
+                }
+            }
+
+        }
+
         return returnData;
     }
-
 
 
 
