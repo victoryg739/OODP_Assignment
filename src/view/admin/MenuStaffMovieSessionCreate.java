@@ -41,7 +41,7 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
             System.out.print(cineplexArray.get(i).getLocation()+":");
             ArrayList<Cinema> cinemaArray = cineplexArray.get(i).getCinemas();
             for(int j= 0;j < cinemaArray.size();j++){
-                System.out.print(cinemaArray.get(i).getCinemaNo()+ " ");
+                System.out.print(cinemaArray.get(j).getCinemaNo()+ " ");
 
             }
             System.out.print("\n");
@@ -77,12 +77,15 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 
 
         int movie_id  = readIntInput("Enter movie id: ");
+        Movie m  = movieCtrler.readByID(movie_id);
         //need to implement movie controller not done
-        if (movieCtrler.readByID(movie_id) == null) {
+        if (m == null) {
             System.out.println("Movie does not exist!\n"+
                     "Returning to menu...");
             return getPreviousMenu();
-        };
+        }else{
+            System.out.println(m.getTitle());
+        }
 
 
         Date sessionDateTime  = readDateTime("Enter session date and time");
@@ -110,6 +113,15 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         //update both session and cinema txt file
         sessionCtrler.append(session);
         cinemaCtrler.cinemaUpdateSession(cinemaNo,session);
+
+        ArrayList<Cinema> cinemaFile = cinemaCtrler.read();
+        for(int a =0 ; a<cinemaFile.size();a++){
+            System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
+            System.out.print(cinemaFile.get(a).getCinemaNo()+ "\t");
+            System.out.print(cinemaFile.get(a).getMovie()+ "\t");
+            System.out.print(cinemaFile.get(a).getSessions()+ "\t");
+            System.out.printf("\n");
+        }
 
        ArrayList< Session> sessionFile = sessionCtrler.read();
         for(int i =0; i< sessionFile.size();i++){ //return one section by one for the whole session file
