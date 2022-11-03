@@ -35,7 +35,8 @@ public class MenuStaffMovieUpdate extends MenuBase {
                 "6. Movie Release date\n" +
                 "7. End of Showing date\n" +
                 "8. Cast\n" +
-                "9. Director\n\n" +
+                "9. Director\n" +
+                "10. Showing Status\n\n" +
                 "Enter option: ");
 
         switch (choice) {
@@ -129,6 +130,15 @@ public class MenuStaffMovieUpdate extends MenuBase {
             case 9:
                 String director = read("Enter Director:");
                 mController.updateMovie(choice, movieID, director);
+                break;
+            case 10:
+                ShowingStatus ss = readShowingStatus("\nEnter Showing status : \n" +
+                        "	1. COMING SOON\n" +
+                        "	2. PREVIEW\n" +
+                        "	3. NOW_SHOWING\n" +
+                        "   4. END_SHOWING\n" +
+                        "Select movie type (number): ");
+                mController.updateMovie(choice, movieID, ss);
                 break;
             default:
                 System.out.println("Wrong input!\n" +

@@ -1,11 +1,14 @@
 package view.admin;
 
+import controller.MovieController;
 import view.MenuBase;
 
 import java.util.Scanner;
 
-public class MenuStaffMovieListFunction extends MenuBase {
+import static view.utilF.readIntInput;
 
+public class MenuStaffMovieListFunction extends MenuBase {
+    MovieController mc = new MovieController();
 
     public MenuStaffMovieListFunction(MenuBase initialMenu) {
         super(initialMenu);
@@ -18,7 +21,8 @@ public class MenuStaffMovieListFunction extends MenuBase {
                 "1. Create Movie Listing\n" +
                 "2. Update Movie Listing\n" +
                 "3. Remove Movie Listing\n" +
-                "4. Return to Main Menu\n\n" +
+                "5. Return to Main Menu\n" +
+                "4. Testing Purposes\n\n" +
                 "Select option: ");
         int choice = sc.nextInt();
         MenuBase nextMenu = this;
