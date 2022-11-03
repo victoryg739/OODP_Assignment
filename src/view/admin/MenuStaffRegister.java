@@ -38,7 +38,7 @@ public class MenuStaffRegister extends MenuBase {
 
             // Create new admin account when the 2 input passwords match
             if(consistentPassword){
-               // adminsCtrl.create(admin);
+                adminsCtrl.createAdmin(admin);
                 System.out.println("You have registered Staff Account successfully");
             }
             else {

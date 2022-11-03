@@ -15,18 +15,18 @@ public class MenuStaffLogin extends MenuBase {
         System.out.println("Please login using username and password");
         final String username = read("Username: ");
         final String password = read("Password: ");
-        System.out.println("username is " + username + "password is " + password);
         AdminController adminCtrl = new AdminController();
 
-        System.out.println(adminCtrl.readByUsername(username));
-        //if (username.equals(adminCtrl.readByUsername(username)) && password.equals(adminCtrl.readByPassword(password))) {
-        if(true){
-            MenuStaffMain msm = new MenuStaffMain(this.getPreviousMenu());
-            return msm;
-        } else {
-            //System.out.println("Wrong username or password");
-
+        // Authenticate Username and Password
+        if (adminCtrl.authenticate(username, password) == true){
+            System.out.println("Welcome "+username);
+            MenuBase nextMenu = new MenuStaffMain(this);
+            return nextMenu;
         }
+        else {
+            System.out.println("Wrong username or password");
+        }
+
 
         return this.getPreviousMenu();
     }

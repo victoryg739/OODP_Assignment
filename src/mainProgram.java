@@ -95,37 +95,38 @@ public class mainProgram {
         CineplexController cinplexCtrler = new CineplexController();
         cinplexCtrler.replace(cineplexArrayList);
 
-        ArrayList<Cinema> cinemaFile = cinemaCtrler.read();
-        for(int a =0 ; a<cinemaFile.size();a++){
-            System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
-            System.out.print(cinemaFile.get(a).getCinemaNo()+ "\t");
-            System.out.print(cinemaFile.get(a).getSessions()+ "\t");
-            System.out.printf("\n");
-        }
+//        ArrayList<Cinema> cinemaFile = cinemaCtrler.read();
+//        for(int a =0 ; a<cinemaFile.size();a++){
+//            System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
+//            System.out.print(cinemaFile.get(a).getCinemaNo()+ "\t");
+//            System.out.print(cinemaFile.get(a).getSessions()+ "\t");
+//            System.out.printf("\n");
+//        }
+//
+//        ArrayList<Cineplex> cineplexFile = cinplexCtrler.read();
+//        for(int i =0; i< cineplexFile.size();i++){ //return one section by one for the whole session file
+//            System.out.print(cineplexFile.get(i).getLocation()+ "\t" );
+//            System.out.print(cineplexFile.get(i).getCinemas()+ "\t");
+//            ArrayList<Cinema> cinemasA = new ArrayList<Cinema>();
+//            cinemasA= cineplexFile.get(i).getCinemas();
+//
+//
+//            for(int  j=0; j<cinemasA.size();j++){
+//                System.out.print(cinemasA.get(j).getCinemaNo()+ "\t");
+//
+//            }
+//            System.out.printf("\n");
+//
+//
+//            //GIVe aloy later
+//        }
 
-        ArrayList<Cineplex> cineplexFile = cinplexCtrler.read();
-        for(int i =0; i< cineplexFile.size();i++){ //return one section by one for the whole session file
-            System.out.print(cineplexFile.get(i).getLocation()+ "\t" );
-            System.out.print(cineplexFile.get(i).getCinemas()+ "\t");
-            ArrayList<Cinema> cinemasA = new ArrayList<Cinema>();
-            cinemasA= cineplexFile.get(i).getCinemas();
 
-
-            for(int  j=0; j<cinemasA.size();j++){
-                System.out.print(cinemasA.get(j).getCinemaNo()+ "\t");
-
-            }
-            System.out.printf("\n");
-
-
-            //GIVe aloy later
-        }
-
-
-
-        Admin adm = new Admin("abc","abc");
+        // Create Admin object
+        Admin rootAdmin = new Admin("rootUser","rootPass");
+        // Create Admin Controller and write rootAdmin account into txt file
         AdminController ac = new AdminController();
-        ac.createAdmin(adm);
+        ac.createAdmin(rootAdmin);
 
 
         // Create first Main Menu

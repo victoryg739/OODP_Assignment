@@ -4,6 +4,8 @@ import modal.*;
 import java.io.*;
 import java.util.*;
 import modal.Enums.*;
+import view.MenuBase;
+import view.admin.MenuStaffMain;
 
 
 public class AdminController {
@@ -16,7 +18,6 @@ public class AdminController {
     // Create a new Admin account and add into adminAccounts.txt
     public void createAdmin(Admin admin){
         ArrayList<Admin> allData = new ArrayList<Admin>();
-        System.out.println("In createAdmin: " + allData.size());
         File tempFile = new File(FILENAME);
         // If it exists then read() the existing data
         if (tempFile.exists())
@@ -59,13 +60,11 @@ public class AdminController {
      */
     public String readByUsername(String valueToSearch) {
         ArrayList<Admin> allData = read();
-        System.out.println(allData.size());
-//        for (int i=0; i<allData.size(); i++){
-//            Admin u = allData.get(i);
-//            System.out.println(u.getUsername());
-//            if (u.getUsername().equals(valueToSearch))
-//                return u.getUsername();
-//        }
+        for (int i=0; i<allData.size(); i++){
+            Admin u = allData.get(i);
+            if (u.getUsername().equals(valueToSearch))
+                return u.getUsername();
+        }
         return null;
     }
 
@@ -82,6 +81,15 @@ public class AdminController {
                 return u.getPassword();
         }
         return null;
+    }
+
+    public boolean authenticate(String username, String password) {
+
+        if (username.equals(this.readByUsername(username)) && password.equals(this.readByPassword(password))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
