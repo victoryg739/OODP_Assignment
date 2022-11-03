@@ -6,9 +6,7 @@ import static view.utilF.*;
 import controller.MovieController;
 import view.*;
 import modal.*;
-/* ToDO list:
-    1. Update the review into the movie.txt file
- */
+
 
 
 public class MenuMovieReviews extends MenuBase {
