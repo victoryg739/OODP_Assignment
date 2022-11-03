@@ -2,12 +2,18 @@ package view.Customer;
 
 import java.util.*;
 import static view.utilF.*;
+
+import controller.MovieController;
 import view.*;
 import modal.*;
+/* ToDO list:
+    1. Update the review into the movie.txt file
+ */
 
 
 public class MenuMovieReviews extends MenuBase {
     private final Movie movie;
+
 
     public MenuMovieReviews(MenuBase previousMenu, Movie movie) {
         super(previousMenu);
@@ -25,7 +31,9 @@ public class MenuMovieReviews extends MenuBase {
         //Let user comment and rate the movies
         Review review = new Review(read("Please Enter your comment for " + movie.getTitle() + ": ")  , readReviewInput("Please enter your rating for " + movie.getTitle() ,1,5));
 
-        //movie.addReview(review);
+        movie.addReview(review);
+        MovieController mc = new MovieController();
+        //a way to update the movie.txt file
 
         return this.getPreviousMenu();
     }
