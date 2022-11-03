@@ -1,12 +1,12 @@
 package view.admin;
-
 import controller.HolidayController;
 import view.MenuBase;
-
 import java.util.Date;
+import static view.utilF.*;
 
-import static view.utilF.readDate;
-
+/* Todo:
+*   1. Check if it updates same date
+* */
 public class MenuHolidayUpdate extends MenuBase {
     private HolidayController holCtrl = new HolidayController();
 
@@ -16,16 +16,16 @@ public class MenuHolidayUpdate extends MenuBase {
 
     @Override
     public MenuBase execute() {
-
+        printHeader("Updating holiday");
         if (holCtrl.listAllHolidays()) {
             Date oldHoliday = readDate("Select Holiday to be updated: ");
             if (!holCtrl.isHoliday(oldHoliday)) {
-                System.out.println("Holiday does not exist!\n");
+                print("Holiday does not exist!");
                 return this.getPreviousMenu();
             }
             Date newHoliday = readDate("Change Holiday date to: ");
             holCtrl.update(oldHoliday, newHoliday);
-            System.out.println("Successfully updated");
+            println("Successfully updated!");
 
         }
         return this.getPreviousMenu();

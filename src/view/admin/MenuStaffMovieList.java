@@ -1,45 +1,35 @@
 package view.admin;
-import modal.Enums.*;
-import controller.*;
-import modal.*;
+
 import view.MenuBase;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-
-import static view.utilF.print;
-import static view.utilF.readIntInput;
+import static view.utilF.*;
 
 public class MenuStaffMovieList extends MenuBase {
-    MovieController ac = new MovieController();
-
     public MenuStaffMovieList(MenuBase initialMenu) {
         super(initialMenu);
     }
 
+    @Override
     public MenuBase execute() {
-        MovieController ac = new MovieController();
-
-        ArrayList<Movie> movieList = ac.read();
-
-        if (movieList.isEmpty()) {
-            print("No movies in the database.");
-        } else {
-            for (int i = 0; i < movieList.size(); i++) {
-                    Movie m = movieList.get(i);
-                    m.printMovie();
+            MenuBase nextMenu;
+            int choice;
+            printHeader("Staff Menu");
+            print(" 1. Show Top 5 by sale\n" +
+                    " 2. Show Top 5 by rating\n" +
+                    " 3. Back\n");
+        choice = readIntInput("Enter choice:");
+            switch (choice) {
+                case 1:
+                    nextMenu = new MenuStaffTopFiveSales(this);
+                    break;
+                case 2:
+                    nextMenu = new MenuStaffTopFiveRating(this);
+                    break;
+                default:
+                    nextMenu = this.getPreviousMenu();
+                    break;
             }
-
+            return nextMenu;
         }
-        return this.getPreviousMenu();
     }
-
-
-
-}
-
-
-
-
 

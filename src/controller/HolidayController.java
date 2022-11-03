@@ -15,6 +15,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static view.utilF.print;
+import static view.utilF.println;
+
 public class HolidayController {
 
     /**
@@ -113,14 +116,13 @@ public class HolidayController {
     public boolean listAllHolidays(){
         ArrayList<Holiday> holList = read();
         if(holList.isEmpty()){
-            System.out.println("\nThere are no holidays declared!");
+            println("There are no holidays declared!");
             return false;
         }
         else{
-            System.out.println("\nCurrently declared holidays: \n");
+            print("Currently declared holidays:");
             holList.forEach(Holiday -> printHol(Holiday));
         }
-        System.out.println();
         return true;
     }
 

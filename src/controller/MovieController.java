@@ -6,6 +6,7 @@ import java.util.*;
 import modal.Enums.*;
 
 import static view.utilF.print;
+import static view.utilF.println;
 
 /* ToDO list:
     1. Change getLastID code
@@ -45,7 +46,7 @@ public class MovieController {
     }
 
 
-    // Creates a movie and writes it to movies.txt
+    /* Create Movie by giving its attributes */
     public void createMovie(String title, MovieType type, MovieRating rating, ShowingStatus ss, String synopsis, int runtime, Date DateStart, Date DateEnd, ArrayList<String> cast, String director) {
         // Creates a movie object
         Movie movie = new Movie(getLastId() + 1, title, type, ss, rating, synopsis, runtime, DateStart, DateEnd, director, cast);
@@ -67,21 +68,6 @@ public class MovieController {
             // ignore error
         }
     }
-
-
-    // Read a movie object from movies.txt//
-    public ArrayList<Movie> read() {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
-            ArrayList<Movie> movieListing = (ArrayList<Movie>) ois.readObject();
-            ois.close();
-            return movieListing;
-        } catch (ClassNotFoundException | IOException e) {
-            // ignore error
-        }
-        return new ArrayList<Movie>();
-    }
-
 
     /* Update Movie by updating based on choice, movieID and newValue */
     public void updateMovie(int choice, int movieID, Object newValue) {
@@ -161,6 +147,23 @@ public class MovieController {
         return true;
     }
 
+
+
+    // Read a movie object from movies.txt//
+    public ArrayList<Movie> read() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ArrayList<Movie> movieListing = (ArrayList<Movie>) ois.readObject();
+            ois.close();
+            return movieListing;
+        } catch (ClassNotFoundException | IOException e) {
+            // ignore error
+        }
+        return new ArrayList<Movie>();
+    }
+
+
+
     public void listMovies() {
         ArrayList<Movie> movieList = read();
         if (movieList.isEmpty()) {
@@ -172,6 +175,40 @@ public class MovieController {
             }
         }
     }
+
+    public void listTopSalesByRating(){
+        ArrayList<Movie> movieList = read();
+        try {
+            sortRating(movieList);
+            int top = 1;
+            for(Movie movie: movieList){
+                println("Name: " + movie.getTitle() + "\n" + "Rating: " + movie.getRating());
+                if (top++ == 5) {
+                    break;
+                }
+            }
+        }catch (NullPointerException e){
+            print(e.getMessage());
+        }
+    }
+
+    public void listTopSalesBySales(){
+        ArrayList<Movie> movieList = read();
+        try {
+            sortTicketSales(movieList);
+            int top = 1;
+            for (Movie movie : movieList) {
+                println("Name: " + movie.getTitle() + "\n" + "Rating: " + movie.getTicketSales());
+                if (top++ == 5) {
+                    break;
+                }
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
 
 
@@ -254,20 +291,14 @@ public class MovieController {
     }
 
     //NOT working yet
-    public void sortTicketSales(ArrayList<Movie> movies){
-        Collections.sort(movies , new Comparator<Movie>() {
-            @Override
-            public int compare(Movie m1, Movie m2) {
-                return Double.compare(m1.getTicketSales(), m2.getTicketSales());
-            }
-        });
-
+    public void sortTicketSales(ArrayList<Movie> movies) {
+        Collections.sort(movies, (m1, m2) -> (m1.getTicketSales() - m2.getTicketSales()));
+        Collections.reverse(movies);
     }
 
     //NOT working yet
     public void sortRating(ArrayList<Movie> movies) {
         Collections.sort(movies, new Comparator<Movie>() {
-            @Override
             public int compare(Movie m1, Movie m2) {
                 return Double.compare(m2.getRating(), m1.getRating());
             }

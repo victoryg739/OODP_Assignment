@@ -125,7 +125,6 @@ public class utilF {
                 return sdf.parse(date);
             } catch (ParseException ime) {
                 System.out.println("Please enter a correct date format");
-                sc.nextLine();
             }
         } while (true);
     }

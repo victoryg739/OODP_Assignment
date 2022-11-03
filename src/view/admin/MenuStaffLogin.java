@@ -20,8 +20,7 @@ public class MenuStaffLogin extends MenuBase {
 
         // Authenticate Username and Password
         if (adminCtrl.authenticate(username, password)){
-            println("Welcome to MOBlima, " + username);
-            return new MenuStaffMain(this);
+            return new MenuStaffMain(this, username);
         }
         else {
             println("Wrong username or password");
