@@ -7,8 +7,6 @@
     <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="fix bug for MenuStaff">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainProgram.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +63,7 @@
   <component name="RunManager">
     <configuration name="mainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mainProgram" />
-      <module name="OODP_Assignment" />
+      <module name="OODP_AssignmentMain" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -236,11 +234,6 @@
           <url>file://$PROJECT_DIR$/src/view/customer/MovieInfo.java</url>
           <line>11</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mainProgram.java</url>
-          <line>2</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ClassCastException" package="java.lang" />

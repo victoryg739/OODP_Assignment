@@ -123,7 +123,7 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
             System.out.printf("\n");
         }
 
-       ArrayList< Session> sessionFile = sessionCtrler.read();
+       ArrayList<Session> sessionFile = sessionCtrler.read();
         for(int i =0; i< sessionFile.size();i++){ //return one section by one for the whole session file
             System.out.print(sessionFile.get(i).getSessionId() + "\t" );
             System.out.print(sessionFile.get(i).getCinema() + "\t");
