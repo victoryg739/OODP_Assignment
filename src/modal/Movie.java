@@ -16,6 +16,10 @@ public class Movie implements Serializable {
 
     private ArrayList<String> cast;
 
+    private int ratingTimes;
+
+
+    private int ticketSales;
 
     private ShowingStatus showingStatus;
 
@@ -31,6 +35,10 @@ public class Movie implements Serializable {
         this.director = director;
         this.cast = cast;
         this.showingStatus = ss;
+    }
+
+    public Movie(int ticketSales){
+        this.ticketSales = ticketSales;
     }
 
     public Movie() {
@@ -130,5 +138,17 @@ public class Movie implements Serializable {
 
     public void setShowingStatus(ShowingStatus showingStatus) {
         this.showingStatus = showingStatus;
+    }
+
+    public int getTicketSales() {
+        return ticketSales;
+    }
+
+    public void setTicketSales(int ticketSales) {
+        this.ticketSales = ticketSales;
+    }
+
+    public void addTicketSales(int delta) {
+        this.ticketSales += delta;
     }
 }

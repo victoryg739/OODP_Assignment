@@ -1,7 +1,10 @@
 package view.admin;
 
+import modal.Movie;
 import view.MenuBase;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class MenuStaffMain extends MenuBase {
@@ -44,7 +47,7 @@ public class MenuStaffMain extends MenuBase {
                 nextMenu = new MenuStaffConfigureSettings(this);
                 break;
             case 4:
-                nextMenu = new MenuStaffMovieList(this);
+                nextMenu = new MenuStaffMovieL(this);
                 break;
             case 5 :
                 nextMenu = new MenuStaffRegister(this);
@@ -53,5 +56,9 @@ public class MenuStaffMain extends MenuBase {
                 break;
         }
         return nextMenu;
+    }
+
+    private void sortTicketSales(ArrayList<Movie> movies) {
+        Collections.sort(movies, (m1, m2) -> (m1.getTicketSales() - m2.getTicketSales()));
     }
 }

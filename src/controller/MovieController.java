@@ -103,7 +103,8 @@ public class MovieController {
 
     public void deleteMovie(int id) {
         ArrayList<Movie> allData = read();
-            ArrayList<Movie> returnData = new ArrayList<Movie>();
+        ArrayList<Movie> returnData = new ArrayList<Movie>();
+
 
             for (int i = 0; i < allData.size(); i++) {
                 Movie m = allData.get(i);
@@ -158,7 +159,9 @@ public class MovieController {
                     case 10:
                         m.setShowingStatus((ShowingStatus) newValue);
                         break;
-
+                    case 11:
+                        m.setTicketSales((int) newValue);
+                        break;
                 }
 
             }
