@@ -18,7 +18,9 @@ public class Movie implements Serializable {
 
     private int ratingTimes;
 
+    private double rating;
 
+    private ArrayList<Review> reviews;
     private int ticketSales;
 
     private ShowingStatus showingStatus;
@@ -151,4 +153,44 @@ public class Movie implements Serializable {
     public void addTicketSales(int delta) {
         this.ticketSales += delta;
     }
+
+    public void addReview(Review review) {
+        if (this.reviews == null) {
+            ArrayList<Review> r = new ArrayList<Review>();
+            this.setReviews(r);
+        }
+        reviews.add(review);
+        double r = (this.rating * ratingTimes + review.getRating()) / (ratingTimes+1);
+        setRating(r);
+        addRatingTimes(1);
+    }
+
+    public void setRatingTimes(int ratingTimes) {
+        this.ratingTimes = ratingTimes;
+    }
+    public void addRatingTimes(int delta) {
+        this.ratingTimes += delta;
+    }
+
+    public void removeReview(Review review) {
+        for (Review rev : this.reviews) {
+            if (this.reviews.equals(review)) {
+                this.reviews.remove(review);
+            }
+        }
+    }
+
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+
 }

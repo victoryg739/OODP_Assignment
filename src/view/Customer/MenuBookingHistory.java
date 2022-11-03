@@ -45,7 +45,7 @@ public class MenuBookingHistory extends MenuBase {
                 System.out.println("Booking "+count + " :");
                 count++;
                 System.out.println("TID: " + book.getTID());
-                System.out.println("Show Time: "  + book.getMovie().runtime());
+                System.out.println("Show Time: "  + book.getMovie().getRuntime());
                 //System.out.println("Show Time: "  + (String) book.getSession().getDatetimeFormat() " " + book.getMovie().runtime());
                 System.out.println("Total Price (GST included): S$" + book.getTotalPrice());
                 System.out.println("Movie: " + book.getMovie().getTitle());
