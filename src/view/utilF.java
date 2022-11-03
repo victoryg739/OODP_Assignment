@@ -327,6 +327,10 @@ public class utilF {
         System.out.println(message+"\n");
     }
 
+    public static void printOptions(String message){
+        System.out.println(message);
+        System.out.println("=========================================================");
+    }
 
 
 
