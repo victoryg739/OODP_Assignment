@@ -4,7 +4,6 @@ import modal.*;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class CinemaController {
 
@@ -16,7 +15,7 @@ public class CinemaController {
         public final static int NAME = 0;
         public final static int CINEMAS = 1;
 
-        public void create(String cinemaNo, Movie movie, Enums.ClassCinema classCinema, ArrayList<Session> sessions ){
+        public void append(String cinemaNo, Movie movie, Enums.ClassCinema classCinema, ArrayList<Session> sessions ){
             Cinema cinema  = new Cinema(cinemaNo,movie,classCinema,sessions);
 
             // Creates an ArrayList of movie
@@ -39,10 +38,25 @@ public class CinemaController {
 
         }
 
+    public void replace(ArrayList<Cinema> data) {
+        File tempFile = new File(FILENAME);
+        if (tempFile.exists())
+            tempFile.delete();
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            out.writeObject(data);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            //
+        }
+    }
+
     /**
      * READ and return every Cinema in the Database file
      * @return Model.{@link Cinema}    Return list of Cinemas if found, else empty list
      */
+    @SuppressWarnings("unchecked")
     public ArrayList<Cinema> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
@@ -51,6 +65,7 @@ public class CinemaController {
             return cinemaListing;
         } catch (ClassNotFoundException | IOException e) {
             // ignore error
+
         }
         return new ArrayList<Cinema>();
     }
@@ -69,12 +84,55 @@ public class CinemaController {
         return returnData;
     }
 
+    public boolean cinemaUpdateSession(Object valueToSearch, Session newSession) {
+        ArrayList<Cinema> cinemaListing = read();
+        ArrayList<Session> sessionList = new ArrayList<Session>();
+
+        boolean flag = false;
+        for (int j=0; j<cinemaListing.size(); j++) {
+            if (cinemaListing.get(j).getCinemaNo().equals((String) valueToSearch)) {
+                if(cinemaListing.get(j).getSessions()  != null) {
+                    sessionList = cinemaListing.get(j).getSessions(); //old list of session in cinema
+                }
+                sessionList.add(newSession);
+                cinemaListing.get(j).setSessions(sessionList);
+                flag = true;
+            }
+        }
+        for(int a =0 ; a<cinemaListing.size();a++){
+            System.out.print(cinemaListing.get(a).getClassCinema() + "\t");
+            System.out.print(cinemaListing.get(a).getCinemaNo()+ "\t");
+            System.out.print(cinemaListing.get(a).getMovie()+ "\t");
+            System.out.print(cinemaListing.get(a).getSessions()+ "\t");
+            System.out.printf("\n");
+        }
+        if (flag  == false){
+            return false;
+        }else {
+            File tempFile = new File(FILENAME);
+            if (tempFile.exists())
+                tempFile.delete();
+            try {
+                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+                out.writeObject(cinemaListing);
+                out.flush();
+                out.close();
+
+            } catch (IOException e) {
+                //
+            }
+            return true;
+        }
+
+
+    }
+
     //added
     public Cinema readByCinemaNo(String valueToSearch) {
         ArrayList<Cinema> allData = read();
         for (int i=0; i<allData.size(); i++){
             Cinema cinema = allData.get(i);
-            if (cinema.getCinemaNo() == valueToSearch)
+            if (cinema.getCinemaNo().equals(valueToSearch))
                 return cinema;
         }
         return null;

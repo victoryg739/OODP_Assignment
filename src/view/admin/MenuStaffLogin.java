@@ -19,12 +19,13 @@ public class MenuStaffLogin extends MenuBase{
         AdminController adminCtrl = new AdminController();
 
         System.out.println(adminCtrl.readByUsername(username));
-        if(username.equals(adminCtrl.readByUsername(username)) && password.equals(adminCtrl.readByPassword(password))){
+        //if(username.equals(adminCtrl.readByUsername(username)) && password.equals(adminCtrl.readByPassword(password))){
+
             MenuStaffMain msm = new MenuStaffMain(this.getPreviousMenu());
             return msm;
-        }else {
-            System.out.println("Wrong username or password");
-            return this.getPreviousMenu();
+       // }else {
+            //System.out.println("Wrong username or password");
+
         }
     }
-}
+

@@ -7,25 +7,23 @@ import java.util.Date;
 
 public class Movie implements Serializable {
 
-    private int id;
-    private int runtime;
-    private String title;
-    private String synopsis;
-    private String director;
-    private String language;
+    private int id, runtime;
+    private String title, synopsis, director, language;
+
     private MovieType type;
     private MovieRating ContentRating;
     private Date DateStart, DateEnd;
+
     private ArrayList<String> cast;
-    private double ticketSales;
-    //Store the overall stars for rating
-    private double rating;
-    //Store the number of ratings
+
     private int ratingTimes;
-    private ArrayList<Review> reviews;
 
 
-    public Movie(int id,String title, MovieType type, MovieRating ContentRating, String synopsis, int runtime, Date DateStart, Date DateEnd, String director, ArrayList<String> cast){
+    private int ticketSales;
+
+    private ShowingStatus showingStatus;
+
+    public Movie(int id,String title, MovieType type, ShowingStatus ss,MovieRating ContentRating, String synopsis, int runtime, Date DateStart, Date DateEnd, String director, ArrayList<String> cast){
         this.id = id;
         this.title = title;
         this.type = type;
@@ -36,74 +34,22 @@ public class Movie implements Serializable {
         this.DateEnd = DateEnd;
         this.director = director;
         this.cast = cast;
+        this.showingStatus = ss;
+    }
+
+    public Movie(int ticketSales){
+        this.ticketSales = ticketSales;
     }
 
     public Movie() {
     }
 
-    public void setID(int id){
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public int getID(){
-        return this.id;
-    }
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setTitle(String title){
-        this.title = title;
-    }
-    public MovieType getType() {
-        return this.type;
-    }
-
-    public void setType(MovieType type){
-        this.type =type;
-    }
-    public MovieRating getContentRating(){
-        return this.ContentRating;
-    }
-
-    public void setContentRating(MovieRating ContentRating){
-        this.ContentRating =ContentRating;
-    }
-
-    public String getSynopsis(){
-        return this.synopsis;
-    }
-
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
-    }
-
-    public int runtime(){
-        return this.runtime;
-    }
-
-
-    public Date getDateStart(){
-        return this.DateStart;
-    }
-
-    public Date getDateEnd(){
-        return this.DateEnd;
-    }
-    public ArrayList<String> getCast(){
-        return this.cast;
-    }
-
-    public void setCast(ArrayList<String> cast){
-        this.cast = cast;
-    }
-
-    public String getDirector(){
-        return this.director;
-    }
-
-    public void setDirector(String director){
-        this.director = director;
     }
 
     public int getRuntime() {
@@ -113,72 +59,96 @@ public class Movie implements Serializable {
     public void setRuntime(int runtime) {
         this.runtime = runtime;
     }
-//    public void setSynopsis(String synopsis) {
-//        this.synopsis = synopsis;
-//    }
-    public void setDateStart(Date dateStart){
-        this.DateStart = dateStart;
+
+    public String getTitle() {
+        return title;
     }
 
-    public void setDateEnd(Date dateEnd){
-        this.DateEnd = dateEnd;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public double getTicketSales() {
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public MovieType getType() {
+        return type;
+    }
+
+    public void setType(MovieType type) {
+        this.type = type;
+    }
+
+    public MovieRating getContentRating() {
+        return ContentRating;
+    }
+
+    public void setContentRating(MovieRating ContentRating) {
+        this.ContentRating = ContentRating;
+    }
+
+    public Date getDateStart() {
+        return DateStart;
+    }
+
+    public void setDateStart(Date dateStart) {
+        DateStart = dateStart;
+    }
+
+    public Date getDateEnd() {
+        return DateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        DateEnd = dateEnd;
+    }
+
+    public ArrayList<String> getCast() {
+        return cast;
+    }
+
+    public void setCast(ArrayList<String> cast) {
+        this.cast = cast;
+    }
+
+    public ShowingStatus getShowingStatus() {
+        return showingStatus;
+    }
+
+    public void setShowingStatus(ShowingStatus showingStatus) {
+        this.showingStatus = showingStatus;
+    }
+
+    public int getTicketSales() {
         return ticketSales;
     }
 
-    public void setTicketSales(double ticketSales) {
+    public void setTicketSales(int ticketSales) {
         this.ticketSales = ticketSales;
     }
 
-    public void addTicketSales(double totalPrice) {
-        this.ticketSales += totalPrice;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public void addRating(double CustomerRating) {
-        this.rating += CustomerRating;
-    }
-
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public ArrayList<Review> getReviews() {
-        return reviews;
-    }
-
-    public void addReview(Review review) {
-        if (this.reviews == null) {
-            ArrayList<Review> r = new ArrayList<Review>();
-            this.setReviews(r);
-        }
-        reviews.add(review);
-        double r = (this.rating * ratingTimes + review.getRating()) / (ratingTimes+1);
-        setRating(r);
-        addRatingTimes(1);
-    }
-
-    public void setRatingTimes(int ratingTimes) {
-        this.ratingTimes = ratingTimes;
-    }
-    public void addRatingTimes(int delta) {
-        this.ratingTimes += delta;
-    }
-
-    public void removeReview(Review review) {
-        for (Review rev : this.reviews) {
-            if (this.reviews.equals(review)) {
-                this.reviews.remove(review);
-            }
-        }
+    public void addTicketSales(int delta) {
+        this.ticketSales += delta;
     }
 }
