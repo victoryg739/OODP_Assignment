@@ -21,6 +21,8 @@ The start of the program
 public class mainProgram {
     public static void main(String[] args) {
         /* For Testing Purposes */
+        // If File exists:
+
         MovieController mc = new MovieController();
 
         ArrayList<String> casts = new ArrayList<>();
