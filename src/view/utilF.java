@@ -15,7 +15,7 @@ import java.util.Scanner;
 @SuppressWarnings("deprecation")
 public class utilF {
     private static Scanner sc = new Scanner(System.in);
-
+    public static int SCREEN_WIDTH = 80;
     /**
      * Method to notify user about the input String
      * @param message info about input
@@ -314,6 +314,21 @@ public class utilF {
                 return false;
         }
     }
+
+    public static void printHeader(String message){
+        System.out.println("==================== " + message+ " =====================\n");
+    }
+
+    public static void print(String message){
+        System.out.println(message);
+    }
+
+    public static void println(String message){
+        System.out.println(message+"\n");
+    }
+
+
+
 
 
 

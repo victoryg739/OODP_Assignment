@@ -42,31 +42,30 @@ public class MovieController {
         }
     }
 
-
-    public void printMovie(Movie movie){
-        int id = movie.getId();
-        String title = movie.getTitle();
-        MovieType movieType = movie.getType();
-        MovieRating movieRating = movie.getContentRating();
-        String synopsis = movie.getSynopsis();
-        int runtime = movie.getRuntime();
-        Date DateStart = movie.getDateStart();
-        Date DateEnd = movie.getDateEnd();
-        String director = movie.getDirector();
-        ShowingStatus ss = movie.getShowingStatus();
-        //ArrayList<String> casts = movie.getCast();
-        String castString = "";
-        for (int i=0; i< movie.getCast().size(); i++)
-            castString = castString.concat(movie.getCast().get(i) + ",");
-
-        castString = castString.substring(0, castString.length()-1);
-        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
-                + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
-                + "Cast: " + castString + " | " + "Showing: " + ss;
-        System.out.println(movieString);
-        System.out.println("-------------------");
-    }
-
+    /* for debugging */
+//    public void printMovie(Movie movie){
+//        int id = movie.getId();
+//        String title = movie.getTitle();
+//        MovieType movieType = movie.getType();
+//        MovieRating movieRating = movie.getContentRating();
+//        String synopsis = movie.getSynopsis();
+//        int runtime = movie.getRuntime();
+//        Date DateStart = movie.getDateStart();
+//        Date DateEnd = movie.getDateEnd();
+//        String director = movie.getDirector();
+//        ShowingStatus ss = movie.getShowingStatus();
+//        //ArrayList<String> casts = movie.getCast();
+//        String castString = "";
+//        for (int i=0; i< movie.getCast().size(); i++)
+//            castString = castString.concat(movie.getCast().get(i) + ",");
+//
+//        castString = castString.substring(0, castString.length()-1);
+//        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
+//                + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
+//                + "Cast: " + castString + " | " + "Showing: " + ss;
+//        System.out.println(movieString);
+//        System.out.println("-------------------");
+//    }
 
     // Read a movie object from movies.txt//
     public ArrayList<Movie> read() {
@@ -102,16 +101,6 @@ public class MovieController {
         return lastId;
     }
 
-    public void deleteMovie(int id) {
-        ArrayList<Movie> allData = read();
-        ArrayList<Movie> returnData = new ArrayList<Movie>();
-        for (int i = 0; i < allData.size(); i++) {
-            Movie m = allData.get(i);
-            if (!(m.getId() == id))
-                returnData.add(m);
-        }
-        replaceExistingFile(FILENAME, returnData);
-    }
 
     public void updateMovie(int choice, int movieID, Object newValue) {
         ArrayList<Movie> dataList = read();
@@ -127,7 +116,6 @@ public class MovieController {
             if (m.getId() == movieID) {
                 // Start updating the values
                 switch (choice) {
-
                     case 1:
                        m.setTitle((String) newValue);
                         break;
@@ -174,6 +162,22 @@ public class MovieController {
     }
 
 
+    /* Remove Movie by updating the current showing status to end_showing */
+    public boolean removeMovie(int movieID){
+        ArrayList<Movie> allData = read();
+        for(int i=0; i< allData.size(); i++){
+            Movie m = allData.get(i);
+            if(m.getId() == movieID){
+                if(m.getShowingStatus() == ShowingStatus.END_SHOWING){
+                    return false;
+                }
+                m.setShowingStatus(ShowingStatus.END_SHOWING);
+                break;
+            }
+        }
+        replaceExistingFile(FILENAME, allData);
+        return true;
+    }
     /* Replace existing file to a new file */
     public void replaceExistingFile(String filename, ArrayList<Movie> data) {
         File tempFile = new File(filename);
