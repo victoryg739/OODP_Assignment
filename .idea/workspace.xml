@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a4e09fc4-309e-488e-8451-f3b445085990" name="Changes" comment="fix bug for MenuStaff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainProgram.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modal/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuBookingHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuBookingHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +64,7 @@
   <component name="RunManager">
     <configuration name="mainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mainProgram" />
-      <module name="OODP_Assignment" />
+      <module name="OODP_AssignmentMain" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -88,6 +86,7 @@
       <workItem from="1666538442252" duration="238000" />
       <workItem from="1666591451198" duration="5390000" />
       <workItem from="1667108903653" duration="17137000" />
+      <workItem from="1667457987048" duration="1806000" />
     </task>
     <task id="LOCAL-00001" summary="hello test">
       <created>1666420532309</created>
@@ -187,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667452475029</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix bug for MenuStaff">
+      <created>1667453274121</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1667453274121</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

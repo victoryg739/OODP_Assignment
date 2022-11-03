@@ -1,6 +1,5 @@
 import controller.CinemaController;
 import controller.CineplexController;
-//import controller.MovieController;
 import controller.MovieController;
 import modal.*;
 import view.MainMenu;

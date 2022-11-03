@@ -9,7 +9,6 @@ public class Movie implements Serializable {
 
     private int id, runtime;
     private String title, synopsis, director, language;
-
     private MovieType type;
     private MovieRating ContentRating;
     private Date DateStart, DateEnd;

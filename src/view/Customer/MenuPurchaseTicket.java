@@ -305,29 +305,31 @@ public class MenuPurchaseTicket extends MenuBase {
         ArrayList<Cinema> tempCinemaList = new ArrayList<Cinema>();
         ArrayList<Cinema> cinemaList = cinemaController.readByCineplexName(cineplexName);
         System.out.println("------------------------------------------------------");
-        for (int i = 0; i < cinemaList.size(); i++) {
+        for (int i = 0; i < cinemaList.size() ; i++) {
             tempCinema = cinemaList.get(i);
-            System.out.println("Cinema code: " + tempCinema.getCinemaNo() + "		Cinema type: " + tempCinema.getClassCinema());
+            System.out.println((i+1) + " Cinema code: " + tempCinema.getCinemaNo() + "		Cinema type: " + tempCinema.getClassCinema());
             System.out.println();
-            System.out.println("Available screening times of " + movie.getTitle() + " in this cinema:");
+        }
+        int cinemaChoice = readIntInput("Enter cinema of choice: ");
+        tempCinema = cinemaList.get(cinemaChoice - 1);
+
+        System.out.println("Available screening times of " + movie.getTitle() + " in this cinema:");
             System.out.println();
             System.out.println("this is " + tempCinema.getSessions());
-//            for(int j = 0; j < tempCinema.getSessions().size(); j++) {
-//                tempSession = tempCinema.getSessions().get(j);
-//                if (tempSession.getMovie().getTitle().equals(movie)) {
-//                    System.out.println("	Date: " + tempSession.getDatetimeFormat());
-//                    System.out.println();
-//                    tempCinemaList.add(tempCinema);
-//                    printSeparator = true;
-//                }
-//                if(printSeparator){
-//                    System.out.println("------------------------------------------------------");
-//                    printSeparator = false;
-//                }
-//            }
-//
-//        }
-        }
+            for(int j = 0; j < tempCinema.getSessions().size(); j++) {
+                tempSession = tempCinema.getSessions().get(j);
+                if (tempSession.getMovie().getTitle().equals(movie)) {
+                    System.out.println("	Date: " + tempSession.getDateTime());
+                    System.out.println();
+                    tempCinemaList.add(tempCinema);
+                    printSeparator = true;
+                }
+                if(printSeparator){
+                    System.out.println("------------------------------------------------------");
+                    printSeparator = false;
+                }
+            }
+
         return tempCinemaList;
     }
 
