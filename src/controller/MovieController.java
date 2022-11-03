@@ -8,6 +8,7 @@ import modal.Enums.*;
 /* ToDO list:
     1. Change getLastID code
     2. Delete by ID (change the code)
+    3. SortbySale and SortbyRating code
 
 
 */
@@ -104,12 +105,10 @@ public class MovieController {
     public void deleteMovie(int id) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
-
-
-            for (int i = 0; i < allData.size(); i++) {
-                Movie m = allData.get(i);
-                if (!(m.getId() == id))
-                    returnData.add(m);
+        for (int i = 0; i < allData.size(); i++) {
+            Movie m = allData.get(i);
+            if (!(m.getId() == id))
+                returnData.add(m);
         }
         replaceExistingFile(FILENAME, returnData);
     }
@@ -206,5 +205,54 @@ public class MovieController {
             // ignore error
         }
 
+    }
+
+    public ArrayList<Movie> readByTitle(Object valueToSearch) {
+        ArrayList<Movie> allData = read();
+        ArrayList<Movie> returnData = new ArrayList<Movie>();
+        for (int i = 0; i < allData.size(); i++) {
+            Movie m = allData.get(i);
+            if (m.getTitle().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
+                returnData.add(m);
+            }
+        }
+
+        return returnData;
+    }
+
+    //NOT working yet
+    public void sortTicketSales(ArrayList<Movie> movies){
+        Collections.sort(movies , new Comparator<Movie>() {
+            @Override
+            public int compare(Movie m1, Movie m2) {
+                return Double.compare(m1.getTicketSales(), m2.getTicketSales());
+            }
+        });
+
+    }
+
+    //NOT working yet
+    public void sortRating(ArrayList<Movie> movies) {
+        Collections.sort(movies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie m1, Movie m2) {
+                return Double.compare(m2.getRating(), m1.getRating());
+            }
+        });
+    }
+
+    public void printStars(double rating) {
+        String s = String.format("%.1f", rating);
+        if(rating <= 1)
+            System.out.println("★☆☆☆☆(" + s + ")");
+        else if(rating <= 2)
+            System.out.println("★★☆☆☆(" + s + ")");
+        else if(rating <= 3)
+            System.out.println("★★★☆☆(" + s + ")");
+        else if(rating <= 4)
+            System.out.println("★★★★☆(" + s + ")");
+        else
+            System.out.println("★★★★★(" + s + ")");
+        System.out.println(" ");
     }
 }

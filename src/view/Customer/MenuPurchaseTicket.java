@@ -48,7 +48,7 @@ public class MenuPurchaseTicket extends MenuBase {
      Provide the total ticket price to the user
      */
     public MenuBase execute() {
-        Scanner sc = new Scanner(System.in);
+        CineplexController cc = new CineplexController();
         ArrayList<String> choices = new ArrayList<>();
         ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
 
@@ -57,7 +57,7 @@ public class MenuPurchaseTicket extends MenuBase {
 
         //Print the list of Cineplexes with the selected movies
         //readBYAttribute(movie)
-        ArrayList<Cineplex> cineplexes = CineplexController.read();
+        ArrayList<Cineplex> cineplexes = cc.read();
         for(int i = 0; i < cineplexes.size(); i++) {
             System.out.println((i+1) + ". " + cineplexes.get(i).getLocation());
         }

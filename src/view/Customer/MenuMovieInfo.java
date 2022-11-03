@@ -111,7 +111,7 @@ public class MenuMovieInfo extends MenuBase {
         System.out.println("Content Rating: " + this.movie.getContentRating().toString());
 
         //Movie Runtime
-        System.out.println("Runtime: " + this.movie.runtime() + " minutes");
+        System.out.println("Runtime: " + this.movie.getRuntime() + " minutes");
 
         //Movie Director
         System.out.println("Director: " + this.movie.getDirector());

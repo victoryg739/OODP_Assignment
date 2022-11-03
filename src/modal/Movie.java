@@ -192,5 +192,15 @@ public class Movie implements Serializable {
         this.rating = rating;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
+    public int getRatingTimes() {
+        return ratingTimes;
+    }
+
+
+
 
 }
