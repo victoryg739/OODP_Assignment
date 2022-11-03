@@ -20,15 +20,10 @@ public class MenuStaffMovieL extends MenuBase {
                     "===========================================================");
             switch (choice) {
                 case 1:
-                    // List movies (STAFF)
                     nextMenu = new MenuStaffTopFiveSales(this);
-
                     break;
                 case 2:
-                    //nextMenu = new MenuStaffMovieSessionFunction(this);
-                    break;
-                case 3:
-                    nextMenu = this.getPreviousMenu();
+                    nextMenu = new MenuStaffTopFiveRating(this);
                     break;
                 default:
                     nextMenu = this.getPreviousMenu();

@@ -36,13 +36,13 @@ public class MenuCustomerMain extends MenuBase {
         MenuBase nextMenu = this;
         switch (choice) {
             case 1:
-               // nextMenu = new MenuSearchMovie(this);
+                nextMenu = new MenuSearchMovie(this);
                 break;
             case 2:
-                //nextMenu = new MenuListMovie(this);
+                nextMenu = new MenuListMovie(this);
                 break;
             case 3:
-                //nextMenu = new MenuBookingHistory(this);
+                nextMenu = new MenuBookingHistory(this);
                 break;
             case 4:
                 nextMenu = this.getPreviousMenu();

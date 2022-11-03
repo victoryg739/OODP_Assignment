@@ -160,14 +160,11 @@ public class Movie implements Serializable {
             this.setReviews(r);
         }
         reviews.add(review);
-        double r = (this.rating * ratingTimes + review.getRating()) / (ratingTimes+1);
-        setRating(r);
+        double overallRating = (this.rating * ratingTimes + review.getRating()) / (ratingTimes+1);
+        setRating(overallRating);
         addRatingTimes(1);
     }
 
-    public void setRatingTimes(int ratingTimes) {
-        this.ratingTimes = ratingTimes;
-    }
     public void addRatingTimes(int delta) {
         this.ratingTimes += delta;
     }

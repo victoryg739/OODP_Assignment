@@ -18,7 +18,7 @@ public class MenuStaffLogin extends MenuBase {
         AdminController adminCtrl = new AdminController();
 
         // Authenticate Username and Password
-        if (adminCtrl.authenticate(username, password) == true){
+        if (adminCtrl.authenticate(username, password)){
             System.out.println("Welcome "+username);
             MenuBase nextMenu = new MenuStaffMain(this);
             return nextMenu;

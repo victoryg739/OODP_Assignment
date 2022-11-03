@@ -1,6 +1,7 @@
 package view.admin;
 
 import modal.Movie;
+import view.MainMenu;
 import view.MenuBase;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class MenuStaffMain extends MenuBase {
                 nextMenu = new MenuStaffMovieL(this);
                 break;
             default:
-                nextMenu = this.getPreviousMenu();
+                nextMenu = new MainMenu(this);
                 break;
         }
         return nextMenu;

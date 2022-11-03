@@ -161,6 +161,9 @@ public class MovieController {
                     case 11:
                         m.setTicketSales((int) newValue);
                         break;
+                    case 12:
+                        m.addReview((Review) newValue);
+                        break;
                 }
 
             }

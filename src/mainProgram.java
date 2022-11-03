@@ -8,6 +8,7 @@ import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import static view.utilF.*;
@@ -19,38 +20,42 @@ The start of the program
  */
 
 public class mainProgram {
+    public final static String FILENAME = "data/movies.txt";
     public static void main(String[] args) {
         /* For Testing Purposes */
+
         // If File exists:
+        File f = new File(FILENAME);
+        if (!f.exists()) {
 
-        MovieController mc = new MovieController();
+            MovieController mc = new MovieController();
 
-        ArrayList<String> casts = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            casts.add("Bryan");
+            ArrayList<String> casts = new ArrayList<>();
+            for (int i = 0; i < 2; i++) {
+                casts.add("Bryan");
+            }
+
+            Movie movie0 = new Movie(0, "Spiderman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Away from you", 300, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie2 = new Movie(2, "Chickenman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Fuck you victor", 300, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie3 = new Movie(3, "Allahman", Enums.MovieType.BLOCKBUSTER, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.G, "Allahu akbar", 300, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie4 = new Movie(4, "Hohoman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie5 = new Movie(5, "Aloyman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
+
+            mc.createMovie(movie0);
+            mc.createMovie(movie1);
+            mc.createMovie(movie2);
+            mc.createMovie(movie3);
+            mc.createMovie(movie4);
+            mc.createMovie(movie5);
+
+            mc.updateMovie(11, 0, 600);
+            mc.updateMovie(11, 1, 200);
+            mc.updateMovie(11, 2, 300);
+            mc.updateMovie(11, 3, 400);
+            mc.updateMovie(11, 4, 500);
+            mc.updateMovie(11, 5, 100);
         }
-
-        Movie movie0 = new Movie(0, "Spiderman", Enums.MovieType.TWO_D,Enums.ShowingStatus.PREVIEW ,Enums.MovieRating.M18, "Away from you", 300, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.ShowingStatus.PREVIEW,Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie2 = new Movie(2, "Chickenman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Fuck you victor", 300, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie3 = new Movie(3, "Allahman", Enums.MovieType.BLOCKBUSTER, Enums.ShowingStatus.PREVIEW,Enums.MovieRating.G, "Allahu akbar", 300, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie4 = new Movie(4, "Hohoman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW,Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie5 = new Movie(5, "Aloyman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW,Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
-
-        mc.createMovie(movie0);
-        mc.createMovie(movie1);
-        mc.createMovie(movie2);
-        mc.createMovie(movie3);
-        mc.createMovie(movie4);
-        mc.createMovie(movie5);
-
-        mc.updateMovie(11, 0, 600);
-        mc.updateMovie(11, 1, 200);
-        mc.updateMovie(11, 2, 300);
-        mc.updateMovie(11, 3, 400);
-        mc.updateMovie(11, 4, 500);
-        mc.updateMovie(11, 5, 100);
-
         Cinema cinema1  = new Cinema("A1",null, Enums.ClassCinema.PLATINUM,null);
         Cinema cinema2  = new Cinema("A2",null, Enums.ClassCinema.PLATINUM,null);
         Cinema cinema3 =  new Cinema("A3",null, Enums.ClassCinema.NORMAL,null);
@@ -123,7 +128,7 @@ public class mainProgram {
 
 
         // Create Admin object
-        Admin rootAdmin = new Admin("rootUser","rootPass");
+        Admin rootAdmin = new Admin("a","a");
         // Create Admin Controller and write rootAdmin account into txt file
         AdminController ac = new AdminController();
         ac.createAdmin(rootAdmin);
