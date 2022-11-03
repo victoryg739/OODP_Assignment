@@ -5,6 +5,9 @@ import java.io.*;
 import java.util.*;
 import modal.Enums.*;
 
+import static view.utilF.print;
+import static view.utilF.println;
+
 /* ToDO list:
     1. Change getLastID code
     2. Delete by ID (change the code)
@@ -19,8 +22,32 @@ public class MovieController {
     public MovieController() {
 
     }
-    // Creates a movie and writes it to movies.txt
-    public void createMovie(String title, MovieType type, MovieRating rating, ShowingStatus ss,String synopsis, int runtime, Date DateStart, Date DateEnd, ArrayList<String> cast, String director) {
+
+    public Movie readByID(int valueToSearch) {
+        ArrayList<Movie> allData = read();
+        for (int i = 0; i < allData.size(); i++) {
+            Movie m = allData.get(i);
+            if (m.getId() == valueToSearch)
+                return m;
+        }
+        return null;
+    }
+
+    public int getLastId() {
+        int lastId = -1;
+        int movieID;
+        ArrayList<Movie> allData = read();
+        for (int i = 0; i < allData.size(); i++) {
+            movieID = allData.get(i).getId();
+            if (movieID > lastId)
+                lastId = movieID;
+        }
+        return lastId;
+    }
+
+
+    /* Create Movie by giving its attributes */
+    public void createMovie(String title, MovieType type, MovieRating rating, ShowingStatus ss, String synopsis, int runtime, Date DateStart, Date DateEnd, ArrayList<String> cast, String director) {
         // Creates a movie object
         Movie movie = new Movie(getLastId() + 1, title, type, ss, rating, synopsis, runtime, DateStart, DateEnd, director, cast);
         // Creates an ArrayList of movie
@@ -42,77 +69,7 @@ public class MovieController {
         }
     }
 
-
-    public void printMovie(Movie movie){
-        int id = movie.getId();
-        String title = movie.getTitle();
-        MovieType movieType = movie.getType();
-        MovieRating movieRating = movie.getContentRating();
-        String synopsis = movie.getSynopsis();
-        int runtime = movie.getRuntime();
-        Date DateStart = movie.getDateStart();
-        Date DateEnd = movie.getDateEnd();
-        String director = movie.getDirector();
-        ShowingStatus ss = movie.getShowingStatus();
-        //ArrayList<String> casts = movie.getCast();
-        String castString = "";
-        for (int i=0; i< movie.getCast().size(); i++)
-            castString = castString.concat(movie.getCast().get(i) + ",");
-
-        castString = castString.substring(0, castString.length()-1);
-        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
-                + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
-                + "Cast: " + castString + " | " + "Showing: " + ss;
-        System.out.println(movieString);
-        System.out.println("-------------------");
-    }
-
-
-    // Read a movie object from movies.txt//
-    public ArrayList<Movie> read() {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
-            ArrayList<Movie> movieListing = (ArrayList<Movie>) ois.readObject();
-            ois.close();
-            return movieListing;
-        } catch (ClassNotFoundException | IOException e) {
-            // ignore error
-        }
-        return new ArrayList<Movie>();
-    }
-
-    public Movie readByID(int valueToSearch) {
-        ArrayList<Movie> allData = read();
-        for (int i=0; i<allData.size(); i++){
-            Movie m = allData.get(i);
-            if (m.getId() == valueToSearch)
-                return m;
-        }
-        return null;
-    }
-    public int getLastId() {
-        int lastId = -1;
-        int movieID;
-        ArrayList<Movie> allData = read();
-        for (int i = 0; i < allData.size(); i++) {
-            movieID = allData.get(i).getId();
-            if (movieID > lastId)
-                lastId = movieID;
-        }
-        return lastId;
-    }
-
-    public void deleteMovie(int id) {
-        ArrayList<Movie> allData = read();
-        ArrayList<Movie> returnData = new ArrayList<Movie>();
-        for (int i = 0; i < allData.size(); i++) {
-            Movie m = allData.get(i);
-            if (!(m.getId() == id))
-                returnData.add(m);
-        }
-        replaceExistingFile(FILENAME, returnData);
-    }
-
+    /* Update Movie by updating based on choice, movieID and newValue */
     public void updateMovie(int choice, int movieID, Object newValue) {
         ArrayList<Movie> dataList = read();
         ArrayList<Movie> updateList = new ArrayList<Movie>();
@@ -127,9 +84,8 @@ public class MovieController {
             if (m.getId() == movieID) {
                 // Start updating the values
                 switch (choice) {
-
                     case 1:
-                       m.setTitle((String) newValue);
+                        m.setTitle((String) newValue);
                         break;
                     case 2:
                         m.setType((MovieType) newValue);
@@ -161,14 +117,101 @@ public class MovieController {
                     case 11:
                         m.setTicketSales((int) newValue);
                         break;
+                    case 12:
+                        m.addReview((Review) newValue);
+                        break;
                 }
 
             }
             // Add this new data to new ArrayList
             updateList.add(m);
         }
+
         replaceExistingFile(FILENAME, updateList);
     }
+
+    /* Remove Movie by updating the current showing status to end_showing */
+    public boolean removeMovie(int movieID) {
+        ArrayList<Movie> allData = read();
+        for (int i = 0; i < allData.size(); i++) {
+            Movie m = allData.get(i);
+            if (m.getId() == movieID) {
+                if (m.getShowingStatus() == ShowingStatus.END_SHOWING) {
+                    return false;
+                }
+                m.setShowingStatus(ShowingStatus.END_SHOWING);
+                break;
+            }
+        }
+        replaceExistingFile(FILENAME, allData);
+        return true;
+    }
+
+
+
+    // Read a movie object from movies.txt//
+    public ArrayList<Movie> read() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ArrayList<Movie> movieListing = (ArrayList<Movie>) ois.readObject();
+            ois.close();
+            return movieListing;
+        } catch (ClassNotFoundException | IOException e) {
+            // ignore error
+        }
+        return new ArrayList<Movie>();
+    }
+
+
+
+    public void listMovies() {
+        ArrayList<Movie> movieList = read();
+        if (movieList.isEmpty()) {
+            print("No movies in the database.");
+        } else {
+            for (int i = 0; i < movieList.size(); i++) {
+                Movie m = movieList.get(i);
+                m.printMovie();
+            }
+        }
+    }
+
+    public void listTopSalesByRating(){
+        ArrayList<Movie> movieList = read();
+        try {
+            sortRating(movieList);
+            int top = 1;
+            for(Movie movie: movieList){
+                println("Name: " + movie.getTitle() + "\n" + "Rating: " + movie.getRating());
+                if (top++ == 5) {
+                    break;
+                }
+            }
+        }catch (NullPointerException e){
+            print(e.getMessage());
+        }
+    }
+
+    public void listTopSalesBySales(){
+        ArrayList<Movie> movieList = read();
+        try {
+            sortTicketSales(movieList);
+            int top = 1;
+            for (Movie movie : movieList) {
+                println("Name: " + movie.getTitle() + "\n" + "Rating: " + movie.getTicketSales());
+                if (top++ == 5) {
+                    break;
+                }
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+
+
+
 
 
     /* Replace existing file to a new file */
@@ -188,6 +231,33 @@ public class MovieController {
 
 
     // Tester Function //
+
+    /* for debugging */
+//    public void printMovie(Movie movie){
+//        int id = movie.getId();
+//        String title = movie.getTitle();
+//        MovieType movieType = movie.getType();
+//        MovieRating movieRating = movie.getContentRating();
+//        String synopsis = movie.getSynopsis();
+//        int runtime = movie.getRuntime();
+//        Date DateStart = movie.getDateStart();
+//        Date DateEnd = movie.getDateEnd();
+//        String director = movie.getDirector();
+//        ShowingStatus ss = movie.getShowingStatus();
+//        //ArrayList<String> casts = movie.getCast();
+//        String castString = "";
+//        for (int i=0; i< movie.getCast().size(); i++)
+//            castString = castString.concat(movie.getCast().get(i) + ",");
+//
+//        castString = castString.substring(0, castString.length()-1);
+//        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
+//                + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
+//                + "Cast: " + castString + " | " + "Showing: " + ss;
+//        System.out.println(movieString);
+//        System.out.println("-------------------");
+//    }
+
+
     public void createMovie(Movie movie){
         ArrayList<Movie> allData = new ArrayList<Movie>();
         File tempFile = new File(FILENAME);
@@ -221,20 +291,14 @@ public class MovieController {
     }
 
     //NOT working yet
-    public void sortTicketSales(ArrayList<Movie> movies){
-        Collections.sort(movies , new Comparator<Movie>() {
-            @Override
-            public int compare(Movie m1, Movie m2) {
-                return Double.compare(m1.getTicketSales(), m2.getTicketSales());
-            }
-        });
-
+    public void sortTicketSales(ArrayList<Movie> movies) {
+        Collections.sort(movies, (m1, m2) -> (m1.getTicketSales() - m2.getTicketSales()));
+        Collections.reverse(movies);
     }
 
     //NOT working yet
     public void sortRating(ArrayList<Movie> movies) {
         Collections.sort(movies, new Comparator<Movie>() {
-            @Override
             public int compare(Movie m1, Movie m2) {
                 return Double.compare(m2.getRating(), m1.getRating());
             }

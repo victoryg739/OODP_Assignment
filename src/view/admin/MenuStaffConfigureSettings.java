@@ -17,11 +17,12 @@ public class MenuStaffConfigureSettings extends MenuBase {
     public MenuBase execute() {
         int choice;
         MenuBase nextMenu = this;
-
-        choice = readIntInput("\nConfigure System Settings: \n" +
-                "1.  Configure Price \n" +
-                "2.  Configure Holiday \n +" +
-                "3. Back                \n");
+        printHeader("Configure System Settings");
+        print("1. Configure Price \n" +
+                "2. Configure Holiday \n" +
+                "3. Configure new admin account \n" +
+                "4. Back                \n");
+        choice = readIntInput("Enter Choice: ");
 
         switch (choice) {
             case 1:
@@ -31,6 +32,9 @@ public class MenuStaffConfigureSettings extends MenuBase {
                 nextMenu = new MenuConfigureHoliday(this);
                 break;
             case 3:
+                nextMenu = new MenuStaffRegister(this);
+                break;
+            case 4:
                 nextMenu = this.getPreviousMenu();
                 break;
 

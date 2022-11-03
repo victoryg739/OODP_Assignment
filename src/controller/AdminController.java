@@ -1,40 +1,38 @@
 package controller;
 
-import modal.Admin;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+import modal.*;
+import java.io.*;
+import java.util.*;
+import modal.Enums.*;
+import view.MenuBase;
+import view.admin.MenuStaffMain;
 
 
 public class AdminController {
 
-    public final static String FILENAME = "data/adminAccounts.txt";
+    public final static String FILENAME = "data/admin.txt";
 
+    public AdminController(){
+
+    }
     // Create a new Admin account and add into adminAccounts.txt
-    public void create(Admin adminAccount) {
-
-        // Creates an ArrayList of admin
+    public void createAdmin(Admin admin){
         ArrayList<Admin> allData = new ArrayList<Admin>();
         File tempFile = new File(FILENAME);
-
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = read();
         try {
-            // Write the data to the adminAccounts
+            // Write the data to the movie
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-            allData.add(adminAccount);
+            allData.add(admin);
             out.writeObject(allData);
             out.flush();
             out.close();
         } catch (IOException e) {
             // ignore error
         }
+
     }
 
     /**
@@ -43,7 +41,7 @@ public class AdminController {
      * @return Model.{@link Admin}     Return list of Admins if found, else empty list
      */
     @SuppressWarnings("unchecked")
-    public ArrayList<Admin> read() {
+    public static ArrayList<Admin> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
             ArrayList<Admin> adminListing = (ArrayList<Admin>) ois.readObject();
@@ -64,7 +62,6 @@ public class AdminController {
         ArrayList<Admin> allData = read();
         for (int i=0; i<allData.size(); i++){
             Admin u = allData.get(i);
-            System.out.println(u.getUsername());
             if (u.getUsername().equals(valueToSearch))
                 return u.getUsername();
         }
@@ -84,6 +81,15 @@ public class AdminController {
                 return u.getPassword();
         }
         return null;
+    }
+
+    public boolean authenticate(String username, String password) {
+
+        if (username.equals(this.readByUsername(username)) && password.equals(this.readByPassword(password))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

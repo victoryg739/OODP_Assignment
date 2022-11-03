@@ -2,7 +2,7 @@ package view.admin;
 
 import view.MenuBase;
 
-import static view.utilF.readIntInput;
+import static view.utilF.*;
 
 public class MenuConfigureHoliday extends MenuBase {
     public MenuConfigureHoliday(MenuBase initialMenu) {
@@ -12,12 +12,12 @@ public class MenuConfigureHoliday extends MenuBase {
     public MenuBase execute() {
         int choice;
         MenuBase nextMenu = this;
-
-        choice = readIntInput("\nConfigure Holiday Settings: \n" +
-                "1.  Add new Holiday \n" +
-                "2.  Update Holiday \n +" +
-                "3.  Remove Holiday  \n + " +
+        printHeader("Configure Holiday Settings");
+        print("1.  Add new Holiday \n" +
+                "2.  Update Holiday \n" +
+                "3.  Remove Holiday  \n" +
                 "4.  Back  \n");
+        choice = readIntInput("Enter choice: ");
 
         switch (choice) {
             case 1:
