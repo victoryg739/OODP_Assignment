@@ -25,7 +25,7 @@ public class MenuMovieReviews extends MenuBase {
         //Let user comment and rate the movies
         Review review = new Review(read("Please Enter your comment for " + movie.getTitle() + ": ")  , readReviewInput("Please enter your rating for " + movie.getTitle() ,1,5));
 
-        movie.addReview(review);
+        //movie.addReview(review);
 
         return this.getPreviousMenu();
     }
