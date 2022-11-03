@@ -31,7 +31,7 @@ public class MenuListMovieTopRating extends MenuBase {
             //Display the top 5 movies by ratings
             int top = 1;
 
-            //For each movie, if the movie is still currently showing, we display the top 5 movies
+            //we display the top 5 movies of all time
             for (Movie movie : movies) {
                 options.add(movie.getRating() + " Overall Rating for " + movie.getTitle());
                 //If top<5, break
@@ -69,9 +69,9 @@ public class MenuListMovieTopRating extends MenuBase {
         if (choice <= options.size()) {
             nextMenu = new MenuMovieInfo(this, movies.get(choice));
         }
-        //else if (c == options.size() + 1) {
-        //    nextMenu = new MenuListMovieTopSale(this.getPreviousMenu());
-        //}
+        else if (choice == options.size() + 1) {
+            nextMenu = new MenuListMovieTopSale(this.getPreviousMenu());
+        }
         else if (choice == options.size() + 2) {
             nextMenu = this.getPreviousMenu();
         }

@@ -1,10 +1,16 @@
 package view.Customer;
 
+import controller.CustomerController;
 import modal.*;
 import view.MenuBase;
 
 import java.util.*;
 import static view.utilF.*;
+
+/* ToDO list:
+    1. Present the date and time for each booking transaction
+    Need to check with Victor about his datetimeFormat
+*/
 
 public class MenuBookingHistory extends MenuBase {
 
@@ -24,12 +30,13 @@ public class MenuBookingHistory extends MenuBase {
         System.out.println("Please Login Using Username and Email");
 
         Customer customer;
+        CustomerController cc = new CustomerController();
 
-        customer = login(); //login
+        customer = cc.login(); //login
 
         if (customer != null) { //if login successful
             ArrayList<Booking> booking = customer.getBookings();
-            System.out.println("In total "+booking.size() +" bookings found under "+customer.getEmail()+".");
+            System.out.println("In total, "+booking.size() +" bookings found under "+customer.getUsername()+".");
             int count=1;
 
             //Once the user login, for each booking made, display the respective details:
@@ -38,8 +45,7 @@ public class MenuBookingHistory extends MenuBase {
                 System.out.println("Booking "+count + " :");
                 count++;
                 System.out.println("TID: " + book.getTID());
-                System.out.println("Show Time: "  + book.getMovie().runtime());
-                //System.out.println("Show Time: "  + book.getMovie().getDate() " " + book.getMovie().runtime());
+                System.out.println("Show Time: "  + book.getSession().getDateTime() + " " + book.getMovie().getRuntime());
                 System.out.println("Total Price (GST included): S$" + book.getTotalPrice());
                 System.out.println("Movie: " + book.getMovie().getTitle());
                 System.out.println("Seats :");

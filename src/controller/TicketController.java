@@ -72,4 +72,16 @@ public class TicketController {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<Booking> readByEmail(Object valueToSearch) {
+        ArrayList<Booking> allData = read();
+        ArrayList<Booking> returnData = new ArrayList<Booking>();
+        for (int i = 0; i < allData.size(); i++) {
+            Booking b = allData.get(i);
+            if (b.getEmail().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
+                returnData.add(b);
+            }
+        }
+        return returnData;
+    }
 }

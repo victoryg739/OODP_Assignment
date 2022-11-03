@@ -24,21 +24,20 @@ public class MenuMovieInfo extends MenuBase {
 
     public MenuBase execute() {
         System.out.println(movie.getTitle());
-        Scanner sc = new Scanner(System.in);
 
         printMovieInformation();
 
         //int flag = 1;
-        ArrayList<String> choices = new ArrayList<>();
+        ArrayList<String> options = new ArrayList<>();
         //If the movie is currently showing or coming soon => Allow customers to buy tickets
         //if (((movie.getShowingStatus().equals(Constant.ShowingStatus.CURRENTLY_SHOWING)) || (movie.getShowingStatus().equals(Constant.ShowingStatus.COMING_SOON)))) {
-        choices.add("Buy Tickets");
+        options.add("Buy Tickets");
         //    flag = 1;
         //}
-        choices.add("Write a review");
-        choices.add("Go Back");
-        choices.add("Quit The Application");
-        printMenu(choices, 1);
+        options.add("Write a review");
+        options.add("Go Back");
+        options.add("Quit The Application");
+        printMenu(options, 1);
         int choice = readIntInput("Choose the option: ");
 
 
@@ -112,7 +111,7 @@ public class MenuMovieInfo extends MenuBase {
         System.out.println("Content Rating: " + this.movie.getContentRating().toString());
 
         //Movie Runtime
-        System.out.println("Runtime: " + this.movie.runtime() + " minutes");
+        System.out.println("Runtime: " + this.movie.getRuntime() + " minutes");
 
         //Movie Director
         System.out.println("Director: " + this.movie.getDirector());
@@ -142,15 +141,21 @@ public class MenuMovieInfo extends MenuBase {
         //Movie Overall Rating
         System.out.println("Overall Rating:");
         System.out.println(movie.getRating());
+        movieController.printStars(movie.getRating());
+        System.out.println(" ");
 
-        //Show the rating together with comments
+        //Show the last 5 rating together with comments
+        System.out.println("Last 5 reviews: ");
+        int count = 0;
         if (movie.getRating() != 0){
             for (Review r : movie.getReviews()) {
+                if (count == 5) break;
                 System.out.println("Review: ");
                 System.out.println(r.getComment());
                 System.out.println("Rating: ");
                 //Individual Rating
                 movieController.printStars(r.getRating());
+                count++;
             }
         }
     }
