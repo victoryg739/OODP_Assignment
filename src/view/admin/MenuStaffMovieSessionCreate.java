@@ -91,7 +91,6 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         Date sessionDateTime  = readDateTime("Enter session date and time");
         Enums.Day enumsDay  = returnEnumsDay(sessionDateTime);
 
-        Movie movie = movieCtrler.readByID(movie_id);
         //hard coded change later
         //should get seat plan from Cinema class
         ArrayList<Seat> seat = new ArrayList<Seat>(100);
@@ -108,7 +107,7 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 
         int lastSessionId = sessionCtrler.getLastSessionId();
 
-        Session session = new Session(cinema,movie,lastSessionId+1, sessionDateTime,enumsDay,seat);
+        Session session = new Session(cinema,m,lastSessionId+1, sessionDateTime,enumsDay,seat);
 
         //update both session and cinema txt file
         sessionCtrler.append(session);
@@ -118,7 +117,6 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         for(int a =0 ; a<cinemaFile.size();a++){
             System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
             System.out.print(cinemaFile.get(a).getCinemaNo()+ "\t");
-            System.out.print(cinemaFile.get(a).getMovie()+ "\t");
             System.out.print(cinemaFile.get(a).getSessions()+ "\t");
             System.out.printf("\n");
         }

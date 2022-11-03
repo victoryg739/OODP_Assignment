@@ -95,7 +95,6 @@ public class mainProgram {
         for(int a =0 ; a<cinemaFile.size();a++){
             System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
             System.out.print(cinemaFile.get(a).getCinemaNo()+ "\t");
-            System.out.print(cinemaFile.get(a).getMovie()+ "\t");
             System.out.print(cinemaFile.get(a).getSessions()+ "\t");
             System.out.printf("\n");
         }
