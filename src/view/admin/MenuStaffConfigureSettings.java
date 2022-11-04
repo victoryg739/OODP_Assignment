@@ -21,7 +21,7 @@ public class MenuStaffConfigureSettings extends MenuBase {
         print("1. Configure Price \n" +
                 "2. Configure Holiday \n" +
                 "3. Configure new admin account \n" +
-                "4. Configure Moviegoer's display info" +
+                "4. Configure Moviegoer's display info\n" +
                 "5. Back\n");
         choice = readIntInput("Enter Choice: ");
 
