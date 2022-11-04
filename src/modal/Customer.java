@@ -1,7 +1,8 @@
 package modal;
+import java.io.Serializable;
 import java.util.*;
 
-public class Customer {
+public class Customer implements Serializable {
     private String username;
     private String password;
     private ArrayList<Booking> bookings;

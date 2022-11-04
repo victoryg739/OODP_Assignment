@@ -21,7 +21,8 @@ public class MenuStaffConfigureSettings extends MenuBase {
         print("1. Configure Price \n" +
                 "2. Configure Holiday \n" +
                 "3. Configure new admin account \n" +
-                "4. Back                \n");
+                "4. Configure Moviegoer's display info\n" +
+                "5. Back\n");
         choice = readIntInput("Enter Choice: ");
 
         switch (choice) {
@@ -35,6 +36,9 @@ public class MenuStaffConfigureSettings extends MenuBase {
                 nextMenu = new MenuStaffRegister(this);
                 break;
             case 4:
+                //nextMenu = new MenuMovieGoerDisplay(this);
+                break;
+            case 5:
                 nextMenu = this.getPreviousMenu();
                 break;
 

@@ -1,5 +1,6 @@
 package view.Customer;
 
+import controller.BookingController;
 import controller.CustomerController;
 import modal.*;
 import view.MenuBase;
@@ -26,16 +27,20 @@ public class MenuBookingHistory extends MenuBase {
      Return to previous menu when done
      */
     public MenuBase execute() {
-        System.out.println("History");
+        System.out.println("Booking History:");
         System.out.println("Please Login Using Username and Email");
 
-        Customer customer;
-        CustomerController cc = new CustomerController();
 
-        customer = cc.login(); //login
+        CustomerController customerController = new CustomerController();
+        BookingController bookingController = new BookingController();
+        String username = read("Enter username: ");
+        //Customer customer = customerController.readByUsername(username);
+        //Customer customer = null;
+//
+        Customer customer = customerController.login(); //login
 
         if (customer != null) { //if login successful
-            ArrayList<Booking> booking = customer.getBookings();
+            ArrayList<Booking> booking = bookingController.readByUsername(username);
             System.out.println("In total, "+booking.size() +" bookings found under "+customer.getUsername()+".");
             int count=1;
 

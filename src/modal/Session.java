@@ -14,17 +14,14 @@ public class Session implements Serializable {
     private Date dateTime;
 
     private Enums.Day day;
-    private ArrayList<Seat> seat;
-
     public Session(){
 
 
     }
-    public Session(Cinema cinema, Movie movie, int sessionId, Date dateTime, Enums.Day day , ArrayList<Seat> seat) {
+    public Session(Cinema cinema, Movie movie, int sessionId, Date dateTime, Enums.Day day) {
         this.movie = movie;
         this.sessionId = sessionId;
         this.dateTime = dateTime;
-        this.seat = seat;
         this.day = day;
         this.cinema = cinema;
     }
@@ -57,14 +54,6 @@ public class Session implements Serializable {
 
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
-    }
-
-    public ArrayList<Seat> getSeat() {
-        return seat;
-    }
-
-    public void setSeat(ArrayList<Seat> seat) {
-        this.seat = seat;
     }
 
     public Enums.Day getDay() {

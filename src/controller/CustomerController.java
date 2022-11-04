@@ -1,13 +1,10 @@
 package controller;
 
-import modal.Admin;
-import modal.Customer;
-import modal.Enums;
-import modal.Movie;
+import modal.*;
 
 import java.io.*;
-import java.util.*;
 import java.util.ArrayList;
+import java.util.*;
 
 import static view.utilF.read;
 
@@ -17,10 +14,12 @@ public class CustomerController {
     public CustomerController() {
 
     }
-    // Create a new Customer account and add into customer.txt
-    public void createCustomer(Customer customer){
+    // Creates a movie and writes it to customer.txt
+    public static void createCustomer(Customer customer) {
+        // Creates an ArrayList of movie
         ArrayList<Customer> allData = new ArrayList<Customer>();
         File tempFile = new File(FILENAME);
+
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = readAll();
@@ -34,8 +33,39 @@ public class CustomerController {
         } catch (IOException e) {
             // ignore error
         }
+    }
+
+    public void CustomerUpdate(Object valueToSearch,Booking newBooking) {
+        ArrayList<Customer> customerList = readAll();
+        ArrayList<Booking> bookingList = new ArrayList<Booking>();
+
+        for (int j=0; j<customerList.size(); j++) {
+            if (customerList.get(j).getUsername().equals((String) valueToSearch)) {
+                if(customerList.get(j).getBookings()  != null) {
+                    bookingList = customerList.get(j).getBookings(); //old list of session in cinema
+                }
+                bookingList.add(newBooking);
+                customerList.get(j).setBookings(bookingList);
+            }
+        }
+        replace(customerList);
 
     }
+
+    public void replace(ArrayList<Customer> data) {
+        File tempFile = new File(FILENAME);
+        if (tempFile.exists())
+            tempFile.delete();
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            out.writeObject(data);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            //
+        }
+    }
+
     public static ArrayList<Customer> readAll() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
@@ -94,13 +124,5 @@ public class CustomerController {
         return null;
     }
 
-    public boolean authenticate(String username, String password) {
-
-        if (username.equals(this.readByUsername(username)) && password.equals(this.readByPassword(password))) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 }
