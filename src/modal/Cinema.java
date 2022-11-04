@@ -4,31 +4,50 @@ import java.util.ArrayList;
 
 public class Cinema implements Serializable {
     private String cinemaNo; //e.g your ticket writes E35 cinema
-    private Movie movie;
+
     private Enums.ClassCinema classCinema;
+
     private ArrayList <Session> sessions;
 
-    public Cinema(String cinemaNo, Movie movie, Enums.ClassCinema classCinema, ArrayList<Session> sessions) {
+    private ArrayList<ArrayList<Seat>> seats = new ArrayList<ArrayList<Seat>>();
+
+
+    public Cinema(int row, int col,String cinemaNo, Movie movie, Enums.ClassCinema classCinema, ArrayList<Session> sessions) {
+        for(int i=0;i<row;i++)
+        {
+            this.seats.add(new ArrayList<Seat>());
+            for(int j=0;j<col;j++)
+            {
+                Seat tmpseat = new Seat(j,i,false);
+                this.seats.get(i).add(tmpseat);
+            }
+        }
+
         this.cinemaNo = cinemaNo;
-        this.movie = movie;
         this.classCinema = classCinema;
         this.sessions = sessions;
     }
 
+    public ArrayList<ArrayList<Seat>> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int row, int col) {
+        for(int i=1;i<=row;i++)
+        {
+            for(int j=1;j<=col;j++)
+            {
+                Seat tmpseat = new Seat(j,i,false);
+                this.seats.get(i).add(tmpseat);
+            }
+        }
+    }
     public String getCinemaNo() {
         return cinemaNo;
     }
 
     public void setCinemaNo(String cinemaNo) {
         this.cinemaNo = cinemaNo;
-    }
-
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
     }
 
     public Enums.ClassCinema getClassCinema() {
@@ -46,6 +65,5 @@ public class Cinema implements Serializable {
     public void setSessions(ArrayList<Session> sessions) {
         this.sessions = sessions;
     }
-
 
 }

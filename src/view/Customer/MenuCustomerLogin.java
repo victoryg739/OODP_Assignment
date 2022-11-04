@@ -1,13 +1,14 @@
-package view.admin;
+package view.Customer;
 
 import controller.AdminController;
 import view.MenuBase;
+import view.admin.MenuStaffMain;
 
-import static view.utilF.print;
 import static view.utilF.*;
 
-public class MenuStaffLogin extends MenuBase {
-    public MenuStaffLogin(MenuBase initialMenu) {
+public class MenuCustomerLogin extends MenuBase{
+
+    public MenuCustomerLogin(MenuBase initialMenu) {
         super(initialMenu);
     }
 
