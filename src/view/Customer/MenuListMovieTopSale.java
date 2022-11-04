@@ -77,7 +77,7 @@ public class MenuListMovieTopSale extends MenuBase {
             nextMenu = new MenuMovieInfo(this, movies.get(choice));
         }
         else if (choice == options.size() - 2) {
-            //nextMenu = new MenuListTopRating(this.getPreviousMenu());
+            nextMenu = new MenuListMovieTopRating(this.getPreviousMenu());
         }
         else if (choice == options.size() - 1) {
             nextMenu = this.getPreviousMenu();
