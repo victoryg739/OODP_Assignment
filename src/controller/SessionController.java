@@ -3,10 +3,15 @@ package controller;
 import modal.*;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
+
+import static view.utilF.returnEnumsDay;
 
 public class SessionController {
     public final static String FILENAME = "data/session.txt";
+    private CinemaController cinemaCtrler = new CinemaController();
 
 
     public void append(Object obj) {
@@ -24,6 +29,20 @@ public class SessionController {
             out.close();
         } catch (IOException e) {
             // ignore error
+        }
+    }
+
+    public void replace(ArrayList<Session> data) {
+        File tempFile = new File(FILENAME);
+        if (tempFile.exists())
+            tempFile.delete();
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            out.writeObject(data);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            //
         }
     }
 
@@ -53,6 +72,56 @@ public class SessionController {
         return new ArrayList<Session>();
     }
 
+    public Session readById(int valueToSearch) {
+        ArrayList<Session> allData = read();
+        for (int i = 0; i < allData.size(); i++) {
+            Session s = allData.get(i);
+            if (s.getSessionId() == valueToSearch)
+                return s;
+        }
+        return null;
+    }
+
+    public void updateById(int choice ,int id, Object newValue) {
+        ArrayList<Session> sessionArrayList = read();
+        for(int i = 0;i<sessionArrayList.size();i++){
+            if(sessionArrayList.get(i).getSessionId()  == id){
+                if(choice == 1) {
+                    sessionArrayList.get(i).setMovie((Movie)newValue);
+                }else if(choice == 2){
+                    sessionArrayList.get(i).setDateTime((Date)newValue);
+                    sessionArrayList.get(i).setDay(returnEnumsDay((Date)newValue));
+
+                }
+            }
+        }
+
+        replace(sessionArrayList);
+    }
+
+    public void remove(int id){
+        ArrayList<Session> sessionArrayList = read();
+        for(int i =0; i < sessionArrayList.size();i++){
+            if(sessionArrayList.get(i).getSessionId() == id){
+                sessionArrayList.remove(i);
+            }
+        }
+        replace(sessionArrayList);
+    }
 
 
+    public void printAllSession() {
+        ArrayList<Session> sessionFile = read();
+        System.out.println("===Printing all Sessions:===");
+        for (int i = 0; i < sessionFile.size(); i++) { //return one section by one for the whole session file
+            System.out.print(sessionFile.get(i).getSessionId() + "\t");
+            System.out.print(sessionFile.get(i).getCinema().getCinemaNo() + "\t");
+            System.out.print(sessionFile.get(i).getMovie().getId() + "\t");
+            System.out.print(sessionFile.get(i).getDateTime() + "\t");
+            System.out.print(sessionFile.get(i).getDay() + "\t");
+
+            System.out.printf("\n");
+
+        }
+    }
 }
