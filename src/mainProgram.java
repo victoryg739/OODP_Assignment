@@ -3,6 +3,7 @@ import controller.CinemaController;
 import controller.CineplexController;
 import controller.MovieController;
 import modal.*;
+import view.EntryMenu;
 import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
@@ -11,6 +12,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 import static view.utilF.*;
+/* ToDo:
+    1. create directory
+    */
+
 
 
 /*
@@ -144,9 +149,12 @@ public class mainProgram {
         // Upcast to a MenuBase
         MenuBase nextMenu = mm;
 
+
+
         // Loop until a user quits the Menu
         do{
             nextMenu =  nextMenu.execute();
+            //nextMenu = new EntryMenu(null).execute();
         }while(!(nextMenu instanceof Quit));
     }
 }

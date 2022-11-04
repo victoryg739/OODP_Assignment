@@ -4,23 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="fix errors">
+    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="updated Format">
+      <change afterPath="$PROJECT_DIR$/src/view/EntryMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SessionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mainProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Cinema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Seat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Seat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuBookingHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuBookingHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionRemove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffConfigureSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffConfigureSettings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,9 +58,6 @@
       <recent name="C:\Users\riven\IdeaProjects\OODP_Assignment\src\view\customer" />
       <recent name="C:\Users\Victor\IdeaProjects\OODP_Assignment\src" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="view.Customer" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="view.customer" />
     </key>
@@ -79,20 +65,7 @@
   <component name="RunManager">
     <configuration name="mainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mainProgram" />
-      <module name="OODP_AssignmentMain" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="OODP_AssignmentMain" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="OODP_AssignmentMain" />
-      <option name="filePath" />
+      <module name="OODP_Assignment" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -106,7 +79,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a4e09fc4-309e-488e-8451-f3b445085990" name="Changes" comment="added session enums" />
+      <changelist id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="updated Format" />
       <created>1666417652481</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -262,21 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667493063135</updated>
     </task>
-    <task id="LOCAL-00022" summary="fix bug for MenuStaff">
-      <created>1667541203032</created>
+    <task id="LOCAL-00022" summary="updated Format">
+      <created>1667495910801</created>
       <option name="number" value="00022" />
       <option name="presentableId" value="LOCAL-00022" />
       <option name="project" value="LOCAL" />
-      <updated>1667541203032</updated>
+      <updated>1667495910801</updated>
     </task>
-    <task id="LOCAL-00023" summary="fix errors">
-      <created>1667554134451</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1667554134451</updated>
-    </task>
-    <option name="localTasksCounter" value="24" />
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,14 +282,13 @@
     <MESSAGE value="Added create movie functionality" />
     <MESSAGE value="Finished AddMovie functionality" />
     <MESSAGE value="added session enums" />
+    <MESSAGE value="fix bug for MenuStaff" />
     <MESSAGE value="TEST" />
     <MESSAGE value="commit for Review" />
     <MESSAGE value="commit for MenuShow Rating" />
     <MESSAGE value="commmit" />
     <MESSAGE value="updated Format" />
-    <MESSAGE value="fix bug for MenuStaff" />
-    <MESSAGE value="fix errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated Format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -335,7 +300,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/mainProgram.java</url>
-          <line>3</line>
+          <line>2</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
