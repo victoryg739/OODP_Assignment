@@ -1,7 +1,6 @@
 import controller.AdminController;
 import controller.CinemaController;
 import controller.CineplexController;
-//import controller.MovieController;
 import controller.MovieController;
 import modal.*;
 import view.EntryMenu;
@@ -41,7 +40,7 @@ public class mainProgram {
             }
 
             Movie movie0 = new Movie(0, "Spiderman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Away from you", 300, readDate(), readDate(), "Bryan Tay", casts);
-            Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.ShowingStatus.COMING_SOON, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
             Movie movie2 = new Movie(2, "Chickenman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Fuck you victor", 300, readDate(), readDate(), "Bryan Tay", casts);
             Movie movie3 = new Movie(3, "Allahman", Enums.MovieType.BLOCKBUSTER, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.G, "Allahu akbar", 300, readDate(), readDate(), "Bryan Tay", casts);
             Movie movie4 = new Movie(4, "Hohoman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
