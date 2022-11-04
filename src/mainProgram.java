@@ -4,6 +4,7 @@ import controller.CineplexController;
 //import controller.MovieController;
 import controller.MovieController;
 import modal.*;
+import view.EntryMenu;
 import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
@@ -145,9 +146,12 @@ public class mainProgram {
         // Upcast to a MenuBase
         MenuBase nextMenu = mm;
 
+
+
         // Loop until a user quits the Menu
         do{
             nextMenu =  nextMenu.execute();
+            //nextMenu = new EntryMenu(null).execute();
         }while(!(nextMenu instanceof Quit));
     }
 }
