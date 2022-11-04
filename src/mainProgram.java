@@ -137,25 +137,14 @@ public class mainProgram {
 //            //GIVe aloy later
 //        }
 
-
-        // Create Admin object
         Admin rootAdmin = new Admin("a","a");
-        // Create Admin Controller and write rootAdmin account into txt file
         AdminController ac = new AdminController();
         ac.createAdmin(rootAdmin);
 
+        MenuBase nextMenu = new MainMenu(null);
 
-        // Create first Main Menu
-        MainMenu mm = new MainMenu(null);
-        // Upcast to a MenuBase
-        MenuBase nextMenu = mm;
-
-
-
-        // Loop until a user quits the Menu
         do{
             nextMenu =  nextMenu.execute();
-            //nextMenu = new EntryMenu(null).execute();
         }while(!(nextMenu instanceof Quit));
     }
 }
