@@ -54,9 +54,9 @@ public class AdminController {
     }
 
     /**
-     * READ and return an Admin by searching for one with matching email in the Database file
-     * @param valueToSearch     Email of admin to search for
-     * @return Admin            Return Admin if found, else null object
+     * READ and return an Admin by searching for one with matching username in the Database file
+     * @param valueToSearch     username of admin to search for
+     * @return Admin            Return username if found, else null object
      */
     public String readByUsername(String valueToSearch) {
         ArrayList<Admin> allData = read();
@@ -69,9 +69,9 @@ public class AdminController {
     }
 
     /**
-     * READ and return an Admin by searching for one with matching email in the Database file
-     * @param valueToSearch     Email of admin to search for
-     * @return Admin            Return Admin if found, else null object
+     * READ and return an Admin by searching for one with matching password in the Database file
+     * @param valueToSearch     password of admin to search for
+     * @return Admin            Return password if found, else null object
      */
     public String readByPassword(String valueToSearch) {
         ArrayList<Admin> allData = read();
@@ -81,6 +81,21 @@ public class AdminController {
                 return u.getPassword();
         }
         return null;
+    }
+
+    /**
+     * READ and return an Admin by searching for one with matching adminID in the Database file
+     * @param valueToSearch     adminID of admin to search for
+     * @return Admin            Return adminID if found, else -1
+     */
+    public int readByAdminID(int valueToSearch) {
+        ArrayList<Admin> allData = read();
+        for (int i=0; i<allData.size(); i++){
+            Admin u = allData.get(i);
+            if (u.getAdminID() == valueToSearch )
+                return u.getAdminID();
+        }
+        return -1;
     }
 
     public boolean authenticate(String username, String password) {
