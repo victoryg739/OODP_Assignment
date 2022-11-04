@@ -6,8 +6,8 @@ import modal.Enums;
 import modal.Movie;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.*;
+import java.util.ArrayList;
 
 import static view.utilF.read;
 
@@ -17,12 +17,10 @@ public class CustomerController {
     public CustomerController() {
 
     }
-    // Creates a movie and writes it to movies.txt
-    public static void createCustomer(Customer customer) {
-        // Creates an ArrayList of movie
+    // Create a new Customer account and add into customer.txt
+    public void createCustomer(Customer customer){
         ArrayList<Customer> allData = new ArrayList<Customer>();
         File tempFile = new File(FILENAME);
-
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = readAll();
@@ -36,8 +34,8 @@ public class CustomerController {
         } catch (IOException e) {
             // ignore error
         }
-    }
 
+    }
     public static ArrayList<Customer> readAll() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
@@ -94,6 +92,15 @@ public class CustomerController {
                 return c;
         }
         return null;
+    }
+
+    public boolean authenticate(String username, String password) {
+
+        if (username.equals(this.readByUsername(username)) && password.equals(this.readByPassword(password))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

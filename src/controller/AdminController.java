@@ -116,40 +116,40 @@ public class AdminController {
 //    }
 
 
-    /**
-     * Delete an Admin in the Database file, based on the email attribute passed
-     * @param email Email of Admin who will be deleted
-     */
-    public void deleteByEmail(String email) {
-        ArrayList<Admin> allData = read();
-        ArrayList<Admin> returnData = new ArrayList<Admin>();
-
-        for (int i=0; i<allData.size(); i++){
-            Admin u = allData.get(i);
-            if (!u.getUsername().equals(email))  // add Admin if email does not match
-                returnData.add(u);
-        }
-
-        replaceExistingFile(FILENAME, returnData);
-    }
-
-
-    /**
-     * Overwrite Database file with new data of list of Admin
-     * @param filename      Filename to check for
-     * @param returnData    New ArrayList of Admin to be written to the file
-     */
-    public void replaceExistingFile(String filename, ArrayList<Admin> returnData) {
-        File tempFile = new File(filename);
-        if (tempFile.exists())
-            tempFile.delete();
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
-            out.writeObject(returnData);
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    /**
+//     * Delete an Admin in the Database file, based on the email attribute passed
+//     * @param email Email of Admin who will be deleted
+//     */
+//    public void deleteByEmail(String email) {
+//        ArrayList<Admin> allData = read();
+//        ArrayList<Admin> returnData = new ArrayList<Admin>();
+//
+//        for (int i=0; i<allData.size(); i++){
+//            Admin u = allData.get(i);
+//            if (!u.getUsername().equals(email))  // add Admin if email does not match
+//                returnData.add(u);
+//        }
+//
+//        replaceExistingFile(FILENAME, returnData);
+//    }
+//
+//
+//    /**
+//     * Overwrite Database file with new data of list of Admin
+//     * @param filename      Filename to check for
+//     * @param returnData    New ArrayList of Admin to be written to the file
+//     */
+//    public void replaceExistingFile(String filename, ArrayList<Admin> returnData) {
+//        File tempFile = new File(filename);
+//        if (tempFile.exists())
+//            tempFile.delete();
+//        try {
+//            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
+//            out.writeObject(returnData);
+//            out.flush();
+//            out.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

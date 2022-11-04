@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="updated Format">
+    <list default="true" id="a029f217-8625-4fd6-848c-feba0e23d693" name="Changes" comment="Admin Registration">
+      <change afterPath="$PROJECT_DIR$/src/view/Customer/MenuCustomerLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/HolidayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HolidayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuConfigureHoliday.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuConfigureHoliday.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuHolidayCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuHolidayCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuHolidayRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuHolidayRemove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuHolidayUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuHolidayUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffConfigureSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffConfigureSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieL.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffTopFiveRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffTopFiveRating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffTopFiveSales.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffTopFiveSales.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuCustomerRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuCustomerRegister.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
