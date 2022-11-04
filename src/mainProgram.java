@@ -55,50 +55,55 @@ public class mainProgram {
             mc.updateMovie(11, 4, 500);
             mc.updateMovie(11, 5, 100);
         }
-        Cinema cinema1  = new Cinema("A1",null, Enums.ClassCinema.PLATINUM,null);
-        Cinema cinema2  = new Cinema("A2",null, Enums.ClassCinema.PLATINUM,null);
-        Cinema cinema3 =  new Cinema("A3",null, Enums.ClassCinema.NORMAL,null);
-        Cinema cinema4  = new Cinema("A4",null, Enums.ClassCinema.PLATINUM,null);
-        Cinema cinema5  = new Cinema("A5",null, Enums.ClassCinema.PLATINUM,null);
-        Cinema cinema6 =  new Cinema("A6",null, Enums.ClassCinema.NORMAL,null);
-        Cinema cinema7 = new Cinema("A7",null, Enums.ClassCinema.PLATINUM,null);
-        Cinema cinema8 =  new Cinema("A8",null, Enums.ClassCinema.NORMAL,null);
-        Cinema cinema9 =  new Cinema("A9",null, Enums.ClassCinema.NORMAL,null);
 
-        ArrayList<Cinema> cinemaArrayList1 = new ArrayList<Cinema>();
-        cinemaArrayList1.add(cinema1);
-        cinemaArrayList1.add(cinema2);
-        cinemaArrayList1.add(cinema3);
+        File fCinema = new File("data/cinema.txt");
 
-        ArrayList<Cinema> cinemaArrayList2 = new ArrayList<Cinema>();
-        cinemaArrayList2.add(cinema4);
-        cinemaArrayList2.add(cinema5);
-        cinemaArrayList2.add(cinema6);
+        if (!fCinema.exists()) {
 
-        ArrayList<Cinema> cinemaArrayList3 = new ArrayList<Cinema>();
-        cinemaArrayList3.add(cinema7);
-        cinemaArrayList3.add(cinema8);
-        cinemaArrayList3.add(cinema9);
+            Cinema cinema1 = new Cinema("A1", null, Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema2 = new Cinema("A2", null, Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema3 = new Cinema("A3", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema4 = new Cinema("A4", null, Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema5 = new Cinema("A5", null, Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema6 = new Cinema("A6", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema7 = new Cinema("A7", null, Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema8 = new Cinema("A8", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema9 = new Cinema("A9", null, Enums.ClassCinema.NORMAL, null);
 
-        ArrayList<Cinema> cinemaArrayListAll = new ArrayList<Cinema>();
-        cinemaArrayListAll.addAll(cinemaArrayList1);
-        cinemaArrayListAll.addAll(cinemaArrayList2);
-        cinemaArrayListAll.addAll(cinemaArrayList3);
-        CinemaController cinemaCtrler = new CinemaController();
-        cinemaCtrler.replace(cinemaArrayListAll);
+            ArrayList<Cinema> cinemaArrayList1 = new ArrayList<Cinema>();
+            cinemaArrayList1.add(cinema1);
+            cinemaArrayList1.add(cinema2);
+            cinemaArrayList1.add(cinema3);
 
-        Cineplex cineplex1 = new Cineplex("Jem",cinemaArrayList1);
-        Cineplex cineplex2 = new Cineplex("Orchard",cinemaArrayList2);
-        Cineplex cineplex3 = new Cineplex("Funan",cinemaArrayList3);
-        ArrayList<Cineplex> cineplexArrayList = new ArrayList<Cineplex>();
-        cineplexArrayList.add(cineplex1);
-        cineplexArrayList.add(cineplex2);
-        cineplexArrayList.add(cineplex3);
+            ArrayList<Cinema> cinemaArrayList2 = new ArrayList<Cinema>();
+            cinemaArrayList2.add(cinema4);
+            cinemaArrayList2.add(cinema5);
+            cinemaArrayList2.add(cinema6);
+
+            ArrayList<Cinema> cinemaArrayList3 = new ArrayList<Cinema>();
+            cinemaArrayList3.add(cinema7);
+            cinemaArrayList3.add(cinema8);
+            cinemaArrayList3.add(cinema9);
+
+            ArrayList<Cinema> cinemaArrayListAll = new ArrayList<Cinema>();
+            cinemaArrayListAll.addAll(cinemaArrayList1);
+            cinemaArrayListAll.addAll(cinemaArrayList2);
+            cinemaArrayListAll.addAll(cinemaArrayList3);
+            CinemaController cinemaCtrler = new CinemaController();
+            cinemaCtrler.replace(cinemaArrayListAll);
+
+            Cineplex cineplex1 = new Cineplex("Jem", cinemaArrayList1);
+            Cineplex cineplex2 = new Cineplex("Orchard", cinemaArrayList2);
+            Cineplex cineplex3 = new Cineplex("Funan", cinemaArrayList3);
+            ArrayList<Cineplex> cineplexArrayList = new ArrayList<Cineplex>();
+            cineplexArrayList.add(cineplex1);
+            cineplexArrayList.add(cineplex2);
+            cineplexArrayList.add(cineplex3);
 
 
-        CineplexController cinplexCtrler = new CineplexController();
-        cinplexCtrler.replace(cineplexArrayList);
-
+            CineplexController cinplexCtrler = new CineplexController();
+            cinplexCtrler.replace(cineplexArrayList);
+        }
 //        ArrayList<Cinema> cinemaFile = cinemaCtrler.read();
 //        for(int a =0 ; a<cinemaFile.size();a++){
 //            System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
