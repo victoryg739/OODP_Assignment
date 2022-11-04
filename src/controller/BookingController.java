@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.*;
 import modal.*;
 
-public class TicketController {
-    public final static String FILENAME = "data/ticket.txt";
+public class BookingController {
+    public final static String FILENAME = "data/booking.txt";
 
     public void create(Booking booking) {
         ArrayList<Booking> allData = new ArrayList<Booking>();
@@ -73,15 +73,19 @@ public class TicketController {
         }
     }
 
-    public ArrayList<Booking> readByEmail(Object valueToSearch) {
+    public ArrayList<Booking> readByUsername(String inputUsername) {
         ArrayList<Booking> allData = read();
+        Booking booking = null;
+        String dbUsername = null;
         ArrayList<Booking> returnData = new ArrayList<Booking>();
         for (int i = 0; i < allData.size(); i++) {
-            Booking b = allData.get(i);
-            if (b.getEmail().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
-                returnData.add(b);
+            booking = allData.get(i);
+            dbUsername = booking.getEmail();
+            if (dbUsername.toLowerCase().contains(inputUsername.toLowerCase())) {
+                returnData.add(booking);
             }
         }
         return returnData;
     }
+
 }

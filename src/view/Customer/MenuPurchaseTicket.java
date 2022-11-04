@@ -73,9 +73,8 @@ public class MenuPurchaseTicket extends MenuBase {
                 System.out.println("Invalid input! Please try again.");
             else { //valid choice
                 cinemaList = showAvailableSessions(cineplexes.get(choice-1).getLocation(), movie);
-                if (cinemaList.size() == 0)
-
-                    System.out.println("No available sessions for this cineplex! Please choose another.");
+//                if (cinemaList.size() == 0)
+//                    System.out.println("No available sessions for this cineplex! Please choose another.");
             }
         }
 //        //Get the input for cinema
@@ -315,20 +314,21 @@ public class MenuPurchaseTicket extends MenuBase {
         tempCinema = cinemaList.get(cinemaChoice - 1);
 
         System.out.println("Available screening times of " + movie.getTitle() + " in this cinema:");
-            System.out.println();
-            for(int j = 0; j < tempCinema.getSessions().size(); j++) {
-                tempSession = tempCinema.getSessions().get(j);
-                if (tempSession.getMovie().getTitle().equals(movie)) {
-                    System.out.println("	Date: " + tempSession.getDateTime());
-                    System.out.println();
-                    tempCinemaList.add(tempCinema);
-                    printSeparator = true;
-                }
-                if(printSeparator){
-                    System.out.println("------------------------------------------------------");
-                    printSeparator = false;
-                }
+        System.out.println();
+
+        for(int j = 0; j < tempCinema.getSessions().size() ; j++) {
+            tempSession = tempCinema.getSessions().get(j);
+            if (tempSession.getMovie().getTitle().equals(movie.getTitle())) {
+                System.out.println("	Date: " + tempSession.getDateTime());
+                System.out.println();
+                tempCinemaList.add(tempCinema);
+                printSeparator = true;
             }
+            if(printSeparator){
+                System.out.println("------------------------------------------------------");
+                printSeparator = false;
+            }
+        }
 
         return tempCinemaList;
     }

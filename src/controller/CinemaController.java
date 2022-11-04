@@ -10,7 +10,7 @@ public class CinemaController {
 
         private CineplexController cineplexController = new CineplexController();
 
-    public final static String FILENAME = "data/cinema.txt";
+        public final static String FILENAME = "data/cinema.txt";
 
 
         public final static int NAME = 0;
@@ -102,7 +102,8 @@ public class CinemaController {
         }
         if (flag  == false){
             return false;
-        }else {
+        }
+        else {
             File tempFile = new File(FILENAME);
             if (tempFile.exists())
                 tempFile.delete();
