@@ -1,14 +1,11 @@
-import controller.AdminController;
-import controller.CinemaController;
-import controller.CineplexController;
-import controller.MovieController;
+import controller.*;
 import modal.*;
-import view.EntryMenu;
 import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static view.utilF.*;
@@ -25,9 +22,10 @@ The start of the program
 
 public class mainProgram {
     public final static String FILENAME = "data/movies.txt";
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /* For Testing Purposes */
-
+        File myObj = new File("data/settings.txt");
+        myObj.createNewFile();
         // If File exists:
         File f = new File(FILENAME);
         if (!f.exists()) {
@@ -135,6 +133,10 @@ public class mainProgram {
 //
 //            //GIVe aloy later
 //        }
+//        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+//        Session s = new Session(Cinema1, movie1, 1, getDate(),  Enums.Day.PH);
+//        Booking booking = new Booking('A1', 'TIDSAMPLE','user', 'pass', movie0,  tickets,
+//        bookingController.create(booking);
 
         Admin rootAdmin = new Admin("a","a");
         AdminController ac = new AdminController();
@@ -144,6 +146,7 @@ public class mainProgram {
 
         do{
             nextMenu =  nextMenu.execute();
+
         }while(!(nextMenu instanceof Quit));
     }
 }
