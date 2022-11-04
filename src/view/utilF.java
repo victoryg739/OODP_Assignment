@@ -1,4 +1,5 @@
 package view;
+import controller.CinemaController;
 import modal.Constant;
 import modal.Customer;
 import modal.Enums;
@@ -63,8 +64,6 @@ public class utilF {
     }
 
     public static Enums.Day returnEnumsDay(Date date){
-        System.out.println("dayofweek" + date.getDay());
-        System.out.println("timeofday" + date.getHours());
         int dayOfWeek = date.getDay();
         int hours  = date.getHours();
         if(dayOfWeek >= 1 && dayOfWeek <= 3){

@@ -35,7 +35,7 @@ public class mainProgram {
             }
 
             Movie movie0 = new Movie(0, "Spiderman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Away from you", 300, readDate(), readDate(), "Bryan Tay", casts);
-            Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.ShowingStatus.COMING_SOON, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
             Movie movie2 = new Movie(2, "Chickenman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Fuck you victor", 300, readDate(), readDate(), "Bryan Tay", casts);
             Movie movie3 = new Movie(3, "Allahman", Enums.MovieType.BLOCKBUSTER, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.G, "Allahu akbar", 300, readDate(), readDate(), "Bryan Tay", casts);
             Movie movie4 = new Movie(4, "Hohoman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
@@ -60,15 +60,15 @@ public class mainProgram {
 
         if (!fCinema.exists()) {
 
-            Cinema cinema1 = new Cinema("A1", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema2 = new Cinema("A2", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema3 = new Cinema("A3", null, Enums.ClassCinema.NORMAL, null);
-            Cinema cinema4 = new Cinema("A4", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema5 = new Cinema("A5", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema6 = new Cinema("A6", null, Enums.ClassCinema.NORMAL, null);
-            Cinema cinema7 = new Cinema("A7", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema8 = new Cinema("A8", null, Enums.ClassCinema.NORMAL, null);
-            Cinema cinema9 = new Cinema("A9", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema1 = new Cinema(5,5 ,"A1", null, Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema2 = new Cinema(10,10,"A2", null, Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema3 = new Cinema(10,10,"A3", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema4 = new Cinema(10,10,"A4", null, Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema5 = new Cinema(10,10,"A5", null, Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema6 = new Cinema(10,10,"A6", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema7 = new Cinema(10,10,"A7", null, Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema8 = new Cinema(10,10,"A8", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema9 = new Cinema(10,10,"A9", null, Enums.ClassCinema.NORMAL, null);
 
             ArrayList<Cinema> cinemaArrayList1 = new ArrayList<Cinema>();
             cinemaArrayList1.add(cinema1);
@@ -104,6 +104,7 @@ public class mainProgram {
             CineplexController cinplexCtrler = new CineplexController();
             cinplexCtrler.replace(cineplexArrayList);
         }
+
 //        ArrayList<Cinema> cinemaFile = cinemaCtrler.read();
 //        for(int a =0 ; a<cinemaFile.size();a++){
 //            System.out.print(cinemaFile.get(a).getClassCinema() + "\t");

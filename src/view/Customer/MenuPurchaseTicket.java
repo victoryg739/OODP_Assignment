@@ -84,8 +84,8 @@ public class MenuPurchaseTicket extends MenuBase {
         Session session = sessionList.get(c - 1);
 
         //get all the available seats for the selected session
-        ArrayList<Seat> seats = session.getSeat();
-        int col = seats.get(seats.size() - 1).getCol(), row= seats.get(seats.size() - 1).getRow();
+        ArrayList<ArrayList<Seat>> seats = session.getCinema().getSeats();
+        int col = seats.get(0).size(), row=seats.size();
 
         //find seat & select seat
         ArrayList<Seat> selected = new ArrayList<Seat>();
@@ -106,10 +106,8 @@ public class MenuPurchaseTicket extends MenuBase {
             //need to check with victor or bryan
             Enums.Day day = session.getDay();
             Enums.MovieType movieType = movie.getType();
-            Enums.ClassCinema cinemaClass = cinema.getClassCinema();
+            Enums.ClassCinema cinemaClass = session.getCinema().getClassCinema();
             double ticketPrice;
-
-
 
             if (confirm("Are you eligible for student discount?")) { //student price
                 Enums.AgeType age = Enums.AgeType.STUDENT;
@@ -149,120 +147,112 @@ public class MenuPurchaseTicket extends MenuBase {
             String timeStamp = new SimpleDateFormat("YYYYMMDDhhmm").format(currentTime);
             String tid = session.getCinema().getCinemaNo() + timeStamp;
 
-//            Customer customer = customerController.readByUsername(username);
-//            //Create the booking transaction
-//            Booking booking = new Booking(cinema.getCinemaNo(), tid,
-//                    customer.getUsername(),customer.getPassword(), movie, tickets, session, totalPrice);
-//            bookingController.create(booking);
-//            System.out.println("Total price is S$" + booking.getTotalPrice() + " (Inclusive of GST).");
-//            if (confirm("Confirm booking? ")) {
-//                seat.setTaken(true);
-//            }
-//            customer.addBookings(booking);
 
+            //Customer customer = customerController.readByUsername(username);
+            String username = read("Enter username: ");
+            String password = read("Enter password: ");
 
-            //Need this function to update the total sale for that particular movie
-            movie.addTicketSales(tickets.size());
-            //System.out.println("Booking successful, tid=" + booking.getTID());
-
+            Customer customer = new Customer(username, password);
+            customerController.createCustomer(customer);
+            //Create the booking transaction
+            Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
+                    customer.getUsername(),customer.getPassword(), movie, tickets, session, totalPrice);
+            bookingController.create(booking);
+            System.out.println("Total price is S$" + booking.getTotalPrice() + " (Inclusive of GST).");
+            if (confirm("Confirm booking? ")) {
+                for (Seat seat : selected) {
+                    seat.setSelected(false);
+                    seat.setTaken(true);
+                }
+                customer.addBookings(booking);
+                println("Booking successful, tid=" + tid);
+                movie.addTicketSales(tickets.size());
+                customerController.CustomerUpdate(username, booking);
+            }
+            else {
+                for (Seat seat : selected)
+                    seat.setSelected(false);
+            }
         }while (readIntInput("Press 0 to return to previous menu: ") != 0) ;
 
         return this.getPreviousMenu();
     }
-    /*
-     Print out the layout of the seats in the current slots,
-     including seats available, seats occupied and seats chosen
-     With corridor printed out in the middle of the layout
+    /**
+     * Print out the layout of the seats in the current slots,
+     * including seats avaliable, seats occupied and seats chosen
+     * With corridor printed out in the middle of the layout
      */
-
-    private void displaySeats(ArrayList<Seat> seats, int row, int col)
+    private void displaySeats(ArrayList<ArrayList<Seat>> seats, int row, int col)
     {
         Seat seat;
-        int seatNumber;
-        System.out.println(" Select Seats");
+        printHeader("Select Seats");
         for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++)
-            System.out.println(" ");
-        System.out.println("|      Screen       |");
+            print(" ");
+        println("|      Screen       |");
         for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++) {
-            System.out.println(" ");
+            print(" ");
         }
-        System.out.println("---------------------");
+        println("---------------------");
 
-        System.out.println("    ");
+        print("    ");
         int new_row = 0;
-        for(int i=0; i<col; i++){
-            if (new_row != col / 2 - 1) {
-                System.out.println(i + 1);
-            } else {
-                System.out.println("  ");
-                i--;
-            }
-            new_row++;
-        }
-
-        System.out.println("  ");
+        println(" ");
         boolean flag = false;
         for(int i =0; i<row; i++)
         {
             new_row = 0;
-            System.out.println(i + 1);
+            System.out.print(String.valueOf(i + 1) + " ");
             for(int j=0; j<col; j++)
             {
                 if (new_row != col / 2 - 1) {
-                    seatNumber = (i - 1) * 5 + j;
-                    seat = seats.get(seatNumber);
-                    //Seat not available
+                    seat = seats.get(i).get(j);
                     if (seat.isTaken()) {
-                        System.out.println("[X]");
+                        System.out.print("[X]");
                     }
-                    //Seats available
+                    else if (seat.isSelected()) {
+                        System.out.print("[#]");
+                    }
                     else
-                        System.out.println("[ ]");
-                }
-                else {
-                    System.out.println("   ");
+                        System.out.print("[ ]");
+                } else {
+                    System.out.print("   ");
                     j--;
                 }
                 new_row++;
             }
-            System.out.println(" ");
-            System.out.println(i + 1);
-            System.out.println(" ");
+            print(" ");
         }
 
-        System.out.println(" ");
+        println("");
         for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
-            System.out.println(" ");
-        System.out.println("----------");
-        for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
-            System.out.println(" ");
-        System.out.println("|Entrance|\n");
-        System.out.println("([ ] Available  [X] Sold)");
+            print(" ");
+        println("----------");
+//        for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
+//            print(" ");
+        println("|Entrance|\n");
+        println("([ ] Available  [#] Seat Selected  [X] Sold)");
     }
 
-
-
-// Method to ask user to select a row and column,check whether the seat is available, and update the information in the data base
-
-    private Seat chooseSeats(ArrayList<Seat> seats, int row, int col) {
-        System.out.println("Please choose your seat(s).");
-        int i, j;
-        int seatNumber;
+    /**
+     * Method to ask user to select a row and column,
+     * check whether the seat is avaliable, and update the information in the data base
+     */
+    private Seat chooseSeats(ArrayList<ArrayList<Seat>> seats, int row, int col) {
+        println("Please choose your seat(s).");
+        int i,j;
         do {
-            i = readSeatInput("Please input row number", 1, row);
-            j = readSeatInput("Please input col number", 1, col);
-            i--;
-            j--;
-            seatNumber = (i - 1) * 5 + j;
-            if (seats.get(seatNumber).isTaken())
-                System.out.println("Already been taken/selected please choose another seats.");
+            i = readSeatInput("Please input row number",1,row);
+            j = readSeatInput("Please input col number",1,col);
+            i--;j--;
+            if (seats.get(i).get(j).isTaken() || seats.get(i).get(j).isSelected())
+                println("Already been taken/selected please choose another seats.");
             else break;
         } while (true);
 
-        seats.get(seatNumber).setTaken(true);
-        System.out.println("Selected Seat: Row: " + (i + 1) + " Col: " + (j + 1));
+        seats.get(i).get(j).setSelected(true);
+        println("Selected Seat: Row: " + (i+1) + " Col: " + (j+1));
 
-        return seats.get(seatNumber);
+        return seats.get(i).get(j);
     }
 
     public ArrayList<Session> showAvailableSessions(String cineplexName, Movie movie) {

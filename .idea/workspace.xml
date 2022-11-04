@@ -4,16 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="fix bug for MenuStaff">
+    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="fix errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CinemaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Cinema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/Seat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Seat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuBookingHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuBookingHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuCustomerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuCustomerMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovieTopRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovieTopRating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovieTopSale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovieTopSale.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionRemove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667541203032</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fix errors">
+      <created>1667554134451</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1667554134451</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +322,8 @@
     <MESSAGE value="commmit" />
     <MESSAGE value="updated Format" />
     <MESSAGE value="fix bug for MenuStaff" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug for MenuStaff" />
+    <MESSAGE value="fix errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix errors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

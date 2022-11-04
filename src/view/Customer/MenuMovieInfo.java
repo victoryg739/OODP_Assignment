@@ -29,14 +29,14 @@ public class MenuMovieInfo extends MenuBase {
             printMovieInformation();
 
             int flag = 0;
-            ArrayList<String> options = new ArrayList<>();
             //If the movie is currently showing or coming soon => Allow customers to buy tickets
             if (((movie.getShowingStatus().equals(Enums.ShowingStatus.NOW_SHOWING)) ||
                     (movie.getShowingStatus().equals(Enums.ShowingStatus.COMING_SOON)))) {
-                println(count + "Buy Tickets     \n");
+                println(count + " Buy Tickets     ");
                 flag = 1;
                 count++;
                 }
+
             println((count) + " Write a review                          \n" +
                     "\n" +
                     (count + 1) + " Go Back to Previous Menu            \n" +
@@ -106,10 +106,10 @@ public class MenuMovieInfo extends MenuBase {
             System.out.println("Title: " + this.movie.getTitle());
 
             //Movie Status
-            System.out.println("Showing Status: " + this.movie.getShowingStatus().toString());
+            System.out.println("Showing Status: " + this.movie.getShowingStatus());
 
             //Movie Content Rating (PG13, N16, R21, ...)
-            System.out.println("Content Rating: " + this.movie.getContentRating().toString());
+            System.out.println("Content Rating: " + this.movie.getContentRating());
 
             //Movie Runtime
             System.out.println("Runtime: " + this.movie.getRuntime() + " minutes");

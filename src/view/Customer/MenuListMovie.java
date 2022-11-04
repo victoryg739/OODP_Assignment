@@ -34,15 +34,6 @@ public class MenuListMovie extends MenuBase {
         //list all the movies out
 
         for (Movie m : movies) {
-            //get the current time
-            Date currentTime = Calendar.getInstance().getTime();
-            //.getEnding is to retrieve the last showing date
-            if(m.getDateEnd().compareTo(currentTime) < 0) { //not showing anymore
-                m.setShowingStatus(Enums.ShowingStatus.END_SHOWING); //set the status to NOT SHOWING
-            }
-            else if (m.getDateEnd().compareTo(currentTime) >= 0) { //currently showing
-                m.setShowingStatus(Enums.ShowingStatus.NOW_SHOWING);
-            }
             String title = m.getTitle() + (m.getShowingStatus().equals(Enums.ShowingStatus.END_SHOWING) ? " (End Showing)" : "");
             movieList.add(title); //add the movie as part of the option
         }
