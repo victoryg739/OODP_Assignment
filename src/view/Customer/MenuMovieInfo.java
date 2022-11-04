@@ -82,7 +82,6 @@ public class MenuMovieInfo extends MenuBase {
          */
 
             else {
-                do {
                     switch (choice) {
                         case 1:
                             nextMenu = new MenuMovieReviews(this, movie);
@@ -94,7 +93,6 @@ public class MenuMovieInfo extends MenuBase {
                             nextMenu = new Quit(null);
                             break;
                     }
-                } while (choice > 0);
 
             }
 
