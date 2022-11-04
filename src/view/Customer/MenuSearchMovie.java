@@ -24,8 +24,8 @@ public class MenuSearchMovie extends MenuBase {
 
     public MenuBase execute() {
         MenuBase nextMenu = null;
-        ArrayList<Movie> movies; //List of Movies objects
         movieName = null;
+        int count = 1;
         System.out.println("Movie Search");
         movieName = read("Input movie name to search: ");
 
@@ -44,15 +44,14 @@ public class MenuSearchMovie extends MenuBase {
                 //showing the list of movies found
                 System.out.println("Found " + movieList.size() + " results:");
 
-                //List of possible options to choose from
-                ArrayList<String> options = new ArrayList<String>();
-
-                for (Movie m : movieList) { //iterate through the list of movies
-                    options.add(m.getTitle()); //get the title from the movie class
+                for (int i = 0; i < movieList.size(); i++) {
+                    println(count + " " + movieList.get(i).getTitle());
+                    count++;
                 }
-                options.add("Go Back");
-                options.add("Quit The Application");
-                printMenu(options, 1); //print menu for the options
+
+                println((count) + " Go Back to Previous Menu             \n" +
+                        "\n" +
+                        (count + 1) + " Quit The Application             \n");
 
                 int choice = readIntInput("Please enter your choice: ");
                 /* eg. Menu Choices

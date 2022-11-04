@@ -29,10 +29,12 @@ public class MenuBookingHistory extends MenuBase {
         System.out.println("History");
         System.out.println("Please Login Using Username and Email");
 
-        Customer customer;
-        CustomerController cc = new CustomerController();
 
-        customer = cc.login(); //login
+        CustomerController customerController = new CustomerController();
+        //Customer customer = customerController.readByUsername(username);
+        Customer customer = null;
+//
+//        customer = cc.login(); //login
 
         if (customer != null) { //if login successful
             ArrayList<Booking> booking = customer.getBookings();

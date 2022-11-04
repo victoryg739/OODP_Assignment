@@ -19,6 +19,7 @@ public class MenuListMovieTopRating extends MenuBase {
 
     public MenuBase execute() {
         System.out.println("Top 5 by Rating");
+        int count = 1;
         MovieController mc = new MovieController();
         ArrayList<Movie> movies =  mc.read();
 
@@ -45,10 +46,15 @@ public class MenuListMovieTopRating extends MenuBase {
             System.out.println(e.getMessage());
         }
 
-        options.add("List Top 5 Movies By Sales");
-        options.add("Go Back to Previous Menu");
-        options.add("Quit The Application");
-        printMenu(options, 1);
+        for (int i = 0; i < options.size(); i++) {
+            println(count + " " + options.get(i));
+            count++;
+        }
+        println((count) + " List Top 5 Movies By Sales              \n" +
+                "\n" +
+                (count + 1) + " Go Back to Previous Menu            \n" +
+                "\n" +
+                (count + 2) + " Quit The Application                \n");
 
         int choice = readIntInput("Enter your choice");
 

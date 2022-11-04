@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="updated Format">
+    <list default="true" id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="fix bug for MenuStaff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuBookingHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuBookingHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuCustomerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuCustomerMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovieTopRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovieTopRating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovieTopSale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovieTopSale.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667493063135</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fix bug for MenuStaff">
+      <created>1667541203032</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1667541203032</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,13 +302,13 @@
     <MESSAGE value="Added create movie functionality" />
     <MESSAGE value="Finished AddMovie functionality" />
     <MESSAGE value="added session enums" />
-    <MESSAGE value="fix bug for MenuStaff" />
     <MESSAGE value="TEST" />
     <MESSAGE value="commit for Review" />
     <MESSAGE value="commit for MenuShow Rating" />
     <MESSAGE value="commmit" />
     <MESSAGE value="updated Format" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated Format" />
+    <MESSAGE value="fix bug for MenuStaff" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug for MenuStaff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

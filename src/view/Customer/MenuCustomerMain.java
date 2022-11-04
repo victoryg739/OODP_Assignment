@@ -3,6 +3,7 @@ import view.MenuBase;
 
 import java.util.*;
 import static view.utilF.*;
+import static view.utilF.print;
 
 public class MenuCustomerMain extends MenuBase {
     public MenuCustomerMain(MenuBase initialMenu) {
@@ -23,12 +24,10 @@ public class MenuCustomerMain extends MenuBase {
 
         Scanner sc = new Scanner(System.in);
         ArrayList<String> choices = new ArrayList<String>();
-        choices.add("Search For Movies");
-        choices.add("List All Movies");
-        choices.add("Booking History");
-        choices.add("Go Back");
-        //print the menu interface
-        printMenu(choices, 1);
+        print("1. Search For Movies        \n" +
+                "2. List All Movies         \n" +
+                "3. Booking History         \n" +
+                "4. Go Back to Previous Menu\n");
 
         //read the input
         int choice = readIntInput("Enter your choice");

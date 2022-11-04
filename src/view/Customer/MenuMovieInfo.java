@@ -23,22 +23,26 @@ public class MenuMovieInfo extends MenuBase {
      */
 
     public MenuBase execute() {
-        System.out.println(movie.getTitle());
+            System.out.println(movie.getTitle());
+            int count = 1;
 
-        printMovieInformation();
+            printMovieInformation();
 
-        int flag = 1;
-        ArrayList<String> options = new ArrayList<>();
-        //If the movie is currently showing or coming soon => Allow customers to buy tickets
-//        if (((movie.getShowingStatus().equals(Enums.ShowingStatus.NOW_SHOWING)) ||
-//                (movie.getShowingStatus().equals(Enums.ShowingStatus.COMING_SOON)))) {
-            options.add("Buy Tickets");
-            flag = 1;
-            //}
-            options.add("Write a review");
-            options.add("Go Back");
-            options.add("Quit The Application");
-            printMenu(options, 1);
+            int flag = 0;
+            ArrayList<String> options = new ArrayList<>();
+            //If the movie is currently showing or coming soon => Allow customers to buy tickets
+            if (((movie.getShowingStatus().equals(Enums.ShowingStatus.NOW_SHOWING)) ||
+                    (movie.getShowingStatus().equals(Enums.ShowingStatus.COMING_SOON)))) {
+                println(count + "Buy Tickets     \n");
+                flag = 1;
+                count++;
+                }
+            println((count) + " Write a review                          \n" +
+                    "\n" +
+                    (count + 1) + " Go Back to Previous Menu            \n" +
+                    "\n" +
+                    (count + 2) + " Quit The Application                \n");
+
             int choice = readIntInput("Choose the option: ");
 
 
@@ -53,19 +57,19 @@ public class MenuMovieInfo extends MenuBase {
             MenuBase nextMenu = this;
             if (flag == 1) {
 
-            switch (choice) {
-                case 1:
-                    nextMenu = new MenuPurchaseTicket(this, this.movie);
-                    break;
-                case 2:
-                    nextMenu = new MenuMovieReviews(this, this.movie);
-                    break;
-                case 3:
-                    nextMenu = this.getPreviousMenu();
-                    break;
-                case 4:
-                    nextMenu = new Quit(null);
-                    break;
+                switch (choice) {
+                    case 1:
+                        nextMenu = new MenuPurchaseTicket(this, this.movie);
+                        break;
+                    case 2:
+                        nextMenu = new MenuMovieReviews(this, this.movie);
+                        break;
+                    case 3:
+                        nextMenu = this.getPreviousMenu();
+                        break;
+                    case 4:
+                        nextMenu = new Quit(null);
+                        break;
                 }
             }
 
@@ -77,22 +81,22 @@ public class MenuMovieInfo extends MenuBase {
            Option 3 Quit The Application
          */
 
-        else {
-            do{
-                switch (choice) {
-                    case 1:
-                        nextMenu = new MenuMovieReviews(this, movie);
-                        break;
-                    case 2:
-                        nextMenu = this.getPreviousMenu();
-                        break;
-                    case 3:
-                        nextMenu = new Quit(null);
-                        break;
-                }
-            }while(choice > 0);
+            else {
+                do {
+                    switch (choice) {
+                        case 1:
+                            nextMenu = new MenuMovieReviews(this, movie);
+                            break;
+                        case 2:
+                            nextMenu = this.getPreviousMenu();
+                            break;
+                        case 3:
+                            nextMenu = new Quit(null);
+                            break;
+                    }
+                } while (choice > 0);
 
-        }
+            }
 
             return nextMenu;
         }

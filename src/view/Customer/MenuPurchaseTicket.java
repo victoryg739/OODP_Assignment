@@ -26,6 +26,7 @@ public class MenuPurchaseTicket extends MenuBase {
     private SessionController sessionController;
 
     private CinemaController cinemaController;
+    private BookingController bookingController;
 
     public MenuPurchaseTicket(MenuBase previousMenu, Movie movie) {
         super(previousMenu);
@@ -36,6 +37,7 @@ public class MenuPurchaseTicket extends MenuBase {
         this.customerController = new CustomerController();
         this.sessionController = new SessionController();
         this.cinemaController = new CinemaController();
+        this.bookingController = new BookingController();
     }
 
 
@@ -50,20 +52,19 @@ public class MenuPurchaseTicket extends MenuBase {
     public MenuBase execute() {
         CineplexController cc = new CineplexController();
         ArrayList<String> choices = new ArrayList<>();
-        ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
+        ArrayList<Session> sessionList = new ArrayList<>();
 
         System.out.println("Menu for Purchasing Ticket:");
         System.out.println();
 
         //Print the list of Cineplexes with the selected movies
-        //readBYAttribute(movie)
         ArrayList<Cineplex> cineplexes = cc.read();
         for(int i = 0; i < cineplexes.size(); i++) {
             System.out.println((i+1) + ". " + cineplexes.get(i).getLocation());
         }
 
         int choice;
-        while (cinemaList.size() == 0) {
+        while (sessionList.size() == 0) {
             choice = readIntInput("Choose cineplex (0 to return): ");
             if (choice == 0) {
                 System.out.println("Returning...");
@@ -72,133 +73,99 @@ public class MenuPurchaseTicket extends MenuBase {
             else if (choice < 0 || choice > cineplexes.size())
                 System.out.println("Invalid input! Please try again.");
             else { //valid choice
-                cinemaList = showAvailableSessions(cineplexes.get(choice-1).getLocation(), movie);
-//                if (cinemaList.size() == 0)
-//                    System.out.println("No available sessions for this cineplex! Please choose another.");
+                sessionList = showAvailableSessions(cineplexes.get(choice-1).getLocation(), movie);
+                if (sessionList.size() == 0)
+                    System.out.println("No available sessions for this cineplex! Please choose another.");
             }
         }
-//        //Get the input for cinema
-//        int cinemaChoice = readIntInput("Enter the cinema of choice:");
-//        ArrayList<Session> availableSession = sessionController.read();
-//        //SessionController.read() to get the ArrayList<Session>
-//        //.Sessions() is to check for the available sessions for that movie
-//        if(cinema.getSessions().isEmpty())
-//        {
-//            System.out.println("Sorry, there is no available session currently.");
-//            return this.getPreviousMenu();
-//        }
-//
-//        //For all the available movie sessions with seats
-//        for(Session timeslot:cinema.getSessions())
-//        {
-//            choices.add(timeslot.getCinema() + " -- " + timeslot.getDatetimeFormat());
-//        }
-//
-//
-//        printMenu(choices, 1);
-//        int c = readIntInput("Please Choose a session");
-//        Session session = cinema.getSessions().get(c);
-//
-//        //get all the available seats for the selected session
-//        ArrayList<Seat> seats = session.getSeat();
-//        int col = seats.get(seats.size() - 1).getCol(), row= seats.get(seats.size() - 1).getRow();
-//
-//        //find seat & select seat
-//        ArrayList<Seat>selected = new ArrayList<Seat>();
-//
-//        while(confirm("Continue to select seats?"))
-//        {
-//            displaySeats(seats,row,col);
-//            selected.add(chooseSeats(seats,row,col));
-//        }
-//        /*
-//            Model for buying tickets:
-//            When selecting a few seats, they have to belong to 1 ticket type (Senior/Student/Normal)
-//         */
-//
-//        if (selected.size() != 0) {
-//            ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-//            //Function to determine the day n time
-//            //need to check with victor or bryan
-//            Enums.Day day = session.getDay();
-//            Enums.MovieType movieType = movie.getType();
-//            Enums.ClassCinema cinemaClass = cinema.getClassCinema();
-//            double ticketPrice;
-//
-//
-//
-//            if (confirm("Are you eligible for student discount?")) { //student price
-//                Enums.AgeType age = Enums.AgeType.STUDENT;
-//                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day);
-//                //for every seat, generate 1 ticket according to the ticket type
-//                for (Seat seat : selected) {
-//                    Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
-//                    tickets.add(ticket);
-//                }
-//            }
-//            else if (confirm("Are you eligible for senior discount?")) { //senior price
-//                Enums.AgeType age = Enums.AgeType.SENIOR;
-//                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day);
-//                //for every seat, generate 1 ticket according to the ticket type
-//                for (Seat seat : selected) {
-//                    Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
-//                    tickets.add(ticket);
-//                }
-//            }
-//            else { //neither student nor senior
-//                Enums.AgeType age = Enums.AgeType.NORMAL;
-//                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day);
-//                //for every seat, generate 1 ticket according to the ticket type
-//                for (Seat seat : selected) {
-//                    Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
-//                    tickets.add(ticket);
-//                }
-//            }
-//            /*
-//            Calculate the price of 1 ticket with the various factors: TicketType, MovieType, Platinum, Sneakpeek/FirstWeek/Blockbuster, ...
-//            After that, multiply by the # of seats
-//            */
-//            double totalPrice = ticketPrice * tickets.size();
-//
-//            //Get the current Date/time to generate the tid according to the format XXXYYYYMMDDhhmm
-//            Date currentTime = Calendar.getInstance().getTime();
-//            String timeStamp = new SimpleDateFormat("YYYYMMDDhhmm").format(currentTime);
-//            String tid = cinema.getCinemaNo() + timeStamp;
-//
-//
-//
-//                //Log into their account
-//                Customer customer; //Need to create User class
-//                if (confirm("Do you have an account")) {
-//                    customer = login();
-//                }
-//                else {
-//                    String email = read("Email: ");
-//                    String password = read("Password: ");
-//                    String password1 = read("Confirm your password again: ");
-//
-//                    customer = new Customer(email, password);
-//
-//                    //Need to add the customer detail into the database
-//                    CustomerController.createCustomer(customer);
-//            }
+
+        //printMenu(choices, 1);
+        int c = readIntInput("Please Choose a session");
+        Session session = sessionList.get(c - 1);
+
+        //get all the available seats for the selected session
+        ArrayList<Seat> seats = session.getSeat();
+        int col = seats.get(seats.size() - 1).getCol(), row= seats.get(seats.size() - 1).getRow();
+
+        //find seat & select seat
+        ArrayList<Seat> selected = new ArrayList<Seat>();
+
+        while(confirm("Continue to select seats?"))
+        {
+            displaySeats(seats,row,col);
+            selected.add(chooseSeats(seats,row,col));
+        }
+        /*
+            Model for buying tickets:
+            When selecting a few seats, they have to belong to 1 ticket type (Senior/Student/Normal)
+         */
+
+        if (selected.size() != 0) {
+            ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+            //Function to determine the day n time
+            //need to check with victor or bryan
+            Enums.Day day = session.getDay();
+            Enums.MovieType movieType = movie.getType();
+            Enums.ClassCinema cinemaClass = cinema.getClassCinema();
+            double ticketPrice;
+
+
+
+            if (confirm("Are you eligible for student discount?")) { //student price
+                Enums.AgeType age = Enums.AgeType.STUDENT;
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day);
+                //for every seat, generate 1 ticket according to the ticket type
+                for (Seat seat : selected) {
+                    Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
+                    tickets.add(ticket);
+                }
+            }
+            else if (confirm("Are you eligible for senior discount?")) { //senior price
+                Enums.AgeType age = Enums.AgeType.SENIOR;
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day);
+                //for every seat, generate 1 ticket according to the ticket type
+                for (Seat seat : selected) {
+                    Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
+                    tickets.add(ticket);
+                }
+            }
+            else { //neither student nor senior
+                Enums.AgeType age = Enums.AgeType.NORMAL;
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day);
+                //for every seat, generate 1 ticket according to the ticket type
+                for (Seat seat : selected) {
+                    Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
+                    tickets.add(ticket);
+                }
+            }
+            /*
+            Calculate the price of 1 ticket with the various factors: TicketType, MovieType, Platinum, Sneakpeek/FirstWeek/Blockbuster, ...
+            After that, multiply by the # of seats
+            */
+            double totalPrice = ticketPrice * tickets.size();
+
+            //Get the current Date/time to generate the tid according to the format XXXYYYYMMDDhhmm
+            Date currentTime = Calendar.getInstance().getTime();
+            String timeStamp = new SimpleDateFormat("YYYYMMDDhhmm").format(currentTime);
+            String tid = session.getCinema().getCinemaNo() + timeStamp;
+
+//            Customer customer = customerController.readByUsername(username);
 //            //Create the booking transaction
 //            Booking booking = new Booking(cinema.getCinemaNo(), tid,
 //                    customer.getUsername(),customer.getPassword(), movie, tickets, session, totalPrice);
-//            TicketController tc = new TicketController();
-//            tc.create(booking);
+//            bookingController.create(booking);
 //            System.out.println("Total price is S$" + booking.getTotalPrice() + " (Inclusive of GST).");
 //            if (confirm("Confirm booking? ")) {
 //                seat.setTaken(true);
 //            }
 //            customer.addBookings(booking);
-//            //Create a CustomerController to accept the customer object
-//
-//            //Need this function to update the total sale for that particular movie
-//            //movie.addTicketSales(tickets.size());
-//            System.out.println("Booking successful, tid=" + booking.getTID());
-//
-//        }while (readIntInput("Press 0 to return to previous menu: ") != 0) ;
+
+
+            //Need this function to update the total sale for that particular movie
+            movie.addTicketSales(tickets.size());
+            //System.out.println("Booking successful, tid=" + booking.getTID());
+
+        }while (readIntInput("Press 0 to return to previous menu: ") != 0) ;
 
         return this.getPreviousMenu();
     }
@@ -298,9 +265,11 @@ public class MenuPurchaseTicket extends MenuBase {
         return seats.get(seatNumber);
     }
 
-    public ArrayList<Cinema> showAvailableSessions(String cineplexName, Movie movie) {
+    public ArrayList<Session> showAvailableSessions(String cineplexName, Movie movie) {
         Session tempSession;
         Cinema tempCinema;
+        ArrayList<Session> sessionList = new ArrayList<>();
+        int count = 1;
         boolean printSeparator = false;
         ArrayList<Cinema> tempCinemaList = new ArrayList<Cinema>();
         ArrayList<Cinema> cinemaList = cinemaController.readByCineplexName(cineplexName);
@@ -319,10 +288,11 @@ public class MenuPurchaseTicket extends MenuBase {
         for(int j = 0; j < tempCinema.getSessions().size() ; j++) {
             tempSession = tempCinema.getSessions().get(j);
             if (tempSession.getMovie().getTitle().equals(movie.getTitle())) {
-                System.out.println("	Date: " + tempSession.getDateTime());
+                System.out.println(count + ".	Date: " + tempSession.getDateTime());
                 System.out.println();
-                tempCinemaList.add(tempCinema);
                 printSeparator = true;
+                count++;
+                sessionList.add(tempSession);
             }
             if(printSeparator){
                 System.out.println("------------------------------------------------------");
@@ -330,7 +300,7 @@ public class MenuPurchaseTicket extends MenuBase {
             }
         }
 
-        return tempCinemaList;
+        return sessionList;
     }
 
 }
