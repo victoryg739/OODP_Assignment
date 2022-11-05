@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c90208b6-6222-48c2-9c21-a309edd602d6" name="Changes" comment="Commited some of Customer's file">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieRemove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieUpdate.java" afterDir="false" />
-    </list>
+    <list default="true" id="c90208b6-6222-48c2-9c21-a309edd602d6" name="Changes" comment="Commited some of Customer's file" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -310,10 +303,10 @@
     <MESSAGE value="commit for Review" />
     <MESSAGE value="commit for MenuShow Rating" />
     <MESSAGE value="commmit" />
-    <MESSAGE value="updated Format" />
     <MESSAGE value="fix errors" />
     <MESSAGE value="Commited some of Customer's file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commited some of Customer's file" />
+    <MESSAGE value="updated Format" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated Format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -334,5 +327,8 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/OODP_Assignment$mainProgram.ic" NAME="mainProgram Coverage Results" MODIFIED="1667619813523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
