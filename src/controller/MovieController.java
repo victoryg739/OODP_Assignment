@@ -176,13 +176,30 @@ public class MovieController {
         }
     }
 
+    public void listMovies(ShowingStatus s1, ShowingStatus s2) {
+        ArrayList<Movie> movieList = read();
+        if (movieList.isEmpty()) {
+            print("No movies in the database.");
+        } else {
+            for (int i = 0; i < movieList.size(); i++) {
+                Movie m = movieList.get(i);
+                if(m.getShowingStatus() == s1 || m.getShowingStatus() == s2) {
+                    m.printMovie();
+                }
+
+            }
+        }
+    }
+
+
+
     public void listTopSalesByRating(){
         ArrayList<Movie> movieList = read();
         try {
             sortRating(movieList);
             int top = 1;
             for(Movie movie: movieList){
-                println("Name: " + movie.getTitle() + "\n" + "Rating: " + movie.getRating());
+                println("Name: " + movie.getTitle() + "\n" + "Rating: " + printStars(movie.getRating()));
                 if (top++ == 5) {
                     break;
                 }
@@ -207,12 +224,6 @@ public class MovieController {
             System.out.println(e.getMessage());
         }
     }
-
-
-
-
-
-
 
     /* Replace existing file to a new file */
     public void replaceExistingFile(String filename, ArrayList<Movie> data) {
@@ -305,18 +316,19 @@ public class MovieController {
         });
     }
 
-    public void printStars(double rating) {
+    public String printStars(double rating) {
         String s = String.format("%.1f", rating);
+        String x;
         if(rating <= 1)
-            System.out.println("★☆☆☆☆(" + s + ")");
+            x = ("☆☆☆☆☆ (" + s + ")");
         else if(rating <= 2)
-            System.out.println("★★☆☆☆(" + s + ")");
+            x = ("★★☆☆☆ (" + s + ")");
         else if(rating <= 3)
-            System.out.println("★★★☆☆(" + s + ")");
+            x = ("★★★☆☆ (" + s + ")");
         else if(rating <= 4)
-            System.out.println("★★★★☆(" + s + ")");
+           x= ("★★★★☆ (" + s + ")");
         else
-            System.out.println("★★★★★(" + s + ")");
-        System.out.println(" ");
+            x= ("★★★★★ (" + s + ")");
+        return x;
     }
 }
