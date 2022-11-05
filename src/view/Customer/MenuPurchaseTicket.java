@@ -5,6 +5,7 @@ import modal.Customer;
 import modal.*;
 import view.MenuBase;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -90,8 +91,10 @@ public class MenuPurchaseTicket extends MenuBase {
 
         while(confirm("Continue to select seats?"))
         {
-            displaySeats(seats,row,col);
-            selected.add(chooseSeats(seats,row,col));
+            displaySeats(seats, session.getCinema().getCinemaNo());
+            Seat selectedSeat = chooseSeats(seats,row,col);
+            selected.add(selectedSeat);
+
         }
         /*
             Model for buying tickets:
@@ -187,9 +190,12 @@ public class MenuPurchaseTicket extends MenuBase {
      * including seats avaliable, seats occupied and seats chosen
      * With corridor printed out in the middle of the layout
      */
-    private void displaySeats(ArrayList<ArrayList<Seat>> seats, int row, int col)
+    private void displaySeats(ArrayList<ArrayList<Seat>> seats, String cinemaNo)
     {
         Seat seat;
+        Cinema  cinema = cinemaController.readByCinemaNo(cinemaNo);
+        ArrayList<ArrayList<Seat>> seatList = cinema.getSeats();
+        int col = seatList.get(0).size(), row=seatList.size();
         printHeader("Select Seats");
         for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++)
             print(" ");
@@ -209,8 +215,8 @@ public class MenuPurchaseTicket extends MenuBase {
             System.out.print(String.valueOf(i + 1) + " ");
             for(int j=0; j<col; j++)
             {
-                if (new_row != col / 2 - 1) {
-                    seat = seats.get(i).get(j);
+               if (new_row != col / 2 - 1) {
+                    seat = seatList.get(i).get(j);
                     if (seat.isTaken()) {
                         System.out.print("[X]");
                     }
@@ -232,8 +238,6 @@ public class MenuPurchaseTicket extends MenuBase {
         for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
             print(" ");
         println("----------");
-//        for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
-//            print(" ");
         println("|Entrance|\n");
         println("([ ] Available  [#] Seat Selected  [X] Sold)");
     }

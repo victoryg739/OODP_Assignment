@@ -3,7 +3,6 @@ package controller;
 import modal.*;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -107,28 +106,27 @@ public class CinemaController {
 
     public void updateSeat(Object valueToSearch, ArrayList<Seat> selectedSeat) {
         ArrayList<Cinema> cinemaListing = read();
+        System.out.println(cinemaListing.get(2).getSeats());
         ArrayList<ArrayList<Seat>> seatList = new ArrayList<ArrayList<Seat>>();
-        Seat tempSeat;
 
         for (int j=0; j<cinemaListing.size(); j++) {
             if (cinemaListing.get(j).getCinemaNo().equals((String) valueToSearch)) {
                 if(cinemaListing.get(j).getSeats()  != null) {
                     seatList = cinemaListing.get(j).getSeats(); //old list of seat in cinema
                 }
-                for (Seat s: selectedSeat) {
+                for (Seat s : selectedSeat) {
                     int row = s.getRow();
                     int col = s.getCol();
-                    println("row: " + row);
-                    println("col: " + col);
-                    tempSeat = seatList.get(row+1).get(col+1);
-                    tempSeat.setTaken(true);
+                    seatList.get(row).get(col).setTaken(true);
+                    }
                 }
-                cinemaListing.get(j).setSeatPlan(seatList);
-            }
-        }
-        replace(cinemaListing);
+              cinemaListing.get(j).setSeatPlan(seatList);
 
+        }
+    replace(cinemaListing);
     }
+
+
 
     public void cinemaUpdateBySessionId(int choice,int sessionId,Object newValue) { //update cinema session arrayList
         ArrayList<Cinema> cinemaListing = read();
