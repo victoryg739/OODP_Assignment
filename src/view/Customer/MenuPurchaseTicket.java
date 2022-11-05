@@ -78,8 +78,6 @@ public class MenuPurchaseTicket extends MenuBase {
                     System.out.println("No available sessions for this cineplex! Please choose another.");
             }
         }
-
-        //printMenu(choices, 1);
         int c = readIntInput("Please Choose a session");
         Session session = sessionList.get(c - 1);
 
@@ -153,7 +151,7 @@ public class MenuPurchaseTicket extends MenuBase {
             String password = read("Enter password: ");
 
             Customer customer = new Customer(username, password);
-            customerController.createCustomer(customer);
+            //customerController.createCustomer(customer);
             //Create the booking transaction
             Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
                     customer.getUsername(),customer.getPassword(), movie, tickets, session, totalPrice);
@@ -289,9 +287,7 @@ public class MenuPurchaseTicket extends MenuBase {
                 printSeparator = false;
             }
         }
-
         return sessionList;
     }
-
 }
 

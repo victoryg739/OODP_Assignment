@@ -22,7 +22,6 @@ public class MenuMovieReviews extends MenuBase {
      Ask user to input reviews and rating
      */
 
-
     public MenuBase execute() {
         System.out.println(movie.getTitle());
 

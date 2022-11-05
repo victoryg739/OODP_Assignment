@@ -1,7 +1,4 @@
-import controller.AdminController;
-import controller.CinemaController;
-import controller.CineplexController;
-import controller.MovieController;
+import controller.*;
 import modal.*;
 import view.EntryMenu;
 import view.MainMenu;
@@ -10,6 +7,8 @@ import view.Quit;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import static view.utilF.*;
 /* ToDo:
@@ -59,6 +58,19 @@ public class mainProgram {
             mc.updateMovie(11, 3, 400);
             mc.updateMovie(11, 4, 500);
             mc.updateMovie(11, 5, 100);
+
+            Cinema cinema3 = new Cinema(10,10,"A3", null, Enums.ClassCinema.NORMAL, null);
+            CustomerController customerController = new CustomerController();
+            Customer customer = new Customer("a", "a");
+            customerController.createCustomer(customer);
+            ArrayList<Ticket> tickets = new ArrayList<>();
+            Date currentTime = Calendar.getInstance().getTime();
+            Session tempSession = new Session(cinema3, movie0, 0, currentTime , Enums.Day.FRI_AFT_SIX);
+            //Create the booking transaction
+            BookingController bookingController = new BookingController();
+            Booking booking = new Booking("A1", "tid",
+                    "username","password", movie0, tickets, tempSession, 12.50);
+            bookingController.create(booking);
         }
 
         File fCinema = new File("data/cinema.txt");
@@ -139,6 +151,8 @@ public class mainProgram {
         Admin rootAdmin = new Admin("a","a");
         AdminController ac = new AdminController();
         ac.createAdmin(rootAdmin);
+
+
 
         MenuBase nextMenu = new MainMenu(null);
 
