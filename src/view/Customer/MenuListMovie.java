@@ -22,12 +22,13 @@ public class MenuListMovie extends MenuBase {
         super(initialMenu);
     }
 
-    
+
     public MenuBase execute() {
         MenuBase nextMenu ;
-        ArrayList<Movie> movies = mc.read();
-        printHeader("Movie Listing");
-        mc.listMovies(Enums.ShowingStatus.PREVIEW, Enums.ShowingStatus.NOW_SHOWING);
+
+
+        printHeader("Current Movie Listing");
+        mc.listMovies(Enums.ShowingStatus.PREVIEW, Enums.ShowingStatus.NOW_SHOWING, null);
         print("===============================================");
         int flag = setc.returnResult(); // a variable to determine what to show to the user
         /* Flag == 2 implies that it only shows Rating */
@@ -39,7 +40,7 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Enter movieID: ");
-                    nextMenu = new MenuMovieInfo(this, movies.get(movieID));
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
                     break;
                 case 2:
                     nextMenu = new MenuStaffTopFiveRating(this);
@@ -57,7 +58,7 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Enter movieID: ");
-                    nextMenu = new MenuMovieInfo(this, movies.get(movieID));
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
                     break;
                 case 2:
                     nextMenu = new MenuStaffTopFiveSales(this);
@@ -77,7 +78,7 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Enter movieID: ");
-                    nextMenu = new MenuMovieInfo(this, movies.get(movieID));
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
                     break;
                 case 2:
                     nextMenu = new MenuStaffTopFiveSales(this);

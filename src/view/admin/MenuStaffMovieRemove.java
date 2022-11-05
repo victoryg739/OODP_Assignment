@@ -21,6 +21,7 @@ public class MenuStaffMovieRemove extends MenuBase {
     }
 
     public MenuBase execute() {
+
         mc.listMovies();
 
         printHeader("Removing Movies");

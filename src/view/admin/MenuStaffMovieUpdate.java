@@ -17,8 +17,14 @@ public class MenuStaffMovieUpdate extends MenuBase {
     MovieController mc = new MovieController();
 
     public MenuBase execute() {
+        /*
+        For testing purposes:
+                1. Comment mc.listMovies();
+                2. Uncomment mc.listALLMovies();
+         */
         printHeader("Updating Movie");
-        mc.listMovies();
+        //mc.listMovies();
+        mc.listALLMoviesSettings();
         print("Select movie to be updated: ");
         int movieID = readIntInput("Enter movie ID:");
 
@@ -101,7 +107,8 @@ public class MenuStaffMovieUpdate extends MenuBase {
                 ShowingStatus ss = readShowingStatus("Enter Showing status : \n" +
                         "	1. COMING SOON\n" +
                         "	2. PREVIEW\n" +
-                        "	3. NOW_SHOWING\n" +
+                        "   3. NOW_SHOWING\n" +
+                        "   4. END_SHOWING\n" +
                         "Select movie type (number): ");
                 mc.updateMovie(choice, movieID, ss);
                 break;
