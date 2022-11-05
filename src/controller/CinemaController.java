@@ -3,9 +3,11 @@ package controller;
 import modal.*;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static view.utilF.println;
 import static view.utilF.returnEnumsDay;
 
 public class CinemaController {
@@ -97,6 +99,31 @@ public class CinemaController {
                 }
                 sessionList.add(newSession);
                 cinemaListing.get(j).setSessions(sessionList);
+            }
+        }
+        replace(cinemaListing);
+
+    }
+
+    public void updateSeat(Object valueToSearch, ArrayList<Seat> selectedSeat) {
+        ArrayList<Cinema> cinemaListing = read();
+        ArrayList<ArrayList<Seat>> seatList = new ArrayList<ArrayList<Seat>>();
+        Seat tempSeat;
+
+        for (int j=0; j<cinemaListing.size(); j++) {
+            if (cinemaListing.get(j).getCinemaNo().equals((String) valueToSearch)) {
+                if(cinemaListing.get(j).getSeats()  != null) {
+                    seatList = cinemaListing.get(j).getSeats(); //old list of seat in cinema
+                }
+                for (Seat s: selectedSeat) {
+                    int row = s.getRow();
+                    int col = s.getCol();
+                    println("row: " + row);
+                    println("col: " + col);
+                    tempSeat = seatList.get(row+1).get(col+1);
+                    tempSeat.setTaken(true);
+                }
+                cinemaListing.get(j).setSeatPlan(seatList);
             }
         }
         replace(cinemaListing);
