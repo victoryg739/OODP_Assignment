@@ -32,7 +32,7 @@ public class MenuListMovie extends MenuBase {
         print("===============================================");
         int flag = setc.returnResult(); // a variable to determine what to show to the user
         /* Flag == 2 implies that it only shows Rating */
-        if (flag == 3) {
+        if (flag == 2) {
             print("1. Buy Ticket/ Set Review\n" +
                     "2. Show top 5 by ratings \n" +
                     "3. Back\n");
@@ -68,7 +68,7 @@ public class MenuListMovie extends MenuBase {
                     break;
             }
             /* implies that it is default which only shows both Sales and ratings */
-        } else if(flag == 2){
+        } else if(flag == 3){
             print("1. Buy Ticket/ Set Review\n" +
                     "2. Show top 5 by sales \n" +
                     "3. Show top 5 by ratings \n" +
