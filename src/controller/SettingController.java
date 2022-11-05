@@ -87,7 +87,7 @@ public class SettingController {
             return 1;
         }else{
             // Show None
-            return 0;
+            return 3;
         }
 
     }
