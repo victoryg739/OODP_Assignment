@@ -23,15 +23,6 @@ public class MovieController {
 
     }
 
-    public Movie readByID(int valueToSearch) {
-        ArrayList<Movie> allData = read();
-        for (int i = 0; i < allData.size(); i++) {
-            Movie m = allData.get(i);
-            if (m.getId() == valueToSearch)
-                return m;
-        }
-        return null;
-    }
 
     public int getLastId() {
         int lastId = -1;
@@ -45,6 +36,15 @@ public class MovieController {
         return lastId;
     }
 
+    public Movie readByID(int valueToSearch) {
+        ArrayList<Movie> allData = read();
+        for (int i = 0; i < allData.size(); i++) {
+            Movie m = allData.get(i);
+            if (m.getId() == valueToSearch)
+                return m;
+        }
+        return null;
+    }
 
     /* Create Movie by giving its attributes */
     public void createMovie(String title, MovieType type, MovieRating rating, ShowingStatus ss, String synopsis, int runtime, Date DateStart, Date DateEnd, ArrayList<String> cast, String director) {
@@ -176,8 +176,15 @@ public class MovieController {
         }
     }
 
-    public void listMovies(ShowingStatus s1, ShowingStatus s2) {
-        ArrayList<Movie> movieList = read();
+    public void listMovies(ShowingStatus s1, ShowingStatus s2, ArrayList<Movie> searchMovies) {
+        ArrayList<Movie> movieList = new ArrayList<Movie>();
+        // If searchMovies is empty means it is listingMovie
+        if(searchMovies == null) {
+            movieList = read();
+        }else { // If search Empty has something inside then append to movielist
+            movieList.addAll(searchMovies);
+        }
+
         if (movieList.isEmpty()) {
             print("No movies in the database.");
         } else {
@@ -247,30 +254,43 @@ public class MovieController {
 
     // Tester Function //
 
+
     /* for debugging */
-//    public void printMovie(Movie movie){
-//        int id = movie.getId();
-//        String title = movie.getTitle();
-//        MovieType movieType = movie.getType();
-//        MovieRating movieRating = movie.getContentRating();
-//        String synopsis = movie.getSynopsis();
-//        int runtime = movie.getRuntime();
-//        Date DateStart = movie.getDateStart();
-//        Date DateEnd = movie.getDateEnd();
-//        String director = movie.getDirector();
-//        ShowingStatus ss = movie.getShowingStatus();
-//        //ArrayList<String> casts = movie.getCast();
-//        String castString = "";
-//        for (int i=0; i< movie.getCast().size(); i++)
-//            castString = castString.concat(movie.getCast().get(i) + ",");
-//
-//        castString = castString.substring(0, castString.length()-1);
-//        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
-//                + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
-//                + "Cast: " + castString + " | " + "Showing: " + ss;
-//        System.out.println(movieString);
-//        System.out.println("-------------------");
-//    }
+
+    public void listALLMoviesSettings() {
+        ArrayList<Movie> movieList = read();
+        if (movieList.isEmpty()) {
+            print("No movies in the database.");
+        } else {
+            for (int i = 0; i < movieList.size(); i++) {
+                Movie m = movieList.get(i);
+                printMovie(m);
+            }
+        }
+    }
+    public void printMovie(Movie movie){
+        int id = movie.getId();
+        String title = movie.getTitle();
+        MovieType movieType = movie.getType();
+        MovieRating movieRating = movie.getContentRating();
+        String synopsis = movie.getSynopsis();
+        int runtime = movie.getRuntime();
+        Date DateStart = movie.getDateStart();
+        Date DateEnd = movie.getDateEnd();
+        String director = movie.getDirector();
+        ShowingStatus ss = movie.getShowingStatus();
+        //ArrayList<String> casts = movie.getCast();
+        String castString = "";
+        for (int i=0; i< movie.getCast().size(); i++)
+            castString = castString.concat(movie.getCast().get(i) + ",");
+
+        castString = castString.substring(0, castString.length()-1);
+        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
+                + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
+                + "Cast: " + castString + " | " + "Showing: " + ss;
+        System.out.println(movieString);
+        System.out.println("-------------------");
+    }
 
 
     public void createMovie(Movie movie){
@@ -297,8 +317,10 @@ public class MovieController {
         ArrayList<Movie> returnData = new ArrayList<Movie>();
         for (int i = 0; i < allData.size(); i++) {
             Movie m = allData.get(i);
-            if (m.getTitle().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
-                returnData.add(m);
+            if(m.getShowingStatus() == ShowingStatus.PREVIEW || m.getShowingStatus() == ShowingStatus.NOW_SHOWING) {
+                if (m.getTitle().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
+                    returnData.add(m);
+            }
             }
         }
 
