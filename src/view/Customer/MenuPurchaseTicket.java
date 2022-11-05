@@ -145,13 +145,19 @@ public class MenuPurchaseTicket extends MenuBase {
             String timeStamp = new SimpleDateFormat("YYYYMMDDhhmm").format(currentTime);
             String tid = session.getCinema().getCinemaNo() + timeStamp;
 
+            /*
+            Login Interface
+             */
+            Customer customer;
+            if (confirm("Do you have an account")) {
+                customer = customerController.login();
+            } else {
+                String username = read("Enter Username: ");
+                String password = read("Enter password: ");
+                customer = new Customer(username, password);
+                customerController.createCustomer(customer);
+            }
 
-            //Customer customer = customerController.readByUsername(username);
-            String username = read("Enter username: ");
-            String password = read("Enter password: ");
-
-            Customer customer = new Customer(username, password);
-            //customerController.createCustomer(customer);
             //Create the booking transaction
             Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
                     customer.getUsername(),customer.getPassword(), movie, tickets, session, totalPrice);
@@ -165,7 +171,7 @@ public class MenuPurchaseTicket extends MenuBase {
                 customer.addBookings(booking);
                 println("Booking successful, tid=" + tid);
                 movie.addTicketSales(tickets.size());
-                customerController.CustomerUpdate(username, booking);
+                customerController.CustomerUpdate(customer.getUsername(), booking);
             }
             else {
                 for (Seat seat : selected)
