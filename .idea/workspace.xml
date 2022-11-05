@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c90208b6-6222-48c2-9c21-a309edd602d6" name="Changes" comment="Commited some of Customer's file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuCustomerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuCustomerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/EntryMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,5 +322,8 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/OODP_Assignment$mainProgram.ic" NAME="mainProgram Coverage Results" MODIFIED="1667619813523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
