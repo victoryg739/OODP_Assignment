@@ -16,7 +16,7 @@ public class CustomerController {
     }
     // Creates a movie and writes it to customer.txt
     public static void createCustomer(Customer customer) {
-        // Creates an ArrayList of movie
+        // Creates an ArrayList of customer
         ArrayList<Customer> allData = new ArrayList<Customer>();
         File tempFile = new File(FILENAME);
 

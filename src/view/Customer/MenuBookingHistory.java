@@ -34,10 +34,15 @@ public class MenuBookingHistory extends MenuBase {
         CustomerController customerController = new CustomerController();
         BookingController bookingController = new BookingController();
         String username = read("Enter username: ");
-        //Customer customer = customerController.readByUsername(username);
+        String password = read("Enter password: ");
+        Customer customer = customerController.readByUsername(username);
+        if (!customer.getPassword().equals(password)) { //wrong password
+            customer = null;
+        }
+
         //Customer customer = null;
 //
-        Customer customer = customerController.login(); //login
+        //Customer customer = customerController.login(); //login
 
         if (customer != null) { //if login successful
             ArrayList<Booking> booking = bookingController.readByUsername(username);

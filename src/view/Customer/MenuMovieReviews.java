@@ -22,7 +22,6 @@ public class MenuMovieReviews extends MenuBase {
      Ask user to input reviews and rating
      */
 
-
     public MenuBase execute() {
         System.out.println(movie.getTitle());
 
@@ -30,6 +29,7 @@ public class MenuMovieReviews extends MenuBase {
         Review review = new Review(read("Please Enter your comment for " + movie.getTitle() + ": ")  , readReviewInput("Please enter your rating for " + movie.getTitle() ,1,5));
 
         MovieController mc = new MovieController();
+        System.out.println("MovieID: " + movie.getId());
         mc.updateMovie(12, movie.getId(), review);
         //a way to update the movie.txt file
         return this.getPreviousMenu();
