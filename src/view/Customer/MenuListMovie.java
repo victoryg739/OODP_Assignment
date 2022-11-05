@@ -32,7 +32,7 @@ public class MenuListMovie extends MenuBase {
         print("===============================================");
         int flag = setc.returnResult(); // a variable to determine what to show to the user
         /* Flag == 2 implies that it only shows Rating */
-        if (flag == 2) {
+        if (flag == 3) {
             print("1. Buy Ticket/ Set Review\n" +
                     "2. Show top 5 by ratings \n" +
                     "3. Back\n");
@@ -68,7 +68,7 @@ public class MenuListMovie extends MenuBase {
                     break;
             }
             /* implies that it is default which only shows both Sales and ratings */
-        } else {
+        } else if(flag == 2){
             print("1. Buy Ticket/ Set Review\n" +
                     "2. Show top 5 by sales \n" +
                     "3. Show top 5 by ratings \n" +
@@ -85,6 +85,19 @@ public class MenuListMovie extends MenuBase {
                     break;
                 case 3:
                     nextMenu = new MenuStaffTopFiveRating(this);
+                    break;
+                default:
+                    nextMenu = this.getPreviousMenu();
+                    break;
+            }
+        }else{
+            print("1. Buy Ticket/ Set Review\n" +
+                    "2. Back\n");
+            int choice = readIntInput("Enter choice: ");
+            switch (choice){
+                case 1:
+                    int movieID = readIntInput("Enter movieID: ");
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
                     break;
                 default:
                     nextMenu = this.getPreviousMenu();
