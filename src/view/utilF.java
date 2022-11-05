@@ -1,9 +1,15 @@
 package view;
 import controller.CinemaController;
+import controller.MovieController;
 import modal.Constant;
 import modal.Customer;
 import modal.Enums;
+import modal.Movie;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
@@ -14,7 +20,7 @@ import java.util.Scanner;
 
 /* Functions to help us to process printing/reading inputs */
 @SuppressWarnings("deprecation")
-public class utilF {
+public class utilF  {
     private static Scanner sc = new Scanner(System.in);
     public static int SCREEN_WIDTH = 80;
     /**
@@ -324,13 +330,6 @@ public class utilF {
     public static void println(String message){
         System.out.println(message+"\n");
     }
-
-    public static void printOptions(String message){
-        System.out.println(message);
-        System.out.println("=========================================================");
-    }
-
-
 
 
 }

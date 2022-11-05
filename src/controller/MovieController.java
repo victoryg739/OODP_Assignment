@@ -199,7 +199,11 @@ public class MovieController {
             sortRating(movieList);
             int top = 1;
             for(Movie movie: movieList){
-                println("Name: " + movie.getTitle() + "\n" + "Rating: " + printStars(movie.getRating()));
+                if(movie.getRatingTimes() > 1) {
+                    println("Name: " + movie.getTitle() + "\n" + "Rating: " + printStars(movie.getRating()));
+                }else {
+                    println("Name: " + movie.getTitle() + "\n" + "Rating: NA");
+                }
                 if (top++ == 5) {
                     break;
                 }
@@ -301,13 +305,11 @@ public class MovieController {
         return returnData;
     }
 
-    //NOT working yet
     public void sortTicketSales(ArrayList<Movie> movies) {
         Collections.sort(movies, (m1, m2) -> (m1.getTicketSales() - m2.getTicketSales()));
         Collections.reverse(movies);
     }
 
-    //NOT working yet
     public void sortRating(ArrayList<Movie> movies) {
         Collections.sort(movies, new Comparator<Movie>() {
             public int compare(Movie m1, Movie m2) {
@@ -325,7 +327,7 @@ public class MovieController {
             x = ("★★☆☆☆ (" + s + ")");
         else if(rating <= 3)
             x = ("★★★☆☆ (" + s + ")");
-        else if(rating <= 4)
+        else if(rating <= 4.9)
            x= ("★★★★☆ (" + s + ")");
         else
             x= ("★★★★★ (" + s + ")");
