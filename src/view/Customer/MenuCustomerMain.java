@@ -20,10 +20,7 @@ public class MenuCustomerMain extends MenuBase {
      4. Back to previous menu
      */
     public MenuBase execute() {
-        System.out.println("Welcome to MOvie Booking and LIsting Management Application (MOBLIMA)");
-
-        Scanner sc = new Scanner(System.in);
-        ArrayList<String> choices = new ArrayList<String>();
+        printHeader("Customer Menu");
         print("1. Search For Movies        \n" +
                 "2. List All Movies         \n" +
                 "3. Booking History         \n" +
