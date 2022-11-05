@@ -76,9 +76,9 @@ public class SettingController {
     3. Show both Rating and Review
      */
     public int returnResult(){
-        // Only show rating and sales
+        // Default: Only show rating and sales
         if(enableTicket("sales") && enableTicket("ratings")){
-            return 0;
+            return 3;
             // Only show ratings
         }else if(enableTicket("ratings")){
             return 2;
@@ -86,7 +86,7 @@ public class SettingController {
             // Show sales
             return 1;
         }else{
-            // Default
+            // Show None
             return 0;
         }
 
