@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static view.utilF.println;
 import static view.utilF.returnEnumsDay;
 
 public class CinemaController {
@@ -102,6 +103,30 @@ public class CinemaController {
         replace(cinemaListing);
 
     }
+
+    public void updateSeat(Object valueToSearch, ArrayList<Seat> selectedSeat) {
+        ArrayList<Cinema> cinemaListing = read();
+        System.out.println(cinemaListing.get(2).getSeats());
+        ArrayList<ArrayList<Seat>> seatList = new ArrayList<ArrayList<Seat>>();
+
+        for (int j=0; j<cinemaListing.size(); j++) {
+            if (cinemaListing.get(j).getCinemaNo().equals((String) valueToSearch)) {
+                if(cinemaListing.get(j).getSeats()  != null) {
+                    seatList = cinemaListing.get(j).getSeats(); //old list of seat in cinema
+                }
+                for (Seat s : selectedSeat) {
+                    int row = s.getRow();
+                    int col = s.getCol();
+                    seatList.get(row).get(col).setTaken(true);
+                    }
+                }
+              cinemaListing.get(j).setSeatPlan(seatList);
+
+        }
+    replace(cinemaListing);
+    }
+
+
 
     public void cinemaUpdateBySessionId(int choice,int sessionId,Object newValue) { //update cinema session arrayList
         ArrayList<Cinema> cinemaListing = read();
