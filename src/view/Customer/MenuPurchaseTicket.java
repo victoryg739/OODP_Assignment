@@ -63,6 +63,7 @@ public class MenuPurchaseTicket extends MenuBase {
 
         System.out.println("Menu for Purchasing Ticket:");
         System.out.println();
+        //cinemaController.printAllCinema();
 
         //Print the list of Cineplexes with the selected movies
         ArrayList<Cineplex> cineplexes = cc.read();
@@ -81,10 +82,14 @@ public class MenuPurchaseTicket extends MenuBase {
                 System.out.println("Invalid input! Please try again.");
             else { //valid choice
                 sessionList = showAvailableSessions(cineplexes.get(choice-1).getLocation(), movie);
-                if (sessionList.size() == 0)
+                if (sessionList == null)
                     System.out.println("No available sessions for this cineplex! Please choose another.");
             }
         }
+//        if (sessionList == null) {
+//            println(" ");
+//            return new MenuCustomerMain(this);
+//        }
         int c = readIntInput("Please Choose a session");
         Session session = sessionList.get(c - 1);
 
@@ -185,9 +190,9 @@ public class MenuPurchaseTicket extends MenuBase {
                 for (Seat seat : selected)
                     seat.setSelected(false);
             }
-        }while (readIntInput("Press 0 to return to previous menu: ") != 0) ;
+        }while (readIntInput("Press 0 to return to Main Menu: ") != 0) ;
 
-        return this.getPreviousMenu();
+        return new MenuCustomerMain(this);
     }
     /**
      * Print out the layout of the seats in the current slots,
@@ -264,13 +269,12 @@ public class MenuPurchaseTicket extends MenuBase {
 
         seats.get(i).get(j).setSelected(true);
         println("Selected Seat: Row: " + (i+1) + " Col: " + (j+1));
-
         return seats.get(i).get(j);
     }
 
     public ArrayList<Session> showAvailableSessions(String cineplexName, Movie movie) {
         Session tempSession;
-        Cinema tempCinema;
+        Cinema tempCinema = null;
         ArrayList<Session> sessionList = new ArrayList<>();
         int count = 1;
         boolean printSeparator = false;
@@ -282,12 +286,18 @@ public class MenuPurchaseTicket extends MenuBase {
             System.out.println((i+1) + " Cinema code: " + tempCinema.getCinemaNo() + "		Cinema type: " + tempCinema.getClassCinema());
             System.out.println();
         }
-        int cinemaChoice = readIntInput("Enter cinema of choice: ");
-        tempCinema = cinemaList.get(cinemaChoice - 1);
+
+//        while (tempCinema == null) {
+//            int cinemaChoice = readIntInput("Enter cinema of choice: ");
+//            tempCinema = cinemaList.get(cinemaChoice - 1);
+//        }
 
         System.out.println("Available screening times of " + movie.getTitle() + " in this cinema:");
         System.out.println();
 
+//        if (tempCinema.getSessions() == null) {
+//            return null;
+//        }
         for(int j = 0; j < tempCinema.getSessions().size() ; j++) {
             tempSession = tempCinema.getSessions().get(j);
             if (tempSession.getMovie().getTitle().equals(movie.getTitle())) {

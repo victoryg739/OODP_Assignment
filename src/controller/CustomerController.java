@@ -47,7 +47,12 @@ public class CustomerController {
                 bookingList.add(newBooking);
                 customerList.get(j).setBookings(bookingList);
             }
+            ArrayList<Booking> tempList = customerList.get(j).getBookings();
+            for (int i = 0; i < tempList.size(); i ++) {
+                System.out.println(tempList.get(i));
+            }
         }
+
         replace(customerList);
     }
 
