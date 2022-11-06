@@ -9,8 +9,7 @@ public class Booking implements Serializable{
     //minutes, XXX : cinema code in letters)
     private  String tid;
 
-    //unique customer email
-    private String email;
+
 
     //movie title
     private Movie movie;
@@ -27,16 +26,19 @@ public class Booking implements Serializable{
     //total price for the entire booking transaction
     private double totalPrice;
 
+    //CustomerId
+    private int customerId;
+
     //Constructor
-    public Booking (String cinemaNo, String tid, String email, String password, Movie movie,
+    public Booking (String cinemaNo, String tid, int customerId, Movie movie,
                     ArrayList<Ticket> ticket, Session session, double totalPrice) {
         this.tid = tid;
         this.cinemaNo = cinemaNo;
-        this.email = email;
         this.movie = movie;
         this.ticket = ticket;
         this.session = session;
         this.totalPrice = totalPrice;
+        this.customerId = customerId;
     }
 
     public String getTID() {
@@ -45,16 +47,6 @@ public class Booking implements Serializable{
 
     public void setTID(String tid) {
         this.tid = tid;
-    }
-
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Movie getMovie() {
@@ -87,5 +79,12 @@ public class Booking implements Serializable{
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 }

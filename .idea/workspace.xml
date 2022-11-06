@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0588c5fa-8b27-4dab-a208-df0667ac0b80" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="csa">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/PriceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PriceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Cinema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Price.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Price.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Seat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Seat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuMovieReviews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuMovieReviews.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieUpdate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +83,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0588c5fa-8b27-4dab-a208-df0667ac0b80" name="Changes" comment="test" />
+      <changelist id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="updated Format" />
       <created>1666417652481</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -259,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667711750619</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="csa">
+      <created>1667739804289</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1667739804289</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +314,8 @@
     <MESSAGE value="updated Format" />
     <MESSAGE value="fix errors" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="csa" />
+    <option name="LAST_COMMIT_MESSAGE" value="csa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -327,8 +336,5 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/OODP_Assignment$mainProgram.ic" NAME="mainProgram Coverage Results" MODIFIED="1667714357367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

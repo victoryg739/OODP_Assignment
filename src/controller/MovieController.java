@@ -1,8 +1,10 @@
 package controller;
 
 import modal.*;
+
 import java.io.*;
 import java.util.*;
+
 import modal.Enums.*;
 
 import static view.utilF.print;
@@ -19,6 +21,7 @@ import static view.utilF.println;
 public class MovieController {
     public final static String FILENAME = "data/movies.txt";
     SessionController sc = new SessionController();
+
     public MovieController() {
 
     }
@@ -36,6 +39,7 @@ public class MovieController {
         return lastId;
     }
 
+    /* Returns a movie object based on an ID */
     public Movie readByID(int valueToSearch) {
         ArrayList<Movie> allData = read();
         for (int i = 0; i < allData.size(); i++) {
@@ -148,7 +152,6 @@ public class MovieController {
     }
 
 
-
     // Read a movie object from movies.txt//
     public ArrayList<Movie> read() {
         try {
@@ -163,7 +166,6 @@ public class MovieController {
     }
 
 
-
     public void listMovies() {
         ArrayList<Movie> movieList = read();
         if (movieList.isEmpty()) {
@@ -176,70 +178,67 @@ public class MovieController {
         }
     }
 
-    public void listMovies(ShowingStatus s1, ShowingStatus s2, ArrayList<Movie> searchMovies) {
-        ArrayList<Session> sessionlist = sc.read();
+    public void listMovies(ArrayList<Movie> searchMovies) {
 
         ArrayList<Movie> movieList = new ArrayList<Movie>();
         // If searchMovies is empty means it is listingMovie
-        if(searchMovies == null) {
+        if (searchMovies == null) {
             movieList = read();
-        }else { // If search Empty has something inside then append to movielist
+        } else { // If search Empty has something inside then append to movielist
             movieList.addAll(searchMovies);
         }
+        for (int i = 0; i < movieList.size(); i++) {
+            Movie m = movieList.get(i);
+            System.out.println(m.getTitle());
+            m.printMovie();
 
-        if (movieList.isEmpty()) {
-            print("No movies in the database.");
-        } else {
-            for (int i = 0; i < movieList.size(); i++) {
-                Movie m = movieList.get(i);
-                for(int j=0; j < sessionlist.size(); j++) {
-                    if(sessionlist.get(j).getMovie().getId() == m.getId()) {
-                        if (m.getShowingStatus() == s1 || m.getShowingStatus() == s2) {
-                            m.printMovie();
-                        }
-                    }
-                }
-
-            }
         }
+
     }
 
     /* A function to check if this movie is in the session */
-    public boolean validMovieSession(int movieID){
+    public boolean validMovieSession(int movieID) {
         ArrayList<Session> sessionList = sc.read();
-        for(int i =0; i<sessionList.size(); i++){
-            if(sessionList.get(i).getMovie().getId() == movieID) {
+        for (int i = 0; i < sessionList.size(); i++) {
+            if (sessionList.get(i).getMovie().getId() == movieID) {
                 return true;
             }
         }
         return false;
     }
 
+    /* A function to check whether if it is valid to review a movie */
+    /* Customer should not be able to make a review for movies that have not been released */
+    public boolean validReviewMovie(int movieID){
+        Movie m = readByID(movieID);
+        if(m.getShowingStatus() != ShowingStatus.COMING_SOON){
+            return true; // Returns true (valid) if the moving status is not released
+        }
+        return false;
+    }
 
 
-
-
-    public void listTopSalesByRating(){
+    public void listTopSalesByRating() {
         ArrayList<Movie> movieList = read();
         try {
             sortRating(movieList);
             int top = 1;
-            for(Movie movie: movieList){
-                if(movie.getRatingTimes() > 1) {
-                    println("Name: " + movie.getTitle() + "\n" + "Rating: " + printStars(movie.getRating()));
-                }else {
+            for (Movie movie : movieList) {
+                if (movie.getRatingTimes() > 1) {
+                    println("Name: " + movie.getTitle() + "\n" + "Rating: " + movie.printStars());
+                } else {
                     println("Name: " + movie.getTitle() + "\n" + "Rating: NA");
                 }
                 if (top++ == 5) {
                     break;
                 }
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             print(e.getMessage());
         }
     }
 
-    public void listTopSalesBySales(){
+    public void listTopSalesBySales() {
         ArrayList<Movie> movieList = read();
         try {
             sortTicketSales(movieList);
@@ -271,10 +270,6 @@ public class MovieController {
     }
 
 
-    // Tester Function //
-
-
-    /* for debugging */
 
     public void listALLMoviesSettings() {
         ArrayList<Movie> movieList = read();
@@ -283,36 +278,15 @@ public class MovieController {
         } else {
             for (int i = 0; i < movieList.size(); i++) {
                 Movie m = movieList.get(i);
-                printMovie(m);
+                m.printMovie();
             }
         }
     }
-    public void printMovie(Movie movie){
-        int id = movie.getId();
-        String title = movie.getTitle();
-        MovieType movieType = movie.getType();
-        MovieRating movieRating = movie.getContentRating();
-        String synopsis = movie.getSynopsis();
-        int runtime = movie.getRuntime();
-        Date DateStart = movie.getDateStart();
-        Date DateEnd = movie.getDateEnd();
-        String director = movie.getDirector();
-        ShowingStatus ss = movie.getShowingStatus();
-        //ArrayList<String> casts = movie.getCast();
-        String castString = "";
-        for (int i=0; i< movie.getCast().size(); i++)
-            castString = castString.concat(movie.getCast().get(i) + ",");
-
-        castString = castString.substring(0, castString.length()-1);
-        String movieString = "ID: " + id + " | " + "Title: " + title + " | " + "Type " + movieType + " | " + "Rating " + movieRating + " | " + "Synopsis: " + synopsis + " | "
-                + "Runtime: " + runtime + " | " + "DateStart: " + DateStart + " | " + "DateEnd: " + DateEnd + " | " + "Director: " + director + " | "
-                + "Cast: " + castString + " | " + "Showing: " + ss;
-        System.out.println(movieString);
-        System.out.println("-------------------");
-    }
 
 
-    public void createMovie(Movie movie){
+
+
+    public void createMovie(Movie movie) {
         ArrayList<Movie> allData = new ArrayList<Movie>();
         File tempFile = new File(FILENAME);
         // If it exists then read() the existing data
@@ -331,19 +305,26 @@ public class MovieController {
 
     }
 
+
     public ArrayList<Movie> readByTitle(Object valueToSearch) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
         for (int i = 0; i < allData.size(); i++) {
             Movie m = allData.get(i);
-            if(m.getShowingStatus() == ShowingStatus.PREVIEW || m.getShowingStatus() == ShowingStatus.NOW_SHOWING) {
+            if (validateShowingStatus(m)) {
                 if (m.getTitle().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
                     returnData.add(m);
-            }
+                }
             }
         }
-
         return returnData;
+    }
+
+    public boolean validateShowingStatus(Movie m) {
+        if (m.getShowingStatus() == ShowingStatus.PREVIEW || m.getShowingStatus() == ShowingStatus.NOW_SHOWING) {
+            return true;
+        }
+        return false;
     }
 
     public void sortTicketSales(ArrayList<Movie> movies) {
@@ -359,19 +340,5 @@ public class MovieController {
         });
     }
 
-    public String printStars(double rating) {
-        String s = String.format("%.1f", rating);
-        String x;
-        if(rating <= 1)
-            x = ("☆☆☆☆☆ (" + s + ")");
-        else if(rating <= 2)
-            x = ("★★☆☆☆ (" + s + ")");
-        else if(rating <= 3)
-            x = ("★★★☆☆ (" + s + ")");
-        else if(rating <= 4.9)
-           x= ("★★★★☆ (" + s + ")");
-        else
-            x= ("★★★★★ (" + s + ")");
-        return x;
-    }
+
 }

@@ -1,4 +1,5 @@
 package view.Customer;
+import view.MainMenu;
 import view.MenuBase;
 
 import java.util.*;
@@ -24,7 +25,7 @@ public class MenuCustomerMain extends MenuBase {
         print("1. Search For Movies        \n" +
                 "2. List All Movies         \n" +
                 "3. Booking History         \n" +
-                "4. Go Back to Previous Menu\n");
+                "4. Go Back to Main Menu\n");
 
         //read the input
         int choice = readIntInput("Enter your choice");
@@ -42,7 +43,7 @@ public class MenuCustomerMain extends MenuBase {
                 nextMenu = new MenuCustomerLogin(this, 2, null);
                 break;
             case 4:
-                nextMenu = this.getPreviousMenu();
+                nextMenu = new MainMenu(this);
                 break;
         }
         return nextMenu;

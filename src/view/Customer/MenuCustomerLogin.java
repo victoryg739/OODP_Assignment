@@ -34,13 +34,14 @@ public class MenuCustomerLogin extends MenuBase{
 
             // Authenticate Username and Password
             if (custCtrl.authenticate(username, password)) {
-
+                Customer customer = custCtrl.readByUsername(username);
+                int tempId = customer.getCustomerID();
                 switch (a) {
                     case 1:
-                        nextMenu = new MenuPurchaseTicket(this, movie, username);
+                        nextMenu = new MenuPurchaseTicket(this, movie, tempId);
                         break;
                     case 2:
-                        nextMenu = new MenuBookingHistory(this, username);
+                        nextMenu = new MenuBookingHistory(this, tempId);
                         break;
                 }
             }
