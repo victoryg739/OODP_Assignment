@@ -48,7 +48,7 @@ public class MenuBookingHistory extends MenuBase {
                     "Show Time: " + book.getSession().getDateTime() + " " + book.getMovie().getRuntime() + "\n" +
                     "Total Price (GST included): S$" + book.getTotalPrice() + "\n" +
                     "Movie: " + book.getMovie().getTitle() + "\n" +
-                    "Seats : \n");
+                    "Seats : ");
             count++;
             for (Ticket ticket : book.getTicket()) {
                 println(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
