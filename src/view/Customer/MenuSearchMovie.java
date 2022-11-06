@@ -1,9 +1,11 @@
 package view.Customer;
 
 import controller.MovieController;
+import modal.Enums;
 import modal.Movie;
 import view.MenuBase;
 import view.Quit;
+import view.admin.MenuStaffTopFiveRating;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +17,7 @@ import static view.utilF.*;
 */
 
 public class MenuSearchMovie extends MenuBase {
-    private String movieName;
+
 
     private MovieController mc = new MovieController();
     public MenuSearchMovie(MenuBase initialMenu) {
@@ -24,62 +26,59 @@ public class MenuSearchMovie extends MenuBase {
 
     public MenuBase execute() {
         MenuBase nextMenu = null;
-        movieName = null;
-        int count = 1;
-        System.out.println("Movie Search");
+        String movieName;
+        int choice;
+
+        printHeader("Movie Search");
         movieName = read("Input movie name to search: ");
 
-        while (true) {
-            //obtain a ArrayList of Movie objects with the same name list
-            ArrayList<Movie> movieList = mc.readByTitle(movieName);
-            if (movieList.isEmpty()) { //if movie not found
-                System.out.println("Sorry, no result found. Press 0 to go back.");
-                movieName = read("Input movie name to search: ");
-                if(movieName.equals("0"))
+        //obtain a ArrayList of Movie objects with the same name list
+        ArrayList<Movie> movieList = mc.readByTitle(movieName);
+        if (movieList.isEmpty()) { //if movie not found
+            print("Sorry, no result found.");
+            print("1. Back\n" +
+                    "2. Quit\n");
+            choice = readIntInput("Choice: ");
+            switch (choice){
+                case 1:
+                    nextMenu = this.getPreviousMenu();
+                    break;
+                default:
+                    nextMenu = new Quit(this);
                     break;
             }
-            else { //if movie is found
-                //search through the ArrayList and output the searched movie
 
-                //showing the list of movies found
-                System.out.println("Found " + movieList.size() + " results:");
+        }
+        else { //if movie is found
+            println("Found " + movieList.size() + " results:");
+            mc.listMovies(Enums.ShowingStatus.PREVIEW, Enums.ShowingStatus.NOW_SHOWING, movieList);
+            print("===============================================");
+            print("1. Buy Ticket/ Set Review\n" +
+                    "2. Back \n" +
+                    "3. Quit\n");
 
-                for (int i = 0; i < movieList.size(); i++) {
-                    println(count + " " + movieList.get(i).getTitle());
-                    count++;
-                }
-
-                println((count) + " Go Back to Previous Menu             \n" +
-                        "\n" +
-                        (count + 1) + " Quit The Application             \n");
-
-                int choice = readIntInput("Please enter your choice: ");
-                /* eg. Menu Choices
-                    movies.size == 2
-                    Option 1: Movie 1
-                    Option 2: Movie 2
-                    Option 3: Go Back
-                    Option 4: Quit The Application
-                */
-                if (choice <= movieList.size()) {
-                    //go to MovieInfo Menu
-                    nextMenu = new MenuMovieInfo(this, movieList.get(choice - 1));
-                }
-                else if (choice == movieList.size() + 1) {
-                    //select Go Back option
-                    nextMenu = getPreviousMenu();
-                }
-                else if (choice == movieList.size() + 2) {
-                    //Quit the App
-                    nextMenu = new Quit(null);
-                }
-                break;
+            choice = readIntInput("Choice: ");
+            switch (choice) {
+                case 1:
+                    int movieID = readIntInput("Enter movieID: ");
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    break;
+                case 2:
+                    nextMenu = this.getPreviousMenu();
+                    break;
+                default:
+                    nextMenu = new Quit(this);
+                    break;
             }
+
         }
 
-        if(nextMenu!=null)
-            return nextMenu; //move to the next Menu (MovieInfo of the selected movie)
-        else //when the choice input is invalid
-            return this.getPreviousMenu(); //go back
+
+        return nextMenu;
+
     }
-}
+
+
+
+    }
+

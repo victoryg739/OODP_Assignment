@@ -1,12 +1,14 @@
 import controller.*;
 import modal.*;
-import view.EntryMenu;
 import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import static view.utilF.*;
 /* ToDo:
@@ -22,11 +24,10 @@ The start of the program
 
 public class mainProgram {
     public final static String FILENAME = "data/movies.txt";
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /* For Testing Purposes */
-//        PriceManager pm = new PriceManager();
-//        System.out.println(pm.calculateTicketPrice(Enums.AgeType.STUDENT,Enums.MovieType.TWO_D,Enums.ClassCinema.NORMAL,Enums.Day.FRI_BEF_SIX));
-
+        File myObj = new File("data/settings.txt");
+        myObj.createNewFile();
         // If File exists:
         File f = new File(FILENAME);
         if (!f.exists()) {
@@ -58,6 +59,19 @@ public class mainProgram {
             mc.updateMovie(11, 3, 400);
             mc.updateMovie(11, 4, 500);
             mc.updateMovie(11, 5, 100);
+
+            Cinema cinema3 = new Cinema(10,10,"A3", null, Enums.ClassCinema.NORMAL, null);
+            CustomerController customerController = new CustomerController();
+            Customer customer = new Customer("a", "a");
+            customerController.createCustomer(customer);
+            ArrayList<Ticket> tickets = new ArrayList<>();
+            Date currentTime = Calendar.getInstance().getTime();
+            Session tempSession = new Session(cinema3, movie0, 0, currentTime , Enums.Day.FRI_AFT_SIX);
+            //Create the booking transaction
+            BookingController bookingController = new BookingController();
+            Booking booking = new Booking("A1", "tid",
+                    "username","password", movie0, tickets, tempSession, 12.50);
+            bookingController.create(booking);
         }
 
         File fCinema = new File("data/cinema.txt");
@@ -134,15 +148,22 @@ public class mainProgram {
 //
 //            //GIVe aloy later
 //        }
+//        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+//        Session s = new Session(Cinema1, movie1, 1, getDate(),  Enums.Day.PH);
+//        Booking booking = new Booking('A1', 'TIDSAMPLE','user', 'pass', movie0,  tickets,
+//        bookingController.create(booking);
 
         Admin rootAdmin = new Admin("a","a");
         AdminController ac = new AdminController();
         ac.createAdmin(rootAdmin);
 
+
+
         MenuBase nextMenu = new MainMenu(null);
 
         do{
             nextMenu =  nextMenu.execute();
+
         }while(!(nextMenu instanceof Quit));
     }
 }

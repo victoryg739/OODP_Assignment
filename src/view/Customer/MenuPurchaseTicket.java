@@ -5,6 +5,7 @@ import modal.Customer;
 import modal.*;
 import view.MenuBase;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -78,8 +79,6 @@ public class MenuPurchaseTicket extends MenuBase {
                     System.out.println("No available sessions for this cineplex! Please choose another.");
             }
         }
-
-        //printMenu(choices, 1);
         int c = readIntInput("Please Choose a session");
         Session session = sessionList.get(c - 1);
 
@@ -92,8 +91,10 @@ public class MenuPurchaseTicket extends MenuBase {
 
         while(confirm("Continue to select seats?"))
         {
-            displaySeats(seats,row,col);
-            selected.add(chooseSeats(seats,row,col));
+            displaySeats(seats, session.getCinema().getCinemaNo());
+            Seat selectedSeat = chooseSeats(seats,row,col);
+            selected.add(selectedSeat);
+
         }
         /*
             Model for buying tickets:
@@ -147,13 +148,19 @@ public class MenuPurchaseTicket extends MenuBase {
             String timeStamp = new SimpleDateFormat("YYYYMMDDhhmm").format(currentTime);
             String tid = session.getCinema().getCinemaNo() + timeStamp;
 
+            /*
+            Login Interface
+             */
+            Customer customer;
+            if (confirm("Do you have an account")) {
+                customer = customerController.login();
+            } else {
+                String username = read("Enter Username: ");
+                String password = read("Enter password: ");
+                customer = new Customer(username, password);
+                customerController.createCustomer(customer);
+            }
 
-            //Customer customer = customerController.readByUsername(username);
-            String username = read("Enter username: ");
-            String password = read("Enter password: ");
-
-            Customer customer = new Customer(username, password);
-            customerController.createCustomer(customer);
             //Create the booking transaction
             Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
                     customer.getUsername(),customer.getPassword(), movie, tickets, session, totalPrice);
@@ -167,7 +174,8 @@ public class MenuPurchaseTicket extends MenuBase {
                 customer.addBookings(booking);
                 println("Booking successful, tid=" + tid);
                 movie.addTicketSales(tickets.size());
-                customerController.CustomerUpdate(username, booking);
+                customerController.CustomerUpdate(customer.getUsername(), booking);
+                cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected);
             }
             else {
                 for (Seat seat : selected)
@@ -182,9 +190,12 @@ public class MenuPurchaseTicket extends MenuBase {
      * including seats avaliable, seats occupied and seats chosen
      * With corridor printed out in the middle of the layout
      */
-    private void displaySeats(ArrayList<ArrayList<Seat>> seats, int row, int col)
+    private void displaySeats(ArrayList<ArrayList<Seat>> seats, String cinemaNo)
     {
         Seat seat;
+        Cinema  cinema = cinemaController.readByCinemaNo(cinemaNo);
+        ArrayList<ArrayList<Seat>> seatList = cinema.getSeats();
+        int col = seatList.get(0).size(), row=seatList.size();
         printHeader("Select Seats");
         for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++)
             print(" ");
@@ -204,8 +215,8 @@ public class MenuPurchaseTicket extends MenuBase {
             System.out.print(String.valueOf(i + 1) + " ");
             for(int j=0; j<col; j++)
             {
-                if (new_row != col / 2 - 1) {
-                    seat = seats.get(i).get(j);
+               if (new_row != col / 2 - 1) {
+                    seat = seatList.get(i).get(j);
                     if (seat.isTaken()) {
                         System.out.print("[X]");
                     }
@@ -227,8 +238,6 @@ public class MenuPurchaseTicket extends MenuBase {
         for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
             print(" ");
         println("----------");
-//        for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
-//            print(" ");
         println("|Entrance|\n");
         println("([ ] Available  [#] Seat Selected  [X] Sold)");
     }
@@ -289,9 +298,7 @@ public class MenuPurchaseTicket extends MenuBase {
                 printSeparator = false;
             }
         }
-
         return sessionList;
     }
-
 }
 

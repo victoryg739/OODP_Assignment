@@ -16,7 +16,7 @@ public class CustomerController {
     }
     // Creates a movie and writes it to customer.txt
     public static void createCustomer(Customer customer) {
-        // Creates an ArrayList of movie
+        // Creates an ArrayList of customer
         ArrayList<Customer> allData = new ArrayList<Customer>();
         File tempFile = new File(FILENAME);
 
@@ -120,6 +120,21 @@ public class CustomerController {
             Customer c = allData.get(i);
             if (c.getPassword().equals(valueToSearch))
                 return c;
+        }
+        return null;
+    }
+
+    public static ArrayList<Booking> retrieveByUsername(String valueToSearch) {
+        ArrayList<Customer> allData = readAll();
+        ArrayList<Booking> returnData = new ArrayList<>();
+        for (int i=0; i<allData.size(); i++){
+            Customer c = allData.get(i);
+            //compare the customer object with the one that login
+            if (c.getUsername().equals(valueToSearch)) { //if found correct
+                returnData = c.getBookings();
+                return returnData;
+            }
+
         }
         return null;
     }

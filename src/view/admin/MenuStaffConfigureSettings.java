@@ -36,7 +36,7 @@ public class MenuStaffConfigureSettings extends MenuBase {
                 nextMenu = new MenuStaffRegister(this);
                 break;
             case 4:
-                //nextMenu = new MenuMovieGoerDisplay(this);
+                nextMenu = new MenuMovieGoerDisplay(this);
                 break;
             case 5:
                 nextMenu = this.getPreviousMenu();
