@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a4e09fc4-309e-488e-8451-f3b445085990" name="Changes" comment="fix bug for MenuStaff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuPurchaseTicket.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,13 +26,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "E:/NTU/Year 2 Sem 1/SC2002 Object Oriented Design and Programming/Assignment"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/NTU/Year 2 Sem 1/SC2002 Object Oriented Design and Programming/Assignment&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="mainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="18" />
@@ -88,5 +89,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix bug for MenuStaff" />
     <option name="LAST_COMMIT_MESSAGE" value="fix bug for MenuStaff" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/OODP_Assignment$mainProgram.ic" NAME="mainProgram Coverage Results" MODIFIED="1667624966497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
