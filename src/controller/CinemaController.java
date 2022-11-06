@@ -103,13 +103,12 @@ public class CinemaController {
 
     }
 
-    public void updateSeat(Object valueToSearch, ArrayList<Seat> selectedSeat, Movie movie) {
+    public void updateSeat(Object valueToSearch, ArrayList<Seat> selectedSeat, Movie movie, Session session) {
         ArrayList<Cinema> cinemaListing = read();
         ArrayList<ArrayList<Seat>> seatList = new ArrayList<ArrayList<Seat>>();
 
         for (int j=0; j<cinemaListing.size(); j++) {
             if (cinemaListing.get(j).getCinemaNo().equals((String) valueToSearch)) {
-
                 if(cinemaListing.get(j).getSeats()  != null) {
                     seatList = cinemaListing.get(j).getSeats(); //old list of seat in cinema
                 }
@@ -119,7 +118,7 @@ public class CinemaController {
                     seatList.get(row).get(col).setTaken(true);
                     }
                 }
-              cinemaListing.get(j).setSeatPlan(seatList);
+                cinemaListing.get(j).setSeatPlan(seatList);
 
         }
     replace(cinemaListing);
@@ -362,9 +361,5 @@ public class CinemaController {
         }
         return sessionList;
     }
-
-
-
-
 
 }

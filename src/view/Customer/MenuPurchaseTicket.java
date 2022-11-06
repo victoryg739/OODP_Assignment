@@ -167,7 +167,7 @@ public class MenuPurchaseTicket extends MenuBase {
                 println("Booking successful, tid=" + tid);
                 movieController.updateMovie(11, movie.getId(), tickets.size());
                 bookingController.create(booking);
-                cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected, movie);
+                cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected, movie, session);
             }
             else {
                 for (Seat seat : selected)
