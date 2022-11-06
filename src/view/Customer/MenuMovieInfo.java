@@ -29,9 +29,9 @@ public class MenuMovieInfo extends MenuBase {
             printMovieInformation();
 
             int flag = 0;
-            //If the movie is currently showing or coming soon => Allow customers to buy tickets
+            //If the movie is currently showing or preview => Allow customers to buy tickets
             if (((movie.getShowingStatus().equals(Enums.ShowingStatus.NOW_SHOWING)) ||
-                    (movie.getShowingStatus().equals(Enums.ShowingStatus.COMING_SOON)))) {
+                    (movie.getShowingStatus().equals(Enums.ShowingStatus.PREVIEW)))) {
                 println(count + " Buy Tickets     ");
                 flag = 1;
                 count++;
@@ -59,7 +59,7 @@ public class MenuMovieInfo extends MenuBase {
 
                 switch (choice) {
                     case 1:
-                        nextMenu = new MenuPurchaseTicket(this, this.movie);
+                        nextMenu = new MenuCustomerLogin(this, 1 , this.movie);
                         break;
                     case 2:
                         nextMenu = new MenuMovieReviews(this, this.movie);

@@ -36,6 +36,8 @@ public class MenuCustomerRegister extends MenuBase {
             // Creating new customer account object
             Customer customer = new Customer(customerUsername, password);
 
+
+
             // Create new Customer account when the 2 input passwords match
             if(consistentPassword){
                 customerCtrl.createCustomer(customer);

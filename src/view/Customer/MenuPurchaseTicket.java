@@ -4,6 +4,7 @@ import controller.*;
 import modal.Customer;
 import modal.*;
 import view.MenuBase;
+import view.admin.MenuStaffLogin;
 
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
@@ -29,7 +30,9 @@ public class MenuPurchaseTicket extends MenuBase {
     private CinemaController cinemaController;
     private BookingController bookingController;
 
-    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie) {
+    private String username;
+
+    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie, String username) {
         super(previousMenu);
         this.movie = movie;
         this.cineplexController = new CineplexController();
@@ -39,6 +42,7 @@ public class MenuPurchaseTicket extends MenuBase {
         this.sessionController = new SessionController();
         this.cinemaController = new CinemaController();
         this.bookingController = new BookingController();
+        this.username = username;
     }
 
 
@@ -51,9 +55,11 @@ public class MenuPurchaseTicket extends MenuBase {
      Provide the total ticket price to the user
      */
     public MenuBase execute() {
+
         CineplexController cc = new CineplexController();
         ArrayList<String> choices = new ArrayList<>();
         ArrayList<Session> sessionList = new ArrayList<>();
+
 
         System.out.println("Menu for Purchasing Ticket:");
         System.out.println();
@@ -152,14 +158,8 @@ public class MenuPurchaseTicket extends MenuBase {
             Login Interface
              */
             Customer customer;
-            if (confirm("Do you have an account")) {
-                customer = customerController.login();
-            } else {
-                String username = read("Enter Username: ");
-                String password = read("Enter password: ");
-                customer = new Customer(username, password);
-                customerController.createCustomer(customer);
-            }
+            CustomerController cController = new CustomerController();
+            customer = cController.readByUsername(username);
 
             //Create the booking transaction
             Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
@@ -171,10 +171,14 @@ public class MenuPurchaseTicket extends MenuBase {
                     seat.setSelected(false);
                     seat.setTaken(true);
                 }
+                System.out.println("before booking");
                 customer.addBookings(booking);
+                System.out.println("after booking");
                 println("Booking successful, tid=" + tid);
                 movie.addTicketSales(tickets.size());
-                customerController.CustomerUpdate(customer.getUsername(), booking);
+                System.out.println("we are before");
+                cController.CustomerUpdate(customer.getUsername(), booking);
+                System.out.println("we are after");
                 cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected);
             }
             else {
