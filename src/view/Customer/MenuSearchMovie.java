@@ -1,8 +1,10 @@
 package view.Customer;
 
 import controller.MovieController;
+import controller.SessionController;
 import modal.Enums;
 import modal.Movie;
+import modal.Session;
 import view.MenuBase;
 import view.Quit;
 import view.admin.MenuStaffTopFiveRating;
@@ -25,6 +27,8 @@ public class MenuSearchMovie extends MenuBase {
     }
 
     public MenuBase execute() {
+        SessionController sc = new SessionController();
+        ArrayList<Session> sessionlist = sc.read();
         MenuBase nextMenu = null;
         String movieName;
         int choice;
@@ -34,11 +38,13 @@ public class MenuSearchMovie extends MenuBase {
 
         //obtain a ArrayList of Movie objects with the same name list
         ArrayList<Movie> movieList = mc.readByTitle(movieName);
-        if (movieList.isEmpty()) { //if movie not found
+        if (sessionlist.isEmpty()) {
             print("Sorry, no result found.");
             print("1. Back\n" +
                     "2. Quit\n");
+
             choice = readIntInput("Choice: ");
+
             switch (choice){
                 case 1:
                     nextMenu = this.getPreviousMenu();
@@ -49,8 +55,7 @@ public class MenuSearchMovie extends MenuBase {
             }
 
         }
-        else { //if movie is found
-            println("Found " + movieList.size() + " results:");
+        else { // if movie is found
             mc.listMovies(Enums.ShowingStatus.PREVIEW, Enums.ShowingStatus.NOW_SHOWING, movieList);
             print("===============================================");
             print("1. Buy Ticket/ Set Review\n" +
@@ -61,7 +66,12 @@ public class MenuSearchMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Enter movieID: ");
-                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+
+                    if(mc.validMovieSession(movieID)) {
+                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    }else {
+                        print("Invalid movieID");
+                    }
                     break;
                 case 2:
                     nextMenu = this.getPreviousMenu();
@@ -72,8 +82,6 @@ public class MenuSearchMovie extends MenuBase {
             }
 
         }
-
-
         return nextMenu;
 
     }

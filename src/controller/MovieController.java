@@ -18,7 +18,7 @@ import static view.utilF.println;
 // Database for Admin control //
 public class MovieController {
     public final static String FILENAME = "data/movies.txt";
-
+    SessionController sc = new SessionController();
     public MovieController() {
 
     }
@@ -177,6 +177,8 @@ public class MovieController {
     }
 
     public void listMovies(ShowingStatus s1, ShowingStatus s2, ArrayList<Movie> searchMovies) {
+        ArrayList<Session> sessionlist = sc.read();
+
         ArrayList<Movie> movieList = new ArrayList<Movie>();
         // If searchMovies is empty means it is listingMovie
         if(searchMovies == null) {
@@ -190,13 +192,30 @@ public class MovieController {
         } else {
             for (int i = 0; i < movieList.size(); i++) {
                 Movie m = movieList.get(i);
-                if(m.getShowingStatus() == s1 || m.getShowingStatus() == s2) {
-                    m.printMovie();
+                for(int j=0; j < sessionlist.size(); j++) {
+                    if(sessionlist.get(j).getMovie().getId() == m.getId()) {
+                        if (m.getShowingStatus() == s1 || m.getShowingStatus() == s2) {
+                            m.printMovie();
+                        }
+                    }
                 }
 
             }
         }
     }
+
+    /* A function to check if this movie is in the session */
+    public boolean validMovieSession(int movieID){
+        ArrayList<Session> sessionList = sc.read();
+        for(int i =0; i<sessionList.size(); i++){
+            if(sessionList.get(i).getMovie().getId() == movieID) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
 
 
