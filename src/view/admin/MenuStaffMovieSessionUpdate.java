@@ -74,8 +74,7 @@ public class MenuStaffMovieSessionUpdate extends MenuBase {
 
         int choice = readIntInput("Select variable to update: \n" +
                 "1. Movie\n" +
-                "2. Date & Time \n" +
-                "3. Seating Plan");
+                "2. Date & Time \n");
 
         switch(choice) {
             case 1:

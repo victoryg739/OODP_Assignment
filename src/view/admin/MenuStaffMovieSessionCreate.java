@@ -43,7 +43,7 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
                 print(cinemaArray.get(j).getCinemaNo()+ " ");
 
             }
-            println("");
+            print("");
         }
 
 

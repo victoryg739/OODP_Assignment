@@ -111,17 +111,14 @@ public class SessionController {
 
 
     public void printAllSession() {
-        ArrayList<Session> sessionFile = read();
+        ArrayList<Session> sf = read();
         println("");
         printHeader("Printing all Sessions:");
-        for (int i = 0; i < sessionFile.size(); i++) { //return one section by one for the whole session file
-            System.out.print(sessionFile.get(i).getSessionId() + "\t");
-            System.out.print(sessionFile.get(i).getCinema().getCinemaNo() + "\t");
-            System.out.print(sessionFile.get(i).getMovie().getId() + "\t");
-            System.out.print(sessionFile.get(i).getDateTime() + "\t");
-            System.out.print(sessionFile.get(i).getDay() + "\t");
+        System.out.printf("| %5s | %5s | %5s | %30s | %12s |%n", "SID", "CinNo", "MID", "DateTime","Day");
+        System.out.printf("-------------------------------------------------------------------------\n");
 
-            System.out.printf("\n");
+        for (int i = 0; i < sf.size(); i++) { //return one section by one for the whole session file
+            System.out.printf("| %5s | %5s | %5s | %30s | %12s |%n",sf.get(i).getSessionId(),sf.get(i).getCinema().getCinemaNo(),sf.get(i).getMovie().getId(),sf.get(i).getDateTime(),sf.get(i).getDay()  );
 
         }
     }

@@ -63,8 +63,7 @@ public class utilF  {
                 String date = read(msg + " (" + sdf.toPattern()+ "): ");
                 return sdf.parse(date);
             } catch (ParseException ime) {
-                System.out.println("Please enter a correct date format");
-                sc.nextLine();
+                System.out.println("Please enter the correct date format!");
             }
         } while (true);
     }
@@ -262,6 +261,112 @@ public class utilF  {
             }
         }
     }
+
+    public static Enums.Day readDay(String Message) {
+        Enums.Day day;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+
+                switch(c) {
+                    case 1:
+                        day = Enums.Day.MON_WED_BEF_SIX;
+                        break;
+                    case 2:
+                        day = Enums.Day.MON_WED_AFT_SIX;
+                        break;
+                    case 3:
+                        day = Enums.Day.THU_BEF_SIX;
+                        break;
+                    case 4:
+                        day = Enums.Day.THU_AFT_SIX;
+                        break;
+                    case 5:
+                        day = Enums.Day.FRI_BEF_SIX;
+                        break;
+                    case 6:
+                        day = Enums.Day.FRI_AFT_SIX;
+                        break;
+                    case 7:
+                        day = Enums.Day.SAT_SUN;
+                        break;
+                    default:
+                        System.out.println("Default Saturday and Sunday is selected! ");
+                        day = Enums.Day.SAT_SUN;
+                        break;
+                }
+
+                return day;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
+    public static Enums.ClassCinema readClassCinema(String Message) {
+        Enums.ClassCinema classCinema;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+
+                switch(c){
+                    case 1:
+                        classCinema = Enums.ClassCinema.PLATINUM;
+                        break;
+                    case 2:
+                        classCinema = Enums.ClassCinema.NORMAL;
+                        break;
+                    default:
+                        System.out.println("Default class cinema normal selected! ");
+                        classCinema = Enums.ClassCinema.NORMAL;
+                        break;
+
+                }
+
+
+                return classCinema;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
+
+    public static Enums.AgeType readAgeType(String Message) {
+        Enums.AgeType ageType;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+
+                switch(c){
+                    case 1:
+                        ageType = Enums.AgeType.NORMAL;
+                        break;
+                    case 2:
+                        ageType = Enums.AgeType.STUDENT;
+                        break;
+                    case 3:
+                        ageType = Enums.AgeType.SENIOR;
+                        break;
+                    default:
+                        System.out.println("Default age type normal selected! ");
+                        ageType = Enums.AgeType.NORMAL;
+                        break;
+
+                }
+
+
+                return ageType;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
+
 
 
 
