@@ -5,7 +5,6 @@ import java.util.*;
 public class Customer implements Serializable {
     private String username;
     private String password;
-
     private int customerID;
     private ArrayList<Booking> bookings;
 
@@ -40,6 +39,10 @@ public class Customer implements Serializable {
     public int generateCustomerID() {
         customerID += 1;
         return customerID;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 
     public void setBookings(ArrayList<Booking> bookings) {

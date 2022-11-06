@@ -2,7 +2,6 @@ package view.Customer;
 
 import controller.MovieController;
 import controller.SessionController;
-import modal.Enums;
 import modal.Movie;
 import modal.Session;
 import view.MenuBase;
@@ -10,83 +9,59 @@ import view.Quit;
 import view.admin.MenuStaffTopFiveRating;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import static view.utilF.*;
-/* ToDO list:
-    1. Remove the space in the input name and search
-    eg. Iron Man == IronMan
-*/
 
 public class MenuSearchMovie extends MenuBase {
 
 
-    private MovieController mc = new MovieController();
+    MovieController mc = new MovieController();
+    SessionController sc = new SessionController();
+
     public MenuSearchMovie(MenuBase initialMenu) {
         super(initialMenu);
     }
 
     public MenuBase execute() {
-        SessionController sc = new SessionController();
-        ArrayList<Session> sessionlist = sc.read();
-        MenuBase nextMenu = null;
-        String movieName;
+        MenuBase nextMenu;
         int choice;
 
         printHeader("Movie Search");
-        movieName = read("Input movie name to search: ");
+        String movieName = read("Input movie name to search: ");
 
-        //obtain a ArrayList of Movie objects with the same name list
         ArrayList<Movie> movieList = mc.readByTitle(movieName);
-        if (sessionlist.isEmpty()) {
+        // If session is Empty or MovieList is Empty then no results found
+        if (movieList.isEmpty()) {
             print("Sorry, no result found.");
-            print("1. Back\n" +
-                    "2. Quit\n");
-
-            choice = readIntInput("Choice: ");
-
-            switch (choice){
-                case 1:
-                    nextMenu = this.getPreviousMenu();
-                    break;
-                default:
-                    nextMenu = new Quit(this);
-                    break;
-            }
-
+            return this.getPreviousMenu();
         }
-        else { // if movie is found
-            mc.listMovies(Enums.ShowingStatus.PREVIEW, Enums.ShowingStatus.NOW_SHOWING, movieList);
-            print("===============================================");
-            print("1. Buy Ticket/ Set Review\n" +
-                    "2. Back \n" +
-                    "3. Quit\n");
 
-            choice = readIntInput("Choice: ");
-            switch (choice) {
-                case 1:
-                    int movieID = readIntInput("Enter movieID: ");
+        mc.listMovies(movieList);
+        printDivider();
+        print("1. View Movie Details\n" +
+                "2. Set Movie Review\n" +
+                "3. Show top 5 movies by ratings \n" +
+                "3. Back\n");
+        choice = readIntInput("Enter choice: ");
+        switch (choice) {
+            case 1:
+                int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
+                nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                break;
+            case 2:
+                movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
+                nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
+                break;
+            case 3:
+                nextMenu = new MenuStaffTopFiveRating(this);
+                break;
+            default:
+                nextMenu = this.getPreviousMenu();
+                break;
 
-                    if(mc.validMovieSession(movieID)) {
-                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
-                    }else {
-                        print("Invalid movieID");
-                    }
-                    break;
-                case 2:
-                    nextMenu = this.getPreviousMenu();
-                    break;
-                default:
-                    nextMenu = new Quit(this);
-                    break;
-            }
 
         }
         return nextMenu;
-
     }
-
-
-
-    }
+}
 

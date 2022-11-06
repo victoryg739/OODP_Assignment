@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static view.utilF.print;
+import static view.utilF.println;
+
 public class Movie implements Serializable {
 
     private int id, runtime;
@@ -172,6 +175,77 @@ public class Movie implements Serializable {
         System.out.println(" ");
 
     }
+    public void printALLInfoMovie(){
+        //Movie Title
+        System.out.println("Title: " + title);
+
+        //Movie Status
+        System.out.println("Showing Status: " + showingStatus);
+
+        //Movie Content Rating (PG13, N16, R21, ...)
+        System.out.println("Content Rating: " + ContentRating);
+
+        //Movie Runtime
+        System.out.println("Runtime: " + runtime + " minutes");
+
+        //Movie Director
+        System.out.println("Director: " + director);
+
+        //Movie Cast
+        System.out.println("Cast: ");
+        StringBuilder s = new StringBuilder();
+        for (String r : getCast()) { //get list of the entire cast for the movie
+            s.append(r + "; ");
+        }
+
+        //print the list of cast
+        System.out.println(s.toString());
+
+        //Opening date of the movie
+        System.out.println("Opening: " + DateStart);
+
+        //Ending date of the movie
+        System.out.println("Ending: " + DateEnd);
+
+        //Movie Synopsis
+        System.out.println("Synopsis: " + synopsis);
+
+        //Movie Overall Rating
+        System.out.println("Overall Rating:");
+        System.out.printf("%,.2f\n", getRating());
+
+        //Show the last 5 rating together with comments
+        System.out.println("Last 5 reviews: ");
+        int count = 0;
+        if (getRating() != 0) {
+            for (Review r : getReviews()) {
+                if (count == 5) break;
+                String message = (count+1) + ": Review: " + r.getComment() + " | " + "Rating: " + printStars();
+                print(message);
+                count++;
+            }
+        }
+        println("");
+
+    }
+
+
+    public String printStars() {
+        String s = String.format("%.1f", getRating());
+        String x;
+        if (getRating() <= 1)
+            x = ("☆☆☆☆☆ (" + s + ")");
+        else if (getRating() <= 2)
+            x = ("★★☆☆☆ (" + s + ")");
+        else if (getRating() <= 3)
+            x = ("★★★☆☆ (" + s + ")");
+        else if (getRating() <= 4.9)
+            x = ("★★★★☆ (" + s + ")");
+        else
+            x = ("★★★★★ (" + s + ")");
+        return x;
+    }
+
     public void removeReview(Review review) {
         for (Review rev : this.reviews) {
             if (this.reviews.equals(review)) {

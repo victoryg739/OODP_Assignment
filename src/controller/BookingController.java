@@ -4,13 +4,17 @@ import java.io.*;
 import java.util.*;
 import modal.*;
 
+import static view.utilF.confirm;
+
 public class BookingController {
     public final static String FILENAME = "data/booking.txt";
 
     public void create(Booking booking) {
         ArrayList<Booking> allData = new ArrayList<Booking>();
         File tempFile = new File(FILENAME);
-        if (tempFile.exists()) allData = read();
+        if (tempFile.exists()) {
+            allData = read();
+        }
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
             allData.add(booking);
@@ -37,17 +41,16 @@ public class BookingController {
     /**
      * Delete a Transaction in the Database file, based on the TID and MovieGoer's username attribute passed
      * @param TID           Transaction ID of Transaction which will be deleted
-     * @param username      Username of Transaction which will be deleted
+     * @param customerId      customerId of Transaction which will be deleted
      */
-    public void delete(String TID, String username) {
+    public void delete(String TID, int customerId) {
         ArrayList<Booking> allData = read();
         Booking booking = null;
         ArrayList<Booking> returnData = new ArrayList<Booking>();
 
         for (int i=0; i<allData.size(); i++){
             booking = allData.get(i);
-            if (booking.getTID().equals(TID)
-                    && booking.getEmail().equals(username))
+            if (booking.getTID().equals(TID) && booking.getCustomerId() == customerId)
                 continue;
             returnData.add(booking);
         }
@@ -73,19 +76,35 @@ public class BookingController {
         }
     }
 
-    public ArrayList<Booking> readByUsername(String inputUsername) {
+    public ArrayList<Booking> readbyId (int customerId) {
         ArrayList<Booking> allData = read();
-        Booking booking = null;
-        String dbUsername = null;
+        Booking booking;
+        int dbId;
         ArrayList<Booking> returnData = new ArrayList<Booking>();
         for (int i = 0; i < allData.size(); i++) {
             booking = allData.get(i);
-            dbUsername = booking.getEmail();
-            if (dbUsername.toLowerCase().contains(inputUsername.toLowerCase())) {
+            dbId = booking.getCustomerId();
+            if (dbId == customerId) {
                 returnData.add(booking);
             }
         }
         return returnData;
     }
+
+    public ArrayList<Booking> readbyUsername (String username) {
+        ArrayList<Booking> allData = read();
+        Booking booking;
+        String dbUsername;
+        ArrayList<Booking> returnData = new ArrayList<Booking>();
+        for (int i = 0; i < allData.size(); i++) {
+            booking = allData.get(i);
+            dbUsername = booking.getUsername();
+            if (dbUsername.toLowerCase().equals(username.toLowerCase())) {
+                returnData.add(booking);
+            }
+        }
+        return returnData;
+    }
+
 
 }

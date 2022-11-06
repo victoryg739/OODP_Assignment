@@ -24,31 +24,34 @@ public class MenuListMovie extends MenuBase {
 
 
     public MenuBase execute() {
-        MenuBase nextMenu ;
+        MenuBase nextMenu;
 
 
-        printHeader("Current Movie Listing");
-        mc.listMovies(Enums.ShowingStatus.PREVIEW, Enums.ShowingStatus.NOW_SHOWING, null);
-        print("===============================================");
+        printHeader("Movie Listing");
+        mc.listMovies(null);
+        printDivider();
+
         int flag = setc.returnResult(); // a variable to determine what to show to the user
         /* Flag == 2 implies that it only shows Rating */
+
         if (flag == 2) {
-            print("1. Buy Ticket/ Set Review\n" +
-                    "2. Show top 5 by ratings \n" +
-                    "3. Back\n");
+            print("1. View Movie Details\n" +
+                    "2. Set Movie Review\n" +
+                    "3. Show top 5 movies by ratings \n" +
+                    "4. Back\n");
             int choice = readIntInput("Enter choice: ");
             switch (choice) {
                 case 1:
-                    int movieID = readIntInput("Enter movieID: ");
-                    if(mc.validMovieSession(movieID)) {
-                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
-                    }else {
-                        print("Invalid movieID");
-                        nextMenu = this.getPreviousMenu();
-                    }
+                    int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
                     break;
                 case 2:
-                    nextMenu = new MenuStaffTopFiveRating(this);
+                    movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
+                    nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
+
+                    break;
+                case 3:
+                    nextMenu =  new MenuStaffTopFiveRating(this);
                     break;
                 default:
                     nextMenu = this.getPreviousMenu();
@@ -56,63 +59,50 @@ public class MenuListMovie extends MenuBase {
             }
         /* Flag == 1 implies that it only shows Sales */
         } else if (flag == 1) {
-            print("1. Buy Ticket/ Set Review\n" +
-                    "2. Show top 5 by sales \n" +
-                    "3. Back\n");
+            print("1. View Movie Details\n" +
+                    "2. Set Movie Review\n" +
+                    "3. Show top 5 by sales \n" +
+                    "4. Back\n");
             int choice = readIntInput("Enter choice: ");
             switch (choice) {
                 case 1:
-                    int movieID = readIntInput("Enter movieID: ");
-                    if(mc.validMovieSession(movieID)) {
-                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
-                    }else {
-                        print("Invalid movieID");
-                        nextMenu = this.getPreviousMenu();
-                    }
+                    int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
                     break;
                 case 2:
-                    nextMenu = new MenuStaffTopFiveSales(this);
+                    movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
+                    nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
+                    break;
+                case 3:
+                    nextMenu =  new MenuStaffTopFiveSales(this);
                     break;
                 default:
                     nextMenu = this.getPreviousMenu();
                     break;
             }
             /* implies that it is default which only shows both Sales and ratings */
-        } else if(flag == 3){
-            print("1. Buy Ticket/ Set Review\n" +
-                    "2. Show top 5 by sales \n" +
-                    "3. Show top 5 by ratings \n" +
-                    "4. Back\n");
+        } else {
+            print("1. View Movie Details\n" +
+                    "2. Set Movie Review\n" +
+                    "3. Show top 5 by sales \n" +
+                    "4. Show top 5 by ratings \n" +
+                    "5. Back\n");
             int choice = readIntInput("Enter choice: ");
 
             switch (choice) {
                 case 1:
-                    int movieID = readIntInput("Enter movieID: ");
-                    if(mc.validMovieSession(movieID)) {
-                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
-                    }else {
-                        print("Invalid movieID");
-                        nextMenu = this.getPreviousMenu();
-                    }
+                    int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
                     break;
                 case 2:
-                    nextMenu = new MenuStaffTopFiveSales(this);
+                    movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
+                    nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
                     break;
                 case 3:
+                    nextMenu =  new MenuStaffTopFiveSales(this);
+                    break;
+                case 4:
                     nextMenu = new MenuStaffTopFiveRating(this);
-                    break;
-                default:
-                    nextMenu = this.getPreviousMenu();
-                    break;
-            }
-        }else{
-            print("1. Buy Ticket/ Set Review\n" +
-                    "2. Back\n");
-            int choice = readIntInput("Enter choice: ");
-            switch (choice){
-                case 1:
-                    int movieID = readIntInput("Enter movieID: ");
-                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
                     break;
                 default:
                     nextMenu = this.getPreviousMenu();

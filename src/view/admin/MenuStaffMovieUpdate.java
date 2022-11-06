@@ -23,8 +23,8 @@ public class MenuStaffMovieUpdate extends MenuBase {
                 2. Uncomment mc.listALLMovies();
          */
         printHeader("Updating Movie");
-        //mc.listMovies();
-        mc.listALLMoviesSettings();
+        mc.listMovies();
+        //mc.listALLMoviesSettings();
         print("Select movie to be updated: ");
         int movieID = readIntInput("Enter movie ID:");
 
