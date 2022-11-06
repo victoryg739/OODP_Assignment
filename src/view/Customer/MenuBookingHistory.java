@@ -15,11 +15,11 @@ import static view.utilF.*;
 
 public class MenuBookingHistory extends MenuBase {
 
-    private String username;
+    private int tempID;
 
-    public MenuBookingHistory(MenuBase initialMenu, String username) {
+    public MenuBookingHistory(MenuBase initialMenu, int tempID) {
         super(initialMenu);
-        this.username = username;
+        this.tempID = tempID;
     }
 
     /*
@@ -33,10 +33,11 @@ public class MenuBookingHistory extends MenuBase {
         println("Please Login Using Username and Email");
 
         CustomerController customerController = new CustomerController();
+        BookingController bookingController = new BookingController();
 
         Customer customer;
         CustomerController cController = new CustomerController();
-        customer = cController.readByUsername(username);
+        customer = cController.readByCustomerID(tempID);
 
 //        Customer tempCustomer = customerController.readByUsername(customer.getUsername());
 //        //wrong password
@@ -45,14 +46,15 @@ public class MenuBookingHistory extends MenuBase {
 //        }
 
         if (customer != null) { //if login successful
-            ArrayList<Booking> booking = customerController.retrieveByUsername(username);
-            println("In total, " + booking.size() + " bookings found under " + username + ".");
+            ArrayList<Booking> booking = bookingController.readbyId(tempID);
+            println("In total, " + booking.size() + " bookings found under " + customer.getUsername() + ".");
             int count = 1;
 
             //Once the user login, for each booking made, display the respective details:
             for (Booking book : booking) {
                 println("");
                 println("Booking " + count + " :");
+                System.out.println(book);
                 count++;
                 System.out.println("TID: " + book.getTID());
                 System.out.println("Show Time: " + book.getSession().getDateTime() + " " + book.getMovie().getRuntime());
@@ -64,8 +66,8 @@ public class MenuBookingHistory extends MenuBase {
                 }
             }
         }
-        while (readIntInput("Press 0 to return to previous menu: ") != 0) ;
-        return this.getPreviousMenu();
+        while (readIntInput("Press 0 to return to Customer Main Menu: ") != 0) ;
+        return new MenuCustomerMain(this);
     }
 
 }

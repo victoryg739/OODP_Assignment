@@ -40,7 +40,7 @@ public class mainProgram {
             }
 
             Movie movie0 = new Movie(0, "Spiderman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Away from you", 300, readDate(), readDate(), "Bryan Tay", casts);
-            Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.ShowingStatus.COMING_SOON, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.ShowingStatus.NOW_SHOWING, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
             Movie movie2 = new Movie(2, "Chickenman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Fuck you victor", 300, readDate(), readDate(), "Bryan Tay", casts);
             Movie movie3 = new Movie(3, "Allahman", Enums.MovieType.BLOCKBUSTER, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.G, "Allahu akbar", 300, readDate(), readDate(), "Bryan Tay", casts);
             Movie movie4 = new Movie(4, "Hohoman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
@@ -63,6 +63,7 @@ public class mainProgram {
             Cinema cinema3 = new Cinema(10,10,"A3", null, Enums.ClassCinema.NORMAL, null);
             CustomerController customerController = new CustomerController();
             Customer customer = new Customer("a", "a");
+            customer.setCustomerID(0);
             customerController.createCustomer(customer);
             ArrayList<Ticket> tickets = new ArrayList<>();
             Date currentTime = Calendar.getInstance().getTime();
@@ -70,7 +71,7 @@ public class mainProgram {
             //Create the booking transaction
             BookingController bookingController = new BookingController();
             Booking booking = new Booking("A1", "tid",
-                    "username","password", movie0, tickets, tempSession, 12.50);
+                    0, movie0, tickets, tempSession, 12.50);
             bookingController.create(booking);
         }
 

@@ -30,9 +30,9 @@ public class MenuPurchaseTicket extends MenuBase {
     private CinemaController cinemaController;
     private BookingController bookingController;
 
-    private String username;
+    private int tempId;
 
-    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie, String username) {
+    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie, int tempId) {
         super(previousMenu);
         this.movie = movie;
         this.cineplexController = new CineplexController();
@@ -42,7 +42,7 @@ public class MenuPurchaseTicket extends MenuBase {
         this.sessionController = new SessionController();
         this.cinemaController = new CinemaController();
         this.bookingController = new BookingController();
-        this.username = username;
+        this.tempId = tempId;
     }
 
 
@@ -104,6 +104,7 @@ public class MenuPurchaseTicket extends MenuBase {
         {
             displaySeats(seats, session.getCinema().getCinemaNo());
             Seat selectedSeat = chooseSeats(seats,row,col);
+            selectedSeat.setSelected(true);
             selected.add(selectedSeat);
 
         }
@@ -164,11 +165,11 @@ public class MenuPurchaseTicket extends MenuBase {
              */
             Customer customer;
             CustomerController cController = new CustomerController();
-            customer = cController.readByUsername(username);
+            customer = cController.readByCustomerID(tempId);
 
             //Create the booking transaction
             Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
-                    customer.getUsername(),customer.getPassword(), movie, tickets, session, totalPrice);
+                    customer.getCustomerID(),movie, tickets, session, totalPrice);
             bookingController.create(booking);
             System.out.println("Total price is S$" + booking.getTotalPrice() + " (Inclusive of GST).");
             if (confirm("Confirm booking? ")) {
@@ -182,7 +183,8 @@ public class MenuPurchaseTicket extends MenuBase {
                 println("Booking successful, tid=" + tid);
                 movie.addTicketSales(tickets.size());
                 System.out.println("we are before");
-                cController.CustomerUpdate(customer.getUsername(), booking);
+//                cController.CustomerUpdate(customer.getUsername(), booking);
+                bookingController.create(booking);
                 System.out.println("we are after");
                 cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected);
             }
@@ -274,7 +276,7 @@ public class MenuPurchaseTicket extends MenuBase {
 
     public ArrayList<Session> showAvailableSessions(String cineplexName, Movie movie) {
         Session tempSession;
-        Cinema tempCinema = null;
+        Cinema tempCinema;
         ArrayList<Session> sessionList = new ArrayList<>();
         int count = 1;
         boolean printSeparator = false;
@@ -288,8 +290,8 @@ public class MenuPurchaseTicket extends MenuBase {
         }
 
 //        while (tempCinema == null) {
-//            int cinemaChoice = readIntInput("Enter cinema of choice: ");
-//            tempCinema = cinemaList.get(cinemaChoice - 1);
+            int cinemaChoice = readIntInput("Enter cinema of choice: ");
+            tempCinema = cinemaList.get(cinemaChoice - 1);
 //        }
 
         System.out.println("Available screening times of " + movie.getTitle() + " in this cinema:");
