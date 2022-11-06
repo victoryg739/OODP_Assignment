@@ -97,11 +97,11 @@ public class CustomerController {
         return customer;
     }
 
+
     public static Customer readByUsername(String valueToSearch) {
         ArrayList<Customer> allData = readAll();
         for (int i=0; i<allData.size(); i++){
             Customer c = allData.get(i);
-            System.out.println(c.getUsername());
             if (c.getUsername().equals(valueToSearch))
                 return c;
         }
@@ -113,6 +113,7 @@ public class CustomerController {
      * @param valueToSearch     Email of admin to search for
      * @return Admin            Return Admin if found, else null object
      */
+
     public static Customer readByPassword(String valueToSearch) {
         ArrayList<Customer> allData = readAll();
         for (int i=0; i<allData.size(); i++){
@@ -121,6 +122,16 @@ public class CustomerController {
                 return c;
         }
         return null;
+    }
+
+    public int readByCustomerID(int valueToSearch) {
+        ArrayList<Customer> allData = readAll();
+        for (int i=0; i<allData.size(); i++){
+            Customer u = allData.get(i);
+            if (u.getCustomerID() == valueToSearch )
+                return u.getCustomerID();
+        }
+        return -1;
     }
 
     public static ArrayList<Booking> retrieveByUsername(String valueToSearch) {
@@ -136,6 +147,14 @@ public class CustomerController {
 
         }
         return null;
+    }
+
+    public boolean authenticate(String username, String password) {
+        if (username.equals(readByUsername(username).getUsername()) && password.equals(readByPassword(password).getPassword())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

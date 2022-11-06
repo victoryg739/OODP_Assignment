@@ -27,7 +27,7 @@ public class MenuStaffConfigureSettings extends MenuBase {
 
         switch (choice) {
             case 1:
-                //nextMenu = new ConfigurePriceMenu(this);
+                nextMenu = new MenuConfigurePrice(this);
                 break;
             case 2:
                 nextMenu = new MenuConfigureHoliday(this);
