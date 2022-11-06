@@ -99,11 +99,13 @@ public class MenuPurchaseTicket extends MenuBase {
 
         while(confirm("Continue to select seats?"))
         {
+            printHeader("Select Seats");
             cinemaController.displaySeats(seatList, row, col);
             Seat selectedSeat = cinemaController.chooseSeats(seatList,row,col);
             selected.add(selectedSeat);
         }
-        //cinemaController.displaySeats(seatList, row, col);
+        println("This is your finalized seats");
+        cinemaController.displaySeats(seatList, row, col);
         /*
             Model for buying tickets:
             When selecting a few seats, they have to belong to 1 ticket type (Senior/Student/Normal)
@@ -166,7 +168,7 @@ public class MenuPurchaseTicket extends MenuBase {
                 //Create the booking transaction
                 Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
                         username ,movie, tickets, session, totalPrice);
-                println("Booking successful, tid=" + tid);
+                println("Booking successful");
                 movieController.updateMovie(11, movie.getId(), tickets.size());
                 bookingController.create(booking);
                 cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected, movie, session);
