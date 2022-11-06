@@ -103,7 +103,6 @@ public class CustomerController {
         ArrayList<Customer> allData = readAll();
         for (int i=0; i<allData.size(); i++){
             Customer c = allData.get(i);
-            System.out.println("readByUsername was runned");
             if (c.getUsername().equals(valueToSearch))
                 return c;
         }
@@ -152,8 +151,7 @@ public class CustomerController {
     }
 
     public boolean authenticate(String username, String password) {
-
-        if (username.equals(this.readByUsername(username)) && password.equals(this.readByPassword(password))) {
+        if (username.equals(readByUsername(username).getUsername()) && password.equals(readByPassword(password).getPassword())) {
             return true;
         } else {
             return false;
