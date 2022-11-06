@@ -11,27 +11,22 @@ import modal.*;
 
 public class MenuMovieReviews extends MenuBase {
     private final Movie movie;
-
+    MovieController mc = new MovieController();
 
     public MenuMovieReviews(MenuBase previousMenu, Movie movie) {
         super(previousMenu);
         this.movie = movie;
     }
 
-    /**
-     Ask user to input reviews and rating
-     */
-
     public MenuBase execute() {
-        System.out.println(movie.getTitle());
 
-        //Let user comment and rate the movies
+        if(!mc.validReviewMovie(movie.getId())) {
+            println("Reviews can only be set for movies that are currently showing, preview or just ended. ");
+            return this.getPreviousMenu();
+        }
         Review review = new Review(read("Please Enter your comment for " + movie.getTitle() + ": ")  , readReviewInput("Please enter your rating for " + movie.getTitle() ,1,5));
-
-        MovieController mc = new MovieController();
-        System.out.println("MovieID: " + movie.getId());
         mc.updateMovie(12, movie.getId(), review);
-        //a way to update the movie.txt file
+        println("Successfully wrote review for " + movie.getTitle());
         return this.getPreviousMenu();
     }
 }
