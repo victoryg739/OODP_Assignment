@@ -38,7 +38,7 @@ public class MenuCustomerMain extends MenuBase {
                 nextMenu = new MenuListMovie(this);
                 break;
             case 3:
-                nextMenu = new MenuBookingHistory(this);
+                nextMenu = new MenuCustomerLogin(this, 2, null);
                 break;
             case 4:
                 nextMenu = this.getPreviousMenu();

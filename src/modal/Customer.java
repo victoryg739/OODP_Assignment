@@ -5,12 +5,15 @@ import java.util.*;
 public class Customer implements Serializable {
     private String username;
     private String password;
+
+    private int customerID;
     private ArrayList<Booking> bookings;
 
     public Customer(String username, String password)  {
         this.username = username;
         this.password = password;
         this.bookings = new ArrayList<>();
+        this.customerID = generateCustomerID();
     }
 
     public String getUsername() {
@@ -29,8 +32,14 @@ public class Customer implements Serializable {
         return password;
     }
 
+    public int getCustomerID() {return customerID;}
+
     public ArrayList<Booking> getBookings() {
         return bookings;
+    }
+    public int generateCustomerID() {
+        customerID += 1;
+        return customerID;
     }
 
     public void setBookings(ArrayList<Booking> bookings) {

@@ -59,7 +59,7 @@ public class MenuMovieInfo extends MenuBase {
 
                 switch (choice) {
                     case 1:
-                        nextMenu = new MenuPurchaseTicket(this, this.movie);
+                        nextMenu = new MenuCustomerLogin(this, 1 , this.movie);
                         break;
                     case 2:
                         nextMenu = new MenuMovieReviews(this, this.movie);

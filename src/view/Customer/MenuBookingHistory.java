@@ -15,9 +15,11 @@ import static view.utilF.*;
 
 public class MenuBookingHistory extends MenuBase {
 
+    private String username;
 
-    public MenuBookingHistory(MenuBase initialMenu) {
+    public MenuBookingHistory(MenuBase initialMenu, String username) {
         super(initialMenu);
+        this.username = username;
     }
 
     /*
@@ -32,15 +34,17 @@ public class MenuBookingHistory extends MenuBase {
 
         CustomerController customerController = new CustomerController();
 
-        Customer customer = customerController.login();
-        Customer tempCustomer = customerController.readByUsername(customer.getUsername());
-        //wrong password
-        if (!tempCustomer.getPassword().equals(customer.getPassword())) {
-            customer = null;
-        }
+        Customer customer;
+        CustomerController cController = new CustomerController();
+        customer = cController.readByUsername(username);
+
+//        Customer tempCustomer = customerController.readByUsername(customer.getUsername());
+//        //wrong password
+//        if (!tempCustomer.getPassword().equals(customer.getPassword())) {
+//            customer = null;
+//        }
 
         if (customer != null) { //if login successful
-            String username = customer.getUsername();
             ArrayList<Booking> booking = customerController.retrieveByUsername(username);
             println("In total, " + booking.size() + " bookings found under " + username + ".");
             int count = 1;
