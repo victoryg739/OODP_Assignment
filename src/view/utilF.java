@@ -427,6 +427,9 @@ public class utilF  {
     public static void printHeader(String message){
         System.out.println("==================== " + message+ " =====================\n");
     }
+    public static void printDivider(){
+        print("===============================================");
+    }
 
     public static void print(String message){
         System.out.println(message);
