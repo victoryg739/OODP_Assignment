@@ -30,9 +30,9 @@ public class MenuPurchaseTicket extends MenuBase {
     private CinemaController cinemaController;
     private BookingController bookingController;
 
-    private String username;
+    private int tempId;
 
-    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie, String username) {
+    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie, int tempId) {
         super(previousMenu);
         this.movie = movie;
         this.cineplexController = new CineplexController();
@@ -42,7 +42,7 @@ public class MenuPurchaseTicket extends MenuBase {
         this.sessionController = new SessionController();
         this.cinemaController = new CinemaController();
         this.bookingController = new BookingController();
-        this.username = username;
+        this.tempId = tempId;
     }
 
 
@@ -63,6 +63,7 @@ public class MenuPurchaseTicket extends MenuBase {
 
         System.out.println("Menu for Purchasing Ticket:");
         System.out.println();
+        //cinemaController.printAllCinema();
 
         //Print the list of Cineplexes with the selected movies
         ArrayList<Cineplex> cineplexes = cc.read();
@@ -81,10 +82,14 @@ public class MenuPurchaseTicket extends MenuBase {
                 System.out.println("Invalid input! Please try again.");
             else { //valid choice
                 sessionList = showAvailableSessions(cineplexes.get(choice-1).getLocation(), movie);
-                if (sessionList.size() == 0)
+                if (sessionList == null)
                     System.out.println("No available sessions for this cineplex! Please choose another.");
             }
         }
+//        if (sessionList == null) {
+//            println(" ");
+//            return new MenuCustomerMain(this);
+//        }
         int c = readIntInput("Please Choose a session");
         Session session = sessionList.get(c - 1);
 
@@ -99,6 +104,7 @@ public class MenuPurchaseTicket extends MenuBase {
         {
             displaySeats(seats, session.getCinema().getCinemaNo());
             Seat selectedSeat = chooseSeats(seats,row,col);
+            selectedSeat.setSelected(true);
             selected.add(selectedSeat);
 
         }
@@ -159,11 +165,11 @@ public class MenuPurchaseTicket extends MenuBase {
              */
             Customer customer;
             CustomerController cController = new CustomerController();
-            customer = cController.readByUsername(username);
+            customer = cController.readByCustomerID(tempId);
 
             //Create the booking transaction
             Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
-                    customer.getUsername(),customer.getPassword(), movie, tickets, session, totalPrice);
+                    customer.getCustomerID(),movie, tickets, session, totalPrice);
             bookingController.create(booking);
             System.out.println("Total price is S$" + booking.getTotalPrice() + " (Inclusive of GST).");
             if (confirm("Confirm booking? ")) {
@@ -177,7 +183,8 @@ public class MenuPurchaseTicket extends MenuBase {
                 println("Booking successful, tid=" + tid);
                 movie.addTicketSales(tickets.size());
                 System.out.println("we are before");
-                cController.CustomerUpdate(customer.getUsername(), booking);
+//                cController.CustomerUpdate(customer.getUsername(), booking);
+                bookingController.create(booking);
                 System.out.println("we are after");
                 cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected);
             }
@@ -185,9 +192,9 @@ public class MenuPurchaseTicket extends MenuBase {
                 for (Seat seat : selected)
                     seat.setSelected(false);
             }
-        }while (readIntInput("Press 0 to return to previous menu: ") != 0) ;
+        }while (readIntInput("Press 0 to return to Main Menu: ") != 0) ;
 
-        return this.getPreviousMenu();
+        return new MenuCustomerMain(this);
     }
     /**
      * Print out the layout of the seats in the current slots,
@@ -264,7 +271,6 @@ public class MenuPurchaseTicket extends MenuBase {
 
         seats.get(i).get(j).setSelected(true);
         println("Selected Seat: Row: " + (i+1) + " Col: " + (j+1));
-
         return seats.get(i).get(j);
     }
 
@@ -282,12 +288,18 @@ public class MenuPurchaseTicket extends MenuBase {
             System.out.println((i+1) + " Cinema code: " + tempCinema.getCinemaNo() + "		Cinema type: " + tempCinema.getClassCinema());
             System.out.println();
         }
-        int cinemaChoice = readIntInput("Enter cinema of choice: ");
-        tempCinema = cinemaList.get(cinemaChoice - 1);
+
+//        while (tempCinema == null) {
+            int cinemaChoice = readIntInput("Enter cinema of choice: ");
+            tempCinema = cinemaList.get(cinemaChoice - 1);
+//        }
 
         System.out.println("Available screening times of " + movie.getTitle() + " in this cinema:");
         System.out.println();
 
+//        if (tempCinema.getSessions() == null) {
+//            return null;
+//        }
         for(int j = 0; j < tempCinema.getSessions().size() ; j++) {
             tempSession = tempCinema.getSessions().get(j);
             if (tempSession.getMovie().getTitle().equals(movie.getTitle())) {

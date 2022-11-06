@@ -42,6 +42,10 @@ public class Customer implements Serializable {
         return customerID;
     }
 
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
     public void setBookings(ArrayList<Booking> bookings) {
         this.bookings = bookings;
     }
