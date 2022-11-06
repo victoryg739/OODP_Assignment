@@ -227,7 +227,9 @@ public class MenuPurchaseTicket extends MenuBase {
                     else if (seat.isSelected()) {
                         System.out.print("[#]");
                     }
-                    else
+                    else if(seat.isStairWay()) {
+                        System.out.print("  ");
+                    } else
                         System.out.print("[ ]");
                 } else {
                     System.out.print("   ");
