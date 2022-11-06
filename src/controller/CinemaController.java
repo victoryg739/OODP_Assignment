@@ -103,12 +103,13 @@ public class CinemaController {
 
     }
 
-    public void updateSeat(Object valueToSearch, ArrayList<Seat> selectedSeat) {
+    public void updateSeat(Object valueToSearch, ArrayList<Seat> selectedSeat, Movie movie) {
         ArrayList<Cinema> cinemaListing = read();
         ArrayList<ArrayList<Seat>> seatList = new ArrayList<ArrayList<Seat>>();
 
         for (int j=0; j<cinemaListing.size(); j++) {
             if (cinemaListing.get(j).getCinemaNo().equals((String) valueToSearch)) {
+
                 if(cinemaListing.get(j).getSeats()  != null) {
                     seatList = cinemaListing.get(j).getSeats(); //old list of seat in cinema
                 }

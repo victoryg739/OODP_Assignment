@@ -43,13 +43,13 @@ public class MenuBookingHistory extends MenuBase {
         //for each booking made, display the respective details:
         for (Booking book : booking) {
             println("");
-            println("Booking " + count + " :");
+            print("Booking " + count + " : \n" +
+                    "TID: " + book.getTID() +"\n" +
+                    "Show Time: " + book.getSession().getDateTime() + " " + book.getMovie().getRuntime() + "\n" +
+                    "Total Price (GST included): S$" + book.getTotalPrice() + "\n" +
+                    "Movie: " + book.getMovie().getTitle() + "\n" +
+                    "Seats : \n");
             count++;
-            println("TID: " + book.getTID());
-            println("Show Time: " + book.getSession().getDateTime() + " " + book.getMovie().getRuntime());
-            println("Total Price (GST included): S$" + book.getTotalPrice());
-            println("Movie: " + book.getMovie().getTitle());
-            println("Seats :");
             for (Ticket ticket : book.getTicket()) {
                 println(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
                 seatCount++;
