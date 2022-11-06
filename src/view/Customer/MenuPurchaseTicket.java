@@ -154,7 +154,8 @@ public class MenuPurchaseTicket extends MenuBase {
             Customer customer;
             if (confirm("Do you have an account")) {
                 customer = customerController.login();
-            } else {
+            }
+            else {
                 String username = read("Enter Username: ");
                 String password = read("Enter password: ");
                 customer = new Customer(username, password);
@@ -183,7 +184,7 @@ public class MenuPurchaseTicket extends MenuBase {
             }
         }while (readIntInput("Press 0 to return to previous menu: ") != 0) ;
 
-        return this.getPreviousMenu();
+        return new MenuCustomerMain(this);
     }
     /**
      * Print out the layout of the seats in the current slots,

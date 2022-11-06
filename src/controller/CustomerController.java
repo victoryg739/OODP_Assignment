@@ -49,7 +49,6 @@ public class CustomerController {
             }
         }
         replace(customerList);
-
     }
 
     public void replace(ArrayList<Customer> data) {
