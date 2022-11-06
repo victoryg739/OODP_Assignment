@@ -176,7 +176,7 @@ public class MovieController {
         }
     }
 
-    public void listMovies(ShowingStatus s1, ShowingStatus s2, ArrayList<Movie> searchMovies) {
+    public void listMovies(ArrayList<Movie> searchMovies) {
         ArrayList<Session> sessionlist = sc.read();
 
         ArrayList<Movie> movieList = new ArrayList<Movie>();
@@ -194,7 +194,7 @@ public class MovieController {
                 Movie m = movieList.get(i);
                 for(int j=0; j < sessionlist.size(); j++) {
                     if(sessionlist.get(j).getMovie().getId() == m.getId()) {
-                        if (m.getShowingStatus() == s1 || m.getShowingStatus() == s2) {
+                        if(validateShowingStatus(m)) {
                             m.printMovie();
                         }
                     }
@@ -331,19 +331,28 @@ public class MovieController {
 
     }
 
+
+
     public ArrayList<Movie> readByTitle(Object valueToSearch) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
         for (int i = 0; i < allData.size(); i++) {
             Movie m = allData.get(i);
-            if(m.getShowingStatus() == ShowingStatus.PREVIEW || m.getShowingStatus() == ShowingStatus.NOW_SHOWING) {
+            // If the showing status is valid and there is a valid movie in that session
+            if(validateShowingStatus(m) && validMovieSession(m.getId())){
                 if (m.getTitle().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
-                    returnData.add(m);
-            }
+                        returnData.add(m);
+                }
             }
         }
-
         return returnData;
+    }
+
+    public boolean validateShowingStatus(Movie m){
+        if(m.getShowingStatus() == ShowingStatus.PREVIEW || m.getShowingStatus() == ShowingStatus.NOW_SHOWING) {
+            return true;
+        }
+        return false;
     }
 
     public void sortTicketSales(ArrayList<Movie> movies) {
