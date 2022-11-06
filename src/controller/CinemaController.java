@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static view.utilF.returnEnumsDay;
+import static view.utilF.*;
 
 public class CinemaController {
     private CineplexController cineplexController = new CineplexController();
@@ -194,7 +194,8 @@ public class CinemaController {
 
     public void printAllCinema() {
         ArrayList<Cinema> cinemaFile = read();
-        System.out.println("=== Printing all Cinema ===");
+        println("");
+        printHeader("Printing all Cinema");
 
         for(int a =0 ; a<cinemaFile.size();a++){
             System.out.print(cinemaFile.get(a).getCinemaNo()+ "\t");

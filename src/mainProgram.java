@@ -1,7 +1,4 @@
-import controller.AdminController;
-import controller.CinemaController;
-import controller.CineplexController;
-import controller.MovieController;
+import controller.*;
 import modal.*;
 import view.EntryMenu;
 import view.MainMenu;
@@ -27,6 +24,8 @@ public class mainProgram {
     public final static String FILENAME = "data/movies.txt";
     public static void main(String[] args) {
         /* For Testing Purposes */
+//        PriceManager pm = new PriceManager();
+//        System.out.println(pm.calculateTicketPrice(Enums.AgeType.STUDENT,Enums.MovieType.TWO_D,Enums.ClassCinema.NORMAL,Enums.Day.FRI_BEF_SIX));
 
         // If File exists:
         File f = new File(FILENAME);

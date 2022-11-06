@@ -27,40 +27,42 @@ public class MenuStaffMovieSessionUpdate extends MenuBase {
 
 
     public MenuBase execute() {
-        System.out.println("Updating Session...\n\n");
-        System.out.println("List of Cineplexes");
-        ArrayList<Cineplex> cineplexArray = cineplexCtrler.read(); //using cinplexcontroller to read the cineplex object from the dat file
-        if (cineplexArray.isEmpty()) {
-            System.out.println("There are no cineplexes registered!");
-            return getPreviousMenu();
-        }
+        printHeader("Updating Session");
+        sessionCtrler.printAllSession();
 
-        for(int i = 0; i<cineplexArray.size(); i++) {
-            cineplexArray.get(i);
-            System.out.print(cineplexArray.get(i).getLocation()+":");
-            ArrayList<Cinema> cinemaArray = cineplexArray.get(i).getCinemas();
-            for(int j= 0;j < cinemaArray.size();j++){
-                System.out.print(cinemaArray.get(j).getCinemaNo()+ " ");
-
-            }
-            System.out.print("\n");
-        }
-
-
-
-        String cineplexLocation = read("Enter Cineplex Location:");
-        Cineplex cineplex  = cineplexCtrler.readByLocation(cineplexLocation);
-
-
-        if (cineplex == null) {
-            System.out.println("Cineplex does not exist!\n" +
-                    "Returning to menu...");
-            return getPreviousMenu();
-        }
-
-        System.out.println("\nCinemas in " + cineplex.getLocation()+ ": \n");
-        ArrayList<Cinema> cinemaArray = cineplex.getCinemas();
-        cinemaArray.forEach(Cinema -> System.out.println("Cinema No:" + Cinema.getCinemaNo()));
+//        System.out.println("List of Cineplexes");
+//        ArrayList<Cineplex> cineplexArray = cineplexCtrler.read(); //using cinplexcontroller to read the cineplex object from the dat file
+//        if (cineplexArray.isEmpty()) {
+//            System.out.println("There are no cineplexes registered!");
+//            return getPreviousMenu();
+//        }
+//
+//        for(int i = 0; i<cineplexArray.size(); i++) {
+//            cineplexArray.get(i);
+//            System.out.print(cineplexArray.get(i).getLocation()+":");
+//            ArrayList<Cinema> cinemaArray = cineplexArray.get(i).getCinemas();
+//            for(int j= 0;j < cinemaArray.size();j++){
+//                System.out.print(cinemaArray.get(j).getCinemaNo()+ " ");
+//
+//            }
+//            System.out.print("\n");
+//        }
+//
+//
+//
+//        String cineplexLocation = read("Enter Cineplex Location:");
+//        Cineplex cineplex  = cineplexCtrler.readByLocation(cineplexLocation);
+//
+//
+//        if (cineplex == null) {
+//            System.out.println("Cineplex does not exist!\n" +
+//                    "Returning to menu...");
+//            return getPreviousMenu();
+//        }
+//
+//        System.out.println("\nCinemas in " + cineplex.getLocation()+ ": \n");
+//        ArrayList<Cinema> cinemaArray = cineplex.getCinemas();
+//        cinemaArray.forEach(Cinema -> System.out.println("Cinema No:" + Cinema.getCinemaNo()));
 
         int session_id = readIntInput("Enter session id: ");
         if (sessionCtrler.readById(session_id) == null) {

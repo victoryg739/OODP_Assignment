@@ -7,7 +7,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static view.utilF.returnEnumsDay;
+import static view.utilF.*;
 
 public class SessionController {
     public final static String FILENAME = "data/session.txt";
@@ -112,7 +112,8 @@ public class SessionController {
 
     public void printAllSession() {
         ArrayList<Session> sessionFile = read();
-        System.out.println("===Printing all Sessions:===");
+        println("");
+        printHeader("Printing all Sessions:");
         for (int i = 0; i < sessionFile.size(); i++) { //return one section by one for the whole session file
             System.out.print(sessionFile.get(i).getSessionId() + "\t");
             System.out.print(sessionFile.get(i).getCinema().getCinemaNo() + "\t");
