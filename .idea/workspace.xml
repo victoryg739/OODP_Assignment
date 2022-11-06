@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated Format">
+    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SessionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovieTopRating.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovieTopSale.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuHolidayCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuHolidayCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuHolidayRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuHolidayRemove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuHolidayUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuHolidayUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +76,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="updated Format" />
+      <changelist id="0588c5fa-8b27-4dab-a208-df0667ac0b80" name="Changes" comment="test" />
       <created>1666417652481</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -264,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667711750619</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="test">
+      <created>1667739984008</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1667739984008</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,5 +328,8 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/OODP_Assignment$mainProgram.ic" NAME="mainProgram Coverage Results" MODIFIED="1667624966497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
