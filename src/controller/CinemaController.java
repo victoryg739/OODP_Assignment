@@ -8,6 +8,7 @@ import java.util.Date;
 
 import static view.utilF.*;
 
+
 public class CinemaController {
     private CineplexController cineplexController = new CineplexController();
 
@@ -214,7 +215,19 @@ public class CinemaController {
 
         return returnData;
     }
+    public int[] getSeatsByCinemaNo(String cinemaNo){
+        ArrayList<Cinema> cf = read();
+        int[] rowCol = new int[2];
+        for(int a =0 ; a<cf.size();a++) {
+            if(cf.get(a).getCinemaNo().equals(cinemaNo)){
+                rowCol[0] = cf.get(a).getSeats().size();
+                rowCol[1] = cf.get(a).getSeats().get(0).size();
+                return rowCol;
+            }
+        }
+        return rowCol;
 
+    }
     public void printAllCinema() {
         ArrayList<Cinema> cf = read();
         println("");
