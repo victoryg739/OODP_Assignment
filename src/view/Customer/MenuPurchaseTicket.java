@@ -103,6 +103,7 @@ public class MenuPurchaseTicket extends MenuBase {
             Seat selectedSeat = cinemaController.chooseSeats(seatList,row,col);
             selected.add(selectedSeat);
         }
+        //cinemaController.displaySeats(seatList, row, col);
         /*
             Model for buying tickets:
             When selecting a few seats, they have to belong to 1 ticket type (Senior/Student/Normal)
@@ -115,11 +116,12 @@ public class MenuPurchaseTicket extends MenuBase {
             Enums.Day day = session.getDay();
             Enums.MovieType movieType = movie.getType();
             Enums.ClassCinema cinemaClass = session.getCinema().getClassCinema();
+            boolean loyaltyCard = false;
             double ticketPrice;
 
             if (confirm("Are you eligible for student discount?")) { //student price
                 Enums.AgeType age = Enums.AgeType.STUDENT;
-                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day);
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
@@ -128,7 +130,7 @@ public class MenuPurchaseTicket extends MenuBase {
             }
             else if (confirm("Are you eligible for senior discount?")) { //senior price
                 Enums.AgeType age = Enums.AgeType.SENIOR;
-                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day);
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
@@ -137,7 +139,7 @@ public class MenuPurchaseTicket extends MenuBase {
             }
             else { //neither student nor senior
                 Enums.AgeType age = Enums.AgeType.NORMAL;
-                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day);
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
