@@ -13,6 +13,7 @@ import static view.utilF.print;
 public class SettingController {
     public final static String FILENAME = "data/settings.txt";
 
+
     // Write Settings into .txt //
     public void writeSetting(ArrayList<String> message) {
         try {
@@ -87,7 +88,7 @@ public class SettingController {
             return 1;
         }else{
             // Show None
-            return 0;
+            return 3;
         }
 
     }

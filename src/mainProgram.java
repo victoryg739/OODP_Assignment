@@ -153,11 +153,15 @@ public class mainProgram {
 //        Booking booking = new Booking('A1', 'TIDSAMPLE','user', 'pass', movie0,  tickets,
 //        bookingController.create(booking);
 
+        // Create Root Admin Account
         Admin rootAdmin = new Admin("a","a");
         AdminController ac = new AdminController();
         ac.createAdmin(rootAdmin);
 
-
+        // Creating Customer account to test
+        Customer testCustomer = new Customer("twz","twz");
+        CustomerController cc = new CustomerController();
+        cc.createCustomer(testCustomer);
 
         MenuBase nextMenu = new MainMenu(null);
 

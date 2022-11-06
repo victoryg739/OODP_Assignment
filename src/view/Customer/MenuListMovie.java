@@ -40,7 +40,12 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Enter movieID: ");
-                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    if(mc.validMovieSession(movieID)) {
+                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    }else {
+                        print("Invalid movieID");
+                        nextMenu = this.getPreviousMenu();
+                    }
                     break;
                 case 2:
                     nextMenu = new MenuStaffTopFiveRating(this);
@@ -58,7 +63,12 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Enter movieID: ");
-                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    if(mc.validMovieSession(movieID)) {
+                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    }else {
+                        print("Invalid movieID");
+                        nextMenu = this.getPreviousMenu();
+                    }
                     break;
                 case 2:
                     nextMenu = new MenuStaffTopFiveSales(this);
@@ -78,7 +88,12 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Enter movieID: ");
-                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    if(mc.validMovieSession(movieID)) {
+                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    }else {
+                        print("Invalid movieID");
+                        nextMenu = this.getPreviousMenu();
+                    }
                     break;
                 case 2:
                     nextMenu = new MenuStaffTopFiveSales(this);

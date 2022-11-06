@@ -6,8 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static view.utilF.println;
-import static view.utilF.returnEnumsDay;
+import static view.utilF.*;
 
 public class CinemaController {
     private CineplexController cineplexController = new CineplexController();
@@ -218,17 +217,24 @@ public class CinemaController {
     }
 
     public void printAllCinema() {
-        ArrayList<Cinema> cinemaFile = read();
-        System.out.println("=== Printing all Cinema ===");
+        ArrayList<Cinema> cf = read();
+        println("");
+        printHeader("Printing all Cinema");
+        System.out.printf(" %5s | %10s | %6s | %-30s %n", "CinNo", "Class", "Seats", "Sessions");
+        System.out.printf("---------------------------------------------------------------\n");
 
-        for(int a =0 ; a<cinemaFile.size();a++){
-            System.out.print(cinemaFile.get(a).getCinemaNo()+ "\t");
-            System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
-            //System.out.print(cinemaFile.get(a).getSeats() + "\t");
-            if(cinemaFile.get(a).getSessions() != null) {
-                System.out.print("Sessions id: ");
-                for (int i = 0; i < cinemaFile.get(a).getSessions().size(); i++) {
-                    System.out.print(cinemaFile.get(a).getSessions().get(i).getSessionId() + "\t");
+
+        for(int a =0 ; a<cf.size();a++){
+
+            System.out.printf(" %5s | %10s | %3s,%3s |", cf.get(a).getCinemaNo(),cf.get(a).getClassCinema(),cf.get(a).getSeats().size(),cf.get(a).getSeats().get(0).size());
+
+            if(cf.get(a).getSessions() != null) {
+                for (int i = 0; i < cf.get(a).getSessions().size(); i++) {
+                    if(i != 0){
+                        System.out.printf(",");
+                    }
+                    System.out.print(cf.get(a).getSessions().get(i).getSessionId());
+
 
                 }
             }else{
