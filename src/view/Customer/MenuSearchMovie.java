@@ -6,6 +6,7 @@ import modal.Movie;
 import modal.Session;
 import view.MenuBase;
 import view.Quit;
+import view.admin.MenuStaffTopFiveRating;
 
 import java.util.ArrayList;
 
@@ -22,8 +23,7 @@ public class MenuSearchMovie extends MenuBase {
     }
 
     public MenuBase execute() {
-        ArrayList<Session> sessionList = sc.read();
-        MenuBase nextMenu = null;
+        MenuBase nextMenu;
         int choice;
 
         printHeader("Movie Search");
@@ -31,44 +31,37 @@ public class MenuSearchMovie extends MenuBase {
 
         ArrayList<Movie> movieList = mc.readByTitle(movieName);
         // If session is Empty or MovieList is Empty then no results found
-        if (sessionList.isEmpty() || movieList.isEmpty()) {
+        if (movieList.isEmpty()) {
             print("Sorry, no result found.");
             return this.getPreviousMenu();
         }
 
         mc.listMovies(movieList);
         printDivider();
-
-        print("1. Buy Ticket/ Set Review\n" +
-                "2. Back \n" +
-                "3. Quit\n");
-
-        choice = readIntInput("Choice: ");
-
+        print("1. View Movie Details\n" +
+                "2. Set Movie Review\n" +
+                "3. Show top 5 movies by ratings \n" +
+                "3. Back\n");
+        choice = readIntInput("Enter choice: ");
         switch (choice) {
             case 1:
-                int movieID = readIntInput("Enter movieID: ");
-
-                if (mc.validMovieSession(movieID)) {
-                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
-                } else {
-                    print("Invalid movieID");
-                    nextMenu = this.getPreviousMenu();
-                }
+                int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
+                nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
                 break;
             case 2:
-                nextMenu = this.getPreviousMenu();
+                movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
+                nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
+                break;
+            case 3:
+                nextMenu = new MenuStaffTopFiveRating(this);
                 break;
             default:
-                nextMenu = new Quit(this);
+                nextMenu = this.getPreviousMenu();
                 break;
+
+
         }
-
-
         return nextMenu;
-
     }
-
-
 }
 
