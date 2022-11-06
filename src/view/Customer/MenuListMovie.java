@@ -28,7 +28,7 @@ public class MenuListMovie extends MenuBase {
 
 
         printHeader("Current Movie Listing");
-        mc.listMovies(Enums.ShowingStatus.PREVIEW, Enums.ShowingStatus.NOW_SHOWING, null);
+        mc.listMovies(null);
         print("===============================================");
         int flag = setc.returnResult(); // a variable to determine what to show to the user
         /* Flag == 2 implies that it only shows Rating */
