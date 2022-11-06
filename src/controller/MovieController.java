@@ -115,7 +115,7 @@ public class MovieController {
                         m.setShowingStatus((ShowingStatus) newValue);
                         break;
                     case 11:
-                        m.setTicketSales((int) newValue);
+                        m.addTicketSales((int) newValue);
                         break;
                     case 12:
                         m.addReview((Review) newValue);

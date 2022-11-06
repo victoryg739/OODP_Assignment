@@ -5,7 +5,6 @@ import java.util.*;
 public class Customer implements Serializable {
     private String username;
     private String password;
-
     private int customerID;
     private ArrayList<Booking> bookings;
 

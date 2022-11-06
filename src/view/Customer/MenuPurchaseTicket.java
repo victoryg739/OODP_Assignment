@@ -13,13 +13,7 @@ import java.util.*;
 import static view.utilF.*;
 
 public class MenuPurchaseTicket extends MenuBase {
-    private String cinemaNo;
-    private LocalDateTime currentDateTime;
-    private Cinema cinema;
-    private Session session;
     private Movie movie;
-    private Seat seat;
-    private int numOfTickets;
     private CineplexController cineplexController;
     private PriceManager priceManager;
     private MovieController movieController;
@@ -31,8 +25,9 @@ public class MenuPurchaseTicket extends MenuBase {
     private BookingController bookingController;
 
     private int tempId;
+    private String username;
 
-    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie, int tempId) {
+    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie, int tempId, String username) {
         super(previousMenu);
         this.movie = movie;
         this.cineplexController = new CineplexController();
@@ -43,6 +38,7 @@ public class MenuPurchaseTicket extends MenuBase {
         this.cinemaController = new CinemaController();
         this.bookingController = new BookingController();
         this.tempId = tempId;
+        this.username = username;
     }
 
 
@@ -57,7 +53,6 @@ public class MenuPurchaseTicket extends MenuBase {
     public MenuBase execute() {
 
         CineplexController cc = new CineplexController();
-        ArrayList<String> choices = new ArrayList<>();
         ArrayList<Session> sessionList = new ArrayList<>();
 
 
@@ -81,7 +76,7 @@ public class MenuPurchaseTicket extends MenuBase {
             else if (choice < 0 || choice > cineplexes.size())
                 System.out.println("Invalid input! Please try again.");
             else { //valid choice
-                sessionList = showAvailableSessions(cineplexes.get(choice-1).getLocation(), movie);
+                sessionList = cinemaController.showAvailableSessions(cineplexes.get(choice-1).getLocation(), movie);
                 if (sessionList == null)
                     System.out.println("No available sessions for this cineplex! Please choose another.");
             }
@@ -94,29 +89,29 @@ public class MenuPurchaseTicket extends MenuBase {
         Session session = sessionList.get(c - 1);
 
         //get all the available seats for the selected session
-        ArrayList<ArrayList<Seat>> seats = session.getCinema().getSeats();
-        int col = seats.get(0).size(), row=seats.size();
+        String tempCinemeNo = session.getCinema().getCinemaNo();
+        Cinema  cinema = cinemaController.readByCinemaNo(tempCinemeNo);
+        ArrayList<ArrayList<Seat>> seatList = cinema.getSeats();
+        int col = seatList.get(0).size(), row=seatList.size();
 
         //find seat & select seat
         ArrayList<Seat> selected = new ArrayList<Seat>();
 
         while(confirm("Continue to select seats?"))
         {
-            displaySeats(seats, session.getCinema().getCinemaNo());
-            Seat selectedSeat = chooseSeats(seats,row,col);
-            selectedSeat.setSelected(true);
+            cinemaController.displaySeats(seatList, row, col);
+            Seat selectedSeat = cinemaController.chooseSeats(seatList,row,col);
             selected.add(selectedSeat);
-
         }
         /*
             Model for buying tickets:
             When selecting a few seats, they have to belong to 1 ticket type (Senior/Student/Normal)
          */
 
+        //See if can make this into a helper function
         if (selected.size() != 0) {
             ArrayList<Ticket> tickets = new ArrayList<Ticket>();
             //Function to determine the day n time
-            //need to check with victor or bryan
             Enums.Day day = session.getDay();
             Enums.MovieType movieType = movie.getType();
             Enums.ClassCinema cinemaClass = session.getCinema().getClassCinema();
@@ -160,32 +155,18 @@ public class MenuPurchaseTicket extends MenuBase {
             String timeStamp = new SimpleDateFormat("YYYYMMDDhhmm").format(currentTime);
             String tid = session.getCinema().getCinemaNo() + timeStamp;
 
-            /*
-            Login Interface
-             */
-            Customer customer;
-            CustomerController cController = new CustomerController();
-            customer = cController.readByCustomerID(tempId);
-
-            //Create the booking transaction
-            Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
-                    customer.getCustomerID(),movie, tickets, session, totalPrice);
-            bookingController.create(booking);
-            System.out.println("Total price is S$" + booking.getTotalPrice() + " (Inclusive of GST).");
+            println("Total price is S$" + totalPrice + " (Inclusive of GST).");
             if (confirm("Confirm booking? ")) {
                 for (Seat seat : selected) {
                     seat.setSelected(false);
                     seat.setTaken(true);
                 }
-                System.out.println("before booking");
-                customer.addBookings(booking);
-                System.out.println("after booking");
+                //Create the booking transaction
+                Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
+                        username ,movie, tickets, session, totalPrice);
                 println("Booking successful, tid=" + tid);
-                movie.addTicketSales(tickets.size());
-                System.out.println("we are before");
-//                cController.CustomerUpdate(customer.getUsername(), booking);
+                movieController.updateMovie(11, movie.getId(), tickets.size());
                 bookingController.create(booking);
-                System.out.println("we are after");
                 cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected);
             }
             else {
@@ -195,126 +176,6 @@ public class MenuPurchaseTicket extends MenuBase {
         }while (readIntInput("Press 0 to return to Main Menu: ") != 0) ;
 
         return new MenuCustomerMain(this);
-    }
-    /**
-     * Print out the layout of the seats in the current slots,
-     * including seats avaliable, seats occupied and seats chosen
-     * With corridor printed out in the middle of the layout
-     */
-    private void displaySeats(ArrayList<ArrayList<Seat>> seats, String cinemaNo)
-    {
-        Seat seat;
-        Cinema  cinema = cinemaController.readByCinemaNo(cinemaNo);
-        ArrayList<ArrayList<Seat>> seatList = cinema.getSeats();
-        int col = seatList.get(0).size(), row=seatList.size();
-        printHeader("Select Seats");
-        for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++)
-            print(" ");
-        println("|      Screen       |");
-        for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++) {
-            print(" ");
-        }
-        println("---------------------");
-
-        print("    ");
-        int new_row = 0;
-        println(" ");
-        boolean flag = false;
-        for(int i =0; i<row; i++)
-        {
-            new_row = 0;
-            System.out.print(String.valueOf(i + 1) + " ");
-            for(int j=0; j<col; j++)
-            {
-               if (new_row != col / 2 - 1) {
-                    seat = seatList.get(i).get(j);
-                    if (seat.isTaken()) {
-                        System.out.print("[X]");
-                    }
-                    else if (seat.isSelected()) {
-                        System.out.print("[#]");
-                    }
-                    else
-                        System.out.print("[ ]");
-                } else {
-                    System.out.print("   ");
-                    j--;
-                }
-                new_row++;
-            }
-            print(" ");
-        }
-
-        println("");
-        for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
-            print(" ");
-        println("----------");
-        println("|Entrance|\n");
-        println("([ ] Available  [#] Seat Selected  [X] Sold)");
-    }
-
-    /**
-     * Method to ask user to select a row and column,
-     * check whether the seat is avaliable, and update the information in the data base
-     */
-    private Seat chooseSeats(ArrayList<ArrayList<Seat>> seats, int row, int col) {
-        println("Please choose your seat(s).");
-        int i,j;
-        do {
-            i = readSeatInput("Please input row number",1,row);
-            j = readSeatInput("Please input col number",1,col);
-            i--;j--;
-            if (seats.get(i).get(j).isTaken() || seats.get(i).get(j).isSelected())
-                println("Already been taken/selected please choose another seats.");
-            else break;
-        } while (true);
-
-        seats.get(i).get(j).setSelected(true);
-        println("Selected Seat: Row: " + (i+1) + " Col: " + (j+1));
-        return seats.get(i).get(j);
-    }
-
-    public ArrayList<Session> showAvailableSessions(String cineplexName, Movie movie) {
-        Session tempSession;
-        Cinema tempCinema;
-        ArrayList<Session> sessionList = new ArrayList<>();
-        int count = 1;
-        boolean printSeparator = false;
-        ArrayList<Cinema> tempCinemaList = new ArrayList<Cinema>();
-        ArrayList<Cinema> cinemaList = cinemaController.readByCineplexName(cineplexName);
-        System.out.println("------------------------------------------------------");
-        for (int i = 0; i < cinemaList.size() ; i++) {
-            tempCinema = cinemaList.get(i);
-            System.out.println((i+1) + " Cinema code: " + tempCinema.getCinemaNo() + "		Cinema type: " + tempCinema.getClassCinema());
-            System.out.println();
-        }
-
-//        while (tempCinema == null) {
-            int cinemaChoice = readIntInput("Enter cinema of choice: ");
-            tempCinema = cinemaList.get(cinemaChoice - 1);
-//        }
-
-        System.out.println("Available screening times of " + movie.getTitle() + " in this cinema:");
-        System.out.println();
-
-//        if (tempCinema.getSessions() == null) {
-//            return null;
-//        }
-        for(int j = 0; j < tempCinema.getSessions().size() ; j++) {
-            tempSession = tempCinema.getSessions().get(j);
-            if (tempSession.getMovie().getTitle().equals(movie.getTitle())) {
-                System.out.println(count + ".	Date: " + tempSession.getDateTime());
-                System.out.println();
-                printSeparator = true;
-                count++;
-                sessionList.add(tempSession);
-            }
-            if(printSeparator){
-                System.out.println("------------------------------------------------------");
-                printSeparator = false;
-            }
-        }
-        return sessionList;
     }
 }
 

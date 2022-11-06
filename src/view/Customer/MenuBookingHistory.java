@@ -16,10 +16,12 @@ import static view.utilF.*;
 public class MenuBookingHistory extends MenuBase {
 
     private int tempID;
+    private String username;
 
-    public MenuBookingHistory(MenuBase initialMenu, int tempID) {
+    public MenuBookingHistory(MenuBase initialMenu, int tempID, String username) {
         super(initialMenu);
         this.tempID = tempID;
+        this.username = username;
     }
 
     /*
@@ -31,40 +33,28 @@ public class MenuBookingHistory extends MenuBase {
     public MenuBase execute() {
         printHeader("Booking History:");
         println("Please Login Using Username and Email");
-
-        CustomerController customerController = new CustomerController();
         BookingController bookingController = new BookingController();
+        int count = 1;
+        int seatCount = 1;
 
-        Customer customer;
-        CustomerController cController = new CustomerController();
-        customer = cController.readByCustomerID(tempID);
+        ArrayList<Booking> booking = bookingController.readbyUsername(username);
+        println("In total, " + booking.size() + " bookings found under " + username + ".");
 
-//        Customer tempCustomer = customerController.readByUsername(customer.getUsername());
-//        //wrong password
-//        if (!tempCustomer.getPassword().equals(customer.getPassword())) {
-//            customer = null;
-//        }
-
-        if (customer != null) { //if login successful
-            ArrayList<Booking> booking = bookingController.readbyId(tempID);
-            println("In total, " + booking.size() + " bookings found under " + customer.getUsername() + ".");
-            int count = 1;
-
-            //Once the user login, for each booking made, display the respective details:
-            for (Booking book : booking) {
-                println("");
-                println("Booking " + count + " :");
-                System.out.println(book);
-                count++;
-                System.out.println("TID: " + book.getTID());
-                System.out.println("Show Time: " + book.getSession().getDateTime() + " " + book.getMovie().getRuntime());
-                System.out.println("Total Price (GST included): S$" + book.getTotalPrice());
-                System.out.println("Movie: " + book.getMovie().getTitle());
-                System.out.println("Seats :");
-                for (Ticket ticket : book.getTicket()) {
-                    System.out.println("Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
-                }
+        //for each booking made, display the respective details:
+        for (Booking book : booking) {
+            println("");
+            println("Booking " + count + " :");
+            count++;
+            println("TID: " + book.getTID());
+            println("Show Time: " + book.getSession().getDateTime() + " " + book.getMovie().getRuntime());
+            println("Total Price (GST included): S$" + book.getTotalPrice());
+            println("Movie: " + book.getMovie().getTitle());
+            println("Seats :");
+            for (Ticket ticket : book.getTicket()) {
+                println(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
+                seatCount++;
             }
+            seatCount = 1;
         }
         while (readIntInput("Press 0 to return to Customer Main Menu: ") != 0) ;
         return new MenuCustomerMain(this);
