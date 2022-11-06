@@ -4,22 +4,20 @@ import java.io.*;
 import java.util.*;
 import modal.*;
 
+import static view.utilF.confirm;
+
 public class BookingController {
     public final static String FILENAME = "data/booking.txt";
 
     public void create(Booking booking) {
         ArrayList<Booking> allData = new ArrayList<Booking>();
         File tempFile = new File(FILENAME);
-
         if (tempFile.exists()) {
             allData = read();
-            System.out.println("hello");
-            System.out.println(allData);
         }
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
             allData.add(booking);
-            System.out.println(allData);
             out.writeObject(allData);
             out.flush();
             out.close();
@@ -92,5 +90,21 @@ public class BookingController {
         }
         return returnData;
     }
+
+    public ArrayList<Booking> readbyUsername (String username) {
+        ArrayList<Booking> allData = read();
+        Booking booking;
+        String dbUsername;
+        ArrayList<Booking> returnData = new ArrayList<Booking>();
+        for (int i = 0; i < allData.size(); i++) {
+            booking = allData.get(i);
+            dbUsername = booking.getUsername();
+            if (dbUsername.toLowerCase().equals(username.toLowerCase())) {
+                returnData.add(booking);
+            }
+        }
+        return returnData;
+    }
+
 
 }

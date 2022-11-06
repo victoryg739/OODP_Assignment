@@ -9,7 +9,7 @@ public class PriceManager {
 
     public final static String FILENAME = "data/price.txt";
 
-    public double calculateTicketPrice(Enums.AgeType ageType,Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day) {
+    public double calculateTicketPrice(Enums.AgeType ageType,Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day,Enums.ShowingStatus showingStatus,Boolean loyaltyCard) {
         File f = new File(FILENAME);
         Price price = new Price();
         if(!f.exists()) {
@@ -17,6 +17,14 @@ public class PriceManager {
         }
 
         price = read();
+
+        if(showingStatus == Enums.ShowingStatus.PREVIEW){
+            return price.getPrice(20);
+        }
+
+        if(loyaltyCard == true){
+            return price.getPrice(21);
+        }
 
         if (classCinema == Enums.ClassCinema.PLATINUM) {
             if(day == Enums.Day.FRI_BEF_SIX || day == Enums.Day.FRI_AFT_SIX  || day == Enums.Day.SAT_SUN){ // Friday to Sunday
@@ -62,7 +70,7 @@ public class PriceManager {
                         return price.getPrice(13);
                     }
                 }
-            } else if (ageType == Enums.AgeType.SENIOR) {
+            } else { //This is senior
                 if (movieType == Enums.MovieType.TWO_D) {
                     if (day == Enums.Day.MON_WED_BEF_SIX || day == Enums.Day.THU_BEF_SIX || day == Enums.Day.FRI_BEF_SIX) {
                         return price.getPrice(14);
@@ -84,7 +92,7 @@ public class PriceManager {
             }
 
         }
-        return -999;
+
     }
 
     public void updateTicketPrice(Enums.AgeType ageType,Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day,double newPrice) {

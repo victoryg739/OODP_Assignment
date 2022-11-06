@@ -38,10 +38,10 @@ public class MenuCustomerLogin extends MenuBase{
                 int tempId = customer.getCustomerID();
                 switch (a) {
                     case 1:
-                        nextMenu = new MenuPurchaseTicket(this, movie, tempId);
+                        nextMenu = new MenuPurchaseTicket(this, movie, tempId, username);
                         break;
                     case 2:
-                        nextMenu = new MenuBookingHistory(this, tempId);
+                        nextMenu = new MenuBookingHistory(this, tempId, username);
                         break;
                 }
             }

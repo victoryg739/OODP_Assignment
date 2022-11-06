@@ -18,8 +18,15 @@ public class Cinema implements Serializable {
             this.seats.add(new ArrayList<Seat>());
             for(int j=0;j<col;j++)
             {
-                Seat tmpseat = new Seat(j,i,false);
-                this.seats.get(i).add(tmpseat);
+                Seat tmpSeat = new Seat();
+                if(i<4 && j<2){
+                    tmpSeat = new Seat(j,i,false,true);
+
+                }else{
+                    tmpSeat = new Seat(j,i,false,false);
+
+                }
+                this.seats.get(i).add(tmpSeat);
             }
         }
 
@@ -37,7 +44,7 @@ public class Cinema implements Serializable {
         {
             for(int j=1;j<=col;j++)
             {
-                Seat tmpseat = new Seat(j,i,false);
+                Seat tmpseat = new Seat(j,i,false,false);
                 this.seats.get(i).add(tmpseat);
             }
         }
