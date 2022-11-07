@@ -62,7 +62,7 @@ public class mainProgram {
             mc.updateMovie(11, 4, 500);
             mc.updateMovie(11, 5, 100);
 
-            Cinema cinema3 = new Cinema(10,10,"A3", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema3 = new Cinema(10,10,"A3", Enums.ClassCinema.NORMAL, null);
             CustomerController customerController = new CustomerController();
             Customer customer = new Customer("a", "a", "riven");
             int temp = customer.getCustomerID();
@@ -85,15 +85,15 @@ public class mainProgram {
 
         if (!fCinema.exists()) {
 
-            Cinema cinema1 = new Cinema(5,5 ,"A1", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema2 = new Cinema(10,10,"A2", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema3 = new Cinema(10,10,"A3", null, Enums.ClassCinema.NORMAL, null);
-            Cinema cinema4 = new Cinema(10,10,"A4", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema5 = new Cinema(10,10,"A5", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema6 = new Cinema(10,10,"A6", null, Enums.ClassCinema.NORMAL, null);
-            Cinema cinema7 = new Cinema(10,10,"A7", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema8 = new Cinema(10,10,"A8", null, Enums.ClassCinema.NORMAL, null);
-            Cinema cinema9 = new Cinema(10,10,"A9", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema1 = new Cinema(5,5 ,"A1",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema2 = new Cinema(10,10,"A2",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema3 = new Cinema(10,10,"A3",  Enums.ClassCinema.NORMAL, null);
+            Cinema cinema4 = new Cinema(10,10,"A4",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema5 = new Cinema(10,10,"A5",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema6 = new Cinema(10,10,"A6", Enums.ClassCinema.NORMAL, null);
+            Cinema cinema7 = new Cinema(10,10,"A7",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema8 = new Cinema(10,10,"A8",  Enums.ClassCinema.NORMAL, null);
+            Cinema cinema9 = new Cinema(10,10,"A9",  Enums.ClassCinema.NORMAL, null);
 
             ArrayList<Cinema> cinemaArrayList1 = new ArrayList<Cinema>();
             cinemaArrayList1.add(cinema1);
@@ -117,9 +117,9 @@ public class mainProgram {
             CinemaController cinemaCtrler = new CinemaController();
             cinemaCtrler.replace(cinemaArrayListAll);
 
-            Cineplex cineplex1 = new Cineplex("Jem", cinemaArrayList1);
-            Cineplex cineplex2 = new Cineplex("Orchard", cinemaArrayList2);
-            Cineplex cineplex3 = new Cineplex("Funan", cinemaArrayList3);
+            Cineplex cineplex1 = new Cineplex("Jem", cinemaArrayList1,null);
+            Cineplex cineplex2 = new Cineplex("Orchard", cinemaArrayList2,null);
+            Cineplex cineplex3 = new Cineplex("Funan", cinemaArrayList3,null);
             ArrayList<Cineplex> cineplexArrayList = new ArrayList<Cineplex>();
             cineplexArrayList.add(cineplex1);
             cineplexArrayList.add(cineplex2);

@@ -4,7 +4,12 @@ import controller.CustomerController;
 import modal.Admin;
 import modal.Customer;
 import view.MenuBase;
+
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+
 import static view.utilF.read;
 
 
@@ -23,13 +28,52 @@ public class MenuCustomerRegister extends MenuBase {
 
     private static Scanner sc = new Scanner(System.in);
 
+    public static boolean validatePasswordStrength(String password) {
+        // Checking lower alphabet in string
+        int n = password.length();
+        boolean hasLower = false, hasUpper = false,
+                hasDigit = false, specialChar = false;
+        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
+        for (char i : password.toCharArray())
+        {
+            if (Character.isLowerCase(i))
+                hasLower = true;
+            if (Character.isUpperCase(i))
+                hasUpper = true;
+            if (Character.isDigit(i))
+                hasDigit = true;
+            if (set.contains(i))
+                specialChar = true;
+        }
+
+        // Checking Validity of password
+        if (hasDigit && hasLower && hasUpper && specialChar && (n >= 8))
+            return true;
+        else
+            return false;
+    }
+
+//    public static boolean validEmail(String username){
+//        // Function to check if have duplicate email in txt file
+//
+//        // Function to check if email is in correct format
+//    }
+
     // Registration Menu to create new accounts
     public MenuBase execute(){
         do {
 
             // Display to get new account Username and Password
             customerUsername = read("Create customerUsername: ");
+//            while (!validEmail(customerUsername)) {
+//                System.out.println("Please ensure");
+//                customerUsername = read("Create Email: ");
+//            }
             password = read("Create Password: ");
+            while (!validatePasswordStrength(password)) {
+                System.out.println("Please ensure password contains at least 8 characters, 1 Upper case, 1 Lower case, 1 special character ");
+                password = read("Create Password: ");
+            }
             password2 = read("Re-Enter Password: ");
             email = read("Enter email");
 
