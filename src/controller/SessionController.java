@@ -108,6 +108,17 @@ public class SessionController {
         replace(sessionArrayList);
     }
 
+    public ArrayList<Session> readByMovieId(int movieId){
+        ArrayList<Session> sessionArrayList = read();
+        ArrayList<Session> returnData  = null;
+        for(int i = 0; i < sessionArrayList.size(); i++) {
+            if (movieId == sessionArrayList.get(i).getMovie().getId()) {
+                returnData.add(sessionArrayList.get(i));
+            }
+        }
+        return returnData;
+
+    }
 
     public void printAllSession() {
         ArrayList<Session> sf = read();
