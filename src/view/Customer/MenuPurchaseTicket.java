@@ -59,7 +59,6 @@ public class MenuPurchaseTicket extends MenuBase {
         println("");
         //cinemaController.printAllCinema();
 
-        //Print the list of Cineplexes with the selected movies
         ArrayList<Cineplex> cineplexes = cc.read();
         for(int i = 0; i < cineplexes.size(); i++) {
             System.out.println((i+1) + ". " + cineplexes.get(i).getLocation());
@@ -87,6 +86,7 @@ public class MenuPurchaseTicket extends MenuBase {
 //        }
         int c = readIntInput("Please Choose a session");
         Session session = sessionList.get(c - 1);
+        //Session session = sessionController.getSessionId()
 
         //get all the available seats for the selected session
         String tempCinemeNo = session.getCinema().getCinemaNo();
@@ -156,9 +156,14 @@ public class MenuPurchaseTicket extends MenuBase {
             double totalPrice = ticketPrice * tickets.size();
 
             //Get the current Date/time to generate the tid according to the format XXXYYYYMMDDhhmm
-            Date currentTime = Calendar.getInstance().getTime();
-            String timeStamp = new SimpleDateFormat("YYYYMMDDhhmm").format(currentTime);
-            String tid = session.getCinema().getCinemaNo() + timeStamp;
+            //Date currentTime = Calendar.getInstance().getTime();
+//            String timeStamp;
+//            SimpleDateFormat currentTime = Constant.bookingFormat;
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
+            Date date = new Date();
+            System.out.println(formatter.format(date));
+            String tid = session.getCinema().getCinemaNo() + formatter.format(date);
 
             println("Total price is S$" + totalPrice + " (Inclusive of GST).");
             if (confirm("Confirm booking? ")) {

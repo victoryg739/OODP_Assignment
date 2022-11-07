@@ -17,7 +17,7 @@ public class Seat implements Serializable {
         this.row = row;
         this.taken = taken;
         this.selected = false;
-        this.stairWay = false;
+        this.stairWay = stairWay;
     }
 
     public int getCol() {

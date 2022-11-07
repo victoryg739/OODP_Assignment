@@ -297,9 +297,14 @@ public class CinemaController {
                     else if (seat.isSelected()) {
                         System.out.print("[#]");
                     }
+                    else if (seat.isStairWay()) {
+
+                        System.out.print("   ");
+                    }
                     else
                         System.out.print("[ ]");
-                } else {
+                }
+                else {
                     System.out.print("   ");
                     j--;
                 }

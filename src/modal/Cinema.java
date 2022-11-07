@@ -21,6 +21,7 @@ public class Cinema implements Serializable {
                 Seat tmpSeat = new Seat();
                 if(i<4 && j<2){
                     tmpSeat = new Seat(j,i,false,true);
+                    System.out.println("stairway");
 
                 }else{
                     tmpSeat = new Seat(j,i,false,false);
