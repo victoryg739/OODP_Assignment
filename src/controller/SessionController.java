@@ -46,11 +46,11 @@ public class SessionController {
     }
 
     public int getLastSessionId() {
-        int lastId = -1;
+        int lastId = 0;
         int sessionId;
         ArrayList<Session> allData = read();
         if(allData == null){
-            return 0;
+            return 1;
         }
         for (int i = 0; i < allData.size(); i++) {
             sessionId = allData.get(i).getSessionId();
@@ -154,7 +154,7 @@ public class SessionController {
         }
         System.out.println("|");
         //print("|      Screen       |");
-        for (i = 0; i < (1 + col) * 3 / 2 - 8; i++)
+        for (i = 0; i < (totalSpace - 6 )/2 + 2; i++)
             System.out.print("-----");
         //print("---------------------");
 
@@ -190,7 +190,7 @@ public class SessionController {
             print(" ");
         }
         //println("---------------------");
-        for (i = 0; i < (1 + col) * 3 / 2 - 8; i++)
+        for (i = 0; i < (totalSpace - 6 )/2 + 2; i++)
             System.out.print("-----");
         print("");
         println("|Entrance|\n");
@@ -211,6 +211,9 @@ public class SessionController {
             i--;j--;
             if (seatList.get(i).get(j).isTaken() || seatList.get(i).get(j).isSelected())
                 println("Already been taken/selected please choose another seats.");
+            else if (seatList.get(i).get(j).isStairWay()) {
+                println("Unavailable, please pick a different seat.");
+            }
             else break;
         } while (true);
 

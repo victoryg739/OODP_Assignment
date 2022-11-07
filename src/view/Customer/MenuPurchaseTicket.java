@@ -55,11 +55,10 @@ public class MenuPurchaseTicket extends MenuBase {
 
         CineplexController cc = new CineplexController();
         ArrayList<Session> sessionList = new ArrayList<>();
-        String cineplexLocation = null;
 
         printHeader("Menu for Purchasing Ticket:");
         println("");
-        //cinemaController.printAllCinema();
+        cineplexController.printByMovieId(movie.getId());
 
 //        ArrayList<Cineplex> cineplexes = cc.read();
 //        for (int i = 0; i < cineplexes.size(); i++) {
@@ -90,13 +89,15 @@ public class MenuPurchaseTicket extends MenuBase {
 //        }
         Session session = null;
         int choice = readIntInput("Please Choose a session by SessionId (0 to return): ");
-        if (choice == 0) return new MenuCustomerMain(this);
+        if (choice == 0) return new MenuListMovie(this);
         else if (choice < 0) print("Invalid input! Please try again.");
         else session = sessionController.readById(choice);
 
         //get all the available seats for the selected session
         ArrayList<ArrayList<Seat>> seatList = session.getSeats();
         int col = seatList.get(0).size(), row = seatList.size();
+
+        String cineplexLocation = null;
 
         //Intialise ArrayList of Seat Objects
         ArrayList<Seat> selected = new ArrayList<Seat>();
