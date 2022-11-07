@@ -53,12 +53,22 @@ public class MenuCustomerRegister extends MenuBase {
             return false;
     }
 
+//    public static boolean validEmail(String username){
+//        // Function to check if have duplicate email in txt file
+//
+//        // Function to check if email is in correct format
+//    }
+
     // Registration Menu to create new accounts
     public MenuBase execute(){
         do {
 
             // Display to get new account Username and Password
             customerUsername = read("Create customerUsername: ");
+//            while (!validEmail(customerUsername)) {
+//                System.out.println("Please ensure");
+//                customerUsername = read("Create Email: ");
+//            }
             password = read("Create Password: ");
             while (!validatePasswordStrength(password)) {
                 System.out.println("Please ensure password contains at least 8 characters, 1 Upper case, 1 Lower case, 1 special character ");

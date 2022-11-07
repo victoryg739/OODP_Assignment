@@ -424,9 +424,45 @@ public class utilF  {
         }
     }
 
-    public static void printHeader(String message){
-        System.out.println("==================== " + message+ " =====================\n");
+    // Function to get maximum length of a string
+    private static int getMaxLength(String... strings) {
+        int len = Integer.MIN_VALUE;
+        for (String str : strings) {
+            len = Math.max(str.length(), len);
+        }
+        return len;
     }
+
+    // Function to fill the string with len repeats of character ch
+    private static String fill(char ch, int len) {
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(ch);
+        }
+        return sb.toString();
+    }
+
+    // Function to pad the string
+    private static String padString(String str, int len) {
+        StringBuilder sb = new StringBuilder(str);
+        return sb.append(fill(' ', len - str.length())).toString();
+    }
+
+    // Function to Print the Header
+    // 1. Determine length of the longest string
+    // 2. Building a top and bottom " = " line
+    // 3. Perform padding on the string
+    // 4. Output padding in this format | Str |
+    public static void printHeader(String... strings) {
+        int maxBoxWidth = getMaxLength(strings);
+        String line = "=" + fill('=', maxBoxWidth + 2) + "=";
+        System.out.println(line);
+        for (String str : strings) {
+            System.out.printf("| %s |%n", padString(str, maxBoxWidth));
+        }
+        System.out.println(line);
+    }
+
     public static void printDivider(){
         print("===============================================");
     }
