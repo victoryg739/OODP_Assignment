@@ -7,6 +7,8 @@ import view.MenuBase;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import static view.utilF.*;
@@ -60,8 +62,8 @@ public class MenuPurchaseTicket extends MenuBase {
         //cinemaController.printAllCinema();
 
         ArrayList<Cineplex> cineplexes = cc.read();
-        for(int i = 0; i < cineplexes.size(); i++) {
-            System.out.println((i+1) + ". " + cineplexes.get(i).getLocation());
+        for (int i = 0; i < cineplexes.size(); i++) {
+            System.out.println((i + 1) + ". " + cineplexes.get(i).getLocation());
         }
 
         int choice;
@@ -70,11 +72,10 @@ public class MenuPurchaseTicket extends MenuBase {
             if (choice == 0) {
                 System.out.println("Returning...");
                 return this.getPreviousMenu();
-            }
-            else if (choice < 0 || choice > cineplexes.size())
+            } else if (choice < 0 || choice > cineplexes.size())
                 System.out.println("Invalid input! Please try again.");
             else { //valid choice
-                cineplexLocation = cineplexes.get(choice-1).getLocation();
+                cineplexLocation = cineplexes.get(choice - 1).getLocation();
                 sessionList = cinemaController.showAvailableSessions(cineplexLocation, movie);
                 if (sessionList == null)
                     System.out.println("No available sessions for this cineplex! Please choose another.");
@@ -90,18 +91,17 @@ public class MenuPurchaseTicket extends MenuBase {
 
         //get all the available seats for the selected session
         String tempCinemeNo = session.getCinema().getCinemaNo();
-        Cinema  cinema = cinemaController.readByCinemaNo(tempCinemeNo);
+        Cinema cinema = cinemaController.readByCinemaNo(tempCinemeNo);
         ArrayList<ArrayList<Seat>> seatList = cinema.getSeats();
-        int col = seatList.get(0).size(), row=seatList.size();
+        int col = seatList.get(0).size(), row = seatList.size();
 
         //find seat & select seat
         ArrayList<Seat> selected = new ArrayList<Seat>();
 
-        while(confirm("Continue to select seats?"))
-        {
+        while (confirm("Continue to select seats?")) {
             printHeader("Select Seats");
             cinemaController.displaySeats(seatList, row, col);
-            Seat selectedSeat = cinemaController.chooseSeats(seatList,row,col);
+            Seat selectedSeat = cinemaController.chooseSeats(seatList, row, col);
             selected.add(selectedSeat);
         }
         println("This is your finalized seats");
@@ -116,32 +116,61 @@ public class MenuPurchaseTicket extends MenuBase {
             ArrayList<Ticket> tickets = new ArrayList<Ticket>();
             //Function to determine the day n time
             Enums.Day day = session.getDay();
+            Enums.AgeType age = Enums.AgeType.NORMAL;
             Enums.MovieType movieType = movie.getType();
             Enums.ClassCinema cinemaClass = session.getCinema().getClassCinema();
             boolean loyaltyCard = false;
-            boolean holiday = false;
+            boolean holiday;
             double ticketPrice;
+            //take Session datetime convert to this format
+            Date sessionDateTime = session.getDateTime();
+            DateFormat outputFormat = new SimpleDateFormat("dd MM yyyy");
+            HolidayController h = new HolidayController();
+            String formattedDate = outputFormat.format(sessionDateTime);
+            Date finalDate;
+            print(formattedDate);
+            try {
+                finalDate = outputFormat.parse(formattedDate);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            //using bryan holiday function to check if it is holiday
+            holiday = h.isHoliday(finalDate);
+            if (holiday) {
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
+                //for every seat, generate 1 ticket according to the ticket type
+                for (Seat seat : selected) {
+                    Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
+                    tickets.add(ticket);
+                }
+            }
 
             if (confirm("Are you eligible for student discount?")) { //student price
-                Enums.AgeType age = Enums.AgeType.STUDENT;
+                age = Enums.AgeType.STUDENT;
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
                     tickets.add(ticket);
                 }
-            }
-            else if (confirm("Are you eligible for senior discount?")) { //senior price
-                Enums.AgeType age = Enums.AgeType.SENIOR;
+            } else if (confirm("Are you eligible for senior discount?")) { //senior price
+                age = Enums.AgeType.SENIOR;
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
                     tickets.add(ticket);
                 }
-            }
-            else { //neither student nor senior
-                Enums.AgeType age = Enums.AgeType.NORMAL;
+            } else if (confirm("Do you have loyalty/credit card?")) { //loyalty card/credit card price
+                loyaltyCard = true;
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
+                //for every seat, generate 1 ticket according to the ticket type
+                for (Seat seat : selected) {
+                    Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
+                    tickets.add(ticket);
+                }
+            } else { //neither student nor senior
+                age = Enums.AgeType.NORMAL;
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
@@ -156,10 +185,6 @@ public class MenuPurchaseTicket extends MenuBase {
             double totalPrice = ticketPrice * tickets.size();
 
             //Get the current Date/time to generate the tid according to the format XXXYYYYMMDDhhmm
-            //Date currentTime = Calendar.getInstance().getTime();
-//            String timeStamp;
-//            SimpleDateFormat currentTime = Constant.bookingFormat;
-
             SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
             Date date = new Date();
             System.out.println(formatter.format(date));
@@ -169,7 +194,7 @@ public class MenuPurchaseTicket extends MenuBase {
             if (confirm("Confirm booking? ")) {
                 //Create the booking transaction
                 Booking booking = new Booking(session.getCinema().getCinemaNo(), cineplexLocation, tid,
-                        username ,movie, tickets, session, totalPrice);
+                        username, movie, tickets, session, totalPrice);
                 println("Booking successful");
                 booking.printBookingSummary();
                 movieController.updateMovie(11, movie.getId(), tickets.size());
@@ -185,14 +210,15 @@ public class MenuPurchaseTicket extends MenuBase {
                 mail.sendEmail();
 
 
-            }
-            else {
+            } else {
                 for (Seat seat : selected)
                     seat.setSelected(false);
             }
-        }while (readIntInput("Press 0 to return to Main Menu: ") != 0) ;
+        }
+        while (readIntInput("Press 0 to return to Main Menu: ") != 0) ;
 
         return new MenuCustomerMain(this);
     }
 }
+
 
