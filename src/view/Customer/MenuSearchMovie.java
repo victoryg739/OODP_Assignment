@@ -3,9 +3,7 @@ package view.Customer;
 import controller.MovieController;
 import controller.SessionController;
 import modal.Movie;
-import modal.Session;
 import view.MenuBase;
-import view.Quit;
 import view.admin.MenuStaffTopFiveRating;
 
 import java.util.ArrayList;

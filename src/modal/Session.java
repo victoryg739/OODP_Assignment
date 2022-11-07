@@ -14,18 +14,50 @@ public class Session implements Serializable {
     private Date dateTime;
 
     private Enums.Day day;
+
+    private ArrayList<ArrayList<Seat>> seats = new ArrayList<ArrayList<Seat>>();
+
     public Session(){
 
 
     }
-    public Session(Cinema cinema, Movie movie, int sessionId, Date dateTime, Enums.Day day) {
+    public Session(int row, int col , Cinema cinema, Movie movie, int sessionId, Date dateTime, Enums.Day day) {
+        for(int i=0;i<row;i++)
+        {
+            this.seats.add(new ArrayList<Seat>());
+            for(int j=0;j<col;j++)
+            {
+                Seat tmpSeat = new Seat();
+                if(i<4 && j<2){
+                    tmpSeat = new Seat(j,i,false,true);
+
+                }else{
+                    tmpSeat = new Seat(j,i,false,false);
+
+                }
+                this.seats.get(i).add(tmpSeat);
+            }
+        }
         this.movie = movie;
         this.sessionId = sessionId;
         this.dateTime = dateTime;
         this.day = day;
         this.cinema = cinema;
     }
+    public ArrayList<ArrayList<Seat>> getSeats() {
+        return seats;
+    }
 
+    public void setSeats(int row, int col) {
+        for(int i=1;i<=row;i++)
+        {
+            for(int j=1;j<=col;j++)
+            {
+                Seat tmpseat = new Seat(j,i,false,false);
+                this.seats.get(i).add(tmpseat);
+            }
+        }
+    }
     public Cinema getCinema (){
         return cinema;
     }

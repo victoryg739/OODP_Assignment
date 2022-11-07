@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 import modal.*;
 
-import static view.utilF.confirm;
+import static view.utilF.*;
 
 public class BookingController {
     public final static String FILENAME = "data/booking.txt";
@@ -105,6 +105,4 @@ public class BookingController {
         }
         return returnData;
     }
-
-
 }

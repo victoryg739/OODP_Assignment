@@ -424,8 +424,11 @@ public class utilF  {
         }
     }
 
+    /* WZ edit this */
     public static void printHeader(String message){
-        System.out.println("==================== " + message+ " =====================\n");
+        System.out.println("==============================================================");
+        System.out.println("|            " + message+ "                  | ");
+        System.out.println("==============================================================");
     }
     public static void printDivider(){
         print("===============================================");
