@@ -173,7 +173,8 @@ public class mainProgram {
             CineplexController cinplexCtrler = new CineplexController();
             cinplexCtrler.replace(cineplexArrayList);
         }
-
+        CineplexController cineplexController = new CineplexController();
+        cineplexController.printByMovieId(0);
 //        ArrayList<Cinema> cinemaFile = cinemaCtrler.read();
 //        for(int a =0 ; a<cinemaFile.size();a++){
 //            System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
