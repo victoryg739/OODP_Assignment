@@ -105,21 +105,4 @@ public class BookingController {
         }
         return returnData;
     }
-
-    public void printBookingSummary(Booking booking, String cineplexLocation) {
-        int seatCount =1;
-        println("Booking Summary: ");
-        print("tid: " + booking.getTID() + "\n" +
-                "Movie: " + booking.getMovie().getTitle() +"\n" +
-                "Cineplex: " + cineplexLocation + "\n" +
-                "Number of tickets purchased: " + booking.getTicket().size() +"\n" +
-                "Total Price: " + booking.getTotalPrice() +"\n" +
-                "Seats: ");
-        for (Ticket ticket : booking.getTicket()) {
-            print(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
-            seatCount++;
-        }
-    }
-
-
 }

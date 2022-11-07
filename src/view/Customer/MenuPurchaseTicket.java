@@ -163,10 +163,10 @@ public class MenuPurchaseTicket extends MenuBase {
             println("Total price is S$" + totalPrice + " (Inclusive of GST).");
             if (confirm("Confirm booking? ")) {
                 //Create the booking transaction
-                Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
+                Booking booking = new Booking(session.getCinema().getCinemaNo(), cineplexLocation, tid,
                         username ,movie, tickets, session, totalPrice);
                 println("Booking successful");
-                bookingController.printBookingSummary(booking, cineplexLocation);
+                booking.printBookingSummary();
                 movieController.updateMovie(11, movie.getId(), tickets.size());
                 bookingController.create(booking);
                 for (Seat seat : selected) {

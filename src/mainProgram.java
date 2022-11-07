@@ -76,9 +76,9 @@ public class mainProgram {
             Session tempSession = new Session(0,0,cinema3, movie0, 0, currentTime , Enums.Day.FRI_AFT_SIX);
             //Create the booking transaction
             BookingController bookingController = new BookingController();
-            Booking booking = new Booking("A1", "tid",
-                    customer.getUsername(), movie0, tickets, tempSession, 12.50);
-            bookingController.create(booking);
+//            Booking booking = new Booking("A1", "tid",
+//                    customer.getUsername(), movie0, tickets, tempSession, 12.50);
+//            bookingController.create(booking);
         }
 
         File fCinema = new File("data/cinema.txt");
