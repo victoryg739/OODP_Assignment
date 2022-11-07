@@ -5,6 +5,9 @@ import controller.*;
 import modal.*;
 import view.MenuBase;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -85,10 +88,10 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         Date sessionDateTime  = readDateTime("Enter session date and time: ");
         Enums.Day enumsDay  = returnEnumsDay(sessionDateTime);
 
-        //take Session datetime convert to this format
+//        //take Session datetime convert to this format
+//        boolean holiday = false;
 //        DateFormat outputFormat = new SimpleDateFormat("dd MM yyyy");
 //        HolidayController h = new HolidayController();
-//        boolean test = false;
 //        String formattedDate = outputFormat.format(sessionDateTime);
 //        Date finalDate = new Date();
 //        print(formattedDate);
@@ -97,21 +100,22 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 //        } catch (ParseException e) {
 //            throw new RuntimeException(e);
 //        }
-//
-//        test = h.isHoliday(finalDate);
-//
-//
-//        System.out.println("hhhh\t"+test);
+//        //using bryan holiday function to check if it is holiday
+//        holiday = h.isHoliday(finalDate);
+
+
+     //   System.out.println("hhhh\t"+holiday);
 
         int[] rowCol =cinemaCtrler.getSeatsByCinemaNo(cinemaNo);
         int lastSessionId = sessionCtrler.getLastSessionId();
-        print(rowCol[0] + " " + rowCol[1]);
         Session session = new Session(rowCol[0],rowCol[1],cinema,m,lastSessionId+1, sessionDateTime,enumsDay);
 
         //update both session and cinema txt file
+        cineplexCtrler.appendByLocation(cineplexLocation,cinemaNo,session);
         sessionCtrler.append(session);
         cinemaCtrler.cinemaUpdateSession(cinemaNo, session);
 
+        cineplexCtrler.printAllCineplex();
         sessionCtrler.printAllSession();
         cinemaCtrler.printAllCinema();
 

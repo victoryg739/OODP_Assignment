@@ -6,9 +6,13 @@ public class Cineplex implements Serializable {
     private String location;
     private ArrayList<Cinema> cinemas;
 
-    public Cineplex(String location, ArrayList<Cinema> cinemas){
+
+    private ArrayList<Session> sessions;
+
+    public Cineplex(String location, ArrayList<Cinema> cinemas,ArrayList<Session> sessions){
         this.location = location;
         this.cinemas = cinemas;
+        this.sessions = sessions;
     }
     public String getLocation() {
         return location;
@@ -24,6 +28,13 @@ public class Cineplex implements Serializable {
 
     public void setCinemas(ArrayList<Cinema> cinemas) {
         this.cinemas = cinemas;
+    }
+    public ArrayList<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
     }
 
 }

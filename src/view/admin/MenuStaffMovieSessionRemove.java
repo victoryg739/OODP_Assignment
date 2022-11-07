@@ -65,7 +65,9 @@ public class MenuStaffMovieSessionRemove extends MenuBase {
         }
         sessionCtrler.remove(sessionId);
         cinemaCtrler.cinemaRemoveSession(sessionId);
+        cineplexCtrler.removeSession(sessionId);
 
+        cineplexCtrler.printAllCineplex();
         sessionCtrler.printAllSession();
         cinemaCtrler.printAllCinema();
 

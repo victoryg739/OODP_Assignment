@@ -209,9 +209,9 @@ public class MovieController {
 
     /* A function to check whether if it is valid to review a movie */
     /* Customer should not be able to make a review for movies that have not been released */
-    public boolean validReviewMovie(int movieID){
+    public boolean validReviewMovie(int movieID) {
         Movie m = readByID(movieID);
-        if(m.getShowingStatus() != ShowingStatus.COMING_SOON){
+        if (m.getShowingStatus() != ShowingStatus.COMING_SOON) {
             return true; // Returns true (valid) if the moving status is not released
         }
         return false;
@@ -244,7 +244,7 @@ public class MovieController {
             sortTicketSales(movieList);
             int top = 1;
             for (Movie movie : movieList) {
-                println("Name: " + movie.getTitle() + "\n" + "Rating: " + movie.getTicketSales());
+                println("Name: " + movie.getTitle() + "\n" + "Sales: " + movie.getTicketSales());
                 if (top++ == 5) {
                     break;
                 }
@@ -270,7 +270,6 @@ public class MovieController {
     }
 
 
-
     public void listALLMoviesSettings() {
         ArrayList<Movie> movieList = read();
         if (movieList.isEmpty()) {
@@ -282,8 +281,6 @@ public class MovieController {
             }
         }
     }
-
-
 
 
     public void createMovie(Movie movie) {
@@ -311,10 +308,9 @@ public class MovieController {
         ArrayList<Movie> returnData = new ArrayList<Movie>();
         for (int i = 0; i < allData.size(); i++) {
             Movie m = allData.get(i);
-            if (validateShowingStatus(m)) {
-                if (m.getTitle().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
-                    returnData.add(m);
-                }
+            if (m.getTitle().toLowerCase().contains(valueToSearch.toString().toLowerCase())) {
+                returnData.add(m);
+
             }
         }
         return returnData;
