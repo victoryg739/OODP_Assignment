@@ -5,9 +5,6 @@ import controller.*;
 import modal.*;
 import view.MenuBase;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -113,7 +110,7 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 
         //update both session and cinema txt file
         sessionCtrler.append(session);
-        cinemaCtrler.cinemaUpdateSession(cinemaNo,session);
+        cinemaCtrler.cinemaUpdateSession(cinemaNo, session);
 
         sessionCtrler.printAllSession();
         cinemaCtrler.printAllCinema();

@@ -4,6 +4,8 @@ import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ The start of the program
 
 public class mainProgram {
     public final static String FILENAME = "data/movies.txt";
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, AddressException, MessagingException {
         /* For Testing Purposes */
         File myObj = new File("data/settings.txt");
         myObj.createNewFile();
@@ -62,7 +64,7 @@ public class mainProgram {
 
             Cinema cinema3 = new Cinema(10,10,"A3", null, Enums.ClassCinema.NORMAL, null);
             CustomerController customerController = new CustomerController();
-            Customer customer = new Customer("a", "a");
+            Customer customer = new Customer("a", "a", "riven");
             int temp = customer.getCustomerID();
             //System.out.println(temp);
             customer.setCustomerID(0);
@@ -164,7 +166,7 @@ public class mainProgram {
         ac.createAdmin(rootAdmin);
 
         // Creating Customer account to test
-        Customer testCustomer = new Customer("twz","twz");
+        Customer testCustomer = new Customer("twz","twz", "rivenbryan@gmail.com");
         CustomerController cc = new CustomerController();
         cc.createCustomer(testCustomer);
 

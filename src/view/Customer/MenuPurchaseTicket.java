@@ -1,14 +1,13 @@
 package view.Customer;
 
 import controller.*;
-import modal.Customer;
 import modal.*;
 import view.MenuBase;
-import view.admin.MenuStaffLogin;
 
-import java.lang.reflect.Array;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 import static view.utilF.*;
 
@@ -50,7 +49,7 @@ public class MenuPurchaseTicket extends MenuBase {
      Get user's information about name, email and phone number
      Provide the total ticket price to the user
      */
-    public MenuBase execute() {
+    public MenuBase execute() throws IOException, AddressException, MessagingException {
 
         CineplexController cc = new CineplexController();
         ArrayList<Session> sessionList = new ArrayList<>();
@@ -175,6 +174,12 @@ public class MenuPurchaseTicket extends MenuBase {
                     seat.setTaken(true);
                 }
                 cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected, movie, session);
+                EmailController mail = new EmailController();
+                mail.setupServerProperties();
+                mail.draftEmail(booking);
+                mail.sendEmail();
+
+
             }
             else {
                 for (Seat seat : selected)

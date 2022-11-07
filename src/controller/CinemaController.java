@@ -87,7 +87,7 @@ public class CinemaController {
         return returnData;
     }
 
-    public void cinemaUpdateSession(Object valueToSearch,Session newSession) {
+    public void cinemaUpdateSession(Object valueToSearch, Session newSession) {
         ArrayList<Cinema> cinemaListing = read();
         ArrayList<Session> sessionList = new ArrayList<Session>();
 
