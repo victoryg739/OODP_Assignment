@@ -174,6 +174,10 @@ public class SessionController {
                     else if (seat.isStairWay()) {
 
                         System.out.print("   ");
+                    }else if(seat.isCouple() && j%2 == 0) {
+                        System.out.print("[");
+                    }else if(seat.isCouple() && j%2 == 1){
+                        System.out.print("    ]");
                     }
                     else
                         System.out.print("[ ]");

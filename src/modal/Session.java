@@ -22,11 +22,9 @@ public class Session implements Serializable {
 
     }
     public Session(int row, int col , Cinema cinema, Movie movie, int sessionId, Date dateTime, Enums.Day day) {
-        for(int i=0;i<row;i++)
-        {
+        for(int i=0;i<row;i++) {
             this.seats.add(new ArrayList<Seat>());
-            for(int j=0;j<col;j++)
-            {
+            for(int j=0;j<col;j++) {
                 Seat tmpSeat = new Seat();
                 if(i<4 && j<2){
                     tmpSeat = new Seat(j,i,false,true,false);

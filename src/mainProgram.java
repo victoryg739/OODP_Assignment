@@ -129,7 +129,7 @@ public class mainProgram {
 
         if (!fCinema.exists()) {
 
-            Cinema cinema1 = new Cinema(5,5 ,"A1",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema1 = new Cinema(6,6 ,"A1",  Enums.ClassCinema.PLATINUM, null);
             Cinema cinema2 = new Cinema(10,10,"A2",  Enums.ClassCinema.PLATINUM, null);
             Cinema cinema3 = new Cinema(10,10,"A3",  Enums.ClassCinema.NORMAL, null);
             Cinema cinema4 = new Cinema(10,10,"A4",  Enums.ClassCinema.PLATINUM, null);
