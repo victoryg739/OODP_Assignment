@@ -96,5 +96,7 @@ public class Session implements Serializable {
         this.day = day;
     }
 
+    public void setSeatPlan(ArrayList<ArrayList<Seat>> seatList) {this.seats = seatList;}
+
 
 }

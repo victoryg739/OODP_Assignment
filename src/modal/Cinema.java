@@ -73,6 +73,4 @@ public class Cinema implements Serializable {
         this.sessions = sessions;
     }
 
-    public void setSeatPlan(ArrayList<ArrayList<Seat>> seatList) {this.seats = seatList;}
-
 }
