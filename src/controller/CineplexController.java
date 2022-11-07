@@ -208,6 +208,21 @@ public class CineplexController {
 
     }
 
+    public String returnLocationBySessionId(int sessionId) {
+        ArrayList<Cineplex> allData = read();
+        String location = "";
+        for (int i = 0; i < allData.size(); i++) {
+            location = allData.get(i).getLocation();
+            if(allData.get(i).getSessions() != null ){
+                for(int j=0; j<allData.get(i).getSessions().size();j++) {
+                    if(sessionId == allData.get(i).getSessions().get(j).getSessionId()){
+                        return location;
+                    }
+                }
+            }
+        }
+        return location;
+    }
 
     public void printAllCineplex() {
         ArrayList<Cineplex> cp = read();
