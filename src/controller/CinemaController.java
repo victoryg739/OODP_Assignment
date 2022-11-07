@@ -18,8 +18,8 @@ public class CinemaController {
         public final static int NAME = 0;
         public final static int CINEMAS = 1;
 
-        public void append(int row ,int col,String cinemaNo, Movie movie, Enums.ClassCinema classCinema, ArrayList<Session> sessions ){
-            Cinema cinema  = new Cinema(row,col,cinemaNo,movie,classCinema,sessions);
+        public void append(int row ,int col,String cinemaNo, Enums.ClassCinema classCinema, ArrayList<Session> sessions ){
+            Cinema cinema  = new Cinema(row,col,cinemaNo,classCinema,sessions);
 
             // Creates an ArrayList of movie
             ArrayList<Cinema> allData = new ArrayList<Cinema>();
