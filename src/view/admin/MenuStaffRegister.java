@@ -56,8 +56,6 @@ public class MenuStaffRegister extends MenuBase {
     public MenuBase execute(){
         do {
 
-            // Task : Make sure Username not duplicated in txt file then can create
-
             // Display to get new account Username and Password
             staffUsername = read("Create staffUsername: ");
             password = read("Create Password: ");

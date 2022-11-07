@@ -155,7 +155,11 @@ public class CustomerController {
     }
 
     public boolean authenticate(String username, String password) {
-        if (username.equals(readByUsername(username).getUsername()) && password.equals(readByPassword(password).getPassword())) {
+        // Case : There is no customer object in the file
+        if (readByUsername(username) == null || readByPassword(password) == null ){
+            return false;
+        }
+        else if (username.equals(readByUsername(username).getUsername()) && password.equals(readByPassword(password).getPassword())) {
             return true;
         } else {
             return false;
