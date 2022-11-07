@@ -106,19 +106,10 @@ public class MenuPurchaseTicket extends MenuBase {
             //IF sessionDate is during a holiday
             if (holiday) {
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
-                //for every seat, generate 1 ticket according to the ticket type
-                for (Seat seat : selected) {
-                    Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
-                    tickets.add(ticket);
-                }
             }
             //IF movie is sneak preview
             else if (movie.getShowingStatus() == Enums.ShowingStatus.PREVIEW) {
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
-                for (Seat seat : selected) {
-                    Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
-                    tickets.add(ticket);
-                }
             }
             else if (confirm("Are you eligible for student discount?")) { //student price
                 age = Enums.AgeType.STUDENT;
