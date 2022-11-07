@@ -252,18 +252,10 @@ public class CinemaController {
     public void displaySeats(ArrayList<ArrayList<Seat>> seatList, int row, int col)
     {
         Seat seat;
-//        for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++)
-//            print(" ");
-        println("|      Screen       |");
-//        for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++) {
-//            print(" ");
-//        }
-        println("---------------------");
+        print("|      Screen       |");
+        print("---------------------");
 
-        print("    ");
         int new_row = 0;
-        println(" ");
-        //boolean flag = false;
         for(int i =0; i<row; i++)
         {
             new_row = 0;
@@ -288,10 +280,6 @@ public class CinemaController {
             }
             print(" ");
         }
-
-        println("");
-//        for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
-//            print(" ");
         println("----------");
         println("|Entrance|\n");
         println("([ ] Available  [#] Seat Selected  [X] Sold)");

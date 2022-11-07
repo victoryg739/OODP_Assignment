@@ -54,10 +54,10 @@ public class MenuPurchaseTicket extends MenuBase {
 
         CineplexController cc = new CineplexController();
         ArrayList<Session> sessionList = new ArrayList<>();
+        String cineplexLocation = null;
 
-
-        System.out.println("Menu for Purchasing Ticket:");
-        System.out.println();
+        printHeader("Menu for Purchasing Ticket:");
+        println("");
         //cinemaController.printAllCinema();
 
         //Print the list of Cineplexes with the selected movies
@@ -76,7 +76,8 @@ public class MenuPurchaseTicket extends MenuBase {
             else if (choice < 0 || choice > cineplexes.size())
                 System.out.println("Invalid input! Please try again.");
             else { //valid choice
-                sessionList = cinemaController.showAvailableSessions(cineplexes.get(choice-1).getLocation(), movie);
+                cineplexLocation = cineplexes.get(choice-1).getLocation();
+                sessionList = cinemaController.showAvailableSessions(cineplexLocation, movie);
                 if (sessionList == null)
                     System.out.println("No available sessions for this cineplex! Please choose another.");
             }
@@ -161,16 +162,17 @@ public class MenuPurchaseTicket extends MenuBase {
 
             println("Total price is S$" + totalPrice + " (Inclusive of GST).");
             if (confirm("Confirm booking? ")) {
-                for (Seat seat : selected) {
-                    seat.setSelected(false);
-                    seat.setTaken(true);
-                }
                 //Create the booking transaction
                 Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
                         username ,movie, tickets, session, totalPrice);
                 println("Booking successful");
+                bookingController.printBookingSummary(booking, cineplexLocation);
                 movieController.updateMovie(11, movie.getId(), tickets.size());
                 bookingController.create(booking);
+                for (Seat seat : selected) {
+                    seat.setSelected(false);
+                    seat.setTaken(true);
+                }
                 cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected, movie, session);
             }
             else {
