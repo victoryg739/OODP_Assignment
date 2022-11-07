@@ -192,7 +192,7 @@ public class Movie implements Serializable {
         System.out.println("Director: " + director);
 
         //Movie Cast
-        System.out.println("Cast: ");
+        System.out.print("Cast: ");
         StringBuilder s = new StringBuilder();
         for (String r : getCast()) { //get list of the entire cast for the movie
             s.append(r + "; ");
