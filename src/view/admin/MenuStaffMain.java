@@ -1,44 +1,33 @@
 package view.admin;
 
-import modal.Movie;
+import view.MainMenu;
 import view.MenuBase;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import static view.utilF.*;
 
 public class MenuStaffMain extends MenuBase {
-    public MenuStaffMain(MenuBase initialMenu){
+    String username;
+    public MenuStaffMain(MenuBase initialMenu, String username){
         super(initialMenu);
+        this.username = username;
     }
 
     public MenuBase execute(){
         int choice;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Staff Menu");
+        MenuBase nextMenu;
 
-        System.out.println("======================= Staff Menu =======================\n" +
-                " 1. Create/Update/Remove Movie Listing                               \n" + //shows what movies there are
-                " 2. Create/Update/Remove Movie Session                               \n" + //shows the timing of each movie
-                " 3. Configure system settings                                          \n" +
-                " 4. List movies                                                        \n" +
-                " 5. Create Staff Account                                               \n" +
-                " 6. Back                                                               \n " +
-                "===========================================================");
+        printHeader("Staff Menu");
+        println("Welcome to MOblima Adminstrator Panel: " + username);
+        print(" 1. Create/Update/Remove Movie Listing                               \n" +
+              " 2. Create/Update/Remove Movie Session                               \n" +
+              " 3. Configure system settings                                          \n" +
+              " 4. List movies                                                        \n" +
+              " 5. Back                                                               \n ");
+        choice = readIntInput("Enter choice:");
 
-        System.out.println("Enter choice: ");
-
-        while (!sc.hasNextInt()) {
-            System.out.println("Invalid input type. Please enter an integer value.");
-            sc.next(); // Remove newline character
-        }
-        choice = sc.nextInt();
-        MenuBase nextMenu = this;
         switch (choice) {
             case 1:
-                // List movies (STAFF)
                 nextMenu = new MenuStaffMovieListFunction(this);
-
                 break;
             case 2:
                 nextMenu = new MenuStaffMovieSessionFunction(this);
@@ -47,18 +36,12 @@ public class MenuStaffMain extends MenuBase {
                 nextMenu = new MenuStaffConfigureSettings(this);
                 break;
             case 4:
-                nextMenu = new MenuStaffMovieL(this);
+                nextMenu = new MenuStaffMovieList(this);
                 break;
-            case 5 :
-                nextMenu = new MenuStaffRegister(this);
             default:
-                nextMenu = this.getPreviousMenu();
+                nextMenu = new MainMenu(this);
                 break;
         }
         return nextMenu;
-    }
-
-    private void sortTicketSales(ArrayList<Movie> movies) {
-        Collections.sort(movies, (m1, m2) -> (m1.getTicketSales() - m2.getTicketSales()));
     }
 }

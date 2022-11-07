@@ -1,8 +1,10 @@
 package view.Customer;
+import view.MainMenu;
 import view.MenuBase;
 
 import java.util.*;
 import static view.utilF.*;
+import static view.utilF.print;
 
 public class MenuCustomerMain extends MenuBase {
     public MenuCustomerMain(MenuBase initialMenu) {
@@ -19,16 +21,11 @@ public class MenuCustomerMain extends MenuBase {
      4. Back to previous menu
      */
     public MenuBase execute() {
-        System.out.println("Welcome to MOvie Booking and LIsting Management Application (MOBLIMA)");
-
-        Scanner sc = new Scanner(System.in);
-        ArrayList<String> choices = new ArrayList<String>();
-        choices.add("Search For Movies");
-        choices.add("List All Movies");
-        choices.add("Booking History");
-        choices.add("Go Back");
-        //print the menu interface
-        printMenu(choices, 1);
+        printHeader("Customer Menu");
+        print("1. Search For Movies        \n" +
+                "2. List All Movies         \n" +
+                "3. Booking History         \n" +
+                "4. Go Back to Main Menu\n");
 
         //read the input
         int choice = readIntInput("Enter your choice");
@@ -42,10 +39,11 @@ public class MenuCustomerMain extends MenuBase {
                 nextMenu = new MenuListMovie(this);
                 break;
             case 3:
-                nextMenu = new MenuBookingHistory(this);
+                //nextMenu = new Menu
+                nextMenu = new MenuCustomerLogin(this, 2, null);
                 break;
             case 4:
-                nextMenu = this.getPreviousMenu();
+                nextMenu = new MainMenu(this);
                 break;
         }
         return nextMenu;

@@ -1,8 +1,15 @@
 package view;
+import controller.CinemaController;
+import controller.MovieController;
 import modal.Constant;
 import modal.Customer;
 import modal.Enums;
+import modal.Movie;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
@@ -13,9 +20,9 @@ import java.util.Scanner;
 
 /* Functions to help us to process printing/reading inputs */
 @SuppressWarnings("deprecation")
-public class utilF {
+public class utilF  {
     private static Scanner sc = new Scanner(System.in);
-
+    public static int SCREEN_WIDTH = 80;
     /**
      * Method to notify user about the input String
      * @param message info about input
@@ -56,15 +63,12 @@ public class utilF {
                 String date = read(msg + " (" + sdf.toPattern()+ "): ");
                 return sdf.parse(date);
             } catch (ParseException ime) {
-                System.out.println("Please enter a correct date format");
-                sc.nextLine();
+                System.out.println("Please enter the correct date format!");
             }
         } while (true);
     }
 
     public static Enums.Day returnEnumsDay(Date date){
-        System.out.println("dayofweek" + date.getDay());
-        System.out.println("timeofday" + date.getHours());
         int dayOfWeek = date.getDay();
         int hours  = date.getHours();
         if(dayOfWeek >= 1 && dayOfWeek <= 3){
@@ -125,7 +129,6 @@ public class utilF {
                 return sdf.parse(date);
             } catch (ParseException ime) {
                 System.out.println("Please enter a correct date format");
-                sc.nextLine();
             }
         } while (true);
     }
@@ -259,6 +262,112 @@ public class utilF {
         }
     }
 
+    public static Enums.Day readDay(String Message) {
+        Enums.Day day;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+
+                switch(c) {
+                    case 1:
+                        day = Enums.Day.MON_WED_BEF_SIX;
+                        break;
+                    case 2:
+                        day = Enums.Day.MON_WED_AFT_SIX;
+                        break;
+                    case 3:
+                        day = Enums.Day.THU_BEF_SIX;
+                        break;
+                    case 4:
+                        day = Enums.Day.THU_AFT_SIX;
+                        break;
+                    case 5:
+                        day = Enums.Day.FRI_BEF_SIX;
+                        break;
+                    case 6:
+                        day = Enums.Day.FRI_AFT_SIX;
+                        break;
+                    case 7:
+                        day = Enums.Day.SAT_SUN;
+                        break;
+                    default:
+                        System.out.println("Default Saturday and Sunday is selected! ");
+                        day = Enums.Day.SAT_SUN;
+                        break;
+                }
+
+                return day;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
+    public static Enums.ClassCinema readClassCinema(String Message) {
+        Enums.ClassCinema classCinema;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+
+                switch(c){
+                    case 1:
+                        classCinema = Enums.ClassCinema.PLATINUM;
+                        break;
+                    case 2:
+                        classCinema = Enums.ClassCinema.NORMAL;
+                        break;
+                    default:
+                        System.out.println("Default class cinema normal selected! ");
+                        classCinema = Enums.ClassCinema.NORMAL;
+                        break;
+
+                }
+
+
+                return classCinema;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
+
+    public static Enums.AgeType readAgeType(String Message) {
+        Enums.AgeType ageType;
+        System.out.println(Message);
+        while (true) {
+            try {
+                String s = sc.next();
+                int c = Integer.parseInt(s);
+
+                switch(c){
+                    case 1:
+                        ageType = Enums.AgeType.NORMAL;
+                        break;
+                    case 2:
+                        ageType = Enums.AgeType.STUDENT;
+                        break;
+                    case 3:
+                        ageType = Enums.AgeType.SENIOR;
+                        break;
+                    default:
+                        System.out.println("Default age type normal selected! ");
+                        ageType = Enums.AgeType.NORMAL;
+                        break;
+
+                }
+
+
+                return ageType;
+            } catch (NumberFormatException e) {
+                System.out.println("Please, input a valid decimal number. ");
+            }
+        }
+    }
+
+
 
 
     /*
@@ -315,12 +424,56 @@ public class utilF {
         }
     }
 
+    // Function to get maximum length of a string
+    private static int getMaxLength(String... strings) {
+        int len = Integer.MIN_VALUE;
+        for (String str : strings) {
+            len = Math.max(str.length(), len);
+        }
+        return len;
+    }
 
+    // Function to fill the string with len repeats of character ch
+    private static String fill(char ch, int len) {
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(ch);
+        }
+        return sb.toString();
+    }
 
+    // Function to pad the string
+    private static String padString(String str, int len) {
+        StringBuilder sb = new StringBuilder(str);
+        return sb.append(fill(' ', len - str.length())).toString();
+    }
 
+    // Function to Print the Header
+    // 1. Determine length of the longest string
+    // 2. Building a top and bottom " = " line
+    // 3. Perform padding on the string
+    // 4. Output padding in this format | Str |
+    public static void printHeader(String... strings) {
+        int maxBoxWidth = getMaxLength(strings);
+        String line = "=" + fill('=', maxBoxWidth + 2) + "=";
+        System.out.println(line);
+        for (String str : strings) {
+            System.out.printf("| %s |%n", padString(str, maxBoxWidth));
+        }
+        System.out.println(line);
+    }
 
+    public static void printDivider(){
+        print("===============================================");
+    }
 
+    public static void print(String message){
+        System.out.println(message);
+    }
 
+    public static void println(String message){
+        System.out.println(message+"\n");
+    }
 
 
 }

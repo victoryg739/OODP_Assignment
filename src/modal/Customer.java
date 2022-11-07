@@ -1,14 +1,21 @@
 package modal;
+import java.io.Serializable;
 import java.util.*;
 
-public class Customer {
+public class Customer implements Serializable {
     private String username;
     private String password;
+
+
+    private String email;
+
+    private int customerID;
     private ArrayList<Booking> bookings;
 
-    public Customer(String username, String password)  {
+    public Customer(String username, String password, String email)  {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.bookings = new ArrayList<>();
     }
 
@@ -28,8 +35,16 @@ public class Customer {
         return password;
     }
 
+    public int getCustomerID() {return customerID;}
+
+
+
     public ArrayList<Booking> getBookings() {
         return bookings;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 
     public void setBookings(ArrayList<Booking> bookings) {
@@ -45,4 +60,12 @@ public class Customer {
             this.bookings.add(new_bookings);
         }
     }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

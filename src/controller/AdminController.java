@@ -1,40 +1,38 @@
 package controller;
 
-import modal.Admin;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+import modal.*;
+import java.io.*;
+import java.util.*;
+import modal.Enums.*;
+import view.MenuBase;
+import view.admin.MenuStaffMain;
 
 
 public class AdminController {
 
-    public final static String FILENAME = "data/adminAccounts.txt";
+    public final static String FILENAME = "data/admin.txt";
 
+    public AdminController(){
+
+    }
     // Create a new Admin account and add into adminAccounts.txt
-    public void create(Admin adminAccount) {
-
-        // Creates an ArrayList of admin
+    public void createAdmin(Admin admin){
         ArrayList<Admin> allData = new ArrayList<Admin>();
         File tempFile = new File(FILENAME);
-
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = read();
         try {
-            // Write the data to the adminAccounts
+            // Write the data to the movie
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-            allData.add(adminAccount);
+            allData.add(admin);
             out.writeObject(allData);
             out.flush();
             out.close();
         } catch (IOException e) {
             // ignore error
         }
+
     }
 
     /**
@@ -43,7 +41,7 @@ public class AdminController {
      * @return Model.{@link Admin}     Return list of Admins if found, else empty list
      */
     @SuppressWarnings("unchecked")
-    public ArrayList<Admin> read() {
+    public static ArrayList<Admin> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
             ArrayList<Admin> adminListing = (ArrayList<Admin>) ois.readObject();
@@ -56,15 +54,14 @@ public class AdminController {
     }
 
     /**
-     * READ and return an Admin by searching for one with matching email in the Database file
-     * @param valueToSearch     Email of admin to search for
-     * @return Admin            Return Admin if found, else null object
+     * READ and return an Admin by searching for one with matching username in the Database file
+     * @param valueToSearch     username of admin to search for
+     * @return Admin            Return username if found, else null object
      */
     public String readByUsername(String valueToSearch) {
         ArrayList<Admin> allData = read();
         for (int i=0; i<allData.size(); i++){
             Admin u = allData.get(i);
-            System.out.println(u.getUsername());
             if (u.getUsername().equals(valueToSearch))
                 return u.getUsername();
         }
@@ -72,9 +69,9 @@ public class AdminController {
     }
 
     /**
-     * READ and return an Admin by searching for one with matching email in the Database file
-     * @param valueToSearch     Email of admin to search for
-     * @return Admin            Return Admin if found, else null object
+     * READ and return an Admin by searching for one with matching password in the Database file
+     * @param valueToSearch     password of admin to search for
+     * @return Admin            Return password if found, else null object
      */
     public String readByPassword(String valueToSearch) {
         ArrayList<Admin> allData = read();
@@ -84,6 +81,30 @@ public class AdminController {
                 return u.getPassword();
         }
         return null;
+    }
+
+    /**
+     * READ and return an Admin by searching for one with matching adminID in the Database file
+     * @param valueToSearch     adminID of admin to search for
+     * @return Admin            Return adminID if found, else -1
+     */
+    public int readByAdminID(int valueToSearch) {
+        ArrayList<Admin> allData = read();
+        for (int i=0; i<allData.size(); i++){
+            Admin u = allData.get(i);
+            if (u.getAdminID() == valueToSearch )
+                return u.getAdminID();
+        }
+        return -1;
+    }
+
+    public boolean authenticate(String username, String password) {
+
+        if (username.equals(this.readByUsername(username)) && password.equals(this.readByPassword(password))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -110,40 +131,40 @@ public class AdminController {
 //    }
 
 
-    /**
-     * Delete an Admin in the Database file, based on the email attribute passed
-     * @param email Email of Admin who will be deleted
-     */
-    public void deleteByEmail(String email) {
-        ArrayList<Admin> allData = read();
-        ArrayList<Admin> returnData = new ArrayList<Admin>();
-
-        for (int i=0; i<allData.size(); i++){
-            Admin u = allData.get(i);
-            if (!u.getUsername().equals(email))  // add Admin if email does not match
-                returnData.add(u);
-        }
-
-        replaceExistingFile(FILENAME, returnData);
-    }
-
-
-    /**
-     * Overwrite Database file with new data of list of Admin
-     * @param filename      Filename to check for
-     * @param returnData    New ArrayList of Admin to be written to the file
-     */
-    public void replaceExistingFile(String filename, ArrayList<Admin> returnData) {
-        File tempFile = new File(filename);
-        if (tempFile.exists())
-            tempFile.delete();
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
-            out.writeObject(returnData);
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    /**
+//     * Delete an Admin in the Database file, based on the email attribute passed
+//     * @param email Email of Admin who will be deleted
+//     */
+//    public void deleteByEmail(String email) {
+//        ArrayList<Admin> allData = read();
+//        ArrayList<Admin> returnData = new ArrayList<Admin>();
+//
+//        for (int i=0; i<allData.size(); i++){
+//            Admin u = allData.get(i);
+//            if (!u.getUsername().equals(email))  // add Admin if email does not match
+//                returnData.add(u);
+//        }
+//
+//        replaceExistingFile(FILENAME, returnData);
+//    }
+//
+//
+//    /**
+//     * Overwrite Database file with new data of list of Admin
+//     * @param filename      Filename to check for
+//     * @param returnData    New ArrayList of Admin to be written to the file
+//     */
+//    public void replaceExistingFile(String filename, ArrayList<Admin> returnData) {
+//        File tempFile = new File(filename);
+//        if (tempFile.exists())
+//            tempFile.delete();
+//        try {
+//            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
+//            out.writeObject(returnData);
+//            out.flush();
+//            out.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

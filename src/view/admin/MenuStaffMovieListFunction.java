@@ -5,6 +5,7 @@ import view.MenuBase;
 
 import java.util.Scanner;
 
+import static view.utilF.printHeader;
 import static view.utilF.readIntInput;
 
 public class MenuStaffMovieListFunction extends MenuBase {
@@ -16,16 +17,17 @@ public class MenuStaffMovieListFunction extends MenuBase {
 
 
     public MenuBase execute() {
-        Scanner sc = new Scanner(System.in);
-        System.out.printf("\n\nCreate/Update/Remove Movie: \n\n" +
+        MenuBase nextMenu ;
+
+        printHeader("Create/Update/Remove Movies");
+        int choice = readIntInput(
                 "1. Create Movie Listing\n" +
                 "2. Update Movie Listing\n" +
                 "3. Remove Movie Listing\n" +
-                "5. Return to Main Menu\n" +
-                "4. Testing Purposes\n\n" +
+                "4. Return to Main Menu\n" +
                 "Select option: ");
-        int choice = sc.nextInt();
-        MenuBase nextMenu = this;
+
+
         switch(choice) {
             case 1:
                 nextMenu = new MenuStaffMovieCreate(this);
@@ -36,12 +38,11 @@ public class MenuStaffMovieListFunction extends MenuBase {
             case 3:
                 nextMenu = new MenuStaffMovieRemove(this);
                 break;
-            case 4:
+            default:
                 nextMenu = this.getPreviousMenu();
                 break;
 
         }
-
         return nextMenu;
     }
 

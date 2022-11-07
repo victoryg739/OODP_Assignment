@@ -1,12 +1,13 @@
 package view.admin;
 
 import controller.HolidayController;
+import modal.Constant;
 import view.MenuBase;
 
 import java.util.Date;
 
-import static view.utilF.read;
-import static view.utilF.readDate;
+import static modal.Constant.dateFormatLong;
+import static view.utilF.*;
 
 public class MenuHolidayCreate extends MenuBase {
     private HolidayController holCtrl = new HolidayController();
@@ -16,14 +17,15 @@ public class MenuHolidayCreate extends MenuBase {
 
     @Override
     public MenuBase execute() {
+        printHeader("Creating holiday");
         String newName = read("Input New Holiday Name: ");
-        Date holiday = readDate("Enter holiday date:");
+        Date holiday = readDate("Enter holiday date:", Constant.FORMAT_DATE_LONG);
         if (holCtrl.isHoliday(holiday)) {
-            System.out.println("Holiday already exists!\n");
+            println("Holiday already exists!");
             return this.getPreviousMenu();
         }
         holCtrl.create(newName,holiday);
-        System.out.println("Successfully added holiday!");
+        println("Successfully added holiday!");
         return this.getPreviousMenu();
     }
 }

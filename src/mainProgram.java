@@ -1,15 +1,22 @@
-import controller.CinemaController;
-import controller.CineplexController;
-//import controller.MovieController;
-import controller.MovieController;
+import controller.*;
 import modal.*;
 import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import static view.utilF.*;
+/* ToDo:
+    1. create directory
+    */
+
 
 
 /*
@@ -18,68 +25,156 @@ The start of the program
  */
 
 public class mainProgram {
-    public static void main(String[] args) {
+    public final static String FILENAME = "data/movies.txt";
+    public static void main(String[] args) throws IOException, AddressException, MessagingException {
         /* For Testing Purposes */
-        MovieController mc = new MovieController();
+        File myObj = new File("data/settings.txt");
+        myObj.createNewFile();
+        // If File exists:
+        File f = new File(FILENAME);
+        if (!f.exists()) {
 
-        ArrayList<String> casts = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            casts.add("Bryan");
+            MovieController mc = new MovieController();
+
+            ArrayList<String> casts = new ArrayList<>();
+            for (int i = 0; i < 2; i++) {
+                casts.add("Bryan");
+            }
+
+            Movie movie0 = new Movie(0, "Spiderman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Away from you", 300, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.ShowingStatus.NOW_SHOWING, Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie2 = new Movie(2, "Chickenman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Fuck you victor", 300, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie3 = new Movie(3, "Allahman", Enums.MovieType.BLOCKBUSTER, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.G, "Allahu akbar", 300, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie4 = new Movie(4, "Hohoman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
+            Movie movie5 = new Movie(5, "Aloyman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
+
+            mc.createMovie(movie0);
+            mc.createMovie(movie1);
+            mc.createMovie(movie2);
+            mc.createMovie(movie3);
+            mc.createMovie(movie4);
+            mc.createMovie(movie5);
+
+            mc.updateMovie(11, 0, 600);
+            mc.updateMovie(11, 1, 200);
+            mc.updateMovie(11, 2, 300);
+            mc.updateMovie(11, 3, 400);
+            mc.updateMovie(11, 4, 500);
+            mc.updateMovie(11, 5, 100);
+
+            Cinema cinema3 = new Cinema(10,10,"A3", Enums.ClassCinema.NORMAL, null);
+            CustomerController customerController = new CustomerController();
+            Customer customer = new Customer("a", "a", "riven");
+            int temp = customer.getCustomerID();
+            //System.out.println(temp);
+            customer.setCustomerID(0);
+            temp = customer.getCustomerID();
+            //System.out.println(temp);
+            customerController.createCustomer(customer);
+            ArrayList<Ticket> tickets = new ArrayList<>();
+            Date currentTime = Calendar.getInstance().getTime();
+            Session tempSession = new Session(0,0,cinema3, movie0, 0, currentTime , Enums.Day.FRI_AFT_SIX);
+            //Create the booking transaction
+            BookingController bookingController = new BookingController();
+//            Booking booking = new Booking("A1", "tid",
+//                    customer.getUsername(), movie0, tickets, tempSession, 12.50);
+//            bookingController.create(booking);
         }
 
-        Movie movie0 = new Movie(0, "Spiderman", Enums.MovieType.TWO_D,Enums.ShowingStatus.PREVIEW ,Enums.MovieRating.M18, "Away from you", 300, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie1 = new Movie(1, "Ironman", Enums.MovieType.THREE_D, Enums.ShowingStatus.PREVIEW,Enums.MovieRating.M18, "Ironman is the best", 150, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie2 = new Movie(2, "Chickenman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW, Enums.MovieRating.M18, "Fuck you victor", 300, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie3 = new Movie(3, "Allahman", Enums.MovieType.BLOCKBUSTER, Enums.ShowingStatus.PREVIEW,Enums.MovieRating.G, "Allahu akbar", 300, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie4 = new Movie(4, "Hohoman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW,Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
-        Movie movie5 = new Movie(5, "Aloyman", Enums.MovieType.TWO_D, Enums.ShowingStatus.PREVIEW,Enums.MovieRating.NC16, "Away from you", 200, readDate(), readDate(), "Bryan Tay", casts);
+        File fCinema = new File("data/cinema.txt");
 
-        mc.createMovie(movie0);
-        mc.createMovie(movie1);
-        mc.createMovie(movie2);
-        mc.createMovie(movie3);
-        mc.createMovie(movie4);
-        mc.createMovie(movie5);
+        if (!fCinema.exists()) {
 
-        mc.updateMovie(11, 0, 600);
-        mc.updateMovie(11, 1, 200);
-        mc.updateMovie(11, 2, 300);
-        mc.updateMovie(11, 3, 400);
-        mc.updateMovie(11, 4, 500);
-        mc.updateMovie(11, 5, 100);
+            Cinema cinema1 = new Cinema(5,5 ,"A1",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema2 = new Cinema(10,10,"A2",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema3 = new Cinema(10,10,"A3",  Enums.ClassCinema.NORMAL, null);
+            Cinema cinema4 = new Cinema(10,10,"A4",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema5 = new Cinema(10,10,"A5",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema6 = new Cinema(10,10,"A6", Enums.ClassCinema.NORMAL, null);
+            Cinema cinema7 = new Cinema(10,10,"A7",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema8 = new Cinema(10,10,"A8",  Enums.ClassCinema.NORMAL, null);
+            Cinema cinema9 = new Cinema(10,10,"A9",  Enums.ClassCinema.NORMAL, null);
 
-        Cinema cinema1  = new Cinema("A1",null, Enums.ClassCinema.PLATINUM,null);
-        Cinema cinema2  = new Cinema("A2",null, Enums.ClassCinema.PLATINUM,null);
-        Cinema cinema3 =  new Cinema("A3",null, Enums.ClassCinema.NORMAL,null);
-        ArrayList<Cinema> cinemaArrayList = new ArrayList<Cinema>();
-        cinemaArrayList.add(cinema1);
-        cinemaArrayList.add(cinema2);
-        cinemaArrayList.add(cinema3);
+            ArrayList<Cinema> cinemaArrayList1 = new ArrayList<Cinema>();
+            cinemaArrayList1.add(cinema1);
+            cinemaArrayList1.add(cinema2);
+            cinemaArrayList1.add(cinema3);
 
-        CinemaController cinemaCtrler = new CinemaController();
-        cinemaCtrler.replace(cinemaArrayList);
+            ArrayList<Cinema> cinemaArrayList2 = new ArrayList<Cinema>();
+            cinemaArrayList2.add(cinema4);
+            cinemaArrayList2.add(cinema5);
+            cinemaArrayList2.add(cinema6);
 
-        Cineplex cineplex1 = new Cineplex("Jem",cinemaArrayList);
-        Cineplex cineplex2 = new Cineplex("Orchard",cinemaArrayList);
-        Cineplex cineplex3 = new Cineplex("Funan",cinemaArrayList);
-        ArrayList<Cineplex> cineplexArrayList = new ArrayList<Cineplex>();
-        cineplexArrayList.add(cineplex1);
-        cineplexArrayList.add(cineplex2);
-        cineplexArrayList.add(cineplex3);
+            ArrayList<Cinema> cinemaArrayList3 = new ArrayList<Cinema>();
+            cinemaArrayList3.add(cinema7);
+            cinemaArrayList3.add(cinema8);
+            cinemaArrayList3.add(cinema9);
+
+            ArrayList<Cinema> cinemaArrayListAll = new ArrayList<Cinema>();
+            cinemaArrayListAll.addAll(cinemaArrayList1);
+            cinemaArrayListAll.addAll(cinemaArrayList2);
+            cinemaArrayListAll.addAll(cinemaArrayList3);
+            CinemaController cinemaCtrler = new CinemaController();
+            cinemaCtrler.replace(cinemaArrayListAll);
+
+            Cineplex cineplex1 = new Cineplex("Jem", cinemaArrayList1);
+            Cineplex cineplex2 = new Cineplex("Orchard", cinemaArrayList2);
+            Cineplex cineplex3 = new Cineplex("Funan", cinemaArrayList3);
+            ArrayList<Cineplex> cineplexArrayList = new ArrayList<Cineplex>();
+            cineplexArrayList.add(cineplex1);
+            cineplexArrayList.add(cineplex2);
+            cineplexArrayList.add(cineplex3);
 
 
-        CineplexController cinplexController = new CineplexController();
-        cinplexController.replace(cineplexArrayList);
+            CineplexController cinplexCtrler = new CineplexController();
+            cinplexCtrler.replace(cineplexArrayList);
+        }
 
+//        ArrayList<Cinema> cinemaFile = cinemaCtrler.read();
+//        for(int a =0 ; a<cinemaFile.size();a++){
+//            System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
+//            System.out.print(cinemaFile.get(a).getCinemaNo()+ "\t");
+//            System.out.print(cinemaFile.get(a).getSessions()+ "\t");
+//            System.out.printf("\n");
+//        }
+//
+//        ArrayList<Cineplex> cineplexFile = cinplexCtrler.read();
+//        for(int i =0; i< cineplexFile.size();i++){ //return one section by one for the whole session file
+//            System.out.print(cineplexFile.get(i).getLocation()+ "\t" );
+//            System.out.print(cineplexFile.get(i).getCinemas()+ "\t");
+//            ArrayList<Cinema> cinemasA = new ArrayList<Cinema>();
+//            cinemasA= cineplexFile.get(i).getCinemas();
+//
+//
+//            for(int  j=0; j<cinemasA.size();j++){
+//                System.out.print(cinemasA.get(j).getCinemaNo()+ "\t");
+//
+//            }
+//            System.out.printf("\n");
+//
+//
+//            //GIVe aloy later
+//        }
+//        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+//        Session s = new Session(Cinema1, movie1, 1, getDate(),  Enums.Day.PH);
+//        Booking booking = new Booking('A1', 'TIDSAMPLE','user', 'pass', movie0,  tickets,
+//        bookingController.create(booking);
 
-        // Create first Main Menu
-        MainMenu mm = new MainMenu(null);
-        // Upcast to a MenuBase
-        MenuBase nextMenu = mm;
+        // Create Root Admin Account
+        Admin rootAdmin = new Admin("a","a");
+        AdminController ac = new AdminController();
+        ac.createAdmin(rootAdmin);
 
-        // Loop until a user quits the Menu
+        // Creating Customer account to test
+        Customer testCustomer = new Customer("twz","twz", "rivenbryan@gmail.com");
+        CustomerController cc = new CustomerController();
+        cc.createCustomer(testCustomer);
+
+        MenuBase nextMenu = new MainMenu(null);
+
         do{
             nextMenu =  nextMenu.execute();
+
         }while(!(nextMenu instanceof Quit));
     }
 }

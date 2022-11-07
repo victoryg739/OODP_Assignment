@@ -1,10 +1,7 @@
 package view.admin;
 
 //import controller.AdminController;
-import controller.CinemaController;
-import controller.CineplexController;
-import controller.MovieController;
-import controller.SessionController;
+import controller.*;
 import modal.*;
 import view.MenuBase;
 
@@ -24,27 +21,26 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         private CinemaController cinemaCtrler = new CinemaController();
         private MovieController movieCtrler = new MovieController();
         private SessionController sessionCtrler = new SessionController();
-        private Constant datetimeFormat;
 
 
     public MenuBase execute() {
-        System.out.println("Creating a new movie session");
-        System.out.println("List of Cinplexes");
+        printHeader("Creating a new movie session");
+        println("List of Cineplexes");
         ArrayList<Cineplex> cineplexArray = cineplexCtrler.read(); //using cinplexcontroller to read the cineplex object from the dat file
         if (cineplexArray.isEmpty()) {
-            System.out.println("There are no cineplexes registered!");
+            println("No cineplexes found!");
             return getPreviousMenu();
         }
 
         for(int i = 0; i<cineplexArray.size(); i++) {
             cineplexArray.get(i);
-            System.out.print(cineplexArray.get(i).getLocation()+":");
+            print(cineplexArray.get(i).getLocation()+":");
             ArrayList<Cinema> cinemaArray = cineplexArray.get(i).getCinemas();
             for(int j= 0;j < cinemaArray.size();j++){
-                System.out.print(cinemaArray.get(i).getCinemaNo()+ " ");
+                print(cinemaArray.get(j).getCinemaNo()+ " ");
 
             }
-            System.out.print("\n");
+            print("");
         }
 
 
@@ -54,91 +50,73 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
 
 
         if (cineplex == null) {
-            System.out.println("Cineplex does not exist!\n" +
-                    "Returning to menu...");
+            println("Cineplex is not found!");
+            println("Returning to main menu");
             return getPreviousMenu();
         }
 
-        System.out.println("\nCinemas in " + cineplex.getLocation()+ ": \n");
+        println("\nCinemas in " + cineplex.getLocation()+ ":");
         ArrayList<Cinema> cinemaArray = cineplex.getCinemas();
-        cinemaArray.forEach(Cinema -> System.out.println("Cinema No:" + Cinema.getCinemaNo()));
+        cinemaArray.forEach(Cinema -> print("Cinema No: " + Cinema.getCinemaNo()));
 
-        String cinemaNo = read("Enter Cinema No: ");
+        String cinemaNo = read("\nEnter Cinema No: ");
         Cinema cinema = cinemaCtrler.readByCinemaNo(cinemaNo);
-
-        //added
 
 
         if (cinemaCtrler.readByAttribute(cinemaNo).isEmpty()) {
-            System.out.println("Cinema does not exist!\n"+
-                    "Returning to menu...");
+            print("Cinema is not found!");
+            println("Returning to main menu");
             return getPreviousMenu();
         }
 
-
+        movieCtrler.listMovies();
         int movie_id  = readIntInput("Enter movie id: ");
+        Movie m  = movieCtrler.readByID(movie_id);
         //need to implement movie controller not done
-        if (movieCtrler.readByID(movie_id) == null) {
-            System.out.println("Movie does not exist!\n"+
-                    "Returning to menu...");
+        if (m == null) {
+            print("Movie is not found!");
+            println("Returning to main menu");
             return getPreviousMenu();
-        };
+        }else{
+            println(m.getTitle());
+        }
 
 
-        Date sessionDateTime  = readDateTime("Enter session date and time");
+        Date sessionDateTime  = readDateTime("Enter session date and time: ");
         Enums.Day enumsDay  = returnEnumsDay(sessionDateTime);
 
-        Movie movie = movieCtrler.readByID(movie_id);
-        //hard coded change later
-        //should get seat plan from Cinema class
-        ArrayList<Seat> seat = new ArrayList<Seat>(100);
-        int row  = 5;
-        int column  = 5;
-        for(int i = 1; i <= row ;i++){
-            for (int j = 0; j <= column; j++){
-                Seat s = new Seat(j,i,false);
-                seat.add(s);
+        //take Session datetime convert to this format
+//        DateFormat outputFormat = new SimpleDateFormat("dd MM yyyy");
+//        HolidayController h = new HolidayController();
+//        boolean test = false;
+//        String formattedDate = outputFormat.format(sessionDateTime);
+//        Date finalDate = new Date();
+//        print(formattedDate);
+//        try {
+//            finalDate = outputFormat.parse(formattedDate);
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        test = h.isHoliday(finalDate);
+//
+//
+//        System.out.println("hhhh\t"+test);
 
-            }
-        }
-
-
+        int[] rowCol =cinemaCtrler.getSeatsByCinemaNo(cinemaNo);
         int lastSessionId = sessionCtrler.getLastSessionId();
-
-        Session session = new Session(cinema,movie,lastSessionId+1, sessionDateTime,enumsDay,seat);
+        print(rowCol[0] + " " + rowCol[1]);
+        Session session = new Session(rowCol[0],rowCol[1],cinema,m,lastSessionId+1, sessionDateTime,enumsDay);
 
         //update both session and cinema txt file
         sessionCtrler.append(session);
-        cinemaCtrler.cinemaUpdateSession(cinemaNo,session);
+        cinemaCtrler.cinemaUpdateSession(cinemaNo, session);
 
-       ArrayList< Session> sessionFile = sessionCtrler.read();
-        for(int i =0; i< sessionFile.size();i++){ //return one section by one for the whole session file
-            System.out.print(sessionFile.get(i).getSessionId() + "\t" );
-            System.out.print(sessionFile.get(i).getCinema() + "\t");
-            System.out.print(sessionFile.get(i).getMovie() + "\t");
-            System.out.print(sessionFile.get(i).getDateTime() + "\t");
-            System.out.print(sessionFile.get(i).getDay() + "\t");
+        sessionCtrler.printAllSession();
+        cinemaCtrler.printAllCinema();
 
+        println("Session created successfully!");
 
-            System.out.printf("\n");
-
-
-            //GIVe aloy later
-
-
-        }
-
-        System.out.println("Session successfully created!");
-//        // for debugging later remove
-//        ArrayList<Session> sessionList = sessionCtrler.read();
-//        for(int i =0; i< sessionList.size();i++){ //return one section by one for the whole session file
-//            System.out.println(sessionList.get(i).getSessionId());
-//            //GIVe aloy later
-//            ArrayList<Seat>  s = sessionList.get(i).getSeat();
-//            System.out.println(s.get(s.size() - 1).getCol());
-//            System.out.println(s.get(s.size() - 1).getRow());
-//
-//        }
         return getPreviousMenu();
         }
 

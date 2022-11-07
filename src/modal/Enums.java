@@ -2,11 +2,13 @@ package modal;
 
 // Might need to change MovieType - Blockbuster
 public class Enums {
+
     public enum AgeType{
         SENIOR,
         STUDENT,
         NORMAL
     }
+
     public enum MovieRating{
         G,
         PG13,
