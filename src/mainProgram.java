@@ -63,15 +63,19 @@ public class mainProgram {
             Cinema cinema3 = new Cinema(10,10,"A3", null, Enums.ClassCinema.NORMAL, null);
             CustomerController customerController = new CustomerController();
             Customer customer = new Customer("a", "a");
+            int temp = customer.getCustomerID();
+            //System.out.println(temp);
             customer.setCustomerID(0);
+            temp = customer.getCustomerID();
+            //System.out.println(temp);
             customerController.createCustomer(customer);
             ArrayList<Ticket> tickets = new ArrayList<>();
             Date currentTime = Calendar.getInstance().getTime();
-            Session tempSession = new Session(cinema3, movie0, 0, currentTime , Enums.Day.FRI_AFT_SIX);
+            Session tempSession = new Session(0,0,cinema3, movie0, 0, currentTime , Enums.Day.FRI_AFT_SIX);
             //Create the booking transaction
             BookingController bookingController = new BookingController();
             Booking booking = new Booking("A1", "tid",
-                    0, movie0, tickets, tempSession, 12.50);
+                    customer.getUsername(), movie0, tickets, tempSession, 12.50);
             bookingController.create(booking);
         }
 

@@ -1,8 +1,10 @@
 package modal;
 import modal.Enums.*;
 
+import java.io.Serializable;
 
-public class Ticket {
+
+public class Ticket implements Serializable {
 
     private double price;
     //enumaration

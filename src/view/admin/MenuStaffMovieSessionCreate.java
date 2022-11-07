@@ -1,13 +1,13 @@
 package view.admin;
 
 //import controller.AdminController;
-import controller.CinemaController;
-import controller.CineplexController;
-import controller.MovieController;
-import controller.SessionController;
+import controller.*;
 import modal.*;
 import view.MenuBase;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -88,11 +88,28 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         Date sessionDateTime  = readDateTime("Enter session date and time: ");
         Enums.Day enumsDay  = returnEnumsDay(sessionDateTime);
 
+        //take Session datetime convert to this format
+//        DateFormat outputFormat = new SimpleDateFormat("dd MM yyyy");
+//        HolidayController h = new HolidayController();
+//        boolean test = false;
+//        String formattedDate = outputFormat.format(sessionDateTime);
+//        Date finalDate = new Date();
+//        print(formattedDate);
+//        try {
+//            finalDate = outputFormat.parse(formattedDate);
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        test = h.isHoliday(finalDate);
+//
+//
+//        System.out.println("hhhh\t"+test);
 
-
+        int[] rowCol =cinemaCtrler.getSeatsByCinemaNo(cinemaNo);
         int lastSessionId = sessionCtrler.getLastSessionId();
-
-        Session session = new Session(cinema,m,lastSessionId+1, sessionDateTime,enumsDay);
+        print(rowCol[0] + " " + rowCol[1]);
+        Session session = new Session(rowCol[0],rowCol[1],cinema,m,lastSessionId+1, sessionDateTime,enumsDay);
 
         //update both session and cinema txt file
         sessionCtrler.append(session);

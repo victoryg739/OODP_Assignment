@@ -9,7 +9,14 @@ public class PriceManager {
 
     public final static String FILENAME = "data/price.txt";
 
-    public double calculateTicketPrice(Enums.AgeType ageType,Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day) {
+    public double isBlockbuster(Enums.MovieType movieType,double price) {
+        if (movieType == Enums.MovieType.BLOCKBUSTER){
+            return price + 1;
+        }else{
+        return price;
+        }
+    }
+    public double calculateTicketPrice(Enums.AgeType ageType,Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day,Enums.ShowingStatus showingStatus,Boolean loyaltyCard,Boolean holiday) {
         File f = new File(FILENAME);
         Price price = new Price();
         if(!f.exists()) {
@@ -18,6 +25,14 @@ public class PriceManager {
 
         price = read();
 
+        if(showingStatus == Enums.ShowingStatus.PREVIEW){
+            return price.getPrice(20);
+        }
+
+        if(loyaltyCard == true){
+            return price.getPrice(21);
+        }
+
         if (classCinema == Enums.ClassCinema.PLATINUM) {
             if(day == Enums.Day.FRI_BEF_SIX || day == Enums.Day.FRI_AFT_SIX  || day == Enums.Day.SAT_SUN){ // Friday to Sunday
                 return price.getPrice(0);
@@ -25,8 +40,8 @@ public class PriceManager {
                 return price.getPrice(1);
             }
         } else {
-            if (ageType == Enums.AgeType.NORMAL) {
-                if (movieType == Enums.MovieType.TWO_D) {
+            if (ageType == Enums.AgeType.NORMAL || holiday  == true) {
+                if (movieType == Enums.MovieType.TWO_D || movieType == Enums.MovieType.BLOCKBUSTER) {
                     if (day == Enums.Day.MON_WED_BEF_SIX || day == Enums.Day.MON_WED_AFT_SIX) {
                         return price.getPrice(2);
                     } else if (day == Enums.Day.THU_BEF_SIX || day == Enums.Day.THU_AFT_SIX || day == Enums.Day.FRI_BEF_SIX) {
@@ -43,8 +58,8 @@ public class PriceManager {
                 }
 
             } else if (ageType == Enums.AgeType.STUDENT) {
-                if (movieType == Enums.MovieType.TWO_D) {
-                    if (day == Enums.Day.MON_WED_BEF_SIX || day == Enums.Day.THU_BEF_SIX || day == Enums.Day.FRI_BEF_SIX) {
+                if (movieType == Enums.MovieType.TWO_D || movieType == Enums.MovieType.BLOCKBUSTER )  {
+                    if ((day == Enums.Day.MON_WED_BEF_SIX || day == Enums.Day.THU_BEF_SIX || day == Enums.Day.FRI_BEF_SIX)) {
                         return price.getPrice(7);
                     } else if (day == Enums.Day.MON_WED_AFT_SIX) {
                         return price.getPrice(8);
@@ -62,8 +77,8 @@ public class PriceManager {
                         return price.getPrice(13);
                     }
                 }
-            } else if (ageType == Enums.AgeType.SENIOR) {
-                if (movieType == Enums.MovieType.TWO_D) {
+            } else { //This is senior
+                if (movieType == Enums.MovieType.TWO_D || movieType == Enums.MovieType.BLOCKBUSTER) {
                     if (day == Enums.Day.MON_WED_BEF_SIX || day == Enums.Day.THU_BEF_SIX || day == Enums.Day.FRI_BEF_SIX) {
                         return price.getPrice(14);
                     } else if (day == Enums.Day.MON_WED_AFT_SIX) {
@@ -84,14 +99,22 @@ public class PriceManager {
             }
 
         }
-        return -999;
+
     }
 
-    public void updateTicketPrice(Enums.AgeType ageType,Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day,double newPrice) {
+    public void updateTicketPrice(Enums.AgeType ageType,Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day,Enums.ShowingStatus showingStatus,Boolean loyaltyCard,double newPrice) {
         File f = new File(FILENAME);
         
         Price price = new Price();
         price = read();
+
+        if(showingStatus == Enums.ShowingStatus.PREVIEW){
+            price.setPrice(20,newPrice);
+        }
+
+        if(loyaltyCard == true){
+            price.setPrice(21,newPrice);
+        }
 
         if (classCinema == Enums.ClassCinema.PLATINUM) {
             if(day == Enums.Day.FRI_BEF_SIX || day == Enums.Day.FRI_AFT_SIX  || day == Enums.Day.SAT_SUN){ // Friday to Sunday
@@ -100,7 +123,7 @@ public class PriceManager {
                 price.setPrice(1,newPrice);
             }
         } else {
-            if (ageType == Enums.AgeType.NORMAL) {
+            if (ageType == Enums.AgeType.NORMAL ) {
                 if (movieType == Enums.MovieType.TWO_D) {
                     if (day == Enums.Day.MON_WED_BEF_SIX || day == Enums.Day.MON_WED_AFT_SIX) {
                         price.setPrice(2,newPrice);

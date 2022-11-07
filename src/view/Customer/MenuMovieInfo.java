@@ -39,7 +39,7 @@ public class MenuMovieInfo extends MenuBase {
                 if (mc.validMovieSession(movie.getId())) {
                     nextMenu = new MenuCustomerLogin(this, 1, this.movie);
                 } else {
-                    print("Movie is currently not showing");
+                    print("This movie has no session at the moment. ");
                     nextMenu = this.getPreviousMenu();
                 }
                 break;
