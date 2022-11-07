@@ -244,7 +244,7 @@ public class MovieController {
             sortTicketSales(movieList);
             int top = 1;
             for (Movie movie : movieList) {
-                println("Name: " + movie.getTitle() + "\n" + "Rating: " + movie.getTicketSales());
+                println("Name: " + movie.getTitle() + "\n" + "Sales: " + movie.getTicketSales());
                 if (top++ == 5) {
                     break;
                 }
