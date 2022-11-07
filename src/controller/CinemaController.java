@@ -142,8 +142,6 @@ public class CinemaController {
                             cinemaListing.get(j).getSessions().get(i).setDay(returnEnumsDay((Date) newValue));
 
 
-                        } else if (choice == 3) {
-                            //return seats
                         }
                     }
                 }

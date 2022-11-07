@@ -13,9 +13,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 
-import static view.utilF.printHeader;
-import static view.utilF.println;
+import static view.utilF.*;
 
 
 public class CineplexController {
@@ -50,7 +50,7 @@ public class CineplexController {
             // ignore error
         }
     }
-    public void appendSessionsByLocation(String location,Session session){
+    public void appendByLocation(String location,String cinemaNo ,Session session){
         ArrayList<Cineplex> allData = read();
 
         for(int i =0 ;i<allData.size() ; i++){
@@ -64,10 +64,94 @@ public class CineplexController {
                 allData.get(i).setSessions(tempS);
             }
         }
+        for(int i =0 ;i<allData.size() ; i++) {
+            for (int j = 0; j < allData.get(i).getCinemas().size(); j++) {
+                if (allData.get(i).getCinemas().get(j).getCinemaNo().equals(cinemaNo)) {
+                    ArrayList<Session> tempS = new ArrayList<Session>();
+
+                    if (allData.get(i).getCinemas().get(j).getSessions() != null) {
+                        tempS = allData.get(i).getCinemas().get(j).getSessions();
+                    }
+                    tempS.add(session);
+                    allData.get(i).getCinemas().get(j).setSessions(tempS);
+                }
+
+
+            }
+        }
+            replace(allData);
+    }
+
+
+    public void updateCineplex(int choice,int sessionId,Object newValue){
+        ArrayList<Cineplex> allData = read();
+
+        for(int i =0 ;i<allData.size() ; i++){
+            if (allData.get(i).getSessions() != null) {
+                for(int j = 0; j<allData.get(i).getSessions().size();j++) {
+                    if (allData.get(i).getSessions().get(j).getSessionId() == sessionId) {
+                        if (choice == 1) {
+                            allData.get(i).getSessions().get(j).setMovie((Movie) newValue);
+                        } else if (choice == 2) {
+                            allData.get(i).getSessions().get(j).setDateTime((Date) newValue);
+                            allData.get(i).getSessions().get(j).setDay(returnEnumsDay((Date) newValue));
+
+                        }
+                    }
+                }
+            }
+        }
+
+        for(int i =0 ;i<allData.size() ; i++) {
+            for (int j = 0; j < allData.get(i).getCinemas().size(); j++) {
+                if (allData.get(i).getCinemas().get(j).getSessions() != null) {
+                    for(int k = 0; k < allData.get(i).getCinemas().get(j).getSessions().size();k++){
+
+                        if(allData.get(i).getCinemas().get(j).getSessions().get(k).getSessionId() == sessionId) {
+                            if (choice == 1) {
+                                allData.get(i).getCinemas().get(j).getSessions().get(k).setMovie((Movie) newValue);
+                            } else if (choice == 2) {
+                                allData.get(i).getCinemas().get(j).getSessions().get(k).setDateTime((Date) newValue);
+                                allData.get(i).getCinemas().get(j).getSessions().get(k).setDay(returnEnumsDay((Date) newValue));
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        replace(allData);
+    }
+    public void removeSession(int sessionId){
+        ArrayList<Cineplex> allData = read();
+
+        for(int i =0 ;i<allData.size() ; i++){
+            if (allData.get(i).getSessions() != null) {
+                for(int j = 0; j<allData.get(i).getSessions().size();j++) {
+                    if (allData.get(i).getSessions().get(j).getSessionId() == sessionId) {
+                       allData.get(i).getSessions().remove(j);
+                    }
+                }
+            }
+        }
+
+        for(int i =0 ;i<allData.size() ; i++) {
+            for (int j = 0; j < allData.get(i).getCinemas().size(); j++) {
+                if (allData.get(i).getCinemas().get(j).getSessions() != null) {
+                    for(int k = 0; k < allData.get(i).getCinemas().get(j).getSessions().size();k++){
+                            if(allData.get(i).getCinemas().get(j).getSessions().get(k).getSessionId() == sessionId ){
+                                allData.get(i).getCinemas().get(j).getSessions().remove(k);
+                            }
+
+                        }
+                    }
+                }
+            }
         replace(allData);
     }
 
-    public void replace(ArrayList<Cineplex> data) {
+
+        public void replace(ArrayList<Cineplex> data) {
         File tempFile = new File(FILENAME);
         if (tempFile.exists())
             tempFile.delete();
