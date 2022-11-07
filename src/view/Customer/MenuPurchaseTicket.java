@@ -1,14 +1,13 @@
 package view.Customer;
 
 import controller.*;
-import modal.Customer;
 import modal.*;
 import view.MenuBase;
-import view.admin.MenuStaffLogin;
 
-import java.lang.reflect.Array;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 import static view.utilF.*;
 
@@ -50,14 +49,14 @@ public class MenuPurchaseTicket extends MenuBase {
      Get user's information about name, email and phone number
      Provide the total ticket price to the user
      */
-    public MenuBase execute() {
+    public MenuBase execute() throws IOException, AddressException, MessagingException {
 
         CineplexController cc = new CineplexController();
         ArrayList<Session> sessionList = new ArrayList<>();
+        String cineplexLocation = null;
 
-
-        System.out.println("Menu for Purchasing Ticket:");
-        System.out.println();
+        printHeader("Menu for Purchasing Ticket:");
+        println("");
         //cinemaController.printAllCinema();
 
         //Print the list of Cineplexes with the selected movies
@@ -76,7 +75,8 @@ public class MenuPurchaseTicket extends MenuBase {
             else if (choice < 0 || choice > cineplexes.size())
                 System.out.println("Invalid input! Please try again.");
             else { //valid choice
-                sessionList = cinemaController.showAvailableSessions(cineplexes.get(choice-1).getLocation(), movie);
+                cineplexLocation = cineplexes.get(choice-1).getLocation();
+                sessionList = cinemaController.showAvailableSessions(cineplexLocation, movie);
                 if (sessionList == null)
                     System.out.println("No available sessions for this cineplex! Please choose another.");
             }
@@ -119,11 +119,12 @@ public class MenuPurchaseTicket extends MenuBase {
             Enums.MovieType movieType = movie.getType();
             Enums.ClassCinema cinemaClass = session.getCinema().getClassCinema();
             boolean loyaltyCard = false;
+            boolean holiday = false;
             double ticketPrice;
 
             if (confirm("Are you eligible for student discount?")) { //student price
                 Enums.AgeType age = Enums.AgeType.STUDENT;
-                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard);
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
@@ -132,7 +133,7 @@ public class MenuPurchaseTicket extends MenuBase {
             }
             else if (confirm("Are you eligible for senior discount?")) { //senior price
                 Enums.AgeType age = Enums.AgeType.SENIOR;
-                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard);
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
@@ -141,7 +142,7 @@ public class MenuPurchaseTicket extends MenuBase {
             }
             else { //neither student nor senior
                 Enums.AgeType age = Enums.AgeType.NORMAL;
-                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard);
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
@@ -161,17 +162,24 @@ public class MenuPurchaseTicket extends MenuBase {
 
             println("Total price is S$" + totalPrice + " (Inclusive of GST).");
             if (confirm("Confirm booking? ")) {
+                //Create the booking transaction
+                Booking booking = new Booking(session.getCinema().getCinemaNo(), cineplexLocation, tid,
+                        username ,movie, tickets, session, totalPrice);
+                println("Booking successful");
+                booking.printBookingSummary();
+                movieController.updateMovie(11, movie.getId(), tickets.size());
+                bookingController.create(booking);
                 for (Seat seat : selected) {
                     seat.setSelected(false);
                     seat.setTaken(true);
                 }
-                //Create the booking transaction
-                Booking booking = new Booking(session.getCinema().getCinemaNo(), tid,
-                        username ,movie, tickets, session, totalPrice);
-                println("Booking successful");
-                movieController.updateMovie(11, movie.getId(), tickets.size());
-                bookingController.create(booking);
                 cinemaController.updateSeat(session.getCinema().getCinemaNo(), selected, movie, session);
+                EmailController mail = new EmailController();
+                mail.setupServerProperties();
+                mail.draftEmail(booking);
+                mail.sendEmail();
+
+
             }
             else {
                 for (Seat seat : selected)

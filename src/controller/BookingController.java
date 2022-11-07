@@ -4,8 +4,7 @@ import java.io.*;
 import java.util.*;
 import modal.*;
 
-import static view.utilF.confirm;
-import static view.utilF.println;
+import static view.utilF.*;
 
 public class BookingController {
     public final static String FILENAME = "data/booking.txt";
@@ -106,19 +105,4 @@ public class BookingController {
         }
         return returnData;
     }
-
-    public void printBookingSummary(Booking booking) {
-        int seatCount =1;
-        println("tid: " + booking.getTID() + "\n" +
-                "Movie: " + booking.getMovie().getTitle() +"\n" +
-                "Cineplex: " +
-//                cineplex + "\n" +
-                "Seats: ");
-        for (Ticket ticket : booking.getTicket()) {
-            println(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
-            seatCount++;
-        }
-    }
-
-
 }

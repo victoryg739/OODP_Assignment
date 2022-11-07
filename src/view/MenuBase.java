@@ -1,5 +1,9 @@
 package view;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import java.io.IOException;
+
 public abstract class MenuBase {
     private MenuBase initialMenu;
 
@@ -15,6 +19,6 @@ public abstract class MenuBase {
         }
     }
     // Subclass needs to implement this
-    public abstract MenuBase execute();
+    public abstract MenuBase execute() throws IOException, AddressException, MessagingException;
 
 }

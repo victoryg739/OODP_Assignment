@@ -50,9 +50,10 @@ public class MenuBookingHistory extends MenuBase {
                     "Movie: " + book.getMovie().getTitle() + "\n" +
                     "Seats : ");
             count++;
-            for (Ticket ticket : book.getTicket()) {
-                println(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
+            for (Ticket ticket : book.getTickets()) {
+                System.out.print(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
                 seatCount++;
+                print("");
             }
             seatCount = 1;
         }

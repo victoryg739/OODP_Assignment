@@ -87,7 +87,7 @@ public class CinemaController {
         return returnData;
     }
 
-    public void cinemaUpdateSession(Object valueToSearch,Session newSession) {
+    public void cinemaUpdateSession(Object valueToSearch, Session newSession) {
         ArrayList<Cinema> cinemaListing = read();
         ArrayList<Session> sessionList = new ArrayList<Session>();
 
@@ -265,19 +265,25 @@ public class CinemaController {
     public void displaySeats(ArrayList<ArrayList<Seat>> seatList, int row, int col)
     {
         Seat seat;
-//        for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++)
-//            print(" ");
-        println("|      Screen       |");
-//        for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++) {
-//            print(" ");
-//        }
-        println("---------------------");
+        int i;
+        int totalSpace = (col + 1)*3 + 2;
+        System.out.print("|");
+        for (i = 0; i < (totalSpace - 6 )/2 + 2; i++) {
+            System.out.print(" ");
+        }
+        System.out.print("Screen");
+        for (i = 0; i < (totalSpace - 6 )/2 + 2; i++) {
+            System.out.print(" ");
+        }
+        System.out.println("|");
+        //print("|      Screen       |");
+        for (i = 0; i < (1 + col) * 3 / 2 - 8; i++)
+            System.out.print("-----");
+        //print("---------------------");
 
-        print("    ");
+        print("");
         int new_row = 0;
-        println(" ");
-        //boolean flag = false;
-        for(int i =0; i<row; i++)
+        for(i =0; i<row; i++)
         {
             new_row = 0;
             System.out.print(String.valueOf(i + 1) + " ");
@@ -301,11 +307,10 @@ public class CinemaController {
             }
             print(" ");
         }
-
-        println("");
-//        for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
-//            print(" ");
-        println("----------");
+        //println("---------------------");
+        for (i = 0; i < (1 + col) * 3 / 2 - 8; i++)
+            System.out.print("-----");
+        print("");
         println("|Entrance|\n");
         println("([ ] Available  [#] Seat Selected  [X] Sold)");
     }

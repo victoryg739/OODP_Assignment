@@ -3,7 +3,6 @@ package controller;
 import modal.*;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -63,9 +62,9 @@ public class SessionController {
     public ArrayList<Session> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
-            ArrayList<Session> session = (ArrayList<Session>) ois.readObject();
+            ArrayList<Session> sessions = (ArrayList<Session>) ois.readObject();
             ois.close();
-            return session;
+            return sessions;
         } catch (ClassNotFoundException | IOException e) {
             // ignore error
         }
@@ -84,7 +83,7 @@ public class SessionController {
 
     public void updateById(int choice ,int id, Object newValue) {
         ArrayList<Session> sessionArrayList = read();
-        for(int i = 0;i<sessionArrayList.size();i++){
+        for(int i = 0; i< sessionArrayList.size(); i++){
             if(sessionArrayList.get(i).getSessionId()  == id){
                 if(choice == 1) {
                     sessionArrayList.get(i).setMovie((Movie)newValue);
@@ -101,7 +100,7 @@ public class SessionController {
 
     public void remove(int id){
         ArrayList<Session> sessionArrayList = read();
-        for(int i =0; i < sessionArrayList.size();i++){
+        for(int i = 0; i < sessionArrayList.size(); i++){
             if(sessionArrayList.get(i).getSessionId() == id){
                 sessionArrayList.remove(i);
             }
