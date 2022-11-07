@@ -111,7 +111,7 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         Session session = new Session(rowCol[0],rowCol[1],cinema,m,lastSessionId+1, sessionDateTime,enumsDay);
 
         //update both session and cinema txt file
-        cineplexCtrler.appendSessionsByLocation(cineplexLocation,session);
+        cineplexCtrler.appendByLocation(cineplexLocation,cinemaNo,session);
         sessionCtrler.append(session);
         cinemaCtrler.cinemaUpdateSession(cinemaNo, session);
 
