@@ -4,13 +4,9 @@ import controller.CinemaController;
 import controller.CineplexController;
 import controller.MovieController;
 import controller.SessionController;
-import modal.Cinema;
-import modal.Cineplex;
-import modal.Session;
 import view.MenuBase;
 
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import static view.utilF.*;

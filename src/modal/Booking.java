@@ -2,7 +2,6 @@ package modal;
 
 import java.util.*;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 
 public class Booking implements Serializable{
     // tid = XXXYYYYMMDDhhmm (Y : year, M : month, D : day, h : hour, m :
@@ -39,7 +38,6 @@ public class Booking implements Serializable{
         this.ticket = ticket;
         this.session = session;
         this.totalPrice = totalPrice;
-//        this.customerId = customerId;
         this.username = username;
     }
 
@@ -93,4 +91,6 @@ public class Booking implements Serializable{
     public String getUsername() {
         return username;
     }
+
+
 }
