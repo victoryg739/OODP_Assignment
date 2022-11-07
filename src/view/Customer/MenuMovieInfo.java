@@ -35,11 +35,11 @@ public class MenuMovieInfo extends MenuBase {
 
         switch (choice) {
             case 1:
-                // Only allow User to purchase ticket if it is a valid session
-                if (mc.validMovieSession(movie.getId())) {
+                // Only allow User to purchase ticket if it is a valid movie
+                if (mc.validateShowingStatus(movie)) {
                     nextMenu = new MenuCustomerLogin(this, 1, this.movie);
                 } else {
-                    print("This movie has no session at the moment. ");
+                    print("This movie is not available for booking. ");
                     nextMenu = this.getPreviousMenu();
                 }
                 break;

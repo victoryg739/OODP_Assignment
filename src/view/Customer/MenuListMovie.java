@@ -34,6 +34,7 @@ public class MenuListMovie extends MenuBase {
         int flag = setc.returnResult(); // a variable to determine what to show to the user
         /* Flag == 2 implies that it only shows Rating */
 
+
         if (flag == 2) {
             print("1. View Movie Details\n" +
                     "2. Set Movie Review\n" +
