@@ -117,9 +117,9 @@ public class mainProgram {
             CinemaController cinemaCtrler = new CinemaController();
             cinemaCtrler.replace(cinemaArrayListAll);
 
-            Cineplex cineplex1 = new Cineplex("Jem", cinemaArrayList1);
-            Cineplex cineplex2 = new Cineplex("Orchard", cinemaArrayList2);
-            Cineplex cineplex3 = new Cineplex("Funan", cinemaArrayList3);
+            Cineplex cineplex1 = new Cineplex("Jem", cinemaArrayList1,null);
+            Cineplex cineplex2 = new Cineplex("Orchard", cinemaArrayList2,null);
+            Cineplex cineplex3 = new Cineplex("Funan", cinemaArrayList3,null);
             ArrayList<Cineplex> cineplexArrayList = new ArrayList<Cineplex>();
             cineplexArrayList.add(cineplex1);
             cineplexArrayList.add(cineplex2);
