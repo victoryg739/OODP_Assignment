@@ -8,6 +8,7 @@ import java.util.Date;
 
 import static view.utilF.*;
 
+
 public class CinemaController {
     private CineplexController cineplexController = new CineplexController();
 
@@ -17,8 +18,8 @@ public class CinemaController {
         public final static int NAME = 0;
         public final static int CINEMAS = 1;
 
-        public void append(int row ,int col,String cinemaNo, Movie movie, Enums.ClassCinema classCinema, ArrayList<Session> sessions ){
-            Cinema cinema  = new Cinema(row,col,cinemaNo,movie,classCinema,sessions);
+        public void append(int row ,int col,String cinemaNo, Enums.ClassCinema classCinema, ArrayList<Session> sessions ){
+            Cinema cinema  = new Cinema(row,col,cinemaNo,classCinema,sessions);
 
             // Creates an ArrayList of movie
             ArrayList<Cinema> allData = new ArrayList<Cinema>();
@@ -86,7 +87,7 @@ public class CinemaController {
         return returnData;
     }
 
-    public void cinemaUpdateSession(Object valueToSearch,Session newSession) {
+    public void cinemaUpdateSession(Object valueToSearch, Session newSession) {
         ArrayList<Cinema> cinemaListing = read();
         ArrayList<Session> sessionList = new ArrayList<Session>();
 
@@ -214,7 +215,19 @@ public class CinemaController {
 
         return returnData;
     }
+    public int[] getSeatsByCinemaNo(String cinemaNo){
+        ArrayList<Cinema> cf = read();
+        int[] rowCol = new int[2];
+        for(int a =0 ; a<cf.size();a++) {
+            if(cf.get(a).getCinemaNo().equals(cinemaNo)){
+                rowCol[0] = cf.get(a).getSeats().size();
+                rowCol[1] = cf.get(a).getSeats().get(0).size();
+                return rowCol;
+            }
+        }
+        return rowCol;
 
+    }
     public void printAllCinema() {
         ArrayList<Cinema> cf = read();
         println("");
@@ -252,20 +265,25 @@ public class CinemaController {
     public void displaySeats(ArrayList<ArrayList<Seat>> seatList, int row, int col)
     {
         Seat seat;
-        printHeader("Select Seats");
-        for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++)
-            print(" ");
-        println("|      Screen       |");
-        for (int i = 0; i < (1 + col) * 3 / 2 - 8; i++) {
-            print(" ");
+        int i;
+        int totalSpace = (col + 1)*3 + 2;
+        System.out.print("|");
+        for (i = 0; i < (totalSpace - 6 )/2 + 2; i++) {
+            System.out.print(" ");
         }
-        println("---------------------");
+        System.out.print("Screen");
+        for (i = 0; i < (totalSpace - 6 )/2 + 2; i++) {
+            System.out.print(" ");
+        }
+        System.out.println("|");
+        //print("|      Screen       |");
+        for (i = 0; i < (1 + col) * 3 / 2 - 8; i++)
+            System.out.print("-----");
+        //print("---------------------");
 
-        print("    ");
+        print("");
         int new_row = 0;
-        println(" ");
-        //boolean flag = false;
-        for(int i =0; i<row; i++)
+        for(i =0; i<row; i++)
         {
             new_row = 0;
             System.out.print(String.valueOf(i + 1) + " ");
@@ -289,11 +307,10 @@ public class CinemaController {
             }
             print(" ");
         }
-
-        println("");
-        for (int i = 0; i < (1 + col) * 3 / 2 - 5; i++)
-            print(" ");
-        println("----------");
+        //println("---------------------");
+        for (i = 0; i < (1 + col) * 3 / 2 - 8; i++)
+            System.out.print("-----");
+        print("");
         println("|Entrance|\n");
         println("([ ] Available  [#] Seat Selected  [X] Sold)");
     }

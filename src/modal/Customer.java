@@ -5,14 +5,18 @@ import java.util.*;
 public class Customer implements Serializable {
     private String username;
     private String password;
+
+
+    private String email;
+
     private int customerID;
     private ArrayList<Booking> bookings;
 
-    public Customer(String username, String password)  {
+    public Customer(String username, String password, String email)  {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.bookings = new ArrayList<>();
-        this.customerID = generateCustomerID();
     }
 
     public String getUsername() {
@@ -33,12 +37,10 @@ public class Customer implements Serializable {
 
     public int getCustomerID() {return customerID;}
 
+
+
     public ArrayList<Booking> getBookings() {
         return bookings;
-    }
-    public int generateCustomerID() {
-        customerID += 1;
-        return customerID;
     }
 
     public void setCustomerID(int customerID) {
@@ -58,4 +60,12 @@ public class Customer implements Serializable {
             this.bookings.add(new_bookings);
         }
     }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

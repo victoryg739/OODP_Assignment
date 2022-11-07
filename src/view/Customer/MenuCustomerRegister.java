@@ -21,7 +21,7 @@ public class MenuCustomerRegister extends MenuBase {
     private String customerUsername;
     private String password;
     private String password2;
-    private int role;
+    private String email;
     private boolean consistentPassword = false;
 
     private CustomerController customerCtrl = new CustomerController();
@@ -75,11 +75,12 @@ public class MenuCustomerRegister extends MenuBase {
                 password = read("Create Password: ");
             }
             password2 = read("Re-Enter Password: ");
+            email = read("Enter email");
+
             consistentPassword = password.equals(password2);
 
             // Creating new customer account object
-            Customer customer = new Customer(customerUsername, password);
-
+            Customer customer = new Customer(customerUsername, password, email);
 
 
             // Create new Customer account when the 2 input passwords match

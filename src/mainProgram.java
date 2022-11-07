@@ -4,6 +4,8 @@ import view.MainMenu;
 import view.MenuBase;
 import view.Quit;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ The start of the program
 
 public class mainProgram {
     public final static String FILENAME = "data/movies.txt";
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, AddressException, MessagingException {
         /* For Testing Purposes */
         File myObj = new File("data/settings.txt");
         myObj.createNewFile();
@@ -60,9 +62,9 @@ public class mainProgram {
             mc.updateMovie(11, 4, 500);
             mc.updateMovie(11, 5, 100);
 
-            Cinema cinema3 = new Cinema(10,10,"A3", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema3 = new Cinema(10,10,"A3", Enums.ClassCinema.NORMAL, null);
             CustomerController customerController = new CustomerController();
-            Customer customer = new Customer("a", "a");
+            Customer customer = new Customer("a", "a", "riven");
             int temp = customer.getCustomerID();
             //System.out.println(temp);
             customer.setCustomerID(0);
@@ -71,27 +73,27 @@ public class mainProgram {
             customerController.createCustomer(customer);
             ArrayList<Ticket> tickets = new ArrayList<>();
             Date currentTime = Calendar.getInstance().getTime();
-            Session tempSession = new Session(cinema3, movie0, 0, currentTime , Enums.Day.FRI_AFT_SIX);
+            Session tempSession = new Session(0,0,cinema3, movie0, 0, currentTime , Enums.Day.FRI_AFT_SIX);
             //Create the booking transaction
             BookingController bookingController = new BookingController();
-            Booking booking = new Booking("A1", "tid",
-                    customer.getUsername(), movie0, tickets, tempSession, 12.50);
-            bookingController.create(booking);
+//            Booking booking = new Booking("A1", "tid",
+//                    customer.getUsername(), movie0, tickets, tempSession, 12.50);
+//            bookingController.create(booking);
         }
 
         File fCinema = new File("data/cinema.txt");
 
         if (!fCinema.exists()) {
 
-            Cinema cinema1 = new Cinema(5,5 ,"A1", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema2 = new Cinema(10,10,"A2", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema3 = new Cinema(10,10,"A3", null, Enums.ClassCinema.NORMAL, null);
-            Cinema cinema4 = new Cinema(10,10,"A4", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema5 = new Cinema(10,10,"A5", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema6 = new Cinema(10,10,"A6", null, Enums.ClassCinema.NORMAL, null);
-            Cinema cinema7 = new Cinema(10,10,"A7", null, Enums.ClassCinema.PLATINUM, null);
-            Cinema cinema8 = new Cinema(10,10,"A8", null, Enums.ClassCinema.NORMAL, null);
-            Cinema cinema9 = new Cinema(10,10,"A9", null, Enums.ClassCinema.NORMAL, null);
+            Cinema cinema1 = new Cinema(5,5 ,"A1",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema2 = new Cinema(10,10,"A2",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema3 = new Cinema(10,10,"A3",  Enums.ClassCinema.NORMAL, null);
+            Cinema cinema4 = new Cinema(10,10,"A4",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema5 = new Cinema(10,10,"A5",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema6 = new Cinema(10,10,"A6", Enums.ClassCinema.NORMAL, null);
+            Cinema cinema7 = new Cinema(10,10,"A7",  Enums.ClassCinema.PLATINUM, null);
+            Cinema cinema8 = new Cinema(10,10,"A8",  Enums.ClassCinema.NORMAL, null);
+            Cinema cinema9 = new Cinema(10,10,"A9",  Enums.ClassCinema.NORMAL, null);
 
             ArrayList<Cinema> cinemaArrayList1 = new ArrayList<Cinema>();
             cinemaArrayList1.add(cinema1);
@@ -164,7 +166,7 @@ public class mainProgram {
         ac.createAdmin(rootAdmin);
 
         // Creating Customer account to test
-        Customer testCustomer = new Customer("twz","twz");
+        Customer testCustomer = new Customer("twz","twz", "rivenbryan@gmail.com");
         CustomerController cc = new CustomerController();
         cc.createCustomer(testCustomer);
 

@@ -12,7 +12,7 @@ public class Cinema implements Serializable {
     private ArrayList<ArrayList<Seat>> seats = new ArrayList<ArrayList<Seat>>();
 
 
-    public Cinema(int row, int col,String cinemaNo, Movie movie, Enums.ClassCinema classCinema, ArrayList<Session> sessions) {
+    public Cinema(int row, int col,String cinemaNo, Enums.ClassCinema classCinema, ArrayList<Session> sessions) {
         for(int i=0;i<row;i++)
         {
             this.seats.add(new ArrayList<Seat>());
@@ -24,7 +24,6 @@ public class Cinema implements Serializable {
 
                 }else{
                     tmpSeat = new Seat(j,i,false,false);
-
                 }
                 this.seats.get(i).add(tmpSeat);
             }
