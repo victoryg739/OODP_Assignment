@@ -122,4 +122,19 @@ public class Booking implements Serializable{
             seatCount++;
         }
     }
+
+    public String printEmailBookingSummary(){
+        return "<h3> Dear " + username + ", </h3> <br>" +
+                "Thank you for using Moblima <br>" +
+                "For more information, please view the details below <br><br> " +
+                "<p>" +
+                "Transaction ID:  " + tid + "<br>"+
+                "Movie Name: " + movie.getTitle() + "<br>" +
+                "Cineplex: " + cineplexLocation + "<br>" +
+                "Total Price: " + totalPrice +
+                "</p>" +
+                "Hope to see you again! <br>" +
+                "Moblima";
+
+    }
 }

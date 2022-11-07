@@ -47,7 +47,7 @@ public class EmailController {
         Customer c = cc.readByUsername(username);
         //System.out.println("customer is " + c.getUsername());
         String emailSubject = "Booking of your Movie: " + booking.getMovie().getTitle();
-        String emailBody = "test";
+        String emailBody = booking.printEmailBookingSummary();
         mimeMessage = new MimeMessage(newSession);
 
         mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(c.getEmail()));
