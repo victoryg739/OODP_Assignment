@@ -82,6 +82,7 @@ public class MenuStaffMovieSessionUpdate extends MenuBase {
                 };
                 sessionCtrler.updateById(1, session_id, movieCtrler.readByID(movie_id));
                 cinemaCtrler.cinemaUpdateBySessionId(1, session_id, movieCtrler.readByID(movie_id));
+                cineplexCtrler.updateCineplex(1,session_id,movieCtrler.readByID(movie_id));
                 break;
 
             case 2:
@@ -89,12 +90,14 @@ public class MenuStaffMovieSessionUpdate extends MenuBase {
                 Date dateTime = readDateTime("Enter new Date & Time: ");
                 sessionCtrler.updateById(2, session_id, dateTime);
                 cinemaCtrler.cinemaUpdateBySessionId(2, session_id, dateTime);
-
+                cineplexCtrler.updateCineplex(2,session_id,dateTime);
                 break;
 
         }
+        cineplexCtrler.printAllCineplex();
         sessionCtrler.printAllSession();
         cinemaCtrler.printAllCinema();
+
 
         System.out.println("Session " + session_id + " successfully updated!");
 
