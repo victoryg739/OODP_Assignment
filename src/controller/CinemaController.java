@@ -293,7 +293,7 @@ public class CinemaController {
             }
             print(" ");
         }
-        println("----------");
+        println("---------------------");
         println("|Entrance|\n");
         println("([ ] Available  [#] Seat Selected  [X] Sold)");
     }

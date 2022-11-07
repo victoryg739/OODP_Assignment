@@ -120,11 +120,12 @@ public class MenuPurchaseTicket extends MenuBase {
             Enums.MovieType movieType = movie.getType();
             Enums.ClassCinema cinemaClass = session.getCinema().getClassCinema();
             boolean loyaltyCard = false;
+            boolean holiday = false;
             double ticketPrice;
 
             if (confirm("Are you eligible for student discount?")) { //student price
                 Enums.AgeType age = Enums.AgeType.STUDENT;
-                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard);
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
@@ -133,7 +134,7 @@ public class MenuPurchaseTicket extends MenuBase {
             }
             else if (confirm("Are you eligible for senior discount?")) { //senior price
                 Enums.AgeType age = Enums.AgeType.SENIOR;
-                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard);
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
@@ -142,7 +143,7 @@ public class MenuPurchaseTicket extends MenuBase {
             }
             else { //neither student nor senior
                 Enums.AgeType age = Enums.AgeType.NORMAL;
-                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard);
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
                 //for every seat, generate 1 ticket according to the ticket type
                 for (Seat seat : selected) {
                     Ticket ticket = new Ticket(ticketPrice, movieType, cinemaClass, age, day, seat);
