@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="csa">
+    <list default="true" id="a7c19e99-b409-4c24-a8b8-d5fe3b4a8165" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/controller/EmailController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuMovieReviews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuMovieReviews.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OODP_Assignment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OODP_Assignment.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,260 +23,39 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectId" id="2GTflwLqGVndff4xA2FpXobaoym" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/aloys/OneDrive - Nanyang Technological University/NTU/Year 2 Sem 1/SC2002 Object Oriented Design and Programming/Assignment/MenuConsole&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "C:/Users/tayri/Downloads/activation-1.1.1.jar",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\riven\IdeaProjects\OODP_Assignment\src\view\customer" />
-      <recent name="C:\Users\Victor\IdeaProjects\OODP_Assignment\src" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="view.customer" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunManager">
-    <configuration name="mainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mainProgram" />
+    <configuration name="EmailController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="controller.EmailController" />
       <module name="OODP_Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.mainProgram" />
+        <item itemvalue="Application.EmailController" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="updated Format" />
-      <created>1666417652481</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1666417652481</updated>
-      <workItem from="1666538442252" duration="238000" />
-      <workItem from="1666591451198" duration="5390000" />
-      <workItem from="1667108903653" duration="17137000" />
-    </task>
-    <task id="LOCAL-00001" summary="hello test">
-      <created>1666420532309</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1666420532309</updated>
-    </task>
-    <task id="LOCAL-00002" summary="commit admin">
-      <created>1666420611430</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1666420611430</updated>
-    </task>
-    <task id="LOCAL-00003" summary="commit helloworld">
-      <created>1666420950128</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1666420950128</updated>
-    </task>
-    <task id="LOCAL-00004" summary="remove admin and test">
-      <created>1666421052522</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1666421052522</updated>
-    </task>
-    <task id="LOCAL-00005" summary="test">
-      <created>1666421154373</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1666421154373</updated>
-    </task>
-    <task id="LOCAL-00006" summary="test">
-      <created>1666421205627</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1666421205627</updated>
-    </task>
-    <task id="LOCAL-00007" summary="done test 2">
-      <created>1666538516803</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1666538516803</updated>
-    </task>
-    <task id="LOCAL-00008" summary="done test 2">
-      <created>1666538575199</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1666538575199</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Added BookingHistoryMenu, MovieListTopSale, MoviesListTopRatings, MoviesReviewsMenu">
-      <created>1666600279021</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1666600279022</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added create movie functionality">
-      <created>1666710122310</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1666710122310</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Finished AddMovie functionality">
-      <created>1666808385704</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1666808385704</updated>
-    </task>
-    <task id="LOCAL-00012" summary="added session enums">
-      <created>1667289454326</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1667289454326</updated>
-    </task>
-    <task id="LOCAL-00013" summary="fix bug for MenuStaff">
-      <created>1667414227157</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1667414227157</updated>
-    </task>
-    <task id="LOCAL-00014" summary="fix bug for MenuStaff">
-      <created>1667452475029</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1667452475029</updated>
-    </task>
-    <task id="LOCAL-00015" summary="TEST">
-      <created>1667475336711</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1667475336711</updated>
-    </task>
-    <task id="LOCAL-00016" summary="TEST">
-      <created>1667482472358</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1667482472358</updated>
-    </task>
-    <task id="LOCAL-00017" summary="TEST">
-      <created>1667484079578</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1667484079578</updated>
-    </task>
-    <task id="LOCAL-00018" summary="commit for Review">
-      <created>1667484452443</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1667484452443</updated>
-    </task>
-    <task id="LOCAL-00019" summary="commit for MenuShow Rating">
-      <created>1667486701623</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1667486701623</updated>
-    </task>
-    <task id="LOCAL-00020" summary="commmit">
-      <created>1667490478178</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1667490478178</updated>
-    </task>
-    <task id="LOCAL-00021" summary="updated Format">
-      <created>1667493063135</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1667493063135</updated>
-    </task>
-    <task id="LOCAL-00022" summary="updated Format">
-      <created>1667495910801</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1667495910801</updated>
-    </task>
-    <task id="LOCAL-00023" summary="fix errors">
-      <created>1667573724041</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1667573724041</updated>
-    </task>
-    <task id="LOCAL-00024" summary="test">
-      <created>1667711750619</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1667711750619</updated>
-    </task>
-    <task id="LOCAL-00025" summary="csa">
-      <created>1667739804289</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1667739804289</updated>
-    </task>
-    <option name="localTasksCounter" value="26" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-        <option value="Space.CommitStatus" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -294,47 +67,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="hello test" />
-    <MESSAGE value="commit admin" />
-    <MESSAGE value="commit helloworld" />
-    <MESSAGE value="remove admin and test" />
-    <MESSAGE value="done test 2" />
-    <MESSAGE value="Added BookingHistoryMenu, MovieListTopSale, MoviesListTopRatings, MoviesReviewsMenu" />
-    <MESSAGE value="Updated" />
-    <MESSAGE value="Added create movie functionality" />
-    <MESSAGE value="Finished AddMovie functionality" />
-    <MESSAGE value="added session enums" />
-    <MESSAGE value="fix bug for MenuStaff" />
-    <MESSAGE value="TEST" />
-    <MESSAGE value="commit for Review" />
-    <MESSAGE value="commit for MenuShow Rating" />
-    <MESSAGE value="commmit" />
-    <MESSAGE value="updated Format" />
-    <MESSAGE value="fix errors" />
-    <MESSAGE value="test" />
-    <MESSAGE value="csa" />
-    <option name="LAST_COMMIT_MESSAGE" value="csa" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/view/customer/MovieInfo.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mainProgram.java</url>
-          <line>1</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.ClassCastException" package="java.lang" />
-          <option name="timeStamp" value="7" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
