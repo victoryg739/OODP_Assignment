@@ -52,9 +52,9 @@ public class MenuBookingHistory extends MenuBase {
             for (Ticket ticket : book.getTickets()) {
                 System.out.print(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
                 seatCount++;
+                print(" ");
             }
             seatCount = 1;
-            print(" ");
         }
         while (readIntInput("Press 0 to return to Customer Main Menu: ") != 0) ;
         return new MenuCustomerMain(this);

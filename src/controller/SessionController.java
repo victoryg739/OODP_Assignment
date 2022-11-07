@@ -152,18 +152,15 @@ public class SessionController {
         for (i = 0; i < (totalSpace - 6 )/2 + 2; i++) {
             System.out.print(" ");
         }
-        System.out.println("|");
-        //print("|      Screen       |");
+        print("|");
         for (i = 0; i < (totalSpace - 6 )/2 + 2; i++)
-            System.out.print("-----");
-        //print("---------------------");
-
+            System.out.print("---");
         print("");
         int new_row = 0;
         for(i =0; i<row; i++)
         {
             new_row = 0;
-            System.out.print(String.valueOf(i + 1) + " ");
+            System.out.print(i + 1 + " ");
             for(int j=0; j<col; j++)
             {
                 if (new_row != col / 2 - 1) {
@@ -189,9 +186,8 @@ public class SessionController {
             }
             print(" ");
         }
-        //println("---------------------");
         for (i = 0; i < (totalSpace - 6 )/2 + 2; i++)
-            System.out.print("-----");
+            System.out.print("---");
         print("");
         println("|Entrance|\n");
         println("([ ] Available  [#] Seat Selected  [X] Sold)");

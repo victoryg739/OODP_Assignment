@@ -57,36 +57,7 @@ public class MenuPurchaseTicket extends MenuBase {
         ArrayList<Session> sessionList = new ArrayList<>();
 
         printHeader("Menu for Purchasing Ticket:");
-        println("");
         cineplexController.printByMovieId(movie.getId());
-
-//        ArrayList<Cineplex> cineplexes = cc.read();
-//        for (int i = 0; i < cineplexes.size(); i++) {
-//            System.out.println((i + 1) + ". " + cineplexes.get(i).getLocation());
-//        }
-        //CineplexController: Print function returns void <-- give u movieId
-        //Read input to choose sessions, read from sessionController and loop through to obtain 1 session obj
-        //From session obj, obtain 2D arrayList of seats
-        //SessionController: Display and choose seats
-//        int choice;
-//        while (sessionList.size() == 0) {
-//            choice = readIntInput("Choose session (0 to return): ");
-//            if (choice == 0) {
-//                System.out.println("Returning...");
-//                return new MenuCustomerMain(this);
-//            } else if (choice < 0 || choice > cineplexes.size())
-//                System.out.println("Invalid input! Please try again.");
-//            else { //valid choice
-//                cineplexLocation = cineplexes.get(choice - 1).getLocation();
-//                sessionList = cinemaController.showAvailableSessions(cineplexLocation, movie);
-//                if (sessionList == null)
-//                    System.out.println("No available sessions for this cineplex! Please choose another.");
-//            }
-//        }
-//        if (sessionList == null) {
-//            println(" ");
-//            return new MenuCustomerMain(this);
-//        }
         Session session = null;
         int choice = readIntInput("Please Choose a session by SessionId (0 to return): ");
         if (choice == 0) return new MenuListMovie(this);
@@ -97,9 +68,8 @@ public class MenuPurchaseTicket extends MenuBase {
         ArrayList<ArrayList<Seat>> seatList = session.getSeats();
         int col = seatList.get(0).size(), row = seatList.size();
 
-        String cineplexLocation = null;
+        String cineplexLocation = cineplexController.returnLocationBySessionId(session.getSessionId());
 
-        //Intialise ArrayList of Seat Objects
         ArrayList<Seat> selected = new ArrayList<Seat>();
 
         while (confirm("Continue to select seats?")) {
@@ -110,11 +80,6 @@ public class MenuPurchaseTicket extends MenuBase {
         }
         println("This is your finalized seats");
         sessionController.displaySeats(seatList, row, col);
-        /*
-            Model for buying tickets:
-            When selecting a few seats, they have to belong to 1 ticket type (Senior/Student/Normal)
-         */
-
         if (selected.size() != 0) {
             ArrayList<Ticket> tickets = new ArrayList<Ticket>();
             //Function to determine the day n time
@@ -131,7 +96,6 @@ public class MenuPurchaseTicket extends MenuBase {
             HolidayController h = new HolidayController();
             String formattedDate = outputFormat.format(sessionDateTime);
             Date finalDate;
-            print(formattedDate);
             try {
                 finalDate = outputFormat.parse(formattedDate);
             } catch (ParseException e) {
@@ -190,7 +154,6 @@ public class MenuPurchaseTicket extends MenuBase {
             //Get the current Date/time to generate the tid according to the format XXXYYYYMMDDhhmm
             SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
             Date date = new Date();
-            System.out.println(formatter.format(date));
             String tid = session.getCinema().getCinemaNo() + formatter.format(date);
 
             println("Total price is S$" + totalPrice + " (Inclusive of GST).");
@@ -211,8 +174,6 @@ public class MenuPurchaseTicket extends MenuBase {
                 mail.setupServerProperties();
                 mail.draftEmail(booking);
                 mail.sendEmail();
-
-
             }
             //IF cancel booking transaction
             else {

@@ -234,49 +234,4 @@ public class CinemaController {
             System.out.printf("\n");
         }
     }
-
-
-
-    public ArrayList<Session> showAvailableSessions(String cineplexName, Movie movie) {
-        Session tempSession;
-        Cinema tempCinema;
-        ArrayList<Session> sessionList = new ArrayList<>();
-        int count = 1;
-        boolean printSeparator = false;
-        ArrayList<Cinema> cinemaList = this.readByCineplexName(cineplexName);
-        System.out.println("------------------------------------------------------");
-        for (int i = 0; i < cinemaList.size() ; i++) {
-            tempCinema = cinemaList.get(i);
-            System.out.println((i+1) + " Cinema code: " + tempCinema.getCinemaNo() + "		Cinema type: " + tempCinema.getClassCinema());
-            System.out.println();
-        }
-
-//        while (tempCinema == null) {
-        int cinemaChoice = readIntInput("Enter cinema of choice: ");
-        tempCinema = cinemaList.get(cinemaChoice - 1);
-//        }
-
-        System.out.println("Available screening times of " + movie.getTitle() + " in this cinema:");
-        System.out.println();
-
-//        if (tempCinema.getSessions() == null) {
-//            return null;
-//        }
-        for(int j = 0; j < tempCinema.getSessions().size() ; j++) {
-            tempSession = tempCinema.getSessions().get(j);
-            if (tempSession.getMovie().getTitle().equals(movie.getTitle())) {
-                System.out.println(count + ".	Date: " + tempSession.getDateTime());
-                System.out.println();
-                printSeparator = true;
-                count++;
-                sessionList.add(tempSession);
-            }
-            if(printSeparator){
-                System.out.println("------------------------------------------------------");
-                printSeparator = false;
-            }
-        }
-        return sessionList;
-    }
-
 }
