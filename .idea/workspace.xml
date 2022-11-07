@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated Format" />
+    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated Format">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MovieController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -347,6 +350,7 @@
     <MESSAGE value="Added create movie functionality" />
     <MESSAGE value="Finished AddMovie functionality" />
     <MESSAGE value="added session enums" />
+    <MESSAGE value="fix bug for MenuStaff" />
     <MESSAGE value="TEST" />
     <MESSAGE value="commit for Review" />
     <MESSAGE value="commit for MenuShow Rating" />
@@ -355,8 +359,7 @@
     <MESSAGE value="test" />
     <MESSAGE value="csa" />
     <MESSAGE value="updated Format" />
-    <MESSAGE value="fix bug for MenuStaff" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug for MenuStaff" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated Format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -381,8 +384,5 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/OODP_Assignment$mainProgram.ic" NAME="mainProgram Coverage Results" MODIFIED="1667624966497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
