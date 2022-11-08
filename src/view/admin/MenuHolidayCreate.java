@@ -1,24 +1,25 @@
 package view.admin;
 
 import controller.HolidayController;
-import modal.Constant;
+import model.Constant;
 import view.MenuBase;
 
 import java.util.Date;
 
-import static modal.Constant.dateFormatLong;
 import static view.utilF.*;
 
 /**
- Menu to Create holiday
- @author Bryan Tay
- @version 1.0
- @since 2022-08-11
+ * Menu to Create holiday
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
  */
 
 
 public class MenuHolidayCreate extends MenuBase {
     private HolidayController holCtrl = new HolidayController();
+
     public MenuHolidayCreate(MenuBase initialMenu) {
         super(initialMenu);
     }
@@ -40,7 +41,7 @@ public class MenuHolidayCreate extends MenuBase {
             println("Holiday already exists!");
             return this.getPreviousMenu();
         }
-        holCtrl.create(newName,holiday);
+        holCtrl.create(newName, holiday);
         println("Successfully added holiday!");
         return this.getPreviousMenu();
     }

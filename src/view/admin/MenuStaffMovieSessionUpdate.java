@@ -6,7 +6,6 @@ import controller.MovieController;
 import controller.SessionController;
 import view.MenuBase;
 
-
 import java.util.Date;
 
 import static view.utilF.*;
@@ -16,6 +15,7 @@ public class MenuStaffMovieSessionUpdate extends MenuBase {
     public MenuStaffMovieSessionUpdate(MenuBase initialMenu) {
         super(initialMenu);
     }
+
     private CineplexController cineplexCtrler = new CineplexController();
     private CinemaController cinemaCtrler = new CinemaController();
     private SessionController sessionCtrler = new SessionController();
@@ -72,17 +72,18 @@ public class MenuStaffMovieSessionUpdate extends MenuBase {
                 "1. Movie\n" +
                 "2. Date & Time \n");
 
-        switch(choice) {
+        switch (choice) {
             case 1:
                 int movie_id = readIntInput("Enter new Movie id: ");
                 if (movieCtrler.readByID(movie_id) == null) {
-                    System.out.println("Movie does not exist!\n"+
+                    System.out.println("Movie does not exist!\n" +
                             "Returning to menu... ");
                     return getPreviousMenu();
-                };
+                }
+                ;
                 sessionCtrler.updateById(1, session_id, movieCtrler.readByID(movie_id));
                 cinemaCtrler.cinemaUpdateBySessionId(1, session_id, movieCtrler.readByID(movie_id));
-                cineplexCtrler.updateCineplex(1,session_id,movieCtrler.readByID(movie_id));
+                cineplexCtrler.updateCineplex(1, session_id, movieCtrler.readByID(movie_id));
                 break;
 
             case 2:
@@ -90,7 +91,7 @@ public class MenuStaffMovieSessionUpdate extends MenuBase {
                 Date dateTime = readDateTime("Enter new Date & Time: ");
                 sessionCtrler.updateById(2, session_id, dateTime);
                 cinemaCtrler.cinemaUpdateBySessionId(2, session_id, dateTime);
-                cineplexCtrler.updateCineplex(2,session_id,dateTime);
+                cineplexCtrler.updateCineplex(2, session_id, dateTime);
                 break;
 
         }

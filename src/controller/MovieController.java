@@ -1,23 +1,21 @@
 package controller;
 
-import modal.*;
+import model.Enums.MovieRating;
+import model.Enums.MovieType;
+import model.Enums.ShowingStatus;
+import model.Movie;
+import model.Review;
 
 import java.io.*;
-import java.util.*;
-
-import modal.Enums.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 import static view.utilF.print;
 import static view.utilF.println;
 
-/* ToDO list:
-    1. Change getLastID code
-    2. Delete by ID (change the code)
-    3. SortbySale and SortbyRating code
 
-
-*/
-// Database for Admin control //
 public class MovieController {
     public final static String FILENAME = "data/movies.txt";
     SessionController sc = new SessionController();
@@ -197,7 +195,7 @@ public class MovieController {
 
     /* A function to check if this movie is in the session */
     public boolean validMovie(int movieID) {
-        if(readByID(movieID) != null){
+        if (readByID(movieID) != null) {
             return true;
         }
         return false;

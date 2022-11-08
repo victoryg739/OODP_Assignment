@@ -1,5 +1,9 @@
-package modal;
-import modal.Enums.*;
+package model;
+
+import model.Enums.AgeType;
+import model.Enums.ClassCinema;
+import model.Enums.Day;
+import model.Enums.MovieType;
 
 import java.io.Serializable;
 
@@ -15,7 +19,8 @@ public class Ticket implements Serializable {
     private Seat seat; // each ticket is tied to a seat
 
 
-    public Ticket(){}
+    public Ticket() {
+    }
 
     public Ticket(double price, MovieType movieType, ClassCinema classCinema, AgeType age, Day day, Seat seat) {
         this.price = price;
@@ -74,9 +79,6 @@ public class Ticket implements Serializable {
     public void setSeat(Seat seat) {
         this.seat = seat;
     }
-
-
-
 
 
 }

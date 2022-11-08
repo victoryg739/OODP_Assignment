@@ -1,4 +1,4 @@
-package modal;
+package model;
 
 import java.io.Serializable;
 
@@ -11,8 +11,9 @@ public class Review implements Serializable {
 
     /**
      * Constructor for Review
+     *
      * @param comment user's comment for the review
-     * @param rating user's rating for the review
+     * @param rating  user's rating for the review
      */
     public Review(String comment, int rating) {
         this.comment = comment;
@@ -41,6 +42,7 @@ public class Review implements Serializable {
 
     /**
      * Check if a review already exists
+     *
      * @param o object need to be checked
      * @return boolean value of the whether a review exists
      */

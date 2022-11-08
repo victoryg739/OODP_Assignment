@@ -1,18 +1,16 @@
 package view.Customer;
 
 import controller.MovieController;
+import model.Movie;
 import view.MenuBase;
 import view.Quit;
-import modal.*;
-
-import java.util.*;
 
 import static view.utilF.*;
 
 public class MenuMovieInfo extends MenuBase {
     private final Movie movie;
 
-    private MovieController mc  = new MovieController();
+    private MovieController mc = new MovieController();
 
     public MenuMovieInfo(MenuBase initialMenu, Movie movie) {
         super(initialMenu);
@@ -51,7 +49,6 @@ public class MenuMovieInfo extends MenuBase {
         }
         return nextMenu;
     }
-
 
 
 }

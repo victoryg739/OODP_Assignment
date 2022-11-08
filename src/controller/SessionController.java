@@ -1,6 +1,8 @@
 package controller;
 
-import modal.*;
+import model.Movie;
+import model.Seat;
+import model.Session;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -49,7 +51,7 @@ public class SessionController {
         int lastId = 0;
         int sessionId;
         ArrayList<Session> allData = read();
-        if(allData == null){
+        if (allData == null) {
             return 1;
         }
         for (int i = 0; i < allData.size(); i++) {
@@ -59,6 +61,7 @@ public class SessionController {
         }
         return lastId;
     }
+
     public ArrayList<Session> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
@@ -81,15 +84,15 @@ public class SessionController {
         return null;
     }
 
-    public void updateById(int choice ,int id, Object newValue) {
+    public void updateById(int choice, int id, Object newValue) {
         ArrayList<Session> sessionArrayList = read();
-        for(int i = 0; i< sessionArrayList.size(); i++){
-            if(sessionArrayList.get(i).getSessionId()  == id){
-                if(choice == 1) {
-                    sessionArrayList.get(i).setMovie((Movie)newValue);
-                }else if(choice == 2){
-                    sessionArrayList.get(i).setDateTime((Date)newValue);
-                    sessionArrayList.get(i).setDay(returnEnumsDay((Date)newValue));
+        for (int i = 0; i < sessionArrayList.size(); i++) {
+            if (sessionArrayList.get(i).getSessionId() == id) {
+                if (choice == 1) {
+                    sessionArrayList.get(i).setMovie((Movie) newValue);
+                } else if (choice == 2) {
+                    sessionArrayList.get(i).setDateTime((Date) newValue);
+                    sessionArrayList.get(i).setDay(returnEnumsDay((Date) newValue));
 
                 }
             }
@@ -98,20 +101,20 @@ public class SessionController {
         replace(sessionArrayList);
     }
 
-    public void remove(int id){
+    public void remove(int id) {
         ArrayList<Session> sessionArrayList = read();
-        for(int i = 0; i < sessionArrayList.size(); i++){
-            if(sessionArrayList.get(i).getSessionId() == id){
+        for (int i = 0; i < sessionArrayList.size(); i++) {
+            if (sessionArrayList.get(i).getSessionId() == id) {
                 sessionArrayList.remove(i);
             }
         }
         replace(sessionArrayList);
     }
 
-    public ArrayList<Session> readByMovieId(int movieId){
+    public ArrayList<Session> readByMovieId(int movieId) {
         ArrayList<Session> sessionArrayList = read();
-        ArrayList<Session> returnData  = null;
-        for(int i = 0; i < sessionArrayList.size(); i++) {
+        ArrayList<Session> returnData = null;
+        for (int i = 0; i < sessionArrayList.size(); i++) {
             if (movieId == sessionArrayList.get(i).getMovie().getId()) {
                 returnData.add(sessionArrayList.get(i));
             }
@@ -124,11 +127,11 @@ public class SessionController {
         ArrayList<Session> sf = read();
         println("");
         printHeader("Printing all Sessions:");
-        System.out.printf("| %5s | %5s | %5s | %5s | %30s | %12s |%n", "SID", "CinNo", "MID","Seats", "DateTime","Day");
+        System.out.printf("| %5s | %5s | %5s | %5s | %30s | %12s |%n", "SID", "CinNo", "MID", "Seats", "DateTime", "Day");
         System.out.printf("-------------------------------------------------------------------------\n");
 
         for (int i = 0; i < sf.size(); i++) { //return one section by one for the whole session file
-            System.out.printf("| %5s | %5s | %5s | %2s,%2s | %30s | %12s |%n",sf.get(i).getSessionId(),sf.get(i).getCinema().getCinemaNo(),sf.get(i).getMovie().getId(),sf.get(i).getSeats().size(),sf.get(i).getSeats().get(0).size() ,sf.get(i).getDateTime(),sf.get(i).getDay());
+            System.out.printf("| %5s | %5s | %5s | %2s,%2s | %30s | %12s |%n", sf.get(i).getSessionId(), sf.get(i).getCinema().getCinemaNo(), sf.get(i).getMovie().getId(), sf.get(i).getSeats().size(), sf.get(i).getSeats().get(0).size(), sf.get(i).getDateTime(), sf.get(i).getDay());
 
         }
     }
@@ -139,61 +142,50 @@ public class SessionController {
      * With corridor printed out in the middle of the layout
      */
 
-    public void displaySeats(ArrayList<ArrayList<Seat>> seatList, int row, int col)
-    {
+    public void displaySeats(ArrayList<ArrayList<Seat>> seatList, int row, int col) {
         Seat seat;
         int i;
-        int totalSpace = (col + 1)*3 + 2;
+        int totalSpace = (col + 1) * 3 + 2;
         System.out.print("|");
-        for (i = 0; i < (totalSpace - 6 )/2 + 2; i++) {
+        for (i = 0; i < (totalSpace - 6) / 2 + 2; i++) {
             System.out.print(" ");
         }
         System.out.print("Screen");
-        for (i = 0; i < (totalSpace - 6 )/2 + 2; i++) {
+        for (i = 0; i < (totalSpace - 6) / 2 + 2; i++) {
             System.out.print(" ");
         }
         print("|");
-        for (i = 0; i < (totalSpace - 6 )/2 + 2; i++)
+        for (i = 0; i < (totalSpace - 6) / 2 + 2; i++)
             System.out.print("---");
         print("");
         int new_row = 0;
-        for(i =0; i<row; i++)
-        {
+        for (i = 0; i < row; i++) {
             new_row = 0;
             System.out.print(i + 1 + " ");
-            for(int j=0; j<col; j++)
-            {
+            for (int j = 0; j < col; j++) {
                 if (new_row != col / 2 - 1) {
                     seat = seatList.get(i).get(j);
                     if (seat.isTaken()) {
                         System.out.print("[X]");
-                    }
-                    else if (seat.isSelected()) {
-                        if (seat.isCouple() && j%2 == 0) {
+                    } else if (seat.isSelected()) {
+                        if (seat.isCouple() && j % 2 == 0) {
                             System.out.print("[# ");
-                        }
-                        else if  (seat.isCouple() && j%2 == 1) {
+                        } else if (seat.isCouple() && j % 2 == 1) {
                             System.out.print(" #]");
-                        }
-                        else {
+                        } else {
                             System.out.print("[#]");
                         }
 
-                    }
-                    else if (seat.isStairWay()) {
+                    } else if (seat.isStairWay()) {
 
                         System.out.print("   ");
-                    }
-                    else if(seat.isCouple() && j%2 == 0) {
+                    } else if (seat.isCouple() && j % 2 == 0) {
                         System.out.print("[  ");
-                    }
-                    else if(seat.isCouple() && j%2 == 1){
+                    } else if (seat.isCouple() && j % 2 == 1) {
                         System.out.print("  ]");
-                    }
-                    else
+                    } else
                         System.out.print("[ ]");
-                }
-                else {
+                } else {
                     System.out.print("   ");
                     j--;
                 }
@@ -201,7 +193,7 @@ public class SessionController {
             }
             print(" ");
         }
-        for (i = 0; i < (totalSpace - 6 )/2 + 2; i++)
+        for (i = 0; i < (totalSpace - 6) / 2 + 2; i++)
             System.out.print("---");
         print("");
         println("|Entrance|\n");
@@ -216,31 +208,30 @@ public class SessionController {
     public ArrayList<Seat> chooseSeats(ArrayList<ArrayList<Seat>> seatList, int row, int col) {
         println("Please choose your seat(s).");
         ArrayList<Seat> selectedSeats = new ArrayList<>();
-        int i,j;
+        int i, j;
         do {
-            i = readSeatInput("Please input row number",1,row);
-            j = readSeatInput("Please input col number",1,col);
-            i--;j--;
+            i = readSeatInput("Please input row number", 1, row);
+            j = readSeatInput("Please input col number", 1, col);
+            i--;
+            j--;
             if (seatList.get(i).get(j).isTaken() || seatList.get(i).get(j).isSelected())
                 println("Already been taken/selected please choose another seats.");
             else if (seatList.get(i).get(j).isStairWay()) {
                 println("Unavailable, please pick a different seat.");
-            }
-            else break;
+            } else break;
         } while (true);
         if (seatList.get(i).get(j).isCouple()) {
-            if (j%2 == 0) {
-                seatList.get(i).get(j+1).setSelected(true);
-                selectedSeats.add(seatList.get(i).get(j+1));
-            }
-            else {
-                seatList.get(i).get(j-1).setSelected(true);
-                selectedSeats.add(seatList.get(i).get(j-1));
+            if (j % 2 == 0) {
+                seatList.get(i).get(j + 1).setSelected(true);
+                selectedSeats.add(seatList.get(i).get(j + 1));
+            } else {
+                seatList.get(i).get(j - 1).setSelected(true);
+                selectedSeats.add(seatList.get(i).get(j - 1));
             }
         }
         seatList.get(i).get(j).setSelected(true);
         selectedSeats.add(seatList.get(i).get(j));
-        println("Selected Seat: Row: " + (i+1) + " Col: " + (j+1));
+        println("Selected Seat: Row: " + (i + 1) + " Col: " + (j + 1));
         return selectedSeats;
     }
 
@@ -248,9 +239,9 @@ public class SessionController {
         ArrayList<Session> sessionListing = read();
         ArrayList<ArrayList<Seat>> seatList = new ArrayList<ArrayList<Seat>>();
 
-        for (int j=0; j<sessionListing.size(); j++) {
+        for (int j = 0; j < sessionListing.size(); j++) {
             if (sessionListing.get(j).getSessionId() == (int) valueToSearch) {
-                if(sessionListing.get(j).getSeats()  != null) {
+                if (sessionListing.get(j).getSeats() != null) {
                     seatList = sessionListing.get(j).getSeats(); //old list of seat in cinema
                 }
                 System.out.println(sessionListing.get(j).getSessionId());
@@ -266,11 +257,6 @@ public class SessionController {
         }
         replace(sessionListing);
     }
-
-
-
-
-
 
 
 }

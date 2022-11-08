@@ -4,22 +4,18 @@ import controller.MovieController;
 import view.MenuBase;
 import view.Quit;
 
-/**
- Menu to list the top 5 movies by rating
- @author Bryan Tay
- @version 1.0
- @since 2022-08-11
- */
-
 import static view.utilF.*;
 
 public class MenuStaffTopFiveRating extends MenuBase {
     MovieController mc = new MovieController();
+
     public MenuStaffTopFiveRating(MenuBase initialMenu) {
         super(initialMenu);
     }
+
     /**
      * List all the top 5 movies by rating which is sorted
+     *
      * @return return to the corresponding menu that the user has selected
      */
 
@@ -31,7 +27,7 @@ public class MenuStaffTopFiveRating extends MenuBase {
         print("1. Go back to Previous Menu\n" +
                 "2. Quit\n");
         int choice = readIntInput("Choice: ");
-        switch(choice){
+        switch (choice) {
             case 2:
                 nextMenu = new Quit(this);
                 System.out.println("Thank you for using our MOBLIMA APP");

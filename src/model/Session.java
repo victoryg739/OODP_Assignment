@@ -1,8 +1,16 @@
-package modal;
+package model;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Represents a session tied to a movie
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 //this session is tied to which movie is showing at which timing
 // one session is tag to one cinema and one movie
 public class Session implements Serializable {
@@ -17,22 +25,33 @@ public class Session implements Serializable {
 
     private ArrayList<ArrayList<Seat>> seats = new ArrayList<ArrayList<Seat>>();
 
-    public Session(){
+    public Session() {
 
 
     }
-    public Session(int row, int col , Cinema cinema, Movie movie, int sessionId, Date dateTime, Enums.Day day) {
-        for(int i=0;i<row;i++) {
-            this.seats.add(new ArrayList<Seat>());
-            for(int j=0;j<col;j++) {
-                Seat tmpSeat = new Seat();
-                if(i<4 && j<2){
-                    tmpSeat = new Seat(j,i,false,true,false);
 
-                }else if(i>row-2) {
+    /**
+     * Creates a new Cinema with multiple sessions
+     *
+     * @param row       This is the row of the seating plan of the cinema
+     * @param col       This is the column of the seating plan of the cinema
+     * @param cinema    This is the cinema object that contains cinema information
+     * @param movie     This is the movie object that contains movie information.
+     * @param sessionId This is the unique sessionId
+     *                  dateTime
+     */
+    public Session(int row, int col, Cinema cinema, Movie movie, int sessionId, Date dateTime, Enums.Day day) {
+        for (int i = 0; i < row; i++) {
+            this.seats.add(new ArrayList<Seat>());
+            for (int j = 0; j < col; j++) {
+                Seat tmpSeat = new Seat();
+                if (i < 4 && j < 2) {
+                    tmpSeat = new Seat(j, i, false, true, false);
+
+                } else if (i > row - 2) {
                     tmpSeat = new Seat(j, i, false, false, true);
-                }else{
-                    tmpSeat = new Seat(j,i,false,false,false);
+                } else {
+                    tmpSeat = new Seat(j, i, false, false, false);
 
                 }
 
@@ -45,26 +64,28 @@ public class Session implements Serializable {
         this.day = day;
         this.cinema = cinema;
     }
+
     public ArrayList<ArrayList<Seat>> getSeats() {
         return seats;
     }
 
     public void setSeats(int row, int col) {
-        for(int i=1;i<=row;i++)
-        {
-            for(int j=1;j<=col;j++)
-            {
-                Seat tmpseat = new Seat(j,i,false,false,false);
+        for (int i = 1; i <= row; i++) {
+            for (int j = 1; j <= col; j++) {
+                Seat tmpseat = new Seat(j, i, false, false, false);
                 this.seats.get(i).add(tmpseat);
             }
         }
     }
-    public Cinema getCinema (){
+
+    public Cinema getCinema() {
         return cinema;
     }
-    public void setCinema(Cinema cinema){
+
+    public void setCinema(Cinema cinema) {
         this.cinema = cinema;
     }
+
     public Movie getMovie() {
         return movie;
     }
@@ -97,7 +118,9 @@ public class Session implements Serializable {
         this.day = day;
     }
 
-    public void setSeatPlan(ArrayList<ArrayList<Seat>> seatList) {this.seats = seatList;}
+    public void setSeatPlan(ArrayList<ArrayList<Seat>> seatList) {
+        this.seats = seatList;
+    }
 
 
 }

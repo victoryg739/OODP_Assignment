@@ -1,12 +1,17 @@
 package view.admin;
-import view.MenuBase;;
+
+import view.MenuBase;
+
 import static view.utilF.*;
 
+;
+
 /**
- Menu to Configure for admin to configure settings
- @author Bryan Tay
- @version 1.0
- @since 2022-08-11
+ * Menu to Configure for admin to configure settings
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
  */
 public class MenuStaffConfigureSettings extends MenuBase {
     public MenuStaffConfigureSettings(MenuBase initialMenu) {

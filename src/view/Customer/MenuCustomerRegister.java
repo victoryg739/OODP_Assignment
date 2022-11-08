@@ -1,15 +1,9 @@
 package view.Customer;
 
 import controller.CustomerController;
-import modal.Admin;
-import modal.Customer;
 import view.MenuBase;
-import view.admin.MenuStaffLogin;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 import static view.utilF.*;
 
@@ -25,7 +19,7 @@ public class MenuCustomerRegister extends MenuBase {
     private static Scanner sc = new Scanner(System.in);
 
     // Registration Menu to create new accounts
-    public MenuBase execute(){
+    public MenuBase execute() {
 
         int choice;
 

@@ -1,4 +1,4 @@
-package modal;
+package model;
 
 import java.io.Serializable;
 
@@ -11,14 +11,17 @@ public class Seat implements Serializable {
     private boolean couple;
 
     private boolean stairWay;
-    public Seat() {}
-    public Seat(int col, int row, boolean taken,boolean stairWay,boolean couple) {
+
+    public Seat() {
+    }
+
+    public Seat(int col, int row, boolean taken, boolean stairWay, boolean couple) {
         this.col = col;
         this.row = row;
         this.taken = taken;
         this.selected = false;
         this.stairWay = stairWay;
-        this.couple =couple;
+        this.couple = couple;
     }
 
     public int getCol() {
@@ -52,6 +55,7 @@ public class Seat implements Serializable {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
+
     public boolean isStairWay() {
         return stairWay;
     }
@@ -59,6 +63,7 @@ public class Seat implements Serializable {
     public void setStairWay(boolean stairWay) {
         this.stairWay = stairWay;
     }
+
     public boolean isCouple() {
         return couple;
     }

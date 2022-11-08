@@ -1,9 +1,9 @@
 package controller;
 
-import modal.*;
+import model.Booking;
+import model.Customer;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.*;
 
 import static view.utilF.read;
@@ -23,6 +23,7 @@ public class CustomerController {
     public CustomerController() {
 
     }
+
     // Creates a movie and writes it to customer.txt
     public static void createCustomer(Customer customer) {
         // Creates an ArrayList of customer
@@ -44,20 +45,20 @@ public class CustomerController {
         }
     }
 
-    public void CustomerUpdate(Object valueToSearch,Booking newBooking) {
+    public void CustomerUpdate(Object valueToSearch, Booking newBooking) {
         ArrayList<Customer> customerList = readAll();
         ArrayList<Booking> bookingList = new ArrayList<Booking>();
 
-        for (int j=0; j<customerList.size(); j++) {
+        for (int j = 0; j < customerList.size(); j++) {
             if (customerList.get(j).getUsername().equals((String) valueToSearch)) {
-                if(customerList.get(j).getBookings()  != null) {
+                if (customerList.get(j).getBookings() != null) {
                     bookingList = customerList.get(j).getBookings(); //old list of session in cinema
                 }
                 bookingList.add(newBooking);
                 customerList.get(j).setBookings(bookingList);
             }
             ArrayList<Booking> tempList = customerList.get(j).getBookings();
-            for (int i = 0; i < tempList.size(); i ++) {
+            for (int i = 0; i < tempList.size(); i++) {
                 System.out.println(tempList.get(i));
             }
         }
@@ -94,7 +95,7 @@ public class CustomerController {
 
     public static Customer readByUsername(String valueToSearch) {
         ArrayList<Customer> allData = readAll();
-        for (int i=0; i<allData.size(); i++){
+        for (int i = 0; i < allData.size(); i++) {
             Customer c = allData.get(i);
             if (c.getUsername().equals(valueToSearch))
                 return c;
@@ -104,13 +105,14 @@ public class CustomerController {
 
     /**
      * READ and return an Admin by searching for one with matching email in the Database file
-     * @param valueToSearch     Email of admin to search for
+     *
+     * @param valueToSearch Email of admin to search for
      * @return Admin            Return Admin if found, else null object
      */
 
     public static Customer readByPassword(String valueToSearch) {
         ArrayList<Customer> allData = readAll();
-        for (int i=0; i<allData.size(); i++){
+        for (int i = 0; i < allData.size(); i++) {
             Customer c = allData.get(i);
             if (c.getPassword().equals(valueToSearch))
                 return c;
@@ -120,9 +122,9 @@ public class CustomerController {
 
     public Customer readByCustomerID(int valueToSearch) {
         ArrayList<Customer> allData = readAll();
-        for (int i=0; i<allData.size(); i++){
+        for (int i = 0; i < allData.size(); i++) {
             Customer u = allData.get(i);
-            if (u.getCustomerID() == valueToSearch )
+            if (u.getCustomerID() == valueToSearch)
                 return u;
         }
         return null;
@@ -131,7 +133,7 @@ public class CustomerController {
     public static ArrayList<Booking> retrieveByUsername(String valueToSearch) {
         ArrayList<Customer> allData = readAll();
         ArrayList<Booking> returnData = new ArrayList<>();
-        for (int i=0; i<allData.size(); i++){
+        for (int i = 0; i < allData.size(); i++) {
             Customer c = allData.get(i);
             //compare the customer object with the one that login
             if (c.getUsername().equals(valueToSearch)) { //if found correct
@@ -145,17 +147,16 @@ public class CustomerController {
 
     public boolean authenticate(String username, String password) {
         // Case : There is no customer object in the file
-        if (readByUsername(username) == null || readByPassword(password) == null ){
+        if (readByUsername(username) == null || readByPassword(password) == null) {
             return false;
-        }
-        else if (username.equals(readByUsername(username).getUsername()) && password.equals(readByPassword(password).getPassword())) {
+        } else if (username.equals(readByUsername(username).getUsername()) && password.equals(readByPassword(password).getPassword())) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void customerRegistration(){
+    public void customerRegistration() {
         do {
 
             customerUsername = read("Create customerUsername: ");
@@ -183,15 +184,14 @@ public class CustomerController {
 
 
             // Create new Customer account when the 2 input passwords match
-            if(consistentPassword){
+            if (consistentPassword) {
                 this.createCustomer(customer);
                 System.out.println("You have registered successfully");
-            }
-            else {
+            } else {
                 System.out.println("Password not consistent. Enter again");
             }
         }
-        while(!consistentPassword);
+        while (!consistentPassword);
     }
 
     public static boolean validatePasswordStrength(String password) {
@@ -200,8 +200,7 @@ public class CustomerController {
         boolean hasLower = false, hasUpper = false,
                 hasDigit = false, specialChar = false;
         Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
-        for (char i : password.toCharArray())
-        {
+        for (char i : password.toCharArray()) {
             if (Character.isLowerCase(i))
                 hasLower = true;
             if (Character.isUpperCase(i))

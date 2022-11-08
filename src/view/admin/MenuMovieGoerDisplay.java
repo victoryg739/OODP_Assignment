@@ -4,14 +4,17 @@ import controller.SettingController;
 import view.MenuBase;
 
 import static view.utilF.*;
+
 /**
- Menu to Configure for admin to filter moviegoer's display
- @author Bryan Tay
- @version 1.0
- @since 2022-08-11
+ * Menu to Configure for admin to filter moviegoer's display
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
  */
 public class MenuMovieGoerDisplay extends MenuBase {
     SettingController sc = new SettingController();
+
     public MenuMovieGoerDisplay(MenuBase initialMenu) {
         super(initialMenu);
     }
@@ -35,10 +38,10 @@ public class MenuMovieGoerDisplay extends MenuBase {
         printHeader("Filtering MovieGoer's display");
         sc.printSettings();
         print("1. Enable/Disable Ticket sales\n" +
-              "2. Enable/Disable Review ratings \n" +
-              "3. Back\n");
+                "2. Enable/Disable Review ratings \n" +
+                "3. Back\n");
         int choice = readIntInput("Enter choice: ");
-        switch(choice){
+        switch (choice) {
             case 1:
                 nextMenu = new FilterTicketSales(this);
                 break;

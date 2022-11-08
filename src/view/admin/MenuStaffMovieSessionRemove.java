@@ -2,15 +2,11 @@ package view.admin;
 
 import controller.CinemaController;
 import controller.CineplexController;
-import controller.MovieController;
 import controller.SessionController;
-import modal.Cinema;
-import modal.Cineplex;
 import view.MenuBase;
 
-import java.util.ArrayList;
-
-import static view.utilF.*;
+import static view.utilF.printHeader;
+import static view.utilF.readIntInput;
 
 public class MenuStaffMovieSessionRemove extends MenuBase {
 
@@ -21,6 +17,7 @@ public class MenuStaffMovieSessionRemove extends MenuBase {
     private CineplexController cineplexCtrler = new CineplexController();
     private CinemaController cinemaCtrler = new CinemaController();
     private SessionController sessionCtrler = new SessionController();
+
     public MenuBase execute() {
         printHeader("Deleting Session");
         sessionCtrler.printAllSession();

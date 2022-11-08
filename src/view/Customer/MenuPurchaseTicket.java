@@ -1,7 +1,7 @@
 package view.Customer;
 
 import controller.*;
-import modal.*;
+import model.*;
 import view.MenuBase;
 
 import javax.mail.MessagingException;
@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+
 import static view.utilF.*;
 
 public class MenuPurchaseTicket extends MenuBase {
@@ -32,7 +34,7 @@ public class MenuPurchaseTicket extends MenuBase {
         super(previousMenu);
         this.movie = movie;
         this.cineplexController = new CineplexController();
-        this.movieController  = new MovieController();
+        this.movieController = new MovieController();
         this.priceManager = new PriceManager();
         this.customerController = new CustomerController();
         this.sessionController = new SessionController();
@@ -41,6 +43,7 @@ public class MenuPurchaseTicket extends MenuBase {
         this.tempId = tempId;
         this.username = username;
     }
+
     public MenuBase execute() throws IOException, AddressException, MessagingException {
 
         printHeader("Menu for Purchasing Ticket:");
@@ -123,8 +126,7 @@ public class MenuPurchaseTicket extends MenuBase {
             else if (confirm("Do you have loyalty card?")) {
                 loyaltyCard = true;
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
-            }
-            else { //Normal Price
+            } else { //Normal Price
                 age = Enums.AgeType.NORMAL;
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
             }

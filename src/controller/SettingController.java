@@ -29,8 +29,7 @@ public class SettingController {
     }
 
 
-
-    public void replaceFile(ArrayList<String> message){
+    public void replaceFile(ArrayList<String> message) {
         File myObj = new File(FILENAME);
         if (myObj.delete()) {
             writeSetting(message);
@@ -78,30 +77,30 @@ public class SettingController {
      */
 
 
-    public int returnResult(){
+    public int returnResult() {
         // Default: Only show rating and sales
-        if(enableTicket("sales") && enableTicket("ratings")){
+        if (enableTicket("sales") && enableTicket("ratings")) {
             return 3;
             // Only show ratings
-        }else if(enableTicket("ratings")){
+        } else if (enableTicket("ratings")) {
             return 2;
-        }else if(enableTicket("sales")){
+        } else if (enableTicket("sales")) {
             // Show sales
             return 1;
-        }else{
+        } else {
             // Show None
             return 3;
         }
 
     }
 
-    public void printSettings(){
+    public void printSettings() {
         print("Currently Display enabled:");
         ArrayList<String> settingList = readSettings();
-        if(settingList.isEmpty()){
+        if (settingList.isEmpty()) {
             print("[]");
         }
-        for(String s: settingList){
+        for (String s : settingList) {
             print("[" + s + "]");
         }
     }

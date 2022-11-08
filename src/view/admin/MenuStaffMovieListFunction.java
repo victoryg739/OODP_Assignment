@@ -1,4 +1,5 @@
 package view.admin;
+
 import view.MenuBase;
 
 import static view.utilF.printHeader;
@@ -6,10 +7,11 @@ import static view.utilF.readIntInput;
 
 
 /**
- Menu to list all the Movie configuration
- @author Bryan Tay
- @version 1.0
- @since 2022-08-11
+ * Menu to list all the Movie configuration
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
  */
 public class MenuStaffMovieListFunction extends MenuBase {
     public MenuStaffMovieListFunction(MenuBase initialMenu) {
@@ -35,12 +37,12 @@ public class MenuStaffMovieListFunction extends MenuBase {
         printHeader("Create/Update/Remove Movies");
         int choice = readIntInput(
                 "1. Create Movie Listing\n" +
-                "2. Update Movie Listing\n" +
-                "3. Remove Movie Listing\n" +
-                "4. Return to Main Menu\n" +
-                "Select option: ");
+                        "2. Update Movie Listing\n" +
+                        "3. Remove Movie Listing\n" +
+                        "4. Return to Main Menu\n" +
+                        "Select option: ");
 
-        switch(choice) {
+        switch (choice) {
             case 1:
                 nextMenu = new MenuStaffMovieCreate(this);
                 break;
@@ -59,7 +61,7 @@ public class MenuStaffMovieListFunction extends MenuBase {
     }
 
 
-    }
+}
 
 
 
