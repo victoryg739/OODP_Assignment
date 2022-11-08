@@ -179,7 +179,7 @@ public class mainProgram {
         ac.createAdmin(rootAdmin);
 
         // Creating Customer account to test
-        Customer testCustomer = new Customer("twz", "twz", "bert0007@e.ntu.edu.sg", "999");
+        Customer testCustomer = new Customer("twz", "twz", "rivenbryan@gmail.com", "999");
         CustomerController cc = new CustomerController();
         cc.createCustomer(testCustomer);
 

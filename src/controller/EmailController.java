@@ -7,12 +7,9 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.*;
+import java.io.IOException;
 import java.util.Properties;
-
 import static view.utilF.print;
 import static view.utilF.println;
 
@@ -22,10 +19,12 @@ public class EmailController {
     Session newSession = null;
     MimeMessage mimeMessage = null;
 
-
+    /**
+     *  Function to send email to a particular person
+     */
     public void sendEmail() throws MessagingException {
-        String fromUser = "moblimamoviebooking@gmail.com";  //Enter sender email id
-        String fromUserPassword = "uaqdicnxfdsfduyg";  //Enter sender gmail password , this will be authenticated by gmail smtp server
+        String fromUser = "moblimamoviebooking1@gmail.com";  //Enter sender email id
+        String fromUserPassword = "geuzgscibzomnsls";  //Enter sender gmail password , this will be authenticated by gmail smtp server
         String emailHost = "smtp.gmail.com";
         Transport transport = newSession.getTransport("smtp");
         transport.connect(emailHost, fromUser, fromUserPassword);
@@ -35,10 +34,13 @@ public class EmailController {
         print("Email successfully sent!");
     }
 
-    public MimeMessage draftEmail(Booking booking) throws MessagingException {
+
+    /**
+     *  Function to draft an email
+     */
+    public MimeMessage draftEmail(Booking booking) throws AddressException, MessagingException, IOException {
         String username = booking.getUsername();
         Customer c = cc.readByUsername(username);
-        //System.out.println("customer is " + c.getUsername());
         String emailSubject = "Booking of your Movie: " + booking.getMovie().getTitle();
         String emailBody = booking.printEmailBookingSummary();
         mimeMessage = new MimeMessage(newSession);
@@ -54,7 +56,9 @@ public class EmailController {
         print("Sending booking to your email...");
         return mimeMessage;
     }
-
+    /**
+     *  Function to set the server properties
+     */
     public void setupServerProperties() {
         Properties properties = System.getProperties();
         properties.put("mail.smtp.port", "587");
