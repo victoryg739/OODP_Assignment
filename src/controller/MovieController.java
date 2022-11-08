@@ -60,7 +60,7 @@ public class MovieController {
      * CREATE a new Movie and add it into the database file
      * Attributes are validated before creation
      * If attributes are not allowed, throw error and do nothing
-     * If Database file exist, existing records are read and new Movie object is aopended before saving
+     * If Database file exist, existing records are read and new Movie object is appended before saving
      * If Database file does not exist, Movie object will be written to a new file and saved
      * @param title             This movie's title
      * @param type              This movie's type

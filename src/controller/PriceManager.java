@@ -8,7 +8,12 @@ import java.io.*;
 
 
 public class PriceManager {
-
+    /**
+     * if is blockbuster then we add blockbuster price
+     * @param movieType   This is the enum movie type
+     * @param price   This is the price
+     * @return the calculated price
+     */
 
     public double isBlockbuster(Enums.MovieType movieType, double price) {
         if (movieType == Enums.MovieType.BLOCKBUSTER) {
