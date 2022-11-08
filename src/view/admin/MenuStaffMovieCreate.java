@@ -7,13 +7,25 @@ import view.MenuBase;
 import java.util.*;
 import static view.utilF.*;
 
+/**
+ Configure for admin to create a movie
+ @author Bryan Tay
+ @version 1.0
+ @since 2022-08-11
+ */
+
 public class MenuStaffMovieCreate extends MenuBase {
     MovieController adminC = new MovieController();
     public MenuStaffMovieCreate(MenuBase initialMenu) {
         super(initialMenu);
     }
 
-
+    /**
+     * Display create new movie menu
+     * Ask user to input information of the new movie
+     * Return to main staff menu
+     * @return corresponding menu that the user has selected
+     */
     public MenuBase execute() {
         printHeader("Creating movie listing....");
         String title = read("Enter movie title: ");

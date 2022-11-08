@@ -18,10 +18,7 @@ public class MenuStaffRegister extends MenuBase {
     private String staffUsername;
     private String password;
     private String password2;
-    private int role;
     private boolean consistentPassword = false;
-
-    // Instantiate AdminController object to use methods
     private AdminController adminsCtrl = new AdminController();
 
     private static Scanner sc = new Scanner(System.in);

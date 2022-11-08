@@ -9,7 +9,15 @@ import java.util.Date;
  * Represents a Holiday for the system to referenced
  * Mainly used to determine any markup in the price of ticket(s)
  */
-@SuppressWarnings("serial")
+
+/**
+ * Represents a Holiday for the system to referenced
+ * Mainly used to determine any markup in the price of ticket(s)
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
+ */
+
 public class Holiday implements Serializable {
 
     /**
@@ -17,12 +25,11 @@ public class Holiday implements Serializable {
      */
     private Date holidayDate;
 
-
-
     private String name;
 
     /**
      * Creates a Holiday with the given date
+     * @param name          this Holiday's name
      * @param holidayDate   this Holiday's date
      */
     public Holiday(String name, Date holidayDate){
@@ -61,16 +68,24 @@ public class Holiday implements Serializable {
 
     /**
      * String to return when this Movie_Goer is being called
-     * @return String
+     * @return String   format holiday
      */
     public String toString() {
         return "The holiday is on " +getFormatedDate();
     }
 
+    /**
+     * Change the name of this Holiday
+     * @return String   name of the holiday
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Change the date of this Holiday
+     * @param name   this Holiday's name
+     */
     public void setName(String name) {
         this.name = name;
     }

@@ -5,15 +5,26 @@ import view.MenuBase;
 import java.util.Date;
 import static view.utilF.*;
 
-/* Todo:
-*   1. Check if it updates same date
-* */
+/**
+     Menu to Update holiday
+     @author Bryan Tay
+     @version 1.0
+     @since 2022-08-11
+ */
 public class MenuHolidayUpdate extends MenuBase {
     private HolidayController holCtrl = new HolidayController();
 
     public MenuHolidayUpdate(MenuBase initialMenu) {
         super(initialMenu);
     }
+
+    /**
+     * Display update holiday menu
+     * Ask user to input information which holiday they would want to update
+     * and bring user back to configure menu.
+     *
+     * @return configure menu
+     */
 
     @Override
     public MenuBase execute() {

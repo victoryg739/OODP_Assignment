@@ -1,24 +1,29 @@
 package view.admin;
 
 import controller.MovieController;
-import modal.Movie;
 import view.MenuBase;
-
-/*
-Todo list:
-1. movieID validation (what if the movie does not exists)
-2. listingMovie validation ( what if theres no movie in the first place)
-
- */import java.util.ArrayList;
-
 import static view.utilF.*;
 
+/**
+ Menu to remove movie by updating the showingstatus to ENDING_SHOW
+ @author Bryan Tay
+ @version 1.0
+ @since 2022-08-11
+ */
 public class MenuStaffMovieRemove extends MenuBase {
     MovieController mc = new MovieController();
 
     public MenuStaffMovieRemove(MenuBase initialMenu) {
         super(initialMenu);
     }
+
+    /**
+     * Display remove Movie menu
+     * Ask user to input information about the Movie ID
+     * and bring user back to configure menu.
+     *
+     * @return configure menu
+     */
 
     public MenuBase execute() {
 

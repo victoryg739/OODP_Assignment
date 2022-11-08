@@ -8,6 +8,12 @@ import java.util.Date;
 import static view.utilF.print;
 import static view.utilF.println;
 
+/**
+ * Represents a movie
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class Movie implements Serializable {
 
     private int id, runtime;
@@ -72,29 +78,16 @@ public class Movie implements Serializable {
         this.title = title;
     }
 
-    public String getSynopsis() {
-        return synopsis;
-    }
 
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }
 
-    public String getDirector() {
-        return director;
-    }
 
     public void setDirector(String director) {
         this.director = director;
     }
 
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
 
     public MovieType getType() {
         return type;
@@ -104,25 +97,15 @@ public class Movie implements Serializable {
         this.type = type;
     }
 
-    public MovieRating getContentRating() {
-        return ContentRating;
-    }
-
     public void setContentRating(MovieRating ContentRating) {
         this.ContentRating = ContentRating;
     }
 
-    public Date getDateStart() {
-        return DateStart;
-    }
 
     public void setDateStart(Date dateStart) {
         DateStart = dateStart;
     }
 
-    public Date getDateEnd() {
-        return DateEnd;
-    }
 
     public void setDateEnd(Date dateEnd) {
         DateEnd = dateEnd;
@@ -148,9 +131,6 @@ public class Movie implements Serializable {
         return ticketSales;
     }
 
-    public void setTicketSales(int ticketSales) {
-        this.ticketSales = ticketSales;
-    }
 
     public void addTicketSales(int delta) {
         this.ticketSales += delta;
@@ -249,13 +229,6 @@ public class Movie implements Serializable {
         return x;
     }
 
-    public void removeReview(Review review) {
-        for (Review rev : this.reviews) {
-            if (this.reviews.equals(review)) {
-                this.reviews.remove(review);
-            }
-        }
-    }
 
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;

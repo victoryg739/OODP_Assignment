@@ -8,6 +8,8 @@ import view.MenuBase;
 
 import static view.utilF.*;
 
+
+
 public class MenuConfigurePrice extends MenuBase {
     public PriceManager priceManager = new PriceManager();
     public MenuConfigurePrice(MenuBase initialMenu) {
