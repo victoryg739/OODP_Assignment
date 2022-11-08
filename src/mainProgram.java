@@ -109,7 +109,7 @@ public class mainProgram {
 
             Cinema cinema3 = new Cinema(10, 10, "A3", Enums.ClassCinema.NORMAL, null);
             CustomerController customerController = new CustomerController();
-            Customer customer = new Customer("a", "a", "riven", "999");
+            Customer customer = new Customer("a", "a", "rivenbryan@gmail.com", "999");
             //System.out.println(temp);
             customer.setCustomerID(0);
             //System.out.println(temp);
