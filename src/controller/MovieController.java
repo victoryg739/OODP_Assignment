@@ -12,8 +12,6 @@ import static view.utilF.println;
 
 
 public class MovieController {
-    public final static String FILENAME = "data/movies.txt";
-    SessionController sc = new SessionController();
 
     public MovieController() {
 
@@ -49,14 +47,14 @@ public class MovieController {
         Movie movie = new Movie(getLastId() + 1, title, type, ss, rating, synopsis, runtime, DateStart, DateEnd, director, cast);
         // Creates an ArrayList of movie
         ArrayList<Movie> allData = new ArrayList<Movie>();
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.MOVIEFILE);
 
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = read();
         try {
             // Write the data to the movie
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.MOVIEFILE));
             allData.add(movie);
             out.writeObject(allData);
             out.flush();
@@ -124,7 +122,7 @@ public class MovieController {
             updateList.add(m);
         }
 
-        replaceExistingFile(FILENAME, updateList);
+        replaceExistingFile(Constant.MOVIEFILE, updateList);
     }
 
     /* Remove Movie by updating the current showing status to end_showing */
@@ -140,7 +138,7 @@ public class MovieController {
                 break;
             }
         }
-        replaceExistingFile(FILENAME, allData);
+        replaceExistingFile(Constant.MOVIEFILE, allData);
         return true;
     }
 
@@ -148,7 +146,7 @@ public class MovieController {
     // Read a movie object from movies.txt//
     public ArrayList<Movie> read() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.MOVIEFILE));
             ArrayList<Movie> movieListing = (ArrayList<Movie>) ois.readObject();
             ois.close();
             return movieListing;
@@ -274,13 +272,13 @@ public class MovieController {
 
     public void createMovie(Movie movie) {
         ArrayList<Movie> allData = new ArrayList<Movie>();
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.MOVIEFILE);
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = read();
         try {
             // Write the data to the movie
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.MOVIEFILE));
             allData.add(movie);
             out.writeObject(allData);
             out.flush();
