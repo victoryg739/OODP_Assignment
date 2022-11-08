@@ -261,8 +261,8 @@ public class SessionController {
 
                     seatList.get(row).get(col).setTaken(true);
                 }
+                sessionListing.get(j).setSeatPlan(seatList);
             }
-            sessionListing.get(j).setSeatPlan(seatList);
         }
         replace(sessionListing);
     }
