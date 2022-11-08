@@ -7,10 +7,19 @@ import modal.Enums.*;
 import view.MenuBase;
 import view.admin.MenuStaffMain;
 
+import static view.utilF.read;
+
 
 public class AdminController {
 
     public final static String FILENAME = "data/admin.txt";
+
+    private String staffUsername;
+    private String password;
+    private String password2;
+    private int role;
+    private boolean consistentPassword = false;
+    private static Scanner sc = new Scanner(System.in);
 
     public AdminController(){
 
@@ -107,64 +116,69 @@ public class AdminController {
         }
     }
 
+    public static String read(String message) {
+        String input = "";
+        System.out.println(message);
 
-    /**
-     * UPDATE an Admin's password in Database file
-     * Validate user's input of current password to ensure password is correct before updating it
-     * @param email             Email of admin who password will be updated
-     * @param currentPassword   Current password (Unencrypted) of Admin
-     * @param newPassword       New password (Unencrypted) of Admin
-     *
-     */
-//    public void updatePasswordHashed(String email, String currentPassword, String newPassword) {
-//        ArrayList<Admin> allData = read();
-//        ArrayList<Admin> returnData = new ArrayList<Admin>();
-//
-//        for (int i=0; i<allData.size(); i++){
-//            Admin u = allData.get(i);
-//            if (u.getEmail().equals(email))  // update Admin if email matches
-//                u.updatePassword(currentPassword, newPassword);
-//            returnData.add(u);
-//        }
-//
-//        replaceExistingFile(FILENAME, returnData);
-//    }
+        do {
+            input = sc.nextLine();
+        } while (input.trim().equals(""));
 
+        return input;
+    }
 
-//    /**
-//     * Delete an Admin in the Database file, based on the email attribute passed
-//     * @param email Email of Admin who will be deleted
-//     */
-//    public void deleteByEmail(String email) {
-//        ArrayList<Admin> allData = read();
-//        ArrayList<Admin> returnData = new ArrayList<Admin>();
-//
-//        for (int i=0; i<allData.size(); i++){
-//            Admin u = allData.get(i);
-//            if (!u.getUsername().equals(email))  // add Admin if email does not match
-//                returnData.add(u);
-//        }
-//
-//        replaceExistingFile(FILENAME, returnData);
-//    }
-//
-//
-//    /**
-//     * Overwrite Database file with new data of list of Admin
-//     * @param filename      Filename to check for
-//     * @param returnData    New ArrayList of Admin to be written to the file
-//     */
-//    public void replaceExistingFile(String filename, ArrayList<Admin> returnData) {
-//        File tempFile = new File(filename);
-//        if (tempFile.exists())
-//            tempFile.delete();
-//        try {
-//            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
-//            out.writeObject(returnData);
-//            out.flush();
-//            out.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void adminRegistration() {
+        do {
+
+            // Display to get new account Username and Password
+            staffUsername = read("Create staffUsername: ");
+            password = read("Create Password: ");
+            while (!validatePasswordStrength(password)) {
+                System.out.println("Please ensure password contains at least 8 characters, 1 Upper case, 1 Lower case, 1 special character ");
+                password = read("Create Password: ");
+            }
+            password2 = read("Re-Enter Password: ");
+            consistentPassword = password.equals(password2);
+
+            // Creating new staff account object
+            Admin admin = new Admin(staffUsername, password);
+
+            // Create new admin account when the 2 input passwords match
+            if(consistentPassword){
+                this.createAdmin(admin);
+                System.out.println("You have registered Staff Account successfully");
+            }
+            else {
+                System.out.println("Password not consistent. Enter again");
+            }
+        }
+        while(!consistentPassword);
+    }
+
+    // Function to prompt user to create a strong password
+    public static boolean validatePasswordStrength(String password) {
+        // Checking lower alphabet in string
+        int n = password.length();
+        boolean hasLower = false, hasUpper = false,
+                hasDigit = false, specialChar = false;
+        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
+        for (char i : password.toCharArray())
+        {
+            if (Character.isLowerCase(i))
+                hasLower = true;
+            if (Character.isUpperCase(i))
+                hasUpper = true;
+            if (Character.isDigit(i))
+                hasDigit = true;
+            if (set.contains(i))
+                specialChar = true;
+        }
+
+        // Checking Validity of password
+        if (hasDigit && hasLower && hasUpper && specialChar && (n >= 8))
+            return true;
+        else
+            return false;
+    }
+
 }
