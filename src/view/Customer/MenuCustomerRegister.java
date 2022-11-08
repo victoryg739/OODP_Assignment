@@ -19,7 +19,7 @@ public class MenuCustomerRegister extends MenuBase {
     private static Scanner sc = new Scanner(System.in);
 
     // Registration Menu to create new accounts
-    public MenuBase execute(){
+    public MenuBase execute() {
 
         int choice;
 

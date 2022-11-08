@@ -1,15 +1,13 @@
 package view.Customer;
 
-import controller.AdminController;
 import controller.CustomerController;
-import modal.Customer;
-import modal.Movie;
+import model.Customer;
+import model.Movie;
 import view.MenuBase;
-import view.admin.MenuStaffMain;
 
 import static view.utilF.*;
 
-public class MenuCustomerLogin extends MenuBase{
+public class MenuCustomerLogin extends MenuBase {
 
     private int a;
     private Movie movie;
@@ -44,12 +42,10 @@ public class MenuCustomerLogin extends MenuBase{
                         nextMenu = new MenuBookingHistory(this, tempId, username);
                         break;
                 }
-            }
-            else{
+            } else {
                 println("Wrong username or password");
             }
-        }
-        else {
+        } else {
             nextMenu = new MenuCustomerRegister(this);
         }
 

@@ -1,24 +1,30 @@
 package view.admin;
 
-import modal.Enums.*;
 import controller.MovieController;
+import model.Enums.MovieRating;
+import model.Enums.MovieType;
+import model.Enums.ShowingStatus;
 import view.MenuBase;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import static view.utilF.*;
+
 /**
- Menu to update movie by updating the attributes
- @author Bryan Tay
- @version 1.0
- @since 2022-08-11
+ * Menu to update movie by updating the attributes
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
  */
 public class MenuStaffMovieUpdate extends MenuBase {
     MovieController mc = new MovieController();
+
     public MenuStaffMovieUpdate(MenuBase initialMenu) {
         super(initialMenu);
     }
+
     /**
      * Display update Movie menu
      * Ask user to input information about the individual attributes
@@ -34,7 +40,7 @@ public class MenuStaffMovieUpdate extends MenuBase {
         int movieID = readIntInput("Enter movie ID:");
 
         /* Checks if movieID is in the database */
-        if(mc.readByID(movieID) == null) {
+        if (mc.readByID(movieID) == null) {
             print("Movie does not exist!");
             return this.getPreviousMenu();
         }
@@ -94,13 +100,13 @@ public class MenuStaffMovieUpdate extends MenuBase {
                 break;
             case 8:
                 int noOfCast = readIntInput("Enter No of casts: (at least 2)");
-                if (noOfCast < 2){
+                if (noOfCast < 2) {
                     print("Invalid casts!");
                     return this.getPreviousMenu();
                 }
                 ArrayList<String> casts = new ArrayList<>();
                 for (int i = 0; i < noOfCast; i++) {
-                    casts.add(read("Enter name of cast " + (i+1) + ": "));
+                    casts.add(read("Enter name of cast " + (i + 1) + ": "));
                 }
                 mc.updateMovie(choice, movieID, casts);
                 break;

@@ -1,6 +1,7 @@
-package modal;
+package model;
+
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
 
 public class Customer implements Serializable {
     private String username;
@@ -14,7 +15,7 @@ public class Customer implements Serializable {
 
     private String phoneNumber;
 
-    public Customer(String username, String password, String email, String phoneNumber)  {
+    public Customer(String username, String password, String email, String phoneNumber) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -38,8 +39,9 @@ public class Customer implements Serializable {
         return password;
     }
 
-    public int getCustomerID() {return customerID;}
-
+    public int getCustomerID() {
+        return customerID;
+    }
 
 
     public ArrayList<Booking> getBookings() {
@@ -54,15 +56,15 @@ public class Customer implements Serializable {
         this.bookings = bookings;
     }
 
-    public void addBookings(Booking new_bookings){
-        if(bookings == null){
+    public void addBookings(Booking new_bookings) {
+        if (bookings == null) {
             this.bookings = new ArrayList<>();
             this.bookings.add(new_bookings);
-        }
-        else{
+        } else {
             this.bookings.add(new_bookings);
         }
     }
+
     public String getEmail() {
         return email;
     }

@@ -3,7 +3,6 @@ package view.admin;
 import controller.AdminController;
 import view.MenuBase;
 
-import static view.utilF.print;
 import static view.utilF.*;
 
 public class MenuStaffLogin extends MenuBase {
@@ -19,10 +18,9 @@ public class MenuStaffLogin extends MenuBase {
         AdminController adminCtrl = new AdminController();
 
         // Authenticate Username and Password
-        if (adminCtrl.authenticate(username, password)){
+        if (adminCtrl.authenticate(username, password)) {
             return new MenuStaffMain(this, username);
-        }
-        else {
+        } else {
             println("Wrong username or password");
         }
         return this.getPreviousMenu();

@@ -1,30 +1,23 @@
 package view;
-import controller.CinemaController;
-import controller.MovieController;
-import modal.Constant;
-import modal.Customer;
-import modal.Enums;
-import modal.Movie;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import model.Constant;
+import model.Enums;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.DateTimeException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
 /* Functions to help us to process printing/reading inputs */
 @SuppressWarnings("deprecation")
-public class utilF  {
+public class utilF {
     private static Scanner sc = new Scanner(System.in);
     public static int SCREEN_WIDTH = 80;
+
     /**
      * Method to notify user about the input String
+     *
      * @param message info about input
      * @return validate String otherwise Exception
      */
@@ -60,7 +53,7 @@ public class utilF  {
 
         do {
             try {
-                String date = read(msg + " (" + sdf.toPattern()+ "): ");
+                String date = read(msg + " (" + sdf.toPattern() + "): ");
                 return sdf.parse(date);
             } catch (ParseException ime) {
                 System.out.println("Please enter the correct date format!");
@@ -68,37 +61,37 @@ public class utilF  {
         } while (true);
     }
 
-    public static Enums.Day returnEnumsDay(Date date){
+    public static Enums.Day returnEnumsDay(Date date) {
         int dayOfWeek = date.getDay();
-        int hours  = date.getHours();
-        if(dayOfWeek >= 1 && dayOfWeek <= 3){
-            if(hours < 18 ) {
+        int hours = date.getHours();
+        if (dayOfWeek >= 1 && dayOfWeek <= 3) {
+            if (hours < 18) {
                 return Enums.Day.MON_WED_BEF_SIX;
-            }else{
+            } else {
                 return Enums.Day.MON_WED_AFT_SIX;
             }
-        }else if(dayOfWeek == 4){
-            if(hours < 18 ) {
+        } else if (dayOfWeek == 4) {
+            if (hours < 18) {
                 return Enums.Day.THU_BEF_SIX;
-            }else{
+            } else {
                 return Enums.Day.THU_AFT_SIX;
             }
-        }else if(dayOfWeek == 5){
-            if(hours < 18 ) {
+        } else if (dayOfWeek == 5) {
+            if (hours < 18) {
                 return Enums.Day.FRI_BEF_SIX;
-            }else{
+            } else {
                 return Enums.Day.FRI_AFT_SIX;
             }
-        }else{
+        } else {
             return Enums.Day.SAT_SUN;
         }
     }
 
 
-
     /**
      * This method will only read in a format of the date with label
      * wrapper of readDate(String label, String format)
+     *
      * @param label is the message to be printed when asking for input
      * @return Date when a correct format if entered, Otherwise keep prompting
      */
@@ -109,7 +102,7 @@ public class utilF  {
     /**
      * This method will only read in a format of the date with label
      *
-     * @param label is the message to be printed when asking for input
+     * @param label  is the message to be printed when asking for input
      * @param format format of date datatype refer to Constant
      * @return Date when a correct format if entered, Otherwise keep prompting
      */
@@ -160,7 +153,7 @@ public class utilF  {
         } while (true);
     }
 
-    public static Enums.ShowingStatus readShowingStatus(String message){
+    public static Enums.ShowingStatus readShowingStatus(String message) {
         Enums.ShowingStatus ss;
         System.out.println(message);
 
@@ -168,7 +161,7 @@ public class utilF  {
             try {
                 String s = sc.next();
                 int c = Integer.parseInt(s);
-                switch(c) {
+                switch (c) {
                     case 1:
                         ss = Enums.ShowingStatus.COMING_SOON;
                         break;
@@ -194,6 +187,7 @@ public class utilF  {
         }
 
     }
+
     public static Enums.MovieRating readMovieRatingInput(String Message) {
         Enums.MovieRating movieRating;
         System.out.println(Message);
@@ -202,7 +196,7 @@ public class utilF  {
                 String s = sc.next();
                 int c = Integer.parseInt(s);
 
-                switch(c) {
+                switch (c) {
                     case 1:
                         movieRating = Enums.MovieRating.G;
                         break;
@@ -239,7 +233,7 @@ public class utilF  {
                 String s = sc.next();
                 int c = Integer.parseInt(s);
 
-                switch(c) {
+                switch (c) {
                     case 1:
                         movieType = Enums.MovieType.TWO_D;
                         break;
@@ -270,7 +264,7 @@ public class utilF  {
                 String s = sc.next();
                 int c = Integer.parseInt(s);
 
-                switch(c) {
+                switch (c) {
                     case 1:
                         day = Enums.Day.MON_WED_BEF_SIX;
                         break;
@@ -304,6 +298,7 @@ public class utilF  {
             }
         }
     }
+
     public static Enums.ClassCinema readClassCinema(String Message) {
         Enums.ClassCinema classCinema;
         System.out.println(Message);
@@ -312,7 +307,7 @@ public class utilF  {
                 String s = sc.next();
                 int c = Integer.parseInt(s);
 
-                switch(c){
+                switch (c) {
                     case 1:
                         classCinema = Enums.ClassCinema.PLATINUM;
                         break;
@@ -342,7 +337,7 @@ public class utilF  {
                 String s = sc.next();
                 int c = Integer.parseInt(s);
 
-                switch(c){
+                switch (c) {
                     case 1:
                         ageType = Enums.AgeType.NORMAL;
                         break;
@@ -368,15 +363,13 @@ public class utilF  {
     }
 
 
-
-
     /*
      method to notify user the allowable range of seat input
      */
     public static int readSeatInput(String message, int min, int max) {
         int c = 0;
         do {
-            if(min == max)
+            if (min == max)
                 readIntInput(message + " (" + max + "):");
             else
                 c = readIntInput(message + " (" + min + "~" + max + "): ");
@@ -389,7 +382,7 @@ public class utilF  {
     public static int readReviewInput(String message, int min, int max) {
         int c = 0;
         do {
-            if(min == max)
+            if (min == max)
                 readIntInput(message + " (" + max + "):");
             else
                 c = readIntInput(message + " (" + min + "~" + max + "): ");
@@ -463,16 +456,16 @@ public class utilF  {
         System.out.println(line);
     }
 
-    public static void printDivider(){
+    public static void printDivider() {
         print("===============================================");
     }
 
-    public static void print(String message){
+    public static void print(String message) {
         System.out.println(message);
     }
 
-    public static void println(String message){
-        System.out.println(message+"\n");
+    public static void println(String message) {
+        System.out.println(message + "\n");
     }
 
 

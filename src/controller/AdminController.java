@@ -1,12 +1,14 @@
 package controller;
 
-import modal.*;
+import model.Admin;
+
 import java.io.*;
 import java.util.*;
 
 /**
  * The main controller class, of the program, controlling the access to database
  * Also, Contains logic for Authentication (Login) and Registration
+ *
  * @author Tan Wei Zhong
  * @version 1.0
  * @since 2022-08-11
@@ -24,14 +26,16 @@ public class AdminController {
     private boolean consistentPassword = false;
     private static Scanner sc = new Scanner(System.in);
 
-    public AdminController(){
+    public AdminController() {
 
     }
+
     /**
      * Create a new Admin account and add into adminAccounts.txt
-     * @param admin          admin object
+     *
+     * @param admin admin object
      */
-    public void createAdmin(Admin admin){
+    public void createAdmin(Admin admin) {
         ArrayList<Admin> allData = new ArrayList<Admin>();
         File tempFile = new File(FILENAME);
         // If it exists then read() the existing data
@@ -53,6 +57,7 @@ public class AdminController {
     /**
      * READ and return every Admin in the AdminAccounts.txt
      * If Database file not found, ignore error and return empty list
+     *
      * @return Model.{@link Admin}     Return list of Admins if found, else empty list
      */
     @SuppressWarnings("unchecked")
@@ -70,12 +75,13 @@ public class AdminController {
 
     /**
      * READ and return an Admin username by searching for one with matching username in the adminAccounts.txt file
-     * @param valueToSearch     username of admin to search for
+     *
+     * @param valueToSearch username of admin to search for
      * @return String           Return admin username if found, else null object
      */
     public String readByUsername(String valueToSearch) {
         ArrayList<Admin> allData = read();
-        for (int i=0; i<allData.size(); i++){
+        for (int i = 0; i < allData.size(); i++) {
             Admin u = allData.get(i);
             if (u.getUsername().equals(valueToSearch))
                 return u.getUsername();
@@ -85,12 +91,13 @@ public class AdminController {
 
     /**
      * READ and return an admin password by searching for one with matching password in the Database file
-     * @param valueToSearch     password of admin to search for
+     *
+     * @param valueToSearch password of admin to search for
      * @return Admin            Return password if found, else null object
      */
     public String readByPassword(String valueToSearch) {
         ArrayList<Admin> allData = read();
-        for (int i=0; i<allData.size(); i++){
+        for (int i = 0; i < allData.size(); i++) {
             Admin u = allData.get(i);
             if (u.getPassword().equals(valueToSearch))
                 return u.getPassword();
@@ -100,14 +107,15 @@ public class AdminController {
 
     /**
      * READ and return an Admin by searching for one with matching adminID in the Database file
-     * @param valueToSearch     adminID of admin to search for
+     *
+     * @param valueToSearch adminID of admin to search for
      * @return Admin            Return adminID if found, else -1
      */
     public int readByAdminID(int valueToSearch) {
         ArrayList<Admin> allData = read();
-        for (int i=0; i<allData.size(); i++){
+        for (int i = 0; i < allData.size(); i++) {
             Admin u = allData.get(i);
-            if (u.getAdminID() == valueToSearch )
+            if (u.getAdminID() == valueToSearch)
                 return u.getAdminID();
         }
         return -1;
@@ -150,15 +158,14 @@ public class AdminController {
             Admin admin = new Admin(staffUsername, password);
 
             // Create new admin account when the 2 input passwords match
-            if(consistentPassword){
+            if (consistentPassword) {
                 this.createAdmin(admin);
                 System.out.println("You have registered Staff Account successfully");
-            }
-            else {
+            } else {
                 System.out.println("Password not consistent. Enter again");
             }
         }
-        while(!consistentPassword);
+        while (!consistentPassword);
     }
 
     // Function to prompt user to create a strong password
@@ -168,8 +175,7 @@ public class AdminController {
         boolean hasLower = false, hasUpper = false,
                 hasDigit = false, specialChar = false;
         Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
-        for (char i : password.toCharArray())
-        {
+        for (char i : password.toCharArray()) {
             if (Character.isLowerCase(i))
                 hasLower = true;
             if (Character.isUpperCase(i))

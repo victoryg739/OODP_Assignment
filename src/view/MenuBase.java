@@ -11,13 +11,14 @@ public abstract class MenuBase {
         this.initialMenu = initialMenu;
     }
 
-    protected MenuBase getPreviousMenu(){
-        if(initialMenu == null){
+    protected MenuBase getPreviousMenu() {
+        if (initialMenu == null) {
             return this;
-        }else {
+        } else {
             return initialMenu;
         }
     }
+
     // Subclass needs to implement this
     public abstract MenuBase execute() throws IOException, AddressException, MessagingException;
 
