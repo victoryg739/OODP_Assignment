@@ -11,6 +11,7 @@ public class Review implements Serializable {
 
     /**
      * Constructor for Review
+     *
      * @param comment user's comment for the review
      * @param rating  user's rating for the review
      */
@@ -21,6 +22,7 @@ public class Review implements Serializable {
 
     /**
      * Get Comment
+     *
      * @return comment
      */
     public String getComment() {
@@ -29,6 +31,7 @@ public class Review implements Serializable {
 
     /**
      * Get Rating
+     *
      * @return rating
      */
     public double getRating() {
@@ -37,6 +40,7 @@ public class Review implements Serializable {
 
     /**
      * Set Rating
+     *
      * @param rating
      */
     public void setRating(int rating) {

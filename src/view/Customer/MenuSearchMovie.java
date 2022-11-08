@@ -20,10 +20,12 @@ public class MenuSearchMovie extends MenuBase {
     public MenuSearchMovie(MenuBase initialMenu) {
         super(initialMenu);
     }
+
     /**
      * Ask user to input come part of movie title
      * Display list of movies whose title contains the string provided by the user
      * Ask user which movie to check information
+     *
      * @return corresponding menu that the user has selected
      **/
     public MenuBase execute() {

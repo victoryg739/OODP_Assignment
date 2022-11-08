@@ -19,6 +19,7 @@ public class MenuCustomerMain extends MenuBase {
      * 2. List all movies
      * 3. View Booking history ( login required through MenuCustomerLogin)
      * 4. Back to previous menu
+     *
      * @return to the menu that the user has selected
      */
     public MenuBase execute() {

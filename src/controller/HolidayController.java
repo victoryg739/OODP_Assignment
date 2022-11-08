@@ -14,6 +14,7 @@ public class HolidayController {
 
     /**
      * Read the database file of Movie
+     *
      * @return arraylist of Holiday
      */
     public ArrayList<Holiday> read() {
@@ -35,8 +36,9 @@ public class HolidayController {
      * If attributes are not allowed, throw error and do nothing
      * If Database file exist, existing records are read and new holiday object is aopended before saving
      * If Database file does not exist, holiday object will be written to a new file and saved
-     * @param holidayDate   Date of this Holiday
-     * @param name          Name of the holiday
+     *
+     * @param holidayDate Date of this Holiday
+     * @param name        Name of the holiday
      */
 
     public void create(String name, Date holidayDate) {
@@ -58,7 +60,8 @@ public class HolidayController {
 
     /**
      * Delete a Holiday in the Database file, based on the date attribute passed
-     * @param valueToSearch     Date of Holiday to be deleted
+     *
+     * @param valueToSearch Date of Holiday to be deleted
      */
     public void delete(Date valueToSearch) {
         ArrayList<Holiday> allData = read();
@@ -76,8 +79,9 @@ public class HolidayController {
 
     /**
      * Update a Holiday in the Database file, based on the date attribute passed
-     * @param oldDate       old date that user wants to replace
-     * @param newDate       new date that user wants to change
+     *
+     * @param oldDate old date that user wants to replace
+     * @param newDate new date that user wants to change
      */
     public void update(Date oldDate, Date newDate) {
         ArrayList<Holiday> allData = read();
@@ -109,8 +113,10 @@ public class HolidayController {
         }
         return false;
     }
+
     /**
      * List down all the holiday
+     *
      * @return boolean          returns if there is a list of holiday
      */
     public boolean listAllHolidays() {
@@ -124,6 +130,7 @@ public class HolidayController {
         }
         return true;
     }
+
     /**
      * Print each holiday
      */
@@ -134,8 +141,9 @@ public class HolidayController {
 
     /**
      * Replace existing file to a new file
-     * @param filename            File name of the file that it going to be replace
-     * @param data                Data is the new data to be updated
+     *
+     * @param filename File name of the file that it going to be replace
+     * @param data     Data is the new data to be updated
      */
     public void replaceExistingFile(String filename, ArrayList<Holiday> data) {
         File tempFile = new File(filename);

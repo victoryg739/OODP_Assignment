@@ -18,7 +18,8 @@ public class SessionController {
      * If attributes are not allowed, throw error and do nothing
      * If Database file exist, existing records are read and new session object is appended before saving
      * If Database file does not exist, session object will be written to a new file and saved
-     * @param obj  session object
+     *
+     * @param obj session object
      */
     public void append(Object obj) {
         ArrayList<Session> allData = new ArrayList<Session>();
@@ -39,7 +40,8 @@ public class SessionController {
 
     /**
      * Replace session database file
-     * @param data           arraylist of session data
+     *
+     * @param data arraylist of session data
      */
     public void replace(ArrayList<Session> data) {
         File tempFile = new File(Constant.SESSIONFILE);
@@ -89,7 +91,8 @@ public class SessionController {
 
     /**
      * Return arraylist of session corresponding with that session number
-     * @param valueToSearch   This is the valueToSearch
+     *
+     * @param valueToSearch This is the valueToSearch
      * @return arraylist of cinema
      */
     public Session readById(int valueToSearch) {
@@ -104,9 +107,10 @@ public class SessionController {
 
     /**
      * Update session in session database based on session id
+     *
      * @param choice   This is the choice to update which object to update
-     * @param id   This is the sessionId
-     * @param newValue   This is the new value object to update to
+     * @param id       This is the sessionId
+     * @param newValue This is the new value object to update to
      */
     public void updateById(int choice, int id, Object newValue) {
         ArrayList<Session> sessionArrayList = read();
@@ -127,7 +131,8 @@ public class SessionController {
 
     /**
      * Remove session in session database based on session id
-     * @param id   This is the sessionId
+     *
+     * @param id This is the sessionId
      */
     public void remove(int id) {
         ArrayList<Session> sessionArrayList = read();
@@ -138,8 +143,6 @@ public class SessionController {
         }
         replace(sessionArrayList);
     }
-
-
 
 
     /**

@@ -35,10 +35,10 @@ public class MenuCustomerLogin extends MenuBase {
                 Customer customer = custCtrl.readByUsername(username);
                 switch (a) {
                     case 1:
-                        nextMenu = new MenuPurchaseTicket(this, movie,username);
+                        nextMenu = new MenuPurchaseTicket(this, movie, username);
                         break;
                     case 2:
-                        nextMenu = new MenuBookingHistory(this,username);
+                        nextMenu = new MenuBookingHistory(this, username);
                         break;
                 }
             } else {

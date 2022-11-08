@@ -250,6 +250,7 @@ public class Movie implements Serializable {
 
     /**
      * Increase the number of ratings by 1
+     *
      * @param delta
      */
     public void addRatingTimes(int delta) {
@@ -351,7 +352,7 @@ public class Movie implements Serializable {
 
 
     /**
-     *Set Review
+     * Set Review
      *
      * @param reviews
      */

@@ -25,6 +25,7 @@ public class MovieController {
 
     /**
      * Return the ID of the last Movie in the Database field
+     *
      * @return int      ID of last Movie in the Database
      */
     public int getLastId() {
@@ -42,7 +43,8 @@ public class MovieController {
 
     /**
      * READ and return every Movie of a given ID in the Database file
-     * @param valueToSearch     Id of movie to search for
+     *
+     * @param valueToSearch Id of movie to search for
      * @return Movie            Return Movie if found, else null object
      */
     public Movie readByID(int valueToSearch) {
@@ -62,16 +64,17 @@ public class MovieController {
      * If attributes are not allowed, throw error and do nothing
      * If Database file exist, existing records are read and new Movie object is appended before saving
      * If Database file does not exist, Movie object will be written to a new file and saved
-     * @param title             This movie's title
-     * @param type              This movie's type
-     * @param synopsis          This movie's synopsis
-     * @param rating            This movie's rating
-     * @param runtime           This movie's duration
-     * @param ss                This movie's showing time
-     * @param DateStart         This movie's start date
-     * @param DateEnd           This movie's end date
-     * @param director          This movie's director
-     * @param cast              This movie's list of cast
+     *
+     * @param title     This movie's title
+     * @param type      This movie's type
+     * @param synopsis  This movie's synopsis
+     * @param rating    This movie's rating
+     * @param runtime   This movie's duration
+     * @param ss        This movie's showing time
+     * @param DateStart This movie's start date
+     * @param DateEnd   This movie's end date
+     * @param director  This movie's director
+     * @param cast      This movie's list of cast
      */
     public void createMovie(String title, MovieType type, MovieRating rating, ShowingStatus ss, String synopsis, int runtime, Date DateStart, Date DateEnd, ArrayList<String> cast, String director) {
         // Creates a movie object
@@ -94,11 +97,13 @@ public class MovieController {
             // ignore error
         }
     }
+
     /**
      * UPDATE a Movie by updating based on choice, movieID and newValue
-     * @param choice           Attribute of movie to update
-     * @param movieID            ID of Movie to search for
-     * @param newValue      New value of Movie's attribute
+     *
+     * @param choice   Attribute of movie to update
+     * @param movieID  ID of Movie to search for
+     * @param newValue New value of Movie's attribute
      */
 
     /* Update  */
@@ -164,7 +169,8 @@ public class MovieController {
 
     /**
      * Remove Movie by updating the current showing status to end_showing
-     * @param movieID            ID of Movie to search for
+     *
+     * @param movieID ID of Movie to search for
      * @return boolean           return boolean true if is it successfully removed
      */
     public boolean removeMovie(int movieID) {
@@ -186,6 +192,7 @@ public class MovieController {
 
     /**
      * Read the database file of Movie
+     *
      * @return arraylist of Movie files
      */
     public ArrayList<Movie> read() {
@@ -214,6 +221,7 @@ public class MovieController {
             }
         }
     }
+
     /**
      * List all the movies from the database file
      */
@@ -233,9 +241,11 @@ public class MovieController {
         }
 
     }
+
     /**
      * A function to check if this movie is in the session
-     * @param movieID            ID of Movie to search for
+     *
+     * @param movieID ID of Movie to search for
      * @return boolean           return boolean true if the movie is valid
      */
     public boolean validMovie(int movieID) {
@@ -248,7 +258,8 @@ public class MovieController {
     /**
      * A function to check whether if it is valid to review a movie
      * Customer should not be able to make a review for movies that have not been released
-     * @param movieID            ID of Movie to search for
+     *
+     * @param movieID ID of Movie to search for
      * @return boolean           return boolean true if the movie is valid for moving status
      */
     public boolean validReviewMovie(int movieID) {
@@ -304,8 +315,9 @@ public class MovieController {
 
     /**
      * Replace existing file to a new file
-     * @param filename            File name of the file that it going to be replace
-     * @param data                Data is the new data to be updated
+     *
+     * @param filename File name of the file that it going to be replace
+     * @param data     Data is the new data to be updated
      */
     public void replaceExistingFile(String filename, ArrayList<Movie> data) {
         File tempFile = new File(filename);
@@ -344,7 +356,8 @@ public class MovieController {
 
     /**
      * A function to read the movie Title and return ArrayList of Movie that is searched by user
-     * @param valueToSearch            Object that is used
+     *
+     * @param valueToSearch Object that is used
      * @return ArrayList           return arraylist of movies
      */
     public ArrayList<Movie> readByTitle(Object valueToSearch) {
@@ -362,7 +375,8 @@ public class MovieController {
 
     /**
      * A function to check whether if it is valid to review a showing status
-     * @param m                  Movie object
+     *
+     * @param m Movie object
      * @return boolean           return boolean true if the movie is valid for showing status
      */
     public boolean validateShowingStatus(Movie m) {
@@ -374,15 +388,18 @@ public class MovieController {
 
     /**
      * A function to sort ticket sales
-     * @param movies            An array list of movies to sort
+     *
+     * @param movies An array list of movies to sort
      */
     public void sortTicketSales(ArrayList<Movie> movies) {
         Collections.sort(movies, (m1, m2) -> (m1.getTicketSales() - m2.getTicketSales()));
         Collections.reverse(movies);
     }
+
     /**
      * A function to sort rating
-     * @param movies            An array list of movies to sort
+     *
+     * @param movies An array list of movies to sort
      */
     public void sortRating(ArrayList<Movie> movies) {
         Collections.sort(movies, new Comparator<Movie>() {

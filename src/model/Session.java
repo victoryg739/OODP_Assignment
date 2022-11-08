@@ -65,6 +65,7 @@ public class Session implements Serializable {
         this.day = day;
         this.cinema = cinema;
     }
+
     /**
      * Gets the seatingplan
      *
@@ -127,6 +128,7 @@ public class Session implements Serializable {
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
+
     /**
      * Gets the enums date range
      *
@@ -135,6 +137,7 @@ public class Session implements Serializable {
     public Enums.Day getDay() {
         return day;
     }
+
     /**
      * Change the day of the session
      *

@@ -17,11 +17,12 @@ public class CinemaController {
      * If attributes are not allowed, throw error and do nothing
      * If Database file exist, existing records are read and new Cinema object is appended before saving
      * If Database file does not exist, Cinema object will be written to a new file and saved
-     * @param row             This is cinema row
-     * @param col              This is cinema column
-     * @param cinemaNo          This is cinema number
-     * @param classCinema        This is cinema class
-     * @param sessions           This is cinema session
+     *
+     * @param row         This is cinema row
+     * @param col         This is cinema column
+     * @param cinemaNo    This is cinema number
+     * @param classCinema This is cinema class
+     * @param sessions    This is cinema session
      */
     public void append(int row, int col, String cinemaNo, Enums.ClassCinema classCinema, ArrayList<Session> sessions) {
         Cinema cinema = new Cinema(row, col, cinemaNo, classCinema, sessions);
@@ -48,7 +49,8 @@ public class CinemaController {
 
     /**
      * Replace cinema database file
-     * @param data            arraylist of cinema data
+     *
+     * @param data arraylist of cinema data
      */
     public void replace(ArrayList<Cinema> data) {
         File tempFile = new File(Constant.CINEMAFILE);
@@ -83,7 +85,8 @@ public class CinemaController {
 
     /**
      * Return arraylist of cinema corresponding with that cinema number
-     * @param valueToSearch   This is an object parse
+     *
+     * @param valueToSearch This is an object parse
      * @return arraylist of cinema
      */
     public ArrayList<Cinema> readByAttribute(Object valueToSearch) {
@@ -102,8 +105,9 @@ public class CinemaController {
 
     /**
      * Update session in cinema database based on cinema number
-     * @param valueToSearch   This is an object parse
-     * @param newSession   This is the new session object
+     *
+     * @param valueToSearch This is an object parse
+     * @param newSession    This is the new session object
      */
     public void cinemaUpdateSession(Object valueToSearch, Session newSession) {
         ArrayList<Cinema> cinemaListing = read();
@@ -124,9 +128,10 @@ public class CinemaController {
 
     /**
      * Update session in cinema database based on session id
-     * @param choice   This is the choice to update which object to update
-     * @param sessionId   This is the sessionId
-     * @param newValue   This is the new value object to update to
+     *
+     * @param choice    This is the choice to update which object to update
+     * @param sessionId This is the sessionId
+     * @param newValue  This is the new value object to update to
      */
     public void cinemaUpdateBySessionId(int choice, int sessionId, Object newValue) { //update cinema session arrayList
         ArrayList<Cinema> cinemaListing = read();
@@ -154,7 +159,8 @@ public class CinemaController {
 
     /**
      * Remove session in cinema database based on session id
-     * @param sessionId   This is the sessionId
+     *
+     * @param sessionId This is the sessionId
      */
     public void cinemaRemoveSession(int sessionId) {
         ArrayList<Cinema> cinemaListing = read();
@@ -176,7 +182,8 @@ public class CinemaController {
 
     /**
      * Return cinema object based on cinema number
-     * @param valueToSearch   This is the value to match the cinema number
+     *
+     * @param valueToSearch This is the value to match the cinema number
      * @return cinema object
      */
     public Cinema readByCinemaNo(String valueToSearch) {
@@ -192,7 +199,8 @@ public class CinemaController {
 
     /**
      * Return row and column for the seating plan
-     * @param cinemaNo   This is the value to match the cinema number
+     *
+     * @param cinemaNo This is the value to match the cinema number
      * @return array of int of row and column
      */
     public int[] getSeatsByCinemaNo(String cinemaNo) {
