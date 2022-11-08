@@ -8,16 +8,17 @@ public class Seat implements Serializable {
     private int row;
     private boolean taken;
     private boolean selected;
-
+    private boolean couple;
 
     private boolean stairWay;
     public Seat() {}
-    public Seat(int col, int row, boolean taken,boolean stairWay) {
+    public Seat(int col, int row, boolean taken,boolean stairWay,boolean couple) {
         this.col = col;
         this.row = row;
         this.taken = taken;
         this.selected = false;
         this.stairWay = stairWay;
+        this.couple =couple;
     }
 
     public int getCol() {
@@ -57,5 +58,12 @@ public class Seat implements Serializable {
 
     public void setStairWay(boolean stairWay) {
         this.stairWay = stairWay;
+    }
+    public boolean isCouple() {
+        return couple;
+    }
+
+    public void setCouple(boolean couple) {
+        this.couple = couple;
     }
 }

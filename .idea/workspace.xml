@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated Format">
+      <change beforePath="$PROJECT_DIR$/src/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Cinema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Session.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,8 +88,6 @@
       <workItem from="1666591451198" duration="5390000" />
       <workItem from="1667108903653" duration="17137000" />
       <workItem from="1667788228585" duration="3422000" />
-      <workItem from="1667839744603" duration="122000" />
-      <workItem from="1667839969605" duration="576000" />
     </task>
     <task id="LOCAL-00001" summary="hello test">
       <created>1666420532309</created>
@@ -319,19 +320,19 @@
       <option name="project" value="LOCAL" />
       <updated>1667822232638</updated>
     </task>
-    <task id="LOCAL-00034" summary="updated">
-      <created>1667833740860</created>
+    <task id="LOCAL-00034" summary="updated Format">
+      <created>1667833082557</created>
       <option name="number" value="00034" />
       <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1667833740860</updated>
+      <updated>1667833082557</updated>
     </task>
-    <task id="LOCAL-00035" summary="updated">
-      <created>1667839835953</created>
+    <task id="LOCAL-00035" summary="updated Format">
+      <created>1667842107281</created>
       <option name="number" value="00035" />
       <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1667839835953</updated>
+      <updated>1667842107281</updated>
     </task>
     <option name="localTasksCounter" value="36" />
     <servers />
@@ -381,8 +382,7 @@
     <MESSAGE value="test" />
     <MESSAGE value="csa" />
     <MESSAGE value="updated Format" />
-    <MESSAGE value="updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated Format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -391,6 +391,11 @@
           <url>file://$PROJECT_DIR$/src/view/customer/MovieInfo.java</url>
           <line>11</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mainProgram.java</url>
+          <line>1</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ClassCastException" package="java.lang" />
