@@ -1,9 +1,6 @@
 package controller;
 
-import model.Cinema;
-import model.Cineplex;
-import model.Movie;
-import model.Session;
+import model.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,7 +12,7 @@ import static view.utilF.*;
 public class CineplexController {
 
 
-    public final static String FILENAME = "data/cineplex.txt";
+
 
 
     public final static int NAME = 0;
@@ -28,14 +25,14 @@ public class CineplexController {
 
         // Creates an ArrayList of movie
         ArrayList<Cineplex> allData = new ArrayList<Cineplex>();
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.CINEPLEXFILE);
 
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = read();
         try {
             // Write the data to the movie
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.CINEPLEXFILE));
             allData.add(cineplex);
             out.writeObject(allData);
             out.flush();
@@ -148,11 +145,11 @@ public class CineplexController {
 
 
     public void replace(ArrayList<Cineplex> data) {
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.CINEPLEXFILE);
         if (tempFile.exists())
             tempFile.delete();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.CINEPLEXFILE));
             out.writeObject(data);
             out.flush();
             out.close();
@@ -163,7 +160,7 @@ public class CineplexController {
 
     public ArrayList<Cineplex> read() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.CINEPLEXFILE));
             ArrayList<Cineplex> cineplex = (ArrayList<Cineplex>) ois.readObject();
             ois.close();
             return cineplex;

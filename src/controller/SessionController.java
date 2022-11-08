@@ -1,5 +1,6 @@
 package controller;
 
+import model.Constant;
 import model.Movie;
 import model.Seat;
 import model.Session;
@@ -11,19 +12,19 @@ import java.util.Date;
 import static view.utilF.*;
 
 public class SessionController {
-    public final static String FILENAME = "data/session.txt";
+
     private CinemaController cinemaCtrler = new CinemaController();
 
 
     public void append(Object obj) {
         ArrayList<Session> allData = new ArrayList<Session>();
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.SESSIONFILE);
 
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = read();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.SESSIONFILE));
             allData.add((Session) obj);
             out.writeObject(allData);
             out.flush();
@@ -34,11 +35,11 @@ public class SessionController {
     }
 
     public void replace(ArrayList<Session> data) {
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.SESSIONFILE);
         if (tempFile.exists())
             tempFile.delete();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.SESSIONFILE));
             out.writeObject(data);
             out.flush();
             out.close();
@@ -64,7 +65,7 @@ public class SessionController {
 
     public ArrayList<Session> read() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.SESSIONFILE));
             ArrayList<Session> sessions = (ArrayList<Session>) ois.readObject();
             ois.close();
             return sessions;

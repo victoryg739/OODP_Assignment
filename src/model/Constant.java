@@ -12,7 +12,11 @@ public class Constant {
     public static SimpleDateFormat datetimeFormat = new SimpleDateFormat(SESSION_TIMEDATE);
 
     public final static String MOVIEFILE = "data/movies.txt";
-    public final static String HOLIDAYFILE = "data/holidays.txt";
+    public final static String CINEPLEXFILE = "data/cineplex.txt";
 
-    public final static String SETTINGFILE = "data/settings.txt";
+    public final static String SESSIONFILE = "data/session.txt";
+
+    public final static String CINEMAFILE = "data/cinema.txt";
+
+
 }
