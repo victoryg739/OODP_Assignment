@@ -17,7 +17,7 @@ import static view.utilF.println;
 public class Movie implements Serializable {
 
     private int id, runtime;
-    private String title, synopsis, director, language;
+    private String title, synopsis, director;
     private MovieType type;
     private MovieRating ContentRating;
     private Date DateStart, DateEnd;
@@ -33,6 +33,20 @@ public class Movie implements Serializable {
 
     private ShowingStatus showingStatus;
 
+    /**
+     * Creates a new movie
+     * @param id    new ID of movie
+     * @param title title of the movie
+     * @param type  type of the movie
+     * @param ss    Showing status of the movie
+     * @param ContentRating Content rating of the movie
+     * @param synopsis      Details of the movie
+     * @param runtime       runtime of the movie
+     * @param DateStart     start Date of the movie
+     * @param DateEnd       end Date of the movie
+     * @param director      director of the movie
+     * @param cast          casts of the movie
+     */
     public Movie(int id,String title, MovieType type, ShowingStatus ss,MovieRating ContentRating, String synopsis, int runtime, Date DateStart, Date DateEnd, String director, ArrayList<String> cast){
         this.id = id;
         this.title = title;
@@ -47,38 +61,50 @@ public class Movie implements Serializable {
         this.showingStatus = ss;
     }
 
-    public Movie(int ticketSales){
-        this.ticketSales = ticketSales;
-    }
-
-    public Movie() {
-    }
-
+    /**
+     * Get the unique ID of this Movie
+     * @return int      Unique ID of this Movie
+     */
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    /**
+     * Get the duration of this Movie
+     * @return double       Duration of this Movie
+     */
     public int getRuntime() {
         return runtime;
     }
 
+    /**
+     * Change the duration of this Movie
+     * @param runtime      New duration of this Movie
+     */
     public void setRuntime(int runtime) {
         this.runtime = runtime;
     }
 
+    /**
+     * Get the title of this Movie
+     * @return String   Title of this Movie
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Set the title of this Movie
+     * @param title     New title of this Movie
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-
+    /**
+     * Change the synopsis of this Movie
+     * @param synopsis      New synopsis of this Movie
+     */
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }

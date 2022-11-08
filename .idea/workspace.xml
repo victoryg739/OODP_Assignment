@@ -6,27 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated Format">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modal/Holiday.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Holiday.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/FilterReviewRatings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/FilterReviewRatings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/FilterTicketSales.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/FilterTicketSales.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuConfigureHoliday.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuConfigureHoliday.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuConfigurePrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuConfigurePrice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuHolidayCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuHolidayCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuHolidayRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuHolidayRemove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuHolidayUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuHolidayUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuMovieGoerDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuMovieGoerDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffConfigureSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffConfigureSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieListFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieListFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieRemove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffTopFiveRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffTopFiveRating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffTopFiveSales.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffTopFiveSales.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Movie.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667842107281</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="updated Format">
+      <created>1667917399162</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1667917399162</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
