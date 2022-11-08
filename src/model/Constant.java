@@ -10,4 +10,6 @@ public class Constant {
     public static SimpleDateFormat dateFormatShort = new SimpleDateFormat(FORMAT_DATE_SHORT);
     public static SimpleDateFormat dateFormatLong = new SimpleDateFormat(FORMAT_DATE_LONG);
     public static SimpleDateFormat datetimeFormat = new SimpleDateFormat(SESSION_TIMEDATE);
+
+    public final static String MOVIEFILE = "data/movies.txt";
 }
