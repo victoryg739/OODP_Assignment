@@ -21,6 +21,7 @@ public class MenuSearchMovie extends MenuBase {
         super(initialMenu);
     }
 
+
     public MenuBase execute() {
         MenuBase nextMenu;
 

@@ -48,6 +48,5 @@ public class MenuBookingHistory extends MenuBase {
         while (readIntInput("Press 0 to return to Customer Main Menu: ") != 0) ;
         return new MenuCustomerMain(this);
     }
-
 }
 
