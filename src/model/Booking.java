@@ -1,16 +1,15 @@
-package modal;
+package model;
 
-import java.util.*;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import static view.utilF.print;
 import static view.utilF.println;
 
-public class Booking implements Serializable{
+public class Booking implements Serializable {
     // tid = XXXYYYYMMDDhhmm (Y : year, M : month, D : day, h : hour, m :
     //minutes, XXX : cinema code in letters)
-    private  String tid;
+    private String tid;
 
     //movie title
     private Movie movie;
@@ -39,8 +38,8 @@ public class Booking implements Serializable{
     private String phoneNumber;
 
     //Constructor
-    public Booking (String cinemaNo, String cineplexLocation, String tid, String username, String phoneNumber, Movie movie,
-                    ArrayList<Ticket> tickets, Session session, double totalPrice) {
+    public Booking(String cinemaNo, String cineplexLocation, String tid, String username, String phoneNumber, Movie movie,
+                   ArrayList<Ticket> tickets, Session session, double totalPrice) {
         this.tid = tid;
         this.cinemaNo = cinemaNo;
         this.movie = movie;
@@ -95,6 +94,7 @@ public class Booking implements Serializable{
     public int getCustomerId() {
         return customerId;
     }
+
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
@@ -106,19 +106,20 @@ public class Booking implements Serializable{
     public String getCineplexLocation() {
         return cineplexLocation;
     }
+
     public void setCineplexLocation(String cineplexLocation) {
         this.cineplexLocation = cineplexLocation;
     }
 
 
     public void printBookingSummary() {
-        int seatCount =1;
+        int seatCount = 1;
         println("Booking Summary: ");
         print("tid: " + this.tid + "\n" +
-                "Movie: " + this.movie.getTitle() +"\n" +
+                "Movie: " + this.movie.getTitle() + "\n" +
                 "Cineplex: " + this.cineplexLocation + "\n" +
-                "Number of tickets purchased: " + this.tickets.size() +"\n" +
-                "Total Price: " + this.totalPrice +"\n" +
+                "Number of tickets purchased: " + this.tickets.size() + "\n" +
+                "Total Price: " + this.totalPrice + "\n" +
                 "Seats: ");
         for (Ticket ticket : this.tickets) {
             print(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
@@ -126,12 +127,12 @@ public class Booking implements Serializable{
         }
     }
 
-    public String printEmailBookingSummary(){
+    public String printEmailBookingSummary() {
         return "<h3> Dear " + username + ", </h3> <br>" +
                 "Thank you for using Moblima <br>" +
                 "For more information, please view the details below <br><br> " +
                 "<p>" +
-                "Transaction ID:  " + tid + "<br>"+
+                "Transaction ID:  " + tid + "<br>" +
                 "Movie Name: " + movie.getTitle() + "<br>" +
                 "Cineplex: " + cineplexLocation + "<br>" +
                 "Total Price: " + totalPrice +

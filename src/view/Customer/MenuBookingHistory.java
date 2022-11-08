@@ -1,11 +1,12 @@
 package view.Customer;
 
 import controller.BookingController;
-import controller.CustomerController;
-import modal.*;
+import model.Booking;
+import model.Ticket;
 import view.MenuBase;
 
-import java.util.*;
+import java.util.ArrayList;
+
 import static view.utilF.*;
 
 
@@ -19,6 +20,7 @@ public class MenuBookingHistory extends MenuBase {
         this.tempID = tempID;
         this.username = username;
     }
+
     public MenuBase execute() {
         printHeader("Booking History:");
         BookingController bookingController = new BookingController();
@@ -32,7 +34,7 @@ public class MenuBookingHistory extends MenuBase {
         for (Booking book : booking) {
             print(" ");
             print("Booking " + count + " : \n" +
-                    "TID: " + book.getTID() +"\n" +
+                    "TID: " + book.getTID() + "\n" +
                     "Show Time: " + book.getSession().getDateTime() + " " + book.getMovie().getRuntime() + "\n" +
                     "Total Price (GST included): S$" + book.getTotalPrice() + "\n" +
                     "Movie: " + book.getMovie().getTitle() + "\n" +

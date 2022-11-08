@@ -1,16 +1,10 @@
 package view.Customer;
 
 import controller.MovieController;
-import controller.SessionController;
 import controller.SettingController;
-import modal.Enums;
-import modal.Movie;
 import view.MenuBase;
-import view.Quit;
 import view.admin.MenuStaffTopFiveRating;
 import view.admin.MenuStaffTopFiveSales;
-
-import java.util.*;
 
 import static view.utilF.*;
 
@@ -44,9 +38,9 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
-                    if(mc.validMovie(movieID)) {
+                    if (mc.validMovie(movieID)) {
                         nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
-                    }else{
+                    } else {
                         print("Invalid movieID, try again.");
                         nextMenu = this.getPreviousMenu();
                     }
@@ -57,13 +51,13 @@ public class MenuListMovie extends MenuBase {
 
                     break;
                 case 3:
-                    nextMenu =  new MenuStaffTopFiveRating(this);
+                    nextMenu = new MenuStaffTopFiveRating(this);
                     break;
                 default:
                     nextMenu = new MenuCustomerMain(this);
                     break;
             }
-        /* Flag == 1 implies that it only shows Sales */
+            /* Flag == 1 implies that it only shows Sales */
         } else if (flag == 1) {
             print("1. View Movie Details\n" +
                     "2. Set Movie Review\n" +
@@ -73,9 +67,9 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
-                    if(mc.validMovie(movieID)) {
+                    if (mc.validMovie(movieID)) {
                         nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
-                    }else{
+                    } else {
                         print("Invalid movieID, try again.");
                         nextMenu = this.getPreviousMenu();
                     }
@@ -85,7 +79,7 @@ public class MenuListMovie extends MenuBase {
                     nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
                     break;
                 case 3:
-                    nextMenu =  new MenuStaffTopFiveSales(this);
+                    nextMenu = new MenuStaffTopFiveSales(this);
                     break;
                 default:
                     nextMenu = new MenuCustomerMain(this);
@@ -103,9 +97,9 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
-                    if(mc.validMovie(movieID)) {
+                    if (mc.validMovie(movieID)) {
                         nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
-                    }else{
+                    } else {
                         print("Invalid movieID, try again.");
                         nextMenu = this.getPreviousMenu();
                     }
@@ -115,7 +109,7 @@ public class MenuListMovie extends MenuBase {
                     nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
                     break;
                 case 3:
-                    nextMenu =  new MenuStaffTopFiveSales(this);
+                    nextMenu = new MenuStaffTopFiveSales(this);
                     break;
                 case 4:
                     nextMenu = new MenuStaffTopFiveRating(this);

@@ -1,10 +1,9 @@
 package view.Customer;
+
 import view.MainMenu;
 import view.MenuBase;
 
-import java.util.*;
 import static view.utilF.*;
-import static view.utilF.print;
 
 public class MenuCustomerMain extends MenuBase {
     public MenuCustomerMain(MenuBase initialMenu) {

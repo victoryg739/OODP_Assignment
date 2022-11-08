@@ -1,4 +1,4 @@
-package modal;
+package model;
 
 
 import java.io.Serializable;
@@ -9,9 +9,10 @@ public class Admin implements Serializable {
     private String password;
     private int adminID = 0;
 
-    public Admin(){}
+    public Admin() {
+    }
 
-    public Admin(String username, String password)  {
+    public Admin(String username, String password) {
         this.username = username;
         this.password = password;
         this.adminID = generateAdminID();

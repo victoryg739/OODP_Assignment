@@ -1,20 +1,20 @@
 package view.admin;
 
 import controller.PriceManager;
-import modal.Enums;
-import modal.Enums.*;
-import modal.Price;
+import model.Enums;
+import model.Price;
 import view.MenuBase;
 
 import static view.utilF.*;
 
 
-
 public class MenuConfigurePrice extends MenuBase {
     public PriceManager priceManager = new PriceManager();
+
     public MenuConfigurePrice(MenuBase initialMenu) {
         super(initialMenu);
     }
+
     public MenuBase execute() {
         Enums.AgeType ageType;
         Enums.MovieType movieType;
@@ -26,18 +26,17 @@ public class MenuConfigurePrice extends MenuBase {
         int showingStatus = readIntInput("Do you want to configure movie preview price?: \n" +
                 "1. Yes\n" +
                 "2. No");
-        if(showingStatus == 1) {
+        if (showingStatus == 1) {
             newPrice = readIntInput("New price: ");
             priceManager.updateTicketPrice(null, null, null, null, Enums.ShowingStatus.PREVIEW, true, newPrice);
-        }
-        else {
+        } else {
             int loyaltyCard = readIntInput("Do you want to configure loyalty card price?: \n" +
                     "1. Yes\n" +
                     "2. No");
-            if(loyaltyCard == 1) {
+            if (loyaltyCard == 1) {
                 newPrice = readIntInput("New price: ");
                 priceManager.updateTicketPrice(null, null, null, null, null, true, newPrice);
-            }else{
+            } else {
 
                 classCinema = readClassCinema("Choose Cinema Class: \n" +
                         "1. Platinum\n" +
@@ -62,11 +61,10 @@ public class MenuConfigurePrice extends MenuBase {
                         "6. Friday(after 6pm)\n" +
                         "7. Saturday and Sunday");
                 newPrice = readIntInput("New price: ");
-                priceManager.updateTicketPrice(ageType, movieType, classCinema, day,null ,false,newPrice);
+                priceManager.updateTicketPrice(ageType, movieType, classCinema, day, null, false, newPrice);
             }
         }
         println("Successfully Updated Price");
-
 
 
         return getPreviousMenu();

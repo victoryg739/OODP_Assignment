@@ -1,6 +1,9 @@
-package modal;
+package model;
 
-import modal.Enums.*;
+import model.Enums.MovieRating;
+import model.Enums.MovieType;
+import model.Enums.ShowingStatus;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +13,7 @@ import static view.utilF.println;
 
 /**
  * Represents a movie
+ *
  * @author Bryan Tay
  * @version 1.0
  * @since 2022-08-11
@@ -35,10 +39,11 @@ public class Movie implements Serializable {
 
     /**
      * Creates a new movie
-     * @param id    new ID of movie
-     * @param title title of the movie
-     * @param type  type of the movie
-     * @param ss    Showing status of the movie
+     *
+     * @param id            new ID of movie
+     * @param title         title of the movie
+     * @param type          type of the movie
+     * @param ss            Showing status of the movie
      * @param ContentRating Content rating of the movie
      * @param synopsis      Details of the movie
      * @param runtime       runtime of the movie
@@ -47,7 +52,7 @@ public class Movie implements Serializable {
      * @param director      director of the movie
      * @param cast          casts of the movie
      */
-    public Movie(int id,String title, MovieType type, ShowingStatus ss,MovieRating ContentRating, String synopsis, int runtime, Date DateStart, Date DateEnd, String director, ArrayList<String> cast){
+    public Movie(int id, String title, MovieType type, ShowingStatus ss, MovieRating ContentRating, String synopsis, int runtime, Date DateStart, Date DateEnd, String director, ArrayList<String> cast) {
         this.id = id;
         this.title = title;
         this.type = type;
@@ -63,6 +68,7 @@ public class Movie implements Serializable {
 
     /**
      * Get the unique ID of this Movie
+     *
      * @return int      Unique ID of this Movie
      */
     public int getId() {
@@ -71,6 +77,7 @@ public class Movie implements Serializable {
 
     /**
      * Get the duration of this Movie
+     *
      * @return double       Duration of this Movie
      */
     public int getRuntime() {
@@ -79,7 +86,8 @@ public class Movie implements Serializable {
 
     /**
      * Change the duration of this Movie
-     * @param runtime      New duration of this Movie
+     *
+     * @param runtime New duration of this Movie
      */
     public void setRuntime(int runtime) {
         this.runtime = runtime;
@@ -87,6 +95,7 @@ public class Movie implements Serializable {
 
     /**
      * Get the title of this Movie
+     *
      * @return String   Title of this Movie
      */
     public String getTitle() {
@@ -95,7 +104,8 @@ public class Movie implements Serializable {
 
     /**
      * Set the title of this Movie
-     * @param title     New title of this Movie
+     *
+     * @param title New title of this Movie
      */
     public void setTitle(String title) {
         this.title = title;
@@ -103,7 +113,8 @@ public class Movie implements Serializable {
 
     /**
      * Change the synopsis of this Movie
-     * @param synopsis      New synopsis of this Movie
+     *
+     * @param synopsis New synopsis of this Movie
      */
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
@@ -111,7 +122,8 @@ public class Movie implements Serializable {
 
     /**
      * Change the director for this Movie
-     * @param director      New director of this Movie
+     *
+     * @param director New director of this Movie
      */
     public void setDirector(String director) {
         this.director = director;
@@ -119,6 +131,7 @@ public class Movie implements Serializable {
 
     /**
      * Get the MovieType of this Movie
+     *
      * @return MovieType of this Movie
      */
     public MovieType getType() {
@@ -127,6 +140,7 @@ public class Movie implements Serializable {
 
     /**
      * Get the MovieType of this Movie
+     *
      * @return type    MovieType of this Movie
      */
     public void setType(MovieType type) {
@@ -135,7 +149,8 @@ public class Movie implements Serializable {
 
     /**
      * Change the Content rating of this Movie
-     * @param ContentRating      New Content rating of this Movie
+     *
+     * @param ContentRating New Content rating of this Movie
      */
 
     public void setContentRating(MovieRating ContentRating) {
@@ -144,7 +159,8 @@ public class Movie implements Serializable {
 
     /**
      * Change the release date of this Movie
-     * @param dateStart      New release date of this Movie
+     *
+     * @param dateStart New release date of this Movie
      */
     public void setDateStart(Date dateStart) {
         DateStart = dateStart;
@@ -152,7 +168,8 @@ public class Movie implements Serializable {
 
     /**
      * Change the end date of this Movie
-     * @param dateEnd      New end date of this Movie
+     *
+     * @param dateEnd New end date of this Movie
      */
     public void setDateEnd(Date dateEnd) {
         DateEnd = dateEnd;
@@ -161,6 +178,7 @@ public class Movie implements Serializable {
 
     /**
      * Get the list of casts for this Movie
+     *
      * @return String    List of casts of this Movie
      */
     public ArrayList<String> getCast() {
@@ -170,7 +188,8 @@ public class Movie implements Serializable {
 
     /**
      * Change the list of casts for this Movie
-     * @param cast      New list of casts of this Movie
+     *
+     * @param cast New list of casts of this Movie
      */
     public void setCast(ArrayList<String> cast) {
         this.cast = cast;
@@ -178,6 +197,7 @@ public class Movie implements Serializable {
 
     /**
      * Get the showing status for this Movie
+     *
      * @return ShowingStatus    showing status of this Movie
      */
     public ShowingStatus getShowingStatus() {
@@ -186,7 +206,8 @@ public class Movie implements Serializable {
 
     /**
      * Change the showing status for this Movie
-     * @param showingStatus     new showing status of the movie
+     *
+     * @param showingStatus new showing status of the movie
      */
     public void setShowingStatus(ShowingStatus showingStatus) {
         this.showingStatus = showingStatus;
@@ -194,6 +215,7 @@ public class Movie implements Serializable {
 
     /**
      * Get the ticket sales for this Movie
+     *
      * @return int    number of ticket sales
      */
     public int getTicketSales() {
@@ -203,7 +225,8 @@ public class Movie implements Serializable {
 
     /**
      * Adds a sales to the ticket sales
-     * @param delta     incremental variable to increase the ticket sales
+     *
+     * @param delta incremental variable to increase the ticket sales
      */
     public void addTicketSales(int delta) {
         this.ticketSales += delta;
@@ -211,6 +234,7 @@ public class Movie implements Serializable {
 
     /**
      * Adds a review for a movie
+     *
      * @param review
      */
     public void addReview(Review review) {
@@ -219,27 +243,30 @@ public class Movie implements Serializable {
             this.setReviews(r);
         }
         reviews.add(review);
-        double overallRating = (this.rating * ratingTimes + review.getRating()) / (ratingTimes+1);
+        double overallRating = (this.rating * ratingTimes + review.getRating()) / (ratingTimes + 1);
         setRating(overallRating);
         addRatingTimes(1);
     }
 
     /**
      * Adds a review for a movie
+     *
      * @param
      */
     public void addRatingTimes(int delta) {
         this.ratingTimes += delta;
     }
-    public void printMovie(){
+
+    public void printMovie() {
         System.out.println("ID: " + id + " Name: " + title + "\n" + "Showing Status: " + showingStatus);
         System.out.println(" ");
 
     }
+
     /**
      * Print all the information about the movie
      */
-    public void printALLInfoMovie(){
+    public void printALLInfoMovie() {
         //Movie Title
         print("Title: " + title);
 
@@ -287,7 +314,7 @@ public class Movie implements Serializable {
         if (getRating() != 0) {
             for (Review r : getReviews()) {
                 if (count == 3) break;
-                String message = (count+1) + ": Review: " + r.getComment() + " | " + "Rating: " + printStars();
+                String message = (count + 1) + ": Review: " + r.getComment() + " | " + "Rating: " + printStars();
                 print(message);
                 count++;
             }
@@ -298,6 +325,7 @@ public class Movie implements Serializable {
 
     /**
      * Print the number of stars for each rating
+     *
      * @return String   rating stars
      */
     public String printStars() {
@@ -336,8 +364,6 @@ public class Movie implements Serializable {
     public int getRatingTimes() {
         return ratingTimes;
     }
-
-
 
 
 }

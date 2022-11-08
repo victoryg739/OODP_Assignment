@@ -1,7 +1,7 @@
 package view.admin;
 
 import controller.HolidayController;
-import modal.Constant;
+import model.Constant;
 import view.MenuBase;
 
 import java.util.Date;
@@ -9,14 +9,16 @@ import java.util.Date;
 import static view.utilF.*;
 
 /**
- Menu to Remove holiday
- @author Bryan Tay
- @version 1.0
- @since 2022-08-11
+ * Menu to Remove holiday
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
  */
 
 public class MenuHolidayRemove extends MenuBase {
     private HolidayController holCtrl = new HolidayController();
+
     public MenuHolidayRemove(MenuBase initialMenu) {
         super(initialMenu);
     }
@@ -31,7 +33,7 @@ public class MenuHolidayRemove extends MenuBase {
     @Override
     public MenuBase execute() {
         printHeader("Delete Holiday");
-        if(holCtrl.listAllHolidays()) {
+        if (holCtrl.listAllHolidays()) {
             Date holiday = readDate("Enter holiday date to delete: ", Constant.FORMAT_DATE_LONG);
             if (!holCtrl.isHoliday(holiday)) {
                 print("Holiday does not exist!");

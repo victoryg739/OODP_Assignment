@@ -1,10 +1,9 @@
 package controller;
 
-import java.io.*;
-import java.util.*;
-import modal.*;
+import model.Booking;
 
-import static view.utilF.*;
+import java.io.*;
+import java.util.ArrayList;
 
 public class BookingController {
     public final static String FILENAME = "data/booking.txt";
@@ -40,15 +39,16 @@ public class BookingController {
 
     /**
      * Delete a Transaction in the Database file, based on the TID and MovieGoer's username attribute passed
-     * @param TID           Transaction ID of Transaction which will be deleted
-     * @param customerId      customerId of Transaction which will be deleted
+     *
+     * @param TID        Transaction ID of Transaction which will be deleted
+     * @param customerId customerId of Transaction which will be deleted
      */
     public void delete(String TID, int customerId) {
         ArrayList<Booking> allData = read();
         Booking booking = null;
         ArrayList<Booking> returnData = new ArrayList<Booking>();
 
-        for (int i=0; i<allData.size(); i++){
+        for (int i = 0; i < allData.size(); i++) {
             booking = allData.get(i);
             if (booking.getTID().equals(TID) && booking.getCustomerId() == customerId)
                 continue;
@@ -59,8 +59,9 @@ public class BookingController {
 
     /**
      * Overwrite Database file with new data of list of Admin
-     * @param filename      Filename to check for
-     * @param returnData    New ArrayList of Transaction to be written to the file
+     *
+     * @param filename   Filename to check for
+     * @param returnData New ArrayList of Transaction to be written to the file
      */
     public void replaceExistingFile(String filename, ArrayList<Booking> returnData) {
         File tempFile = new File(filename);
@@ -76,7 +77,7 @@ public class BookingController {
         }
     }
 
-    public ArrayList<Booking> readbyId (int customerId) {
+    public ArrayList<Booking> readbyId(int customerId) {
         ArrayList<Booking> allData = read();
         Booking booking;
         int dbId;
@@ -91,7 +92,7 @@ public class BookingController {
         return returnData;
     }
 
-    public ArrayList<Booking> readbyUsername (String username) {
+    public ArrayList<Booking> readbyUsername(String username) {
         ArrayList<Booking> allData = read();
         Booking booking;
         String dbUsername;

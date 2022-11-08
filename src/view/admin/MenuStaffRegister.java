@@ -1,15 +1,11 @@
 package view.admin;
 
 import controller.AdminController;
-import modal.Admin;
 import view.MenuBase;
+
 import java.util.Scanner;
 
-import java.io.*;
-import java.util.*;
-
 import static view.utilF.*;
-import static view.utilF.readIntInput;
 
 
 public class MenuStaffRegister extends MenuBase {
@@ -25,7 +21,7 @@ public class MenuStaffRegister extends MenuBase {
 
 
     // Registration Menu to create new accounts
-    public MenuBase execute(){
+    public MenuBase execute() {
 
         int choice;
 

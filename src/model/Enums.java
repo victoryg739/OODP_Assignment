@@ -1,15 +1,15 @@
-package modal;
+package model;
 
 // Might need to change MovieType - Blockbuster
 public class Enums {
 
-    public enum AgeType{
+    public enum AgeType {
         SENIOR,
         STUDENT,
         NORMAL
     }
 
-    public enum MovieRating{
+    public enum MovieRating {
         G,
         PG13,
         NC16,
@@ -19,19 +19,19 @@ public class Enums {
 
     }
 
-    public enum MovieType{
+    public enum MovieType {
         TWO_D,
         THREE_D,
         BLOCKBUSTER
 
     }
 
-    public enum ClassCinema{
+    public enum ClassCinema {
         PLATINUM,
         NORMAL
     }
 
-    public enum Day{
+    public enum Day {
         MON_WED_BEF_SIX,
         MON_WED_AFT_SIX,
         THU_BEF_SIX,
@@ -59,8 +59,6 @@ public class Enums {
             return this.s;
         }
     }
-
-
 
 
 }

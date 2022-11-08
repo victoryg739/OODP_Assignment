@@ -1,23 +1,26 @@
 package view.admin;
+
 import view.MainMenu;
 import view.MenuBase;
 
 import static view.utilF.*;
 
 /**
- Configure for admin to list all the menu
- @author Bryan Tay
- @version 1.0
- @since 2022-08-11
+ * Configure for admin to list all the menu
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
  */
 public class MenuStaffMain extends MenuBase {
     String username;
-    public MenuStaffMain(MenuBase initialMenu, String username){
+
+    public MenuStaffMain(MenuBase initialMenu, String username) {
         super(initialMenu);
         this.username = username;
     }
 
-    public MenuBase execute(){
+    public MenuBase execute() {
         int choice;
         MenuBase nextMenu;
 
@@ -35,10 +38,10 @@ public class MenuStaffMain extends MenuBase {
         printHeader("Staff Menu");
         println("Welcome to MOblima Adminstrator Panel: " + username);
         print(" 1. Create/Update/Remove Movie Listing                               \n" +
-              " 2. Create/Update/Remove Movie Session                               \n" +
-              " 3. Configure system settings                                          \n" +
-              " 4. List movies                                                        \n" +
-              " 5. Back                                                               \n ");
+                " 2. Create/Update/Remove Movie Session                               \n" +
+                " 3. Configure system settings                                          \n" +
+                " 4. List movies                                                        \n" +
+                " 5. Back                                                               \n ");
         choice = readIntInput("Enter choice:");
 
         switch (choice) {

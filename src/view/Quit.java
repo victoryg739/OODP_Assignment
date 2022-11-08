@@ -1,11 +1,11 @@
 package view;
 
-public class Quit extends MenuBase{
-    public Quit(MenuBase initialMenu){
+public class Quit extends MenuBase {
+    public Quit(MenuBase initialMenu) {
         super(initialMenu);
     }
 
-    public MenuBase execute(){
+    public MenuBase execute() {
         return null;
     }
 }

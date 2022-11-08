@@ -1,9 +1,8 @@
 package view.Customer;
 
 import controller.MovieController;
-import controller.SessionController;
 import controller.SettingController;
-import modal.Movie;
+import model.Movie;
 import view.MenuBase;
 import view.admin.MenuStaffTopFiveRating;
 import view.admin.MenuStaffTopFiveSales;
@@ -17,6 +16,7 @@ public class MenuSearchMovie extends MenuBase {
 
     MovieController mc = new MovieController();
     SettingController setc = new SettingController();
+
     public MenuSearchMovie(MenuBase initialMenu) {
         super(initialMenu);
     }
@@ -56,7 +56,7 @@ public class MenuSearchMovie extends MenuBase {
 
                     break;
                 case 3:
-                    nextMenu =  new MenuStaffTopFiveRating(this);
+                    nextMenu = new MenuStaffTopFiveRating(this);
                     break;
                 default:
                     nextMenu = this.getPreviousMenu();
@@ -79,7 +79,7 @@ public class MenuSearchMovie extends MenuBase {
                     nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
                     break;
                 case 3:
-                    nextMenu =  new MenuStaffTopFiveSales(this);
+                    nextMenu = new MenuStaffTopFiveSales(this);
                     break;
                 default:
                     nextMenu = this.getPreviousMenu();
@@ -104,7 +104,7 @@ public class MenuSearchMovie extends MenuBase {
                     nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
                     break;
                 case 3:
-                    nextMenu =  new MenuStaffTopFiveSales(this);
+                    nextMenu = new MenuStaffTopFiveSales(this);
                     break;
                 case 4:
                     nextMenu = new MenuStaffTopFiveRating(this);

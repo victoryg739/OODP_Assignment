@@ -1,15 +1,19 @@
 package view.admin;
+
 import controller.HolidayController;
-import modal.Constant;
+import model.Constant;
 import view.MenuBase;
+
 import java.util.Date;
+
 import static view.utilF.*;
 
 /**
-     Menu to Update holiday
-     @author Bryan Tay
-     @version 1.0
-     @since 2022-08-11
+ * Menu to Update holiday
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
  */
 public class MenuHolidayUpdate extends MenuBase {
     private HolidayController holCtrl = new HolidayController();
