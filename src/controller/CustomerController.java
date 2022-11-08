@@ -57,10 +57,6 @@ public class CustomerController {
                 bookingList.add(newBooking);
                 customerList.get(j).setBookings(bookingList);
             }
-            ArrayList<Booking> tempList = customerList.get(j).getBookings();
-            for (int i = 0; i < tempList.size(); i++) {
-                System.out.println(tempList.get(i));
-            }
         }
 
         replace(customerList);
@@ -120,15 +116,6 @@ public class CustomerController {
         return null;
     }
 
-    public Customer readByCustomerID(int valueToSearch) {
-        ArrayList<Customer> allData = readAll();
-        for (int i = 0; i < allData.size(); i++) {
-            Customer u = allData.get(i);
-            if (u.getCustomerID() == valueToSearch)
-                return u;
-        }
-        return null;
-    }
 
     public static ArrayList<Booking> retrieveByUsername(String valueToSearch) {
         ArrayList<Customer> allData = readAll();

@@ -249,13 +249,16 @@ public class Movie implements Serializable {
     }
 
     /**
-     * Adds a review for a movie
-     *
-     * @param
+     * Increase the number of ratings by 1
+     * @param delta
      */
     public void addRatingTimes(int delta) {
         this.ratingTimes += delta;
     }
+
+    /**
+     * Print Movie information (Movie Id, Movie Title and Showing Status)
+     */
 
     public void printMovie() {
         System.out.println("ID: " + id + " Name: " + title + "\n" + "Showing Status: " + showingStatus);
@@ -264,7 +267,9 @@ public class Movie implements Serializable {
     }
 
     /**
-     * Print all the information about the movie
+     * Print All Movie Information
+     * Movie Title, Showing Status, Content Rating, Runtime, Movie Type, Director,
+     * Cast, Opening, Ending, Synopsis, Overall Rating, Last 3 Reviews
      */
     public void printALLInfoMovie() {
         //Movie Title
@@ -345,21 +350,50 @@ public class Movie implements Serializable {
     }
 
 
+    /**
+     *Set Review
+     *
+     * @param reviews
+     */
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
     }
+
+    /**
+     * Get list of reviews
+     *
+     * @return ArrayList<Review>
+     */
 
     public ArrayList<Review> getReviews() {
         return reviews;
     }
 
+    /**
+     * Set Rating
+     *
+     * @param rating
+     */
+
     public void setRating(double rating) {
         this.rating = rating;
     }
 
+    /**
+     * Get the Overall Rating
+     *
+     * @return Overall Rating
+     */
+
     public double getRating() {
         return rating;
     }
+
+    /**
+     * Get the total number of rating
+     *
+     * @return total number of rating
+     */
 
     public int getRatingTimes() {
         return ratingTimes;

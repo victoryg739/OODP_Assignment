@@ -10,14 +10,16 @@ public class MenuCustomerMain extends MenuBase {
         super(initialMenu);
     }
 
-    /*
-     Display main user menu
-     Ask user to choice the next menu and bring user to next stage of application
-     Consist of four menu
-     1. Search for movies --> MovieInfo if found --> Buy Tickets/ Write a Review
-     2. Display all movies --> Show current movies --> Show Top 5 by sales/review
-     3. View history ( login required ) --> Check your booking history
-     4. Back to previous menu
+    /**
+     * Display main user menu
+     * Ask user to choice the next menu
+     * and bring user to next stage of application
+     * Consist of four menu
+     * 1. Search for movies
+     * 2. List all movies
+     * 3. View Booking history ( login required through MenuCustomerLogin)
+     * 4. Back to previous menu
+     * @return to the menu that the user has selected
      */
     public MenuBase execute() {
         printHeader("Customer Menu");

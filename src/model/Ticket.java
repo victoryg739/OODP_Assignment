@@ -11,7 +11,6 @@ import java.io.Serializable;
 public class Ticket implements Serializable {
 
     private double price;
-    //enumaration
     private MovieType movieType; // 3D or blockbuster
     private ClassCinema classCinema; // platinum suites or normal
     private AgeType age; // age of movie goer e.g adult/child
@@ -22,6 +21,15 @@ public class Ticket implements Serializable {
     public Ticket() {
     }
 
+    /**
+     * Booking CLass constructor
+     * @param age
+     * @param day
+     * @param classCinema
+     * @param price
+     * @param seat
+     * @param movieType
+     */
     public Ticket(double price, MovieType movieType, ClassCinema classCinema, AgeType age, Day day, Seat seat) {
         this.price = price;
         this.movieType = movieType;
@@ -31,54 +39,28 @@ public class Ticket implements Serializable {
         this.seat = seat;
     }
 
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public MovieType getMovieType() {
-        return movieType;
-    }
-
-    public void setMovieType(MovieType movieType) {
-        this.movieType = movieType;
-    }
-
-    public ClassCinema getClassCinema() {
-        return classCinema;
-    }
-
-    public void setClassCinema(ClassCinema classCinema) {
-        this.classCinema = classCinema;
-    }
-
-    public AgeType getAge() {
-        return age;
-    }
-
-    public void setAge(AgeType age) {
-        this.age = age;
-    }
-
+    /**
+     * Get Day
+     * @return Day
+     */
     public Day getDay() {
         return day;
     }
 
+    /**
+     * Set Day
+     * @param day
+     */
     public void setDay(Day day) {
         this.day = day;
     }
 
+    /**
+     * Get Seat
+     * @return seat
+     */
     public Seat getSeat() {
         return seat;
     }
-
-    public void setSeat(Seat seat) {
-        this.seat = seat;
-    }
-
 
 }
