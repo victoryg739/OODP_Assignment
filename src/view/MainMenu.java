@@ -13,7 +13,7 @@ public class MainMenu extends MenuBase {
 
     public MenuBase execute() {
         int choice;
-        printHeader("Welcome to MOblima Application");
+        printHeader("Welcome to MOBLIMA Application");
         print("1. Customer App        \n" +
                 "2. Staff App         \n" +
                 "3. Quit App         \n");

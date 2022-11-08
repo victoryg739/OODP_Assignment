@@ -350,16 +350,6 @@ public class Movie implements Serializable {
         return x;
     }
 
-
-    /**
-     * Set Review
-     *
-     * @param reviews
-     */
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
-    }
-
     /**
      * Get list of reviews
      *
@@ -371,13 +361,12 @@ public class Movie implements Serializable {
     }
 
     /**
-     * Set Rating
+     * Set Review
      *
-     * @param rating
+     * @param reviews
      */
-
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
     }
 
     /**
@@ -388,6 +377,16 @@ public class Movie implements Serializable {
 
     public double getRating() {
         return rating;
+    }
+
+    /**
+     * Set Rating
+     *
+     * @param rating
+     */
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     /**

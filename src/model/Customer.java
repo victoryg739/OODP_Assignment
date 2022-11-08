@@ -69,21 +69,21 @@ public class Customer implements Serializable, User {
     }
 
     /**
-     * Set Customer ID
-     *
-     * @param customerID
-     */
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
-
-    /**
      * Set booking ArrayList
      *
      * @@param bookings
      */
     public void setBookings(ArrayList<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    /**
+     * Set Customer ID
+     *
+     * @param customerID
+     */
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 
     /**

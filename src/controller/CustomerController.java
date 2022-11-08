@@ -20,6 +20,7 @@ import static view.utilF.read;
 
 public class CustomerController {
 
+    private static Scanner sc = new Scanner(System.in);
     private String customerUsername;
     private String password;
     private String password2;
@@ -27,14 +28,13 @@ public class CustomerController {
     private boolean consistentPassword = false;
     private String phoneNumber;
 
-    private static Scanner sc = new Scanner(System.in);
-
     public CustomerController() {
 
     }
 
     /**
      * Create a new Customer account and add into customerAccounts.txt
+     *
      * @param customer customer object
      */
     public static void createCustomer(Customer customer) {
@@ -57,6 +57,82 @@ public class CustomerController {
         }
     }
 
+    public static ArrayList<Customer> readAll() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.CUSTOMERACCOUNTFILE));
+            ArrayList<Customer> customerListing = (ArrayList<Customer>) ois.readObject();
+            ois.close();
+            return customerListing;
+        } catch (ClassNotFoundException | IOException e) {
+            // ignore error
+        }
+        return new ArrayList<Customer>();
+    }
+
+    /**
+     * READ and return a Customer username by searching for one with matching username in the customerAccounts.txt file
+     *
+     * @param valueToSearch username of admin to search for
+     * @return String           Return Customer username if found, else null object
+     */
+    public static Customer readByUsername(String valueToSearch) {
+        ArrayList<Customer> allData = readAll();
+        for (int i = 0; i < allData.size(); i++) {
+            Customer c = allData.get(i);
+            if (c.getUsername().equals(valueToSearch))
+                return c;
+        }
+        return null;
+    }
+
+    /**
+     * READ and return a customer password by searching for one with matching password in the customerAccounts.txt file
+     *
+     * @param valueToSearch password of customer to search for
+     * @return String            Return password if found, else null object
+     */
+
+    public static Customer readByPassword(String valueToSearch) {
+        ArrayList<Customer> allData = readAll();
+        for (int i = 0; i < allData.size(); i++) {
+            Customer c = allData.get(i);
+            if (c.getPassword().equals(valueToSearch))
+                return c;
+        }
+        return null;
+    }
+
+    /**
+     * Function to prompt user to create a STRONG password
+     * which is called by MenuStaffRegister
+     *
+     * @param password password input from user
+     * @return Boolean            Returns true if user input a STRONG password , else false
+     */
+    public static boolean validatePasswordStrength(String password) {
+        // Checking lower alphabet in string
+        int n = password.length();
+        boolean hasLower = false, hasUpper = false,
+                hasDigit = false, specialChar = false;
+        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
+        for (char i : password.toCharArray()) {
+            if (Character.isLowerCase(i))
+                hasLower = true;
+            if (Character.isUpperCase(i))
+                hasUpper = true;
+            if (Character.isDigit(i))
+                hasDigit = true;
+            if (set.contains(i))
+                specialChar = true;
+        }
+
+        // Checking Validity of password
+        if (hasDigit && hasLower && hasUpper && specialChar && (n >= 8))
+            return true;
+        else
+            return false;
+    }
+
     public void CustomerUpdate(Object valueToSearch, Booking newBooking) {
         ArrayList<Customer> customerList = readAll();
         ArrayList<Booking> bookingList = new ArrayList<Booking>();
@@ -74,8 +150,6 @@ public class CustomerController {
         replace(customerList);
     }
 
-
-
     public void replace(ArrayList<Customer> data) {
         File tempFile = new File(Constant.CUSTOMERACCOUNTFILE);
         if (tempFile.exists())
@@ -90,54 +164,10 @@ public class CustomerController {
         }
     }
 
-    public static ArrayList<Customer> readAll() {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.CUSTOMERACCOUNTFILE));
-            ArrayList<Customer> customerListing = (ArrayList<Customer>) ois.readObject();
-            ois.close();
-            return customerListing;
-        } catch (ClassNotFoundException | IOException e) {
-            // ignore error
-        }
-        return new ArrayList<Customer>();
-    }
-
-    /**
-     * READ and return a Customer username by searching for one with matching username in the customerAccounts.txt file
-     * @param valueToSearch username of admin to search for
-     * @return String           Return Customer username if found, else null object
-     */
-    public static Customer readByUsername(String valueToSearch) {
-        ArrayList<Customer> allData = readAll();
-        for (int i = 0; i < allData.size(); i++) {
-            Customer c = allData.get(i);
-            if (c.getUsername().equals(valueToSearch))
-                return c;
-        }
-        return null;
-    }
-
-    /**
-     * READ and return a customer password by searching for one with matching password in the customerAccounts.txt file
-     * @param valueToSearch password of customer to search for
-     * @return String            Return password if found, else null object
-     */
-
-    public static Customer readByPassword(String valueToSearch) {
-        ArrayList<Customer> allData = readAll();
-        for (int i = 0; i < allData.size(); i++) {
-            Customer c = allData.get(i);
-            if (c.getPassword().equals(valueToSearch))
-                return c;
-        }
-        return null;
-    }
-
-
-
     /**
      * Authenticates username and password entered by user with the username and password in the customerAccounts.txt file
      * which is called by menuCustomerLogin
+     *
      * @param username username input from user
      * @param password password input from user
      * @return Boolean            Return true if found, else false
@@ -198,37 +228,8 @@ public class CustomerController {
     }
 
     /**
-     * Function to prompt user to create a STRONG password
-     * which is called by MenuStaffRegister
-     * @param password password input from user
-     * @return Boolean            Returns true if user input a STRONG password , else false
-     */
-    public static boolean validatePasswordStrength(String password) {
-        // Checking lower alphabet in string
-        int n = password.length();
-        boolean hasLower = false, hasUpper = false,
-                hasDigit = false, specialChar = false;
-        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
-        for (char i : password.toCharArray()) {
-            if (Character.isLowerCase(i))
-                hasLower = true;
-            if (Character.isUpperCase(i))
-                hasUpper = true;
-            if (Character.isDigit(i))
-                hasDigit = true;
-            if (set.contains(i))
-                specialChar = true;
-        }
-
-        // Checking Validity of password
-        if (hasDigit && hasLower && hasUpper && specialChar && (n >= 8))
-            return true;
-        else
-            return false;
-    }
-
-    /**
      * Validate if user inputs an email address that follows valid email format
+     *
      * @param email email input from user
      * @return Boolean            Returns true if matches email format, else false
      */

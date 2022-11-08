@@ -19,19 +19,87 @@ import java.util.*;
 public class AdminController {
 
 
+    private static Scanner sc = new Scanner(System.in);
     private String staffUsername;
     private String password;
     private String password2;
     private int role;
     private boolean consistentPassword = false;
-    private static Scanner sc = new Scanner(System.in);
 
     public AdminController() {
 
     }
 
     /**
+     * READ and return every Admin in the adminAccounts.txt
+     * If Database file not found, ignore error and return empty list
+     *
+     * @return Model.{@link Admin}     Return list of Admins if found, else empty list
+     */
+    @SuppressWarnings("unchecked")
+    public static ArrayList<Admin> read() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.ADMINACCOUNTSFILE));
+            ArrayList<Admin> adminListing = (ArrayList<Admin>) ois.readObject();
+            ois.close();
+            return adminListing;
+        } catch (ClassNotFoundException | IOException e) {
+            // ignore error
+        }
+        return new ArrayList<Admin>();
+    }
+
+    /**
+     * Function to read in input from user
+     *
+     * @param message message printed out to user
+     * @return String            Returns the input typed in by user
+     */
+    public static String read(String message) {
+        String input = "";
+        System.out.println(message);
+
+        do {
+            input = sc.nextLine();
+        } while (input.trim().equals(""));
+
+        return input;
+    }
+
+    /**
+     * Function to prompt user to create a STRONG password
+     * which is called by MenuStaffRegister
+     *
+     * @param password password input from user
+     * @return Boolean            Returns true if user input a STRONG password , else false
+     */
+    public static boolean validatePasswordStrength(String password) {
+        // Checking lower alphabet in string
+        int n = password.length();
+        boolean hasLower = false, hasUpper = false,
+                hasDigit = false, specialChar = false;
+        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
+        for (char i : password.toCharArray()) {
+            if (Character.isLowerCase(i))
+                hasLower = true;
+            if (Character.isUpperCase(i))
+                hasUpper = true;
+            if (Character.isDigit(i))
+                hasDigit = true;
+            if (set.contains(i))
+                specialChar = true;
+        }
+
+        // Checking Validity of password
+        if (hasDigit && hasLower && hasUpper && specialChar && (n >= 8))
+            return true;
+        else
+            return false;
+    }
+
+    /**
      * Create a new Admin account and add into adminAccounts.txt
+     *
      * @param admin admin object
      */
     public void createAdmin(Admin admin) {
@@ -54,25 +122,8 @@ public class AdminController {
     }
 
     /**
-     * READ and return every Admin in the adminAccounts.txt
-     * If Database file not found, ignore error and return empty list
-     * @return Model.{@link Admin}     Return list of Admins if found, else empty list
-     */
-    @SuppressWarnings("unchecked")
-    public static ArrayList<Admin> read() {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.ADMINACCOUNTSFILE));
-            ArrayList<Admin> adminListing = (ArrayList<Admin>) ois.readObject();
-            ois.close();
-            return adminListing;
-        } catch (ClassNotFoundException | IOException e) {
-            // ignore error
-        }
-        return new ArrayList<Admin>();
-    }
-
-    /**
      * READ and return an Admin username by searching for one with matching username in the adminAccounts.txt file
+     *
      * @param valueToSearch username of admin to search for
      * @return String           Return admin username if found, else null object
      */
@@ -88,6 +139,7 @@ public class AdminController {
 
     /**
      * READ and return an admin password by searching for one with matching password in the adminAccounts.txt file
+     *
      * @param valueToSearch password of admin to search for
      * @return String            Return password if found, else null object
      */
@@ -104,6 +156,7 @@ public class AdminController {
     /**
      * Authenticates username and password entered by user with the username and password in the adminAccounts.txt file
      * which is called by menuAdminLogin
+     *
      * @param username username input from user
      * @param password password input from user
      * @return Boolean            Return true if found, else false
@@ -115,22 +168,6 @@ public class AdminController {
         } else {
             return false;
         }
-    }
-
-    /**
-     * Function to read in input from user
-     * @param message message printed out to user
-     * @return String            Returns the input typed in by user
-     */
-    public static String read(String message) {
-        String input = "";
-        System.out.println(message);
-
-        do {
-            input = sc.nextLine();
-        } while (input.trim().equals(""));
-
-        return input;
     }
 
     /**
@@ -164,36 +201,6 @@ public class AdminController {
             }
         }
         while (!consistentPassword);
-    }
-
-    /**
-     * Function to prompt user to create a STRONG password
-     * which is called by MenuStaffRegister
-     * @param password password input from user
-     * @return Boolean            Returns true if user input a STRONG password , else false
-     */
-    public static boolean validatePasswordStrength(String password) {
-        // Checking lower alphabet in string
-        int n = password.length();
-        boolean hasLower = false, hasUpper = false,
-                hasDigit = false, specialChar = false;
-        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
-        for (char i : password.toCharArray()) {
-            if (Character.isLowerCase(i))
-                hasLower = true;
-            if (Character.isUpperCase(i))
-                hasUpper = true;
-            if (Character.isDigit(i))
-                hasDigit = true;
-            if (set.contains(i))
-                specialChar = true;
-        }
-
-        // Checking Validity of password
-        if (hasDigit && hasLower && hasUpper && specialChar && (n >= 8))
-            return true;
-        else
-            return false;
     }
 
 }

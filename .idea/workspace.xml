@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated Format">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/PriceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PriceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuCustomerRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuCustomerRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionRemove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -367,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667925461617</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="updated Format">
+      <created>1667927575861</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1667927575861</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

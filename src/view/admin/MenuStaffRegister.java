@@ -10,15 +10,13 @@ import static view.utilF.*;
 
 public class MenuStaffRegister extends MenuBase {
 
-    public MenuStaffRegister(MenuBase initialMenu) {
-        super(initialMenu);
-    }
-
+    private static Scanner sc = new Scanner(System.in);
     // Instantiate AdminController object to use methods
     private AdminController adminsCtrl = new AdminController();
 
-    private static Scanner sc = new Scanner(System.in);
-
+    public MenuStaffRegister(MenuBase initialMenu) {
+        super(initialMenu);
+    }
 
     // Registration Menu to create new accounts
     public MenuBase execute() {

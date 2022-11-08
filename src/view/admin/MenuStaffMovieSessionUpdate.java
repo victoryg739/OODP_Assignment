@@ -12,15 +12,13 @@ import static view.utilF.*;
 
 public class MenuStaffMovieSessionUpdate extends MenuBase {
 
-    public MenuStaffMovieSessionUpdate(MenuBase initialMenu) {
-        super(initialMenu);
-    }
-
     private CineplexController cineplexCtrler = new CineplexController();
     private CinemaController cinemaCtrler = new CinemaController();
     private SessionController sessionCtrler = new SessionController();
     private MovieController movieCtrler = new MovieController();
-
+    public MenuStaffMovieSessionUpdate(MenuBase initialMenu) {
+        super(initialMenu);
+    }
 
     public MenuBase execute() {
         printHeader("Updating Session");
