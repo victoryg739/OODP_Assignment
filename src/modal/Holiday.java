@@ -8,11 +8,6 @@ import java.util.Date;
 /**
  * Represents a Holiday for the system to referenced
  * Mainly used to determine any markup in the price of ticket(s)
- */
-
-/**
- * Represents a Holiday for the system to referenced
- * Mainly used to determine any markup in the price of ticket(s)
  * @author Bryan Tay
  * @version 1.0
  * @since 2022-08-11
@@ -20,9 +15,6 @@ import java.util.Date;
 
 public class Holiday implements Serializable {
 
-    /**
-     * this Holiday's date
-     */
     private Date holidayDate;
 
     private String name;

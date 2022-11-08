@@ -109,59 +109,110 @@ public class Movie implements Serializable {
         this.synopsis = synopsis;
     }
 
-
+    /**
+     * Change the director for this Movie
+     * @param director      New director of this Movie
+     */
     public void setDirector(String director) {
         this.director = director;
     }
 
-
+    /**
+     * Get the MovieType of this Movie
+     * @return MovieType of this Movie
+     */
     public MovieType getType() {
         return type;
     }
 
+    /**
+     * Get the MovieType of this Movie
+     * @return type    MovieType of this Movie
+     */
     public void setType(MovieType type) {
         this.type = type;
     }
+
+    /**
+     * Change the Content rating of this Movie
+     * @param ContentRating      New Content rating of this Movie
+     */
 
     public void setContentRating(MovieRating ContentRating) {
         this.ContentRating = ContentRating;
     }
 
-
+    /**
+     * Change the release date of this Movie
+     * @param dateStart      New release date of this Movie
+     */
     public void setDateStart(Date dateStart) {
         DateStart = dateStart;
     }
 
-
+    /**
+     * Change the end date of this Movie
+     * @param dateEnd      New end date of this Movie
+     */
     public void setDateEnd(Date dateEnd) {
         DateEnd = dateEnd;
     }
 
+
+    /**
+     * Get the list of casts for this Movie
+     * @return String    List of casts of this Movie
+     */
     public ArrayList<String> getCast() {
         return cast;
     }
 
+
+    /**
+     * Change the list of casts for this Movie
+     * @param cast      New list of casts of this Movie
+     */
     public void setCast(ArrayList<String> cast) {
         this.cast = cast;
     }
 
+    /**
+     * Get the showing status for this Movie
+     * @return ShowingStatus    showing status of this Movie
+     */
     public ShowingStatus getShowingStatus() {
         return showingStatus;
     }
 
+    /**
+     * Change the showing status for this Movie
+     * @param showingStatus     new showing status of the movie
+     */
     public void setShowingStatus(ShowingStatus showingStatus) {
         this.showingStatus = showingStatus;
     }
 
+    /**
+     * Get the ticket sales for this Movie
+     * @return int    number of ticket sales
+     */
     public int getTicketSales() {
         return ticketSales;
     }
 
 
+    /**
+     * Adds a sales to the ticket sales
+     * @param delta     incremental variable to increase the ticket sales
+     */
     public void addTicketSales(int delta) {
         this.ticketSales += delta;
     }
 
+    /**
+     * Adds a review for a movie
+     * @param review
+     */
     public void addReview(Review review) {
         if (this.reviews == null) {
             ArrayList<Review> r = new ArrayList<Review>();
@@ -173,6 +224,10 @@ public class Movie implements Serializable {
         addRatingTimes(1);
     }
 
+    /**
+     * Adds a review for a movie
+     * @param
+     */
     public void addRatingTimes(int delta) {
         this.ratingTimes += delta;
     }
@@ -181,6 +236,9 @@ public class Movie implements Serializable {
         System.out.println(" ");
 
     }
+    /**
+     * Print all the information about the movie
+     */
     public void printALLInfoMovie(){
         //Movie Title
         print("Title: " + title);
@@ -238,7 +296,10 @@ public class Movie implements Serializable {
 
     }
 
-
+    /**
+     * Print the number of stars for each rating
+     * @return String   rating stars
+     */
     public String printStars() {
         String s = String.format("%.1f", getRating());
         String x;

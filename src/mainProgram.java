@@ -173,37 +173,6 @@ public class mainProgram {
             CineplexController cinplexCtrler = new CineplexController();
             cinplexCtrler.replace(cineplexArrayList);
         }
-//        CineplexController cineplexController = new CineplexController();
-//        cineplexController.printByMovieId(0);
-//        ArrayList<Cinema> cinemaFile = cinemaCtrler.read();
-//        for(int a =0 ; a<cinemaFile.size();a++){
-//            System.out.print(cinemaFile.get(a).getClassCinema() + "\t");
-//            System.out.print(cinemaFile.get(a).getCinemaNo()+ "\t");
-//            System.out.print(cinemaFile.get(a).getSessions()+ "\t");
-//            System.out.printf("\n");
-//        }
-//
-//        ArrayList<Cineplex> cineplexFile = cinplexCtrler.read();
-//        for(int i =0; i< cineplexFile.size();i++){ //return one section by one for the whole session file
-//            System.out.print(cineplexFile.get(i).getLocation()+ "\t" );
-//            System.out.print(cineplexFile.get(i).getCinemas()+ "\t");
-//            ArrayList<Cinema> cinemasA = new ArrayList<Cinema>();
-//            cinemasA= cineplexFile.get(i).getCinemas();
-//
-//
-//            for(int  j=0; j<cinemasA.size();j++){
-//                System.out.print(cinemasA.get(j).getCinemaNo()+ "\t");
-//
-//            }
-//            System.out.printf("\n");
-//
-//
-//            //GIVe aloy later
-//        }
-//        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-//        Session s = new Session(Cinema1, movie1, 1, getDate(),  Enums.Day.PH);
-//        Booking booking = new Booking('A1', 'TIDSAMPLE','user', 'pass', movie0,  tickets,
-//        bookingController.create(booking);
 
         // Create Root Admin Account
         Admin rootAdmin = new Admin("a","a");
