@@ -15,6 +15,7 @@ public class Constant {
     public final static String CINEPLEXFILE = "data/cineplex.txt";
 
     public final static String SESSIONFILE = "data/session.txt";
+    public final static String PRICEFILE = "data/price.txt";
 
     public final static String CINEMAFILE = "data/cinema.txt";
 

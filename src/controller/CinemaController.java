@@ -54,7 +54,6 @@ public class CinemaController {
      *
      * @return Model.{@link Cinema}    Return list of Cinemas if found, else empty list
      */
-    @SuppressWarnings("unchecked")
     public ArrayList<Cinema> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.CINEMAFILE));
