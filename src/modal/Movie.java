@@ -281,12 +281,12 @@ public class Movie implements Serializable {
         print("Overall Rating:");
         System.out.printf("%,.2f\n", getRating());
 
-        //Show the last 5 rating together with comments
-        print("Last 5 reviews: ");
+        //Show the last 3 rating together with comments
+        print("Last 3 reviews: ");
         int count = 0;
         if (getRating() != 0) {
             for (Review r : getReviews()) {
-                if (count == 5) break;
+                if (count == 3) break;
                 String message = (count+1) + ": Review: " + r.getComment() + " | " + "Rating: " + printStars();
                 print(message);
                 count++;
