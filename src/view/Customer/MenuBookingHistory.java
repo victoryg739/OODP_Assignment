@@ -8,10 +8,6 @@ import view.MenuBase;
 import java.util.*;
 import static view.utilF.*;
 
-/* ToDO list:
-    1. Present the date and time for each booking transaction
-    Need to check with Victor about his datetimeFormat
-*/
 
 public class MenuBookingHistory extends MenuBase {
 
@@ -23,13 +19,6 @@ public class MenuBookingHistory extends MenuBase {
         this.tempID = tempID;
         this.username = username;
     }
-
-    /*
-     Display user booking history menu
-     Ask user for login information
-     Display all user booking detail
-     Return to previous menu when done
-     */
     public MenuBase execute() {
         printHeader("Booking History:");
         BookingController bookingController = new BookingController();
