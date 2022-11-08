@@ -1,38 +1,22 @@
 import controller.*;
 import model.*;
-import view.MainMenu;
-import view.MenuBase;
-import view.Quit;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import static view.utilF.readDate;
-/* ToDo:
-    1. create directory
-    */
 
 
+public class Tester {
 
-/*
-
-The start of the program
- */
-
-public class mainProgram {
-    public final static String FILENAME = "data/movies.txt";
-
-    public static void main(String[] args) throws IOException, AddressException, MessagingException {
-        /* For Testing Purposes */
-        File myObj = new File("data/settings.txt");
+    public void createDefaultSettings() throws IOException {
+        File myObj = new File(Constant.SETTINGFILE);
         myObj.createNewFile();
-        // If File exists:
-        File f = new File(FILENAME);
+    }
+
+    public void createDefaultMovie() {
+        File f = new File(Constant.MOVIEFILE);
         if (!f.exists()) {
 
             MovieController mc = new MovieController();
@@ -107,26 +91,11 @@ public class mainProgram {
             mc.updateMovie(11, 9, 500);
             mc.updateMovie(11, 10, 600);
 
-            Cinema cinema3 = new Cinema(10, 10, "A3", Enums.ClassCinema.NORMAL, null);
-            CustomerController customerController = new CustomerController();
-            Customer customer = new Customer("a", "a", "riven", "999");
-            int temp = customer.getCustomerID();
-            //System.out.println(temp);
-            customer.setCustomerID(0);
-            temp = customer.getCustomerID();
-            //System.out.println(temp);
-            customerController.createCustomer(customer);
-            ArrayList<Ticket> tickets = new ArrayList<>();
-            Date currentTime = Calendar.getInstance().getTime();
-            Session tempSession = new Session(0, 0, cinema3, movie0, 0, currentTime, Enums.Day.FRI_AFT_SIX);
-            //Create the booking transaction
-            BookingController bookingController = new BookingController();
-//            Booking booking = new Booking("A1", "tid",
-//                    customer.getUsername(), movie0, tickets, tempSession, 12.50);
-//            bookingController.create(booking);
         }
+    }
 
-        File fCinema = new File("data/cinema.txt");
+    public void createCineplexCinema() {
+        File fCinema = new File(Constant.CINEMAFILE);
 
         if (!fCinema.exists()) {
 
@@ -174,7 +143,9 @@ public class mainProgram {
             CineplexController cinplexCtrler = new CineplexController();
             cinplexCtrler.replace(cineplexArrayList);
         }
+    }
 
+    public void createDefaultAccount() {
         // Create Root Admin Account
         Admin rootAdmin = new Admin("a", "a");
         AdminController ac = new AdminController();
@@ -183,14 +154,7 @@ public class mainProgram {
         // Creating Customer account to test
         Customer testCustomer = new Customer("twz", "twz", "bert0007@e.ntu.edu.sg", "999");
         CustomerController cc = new CustomerController();
-        cc.createCustomer(testCustomer);
-
-        MenuBase nextMenu = new MainMenu(null);
-
-        do {
-            nextMenu = nextMenu.execute();
-
-        } while (!(nextMenu instanceof Quit));
+        CustomerController.createCustomer(testCustomer);
     }
 }
 

@@ -12,25 +12,30 @@ import static view.utilF.*;
 public class CinemaController {
     private CineplexController cineplexController = new CineplexController();
 
-    public final static String FILENAME = "data/cinema.txt";
-
-
-    public final static int NAME = 0;
-    public final static int CINEMAS = 1;
-
+    /**
+     * Append a new cinema object into the database file
+     * If attributes are not allowed, throw error and do nothing
+     * If Database file exist, existing records are read and new Cinema object is appended before saving
+     * If Database file does not exist, Cinema object will be written to a new file and saved
+     * @param row             This is cinema row
+     * @param col              This is cinema column
+     * @param cinemaNo          This is cinema number
+     * @param classCinema        This is cinema class
+     * @param sessions           This is cinema session
+     */
     public void append(int row, int col, String cinemaNo, Enums.ClassCinema classCinema, ArrayList<Session> sessions) {
         Cinema cinema = new Cinema(row, col, cinemaNo, classCinema, sessions);
 
         // Creates an ArrayList of movie
         ArrayList<Cinema> allData = new ArrayList<Cinema>();
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.CINEMAFILE);
 
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = read();
         try {
             // Write the data to the movie
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.CINEMAFILE));
             allData.add(cinema);
             out.writeObject(allData);
             out.flush();
@@ -41,39 +46,46 @@ public class CinemaController {
 
     }
 
+    /**
+     * Replace cinema database file
+     * @param data            arraylist of cinema data
+     */
     public void replace(ArrayList<Cinema> data) {
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.CINEMAFILE);
         if (tempFile.exists())
             tempFile.delete();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.CINEMAFILE));
             out.writeObject(data);
             out.flush();
             out.close();
         } catch (IOException e) {
-            //
         }
     }
 
     /**
-     * READ and return every Cinema in the Database file
+     * Read and return every Cinema in the Database file
      *
-     * @return Model.{@link Cinema}    Return list of Cinemas if found, else empty list
+     * @return database of cinema    if empty return arraylist
      */
-    @SuppressWarnings("unchecked")
     public ArrayList<Cinema> read() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.CINEMAFILE));
             ArrayList<Cinema> cinemaListing = (ArrayList<Cinema>) ois.readObject();
             ois.close();
             return cinemaListing;
         } catch (ClassNotFoundException | IOException e) {
-            // ignore error
+
 
         }
         return new ArrayList<Cinema>();
     }
 
+    /**
+     * Return arraylist of cinema corresponding with that cinema number
+     * @param valueToSearch   This is an object parse
+     * @return arraylist of cinema
+     */
     public ArrayList<Cinema> readByAttribute(Object valueToSearch) {
         ArrayList<Cinema> returnData = new ArrayList<Cinema>();
         ArrayList<Cinema> cinemaListing = read();
@@ -88,6 +100,11 @@ public class CinemaController {
         return returnData;
     }
 
+    /**
+     * Update session in cinema database based on cinema number
+     * @param valueToSearch   This is an object parse
+     * @param newSession   This is the new session object
+     */
     public void cinemaUpdateSession(Object valueToSearch, Session newSession) {
         ArrayList<Cinema> cinemaListing = read();
         ArrayList<Session> sessionList = new ArrayList<Session>();
@@ -105,7 +122,12 @@ public class CinemaController {
 
     }
 
-
+    /**
+     * Update session in cinema database based on session id
+     * @param choice   This is the choice to update which object to update
+     * @param sessionId   This is the sessionId
+     * @param newValue   This is the new value object to update to
+     */
     public void cinemaUpdateBySessionId(int choice, int sessionId, Object newValue) { //update cinema session arrayList
         ArrayList<Cinema> cinemaListing = read();
         ArrayList<Session> sessionList = new ArrayList<Session>();
@@ -128,10 +150,12 @@ public class CinemaController {
 
         }
         replace(cinemaListing);
-
-
     }
 
+    /**
+     * Remove session in cinema database based on session id
+     * @param sessionId   This is the sessionId
+     */
     public void cinemaRemoveSession(int sessionId) {
         ArrayList<Cinema> cinemaListing = read();
         ArrayList<Session> sessionList = new ArrayList<Session>();
@@ -150,7 +174,11 @@ public class CinemaController {
     }
 
 
-    //added
+    /**
+     * Return cinema object based on cinema number
+     * @param valueToSearch   This is the value to match the cinema number
+     * @return cinema object
+     */
     public Cinema readByCinemaNo(String valueToSearch) {
         ArrayList<Cinema> allData = read();
         for (int i = 0; i < allData.size(); i++) {
@@ -161,39 +189,12 @@ public class CinemaController {
         return null;
     }
 
+
     /**
-     * READ and return every Cinema of a given Cineplex in the Database file
-     *
-     * @param name Name of cineplex to search for
-     * @return Model.{@link Cinema}    Return list of Cinemas if found, else empty list
+     * Return row and column for the seating plan
+     * @param cinemaNo   This is the value to match the cinema number
+     * @return array of int of row and column
      */
-    public ArrayList<Cinema> readByCineplexName(String name) {
-        ArrayList<Cinema> returnData = new ArrayList<Cinema>();
-        ArrayList<Cineplex> cineplexListing = cineplexController.read();
-        ArrayList<Cinema> cinemaListing = this.read();
-
-
-        Cineplex cineplex = null;
-        ArrayList<Cinema> cinema = new ArrayList<Cinema>();
-        for (int i = 0; i < cineplexListing.size(); i++) {
-            cineplex = cineplexListing.get(i);
-            if (cineplex.getLocation().equals(name)) { // Find list of cineplex of same name
-                cinema = cineplex.getCinemas();
-
-            }
-        }
-        for (int j = 0; j < cinema.size(); j++) {
-            for (int a = 0; a < cinemaListing.size(); a++) {
-                if (cinemaListing.get(a).getCinemaNo().equals(cinema.get(j).getCinemaNo())) {
-                    returnData.add(cinemaListing.get(a));
-                }
-            }
-
-        }
-
-        return returnData;
-    }
-
     public int[] getSeatsByCinemaNo(String cinemaNo) {
         ArrayList<Cinema> cf = read();
         int[] rowCol = new int[2];
@@ -208,6 +209,9 @@ public class CinemaController {
 
     }
 
+    /**
+     * Print all cinema information
+     */
     public void printAllCinema() {
         ArrayList<Cinema> cf = read();
         println("");
@@ -226,8 +230,6 @@ public class CinemaController {
                         System.out.printf(",");
                     }
                     System.out.print(cf.get(a).getSessions().get(i).getSessionId());
-
-
                 }
             } else {
                 System.out.print("No Sessions");

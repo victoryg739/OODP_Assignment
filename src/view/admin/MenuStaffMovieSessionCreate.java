@@ -29,7 +29,7 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
     public MenuBase execute() {
         printHeader("Creating a new movie session");
         println("List of Cineplexes");
-        ArrayList<Cineplex> cineplexArray = cineplexCtrler.read(); //using cinplexcontroller to read the cineplex object from the dat file
+        ArrayList<Cineplex> cineplexArray = cineplexCtrler.read();
         if (cineplexArray.isEmpty()) {
             println("No cineplexes found!");
             return getPreviousMenu();
@@ -87,23 +87,6 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         Date sessionDateTime = readDateTime("Enter session date and time: ");
         Enums.Day enumsDay = returnEnumsDay(sessionDateTime);
 
-//        //take Session datetime convert to this format
-//        boolean holiday = false;
-//        DateFormat outputFormat = new SimpleDateFormat("dd MM yyyy");
-//        HolidayController h = new HolidayController();
-//        String formattedDate = outputFormat.format(sessionDateTime);
-//        Date finalDate = new Date();
-//        print(formattedDate);
-//        try {
-//            finalDate = outputFormat.parse(formattedDate);
-//        } catch (ParseException e) {
-//            throw new RuntimeException(e);
-//        }
-//        //using bryan holiday function to check if it is holiday
-//        holiday = h.isHoliday(finalDate);
-
-
-        //   System.out.println("hhhh\t"+holiday);
 
         int[] rowCol = cinemaCtrler.getSeatsByCinemaNo(cinemaNo);
         int lastSessionId = sessionCtrler.getLastSessionId();

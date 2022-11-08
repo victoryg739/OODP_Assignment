@@ -15,6 +15,14 @@ public class Customer implements Serializable, User {
 
     private String phoneNumber;
 
+    /**
+     * Customer CLass constructor
+     * @param username
+     * @param email
+     * @param password
+     * @param phoneNumber
+     */
+
     public Customer(String username, String password, String email, String phoneNumber) {
         this.username = username;
         this.password = password;
@@ -23,39 +31,58 @@ public class Customer implements Serializable, User {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Get Customer username
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Set Customer username
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    /**
+     * Get Customer password
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
 
-    public int getCustomerID() {
-        return customerID;
-    }
-
-
+    /**
+     * Get booking ArrayList
+     * @return booking ArrayList
+     */
     public ArrayList<Booking> getBookings() {
         return bookings;
     }
 
+    /**
+     * Set Customer ID
+     * @param customerID
+     */
     public void setCustomerID(int customerID) {
         this.customerID = customerID;
     }
 
+    /**
+     * Set booking ArrayList
+     * @@param bookings
+     */
     public void setBookings(ArrayList<Booking> bookings) {
         this.bookings = bookings;
     }
 
+    /**
+     * Add Booking Object to the Customer's Arraylist of objects
+     * @param new_bookings
+     */
     public void addBookings(Booking new_bookings) {
         if (bookings == null) {
             this.bookings = new ArrayList<>();
@@ -64,15 +91,19 @@ public class Customer implements Serializable, User {
             this.bookings.add(new_bookings);
         }
     }
+    /**
+     * Get Customer email
+     * @return email
+     */
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    /**
+     * Get Customer Phone Number
+     * @return phoneNumber
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }

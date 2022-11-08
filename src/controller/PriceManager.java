@@ -1,5 +1,6 @@
 package controller;
 
+import model.Constant;
 import model.Enums;
 import model.Price;
 
@@ -7,8 +8,12 @@ import java.io.*;
 
 
 public class PriceManager {
-
-    public final static String FILENAME = "data/price.txt";
+    /**
+     * if is blockbuster then we add blockbuster price
+     * @param movieType   This is the enum movie type
+     * @param price   This is the price
+     * @return the calculated price
+     */
 
     public double isBlockbuster(Enums.MovieType movieType, double price) {
         if (movieType == Enums.MovieType.BLOCKBUSTER) {
@@ -19,7 +24,7 @@ public class PriceManager {
     }
 
     public double calculateTicketPrice(Enums.AgeType ageType, Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day, Enums.ShowingStatus showingStatus, Boolean loyaltyCard, Boolean holiday) {
-        File f = new File(FILENAME);
+        File f = new File(Constant.PRICEFILE);
         Price price = new Price();
         if (!f.exists()) {
             replace(price);
@@ -105,7 +110,7 @@ public class PriceManager {
     }
 
     public void updateTicketPrice(Enums.AgeType ageType, Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day, Enums.ShowingStatus showingStatus, Boolean loyaltyCard, double newPrice) {
-        File f = new File(FILENAME);
+        File f = new File(Constant.PRICEFILE);
 
         Price price = new Price();
         price = read();
@@ -189,7 +194,7 @@ public class PriceManager {
 
     public Price read() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.PRICEFILE));
             Price price = (Price) ois.readObject();
             ois.close();
             return price;
@@ -201,11 +206,11 @@ public class PriceManager {
     }
 
     public void replace(Price data) {
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.PRICEFILE);
         if (tempFile.exists())
             tempFile.delete();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.PRICEFILE));
             out.writeObject(data);
             out.flush();
             out.close();

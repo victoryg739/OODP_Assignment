@@ -16,4 +16,17 @@ public class Constant {
     public final static String CUSTOMERACCOUNTFILE = "data/customer.txt";
 
     public final static String MOVIEFILE = "data/movies.txt";
+    public final static String CINEPLEXFILE = "data/cineplex.txt";
+
+    public final static String SESSIONFILE = "data/session.txt";
+    public final static String PRICEFILE = "data/price.txt";
+
+    public final static String CINEMAFILE = "data/cinema.txt";
+
+    public final static String SETTINGFILE = "data/settings.txt";
+    public final static String HOLIDAYFILE = "data/holiday.txt";
+
+    public final static String BOOKINGFILE = "data/booking.txt";
+
+
 }

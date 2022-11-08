@@ -37,7 +37,18 @@ public class Booking implements Serializable {
 
     private String phoneNumber;
 
-    //Constructor
+    /**
+     * Booking CLass constructor
+     * @param cinemaNo
+     * @param cineplexLocation
+     * @param tid unique tid
+     * @param username
+     * @param phoneNumber
+     * @param movie
+     * @param tickets tickets along with booking
+     * @param session
+     * @param totalPrice totalprice for all tickets
+     */
     public Booking(String cinemaNo, String cineplexLocation, String tid, String username, String phoneNumber, Movie movie,
                    ArrayList<Ticket> tickets, Session session, double totalPrice) {
         this.tid = tid;
@@ -50,68 +61,80 @@ public class Booking implements Serializable {
         this.username = username;
         this.cineplexLocation = cineplexLocation;
     }
-
+    /**
+     * Get Ticket ID
+     * @return TID of booking
+     */
     public String getTID() {
         return tid;
     }
-
-    public void setTID(String tid) {
-        this.tid = tid;
-    }
-
+    /**
+     * Get Movie Object
+     * @return Movie Object
+     */
     public Movie getMovie() {
         return movie;
     }
 
+    /**
+     * Set Movie Object
+     * @param movie
+     */
     public void setMovie(Movie movie) {
         this.movie = movie;
     }
 
+    /**
+     * Get list of Tickets
+     * @return ArrayList<Ticket>
+     */
     public ArrayList<Ticket> getTickets() {
         return tickets;
     }
 
-    public void setTickets(ArrayList<Ticket> tickets) {
-        this.tickets = tickets;
-    }
-
+    /**
+     * Get Session Object
+     * @return Session Object
+     */
     public Session getSession() {
         return session;
     }
 
+    /**
+     * Set Session Object
+     * @param session
+     */
     public void setSession(Session session) {
         this.session = session;
     }
 
+    /**
+     * Get total price of the booking transaction
+     * @return totalPrice
+     */
     public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
+    /**
+     * Get Customer ID
+     * @return customerId
+     */
     public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
+    /**
+     * Get Customer Username
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
 
-    public String getCineplexLocation() {
-        return cineplexLocation;
-    }
-
-    public void setCineplexLocation(String cineplexLocation) {
-        this.cineplexLocation = cineplexLocation;
-    }
-
-
+    /**
+     * Print Booking Summary
+     */
     public void printBookingSummary() {
         int seatCount = 1;
         println("Booking Summary: ");
@@ -127,6 +150,10 @@ public class Booking implements Serializable {
         }
     }
 
+    /**
+     * Print Email Booking Summary
+     * @return String of the summary
+     */
     public String printEmailBookingSummary() {
         return "<h3> Dear " + username + ", </h3> <br>" +
                 "Thank you for using Moblima <br>" +

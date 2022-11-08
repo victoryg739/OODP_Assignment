@@ -17,9 +17,12 @@ public class MenuMovieInfo extends MenuBase {
         this.movie = movie;
     }
 
-    /*
-      Print out all the movie information
-     */
+    /**
+     * Print out all the movie information
+     * Ask user if they want to purchase tickets
+     *
+     * @return corresponding Menus
+     **/
 
     public MenuBase execute() {
         printHeader("Movie Information");
