@@ -36,8 +36,10 @@ public class Booking implements Serializable{
     //cineplex Location
     private String cineplexLocation;
 
+    private String phoneNumber;
+
     //Constructor
-    public Booking (String cinemaNo, String cineplexLocation, String tid, String username, Movie movie,
+    public Booking (String cinemaNo, String cineplexLocation, String tid, String username, String phoneNumber, Movie movie,
                     ArrayList<Ticket> tickets, Session session, double totalPrice) {
         this.tid = tid;
         this.cinemaNo = cinemaNo;
@@ -45,7 +47,7 @@ public class Booking implements Serializable{
         this.tickets = tickets;
         this.session = session;
         this.totalPrice = totalPrice;
-//        this.customerId = customerId;
+        this.phoneNumber = phoneNumber;
         this.username = username;
         this.cineplexLocation = cineplexLocation;
     }
@@ -107,6 +109,7 @@ public class Booking implements Serializable{
     public void setCineplexLocation(String cineplexLocation) {
         this.cineplexLocation = cineplexLocation;
     }
+
 
     public void printBookingSummary() {
         int seatCount =1;

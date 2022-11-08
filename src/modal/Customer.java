@@ -6,16 +6,17 @@ public class Customer implements Serializable {
     private String username;
     private String password;
 
-
+    private String phoneNumber;
     private String email;
 
     private int customerID;
     private ArrayList<Booking> bookings;
 
-    public Customer(String username, String password, String email)  {
+    public Customer(String username, String password, String email, String phoneNumber)  {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.bookings = new ArrayList<>();
     }
 
@@ -37,7 +38,13 @@ public class Customer implements Serializable {
 
     public int getCustomerID() {return customerID;}
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public ArrayList<Booking> getBookings() {
         return bookings;

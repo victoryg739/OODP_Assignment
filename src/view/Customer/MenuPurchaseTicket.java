@@ -58,6 +58,8 @@ public class MenuPurchaseTicket extends MenuBase {
 
         printHeader("Menu for Purchasing Ticket:");
         cineplexController.printByMovieId(movie.getId());
+        Customer customer = customerController.readByCustomerID(tempId);
+        String phoneNumber = customer.getPhoneNumber();
         Session session = null;
         int choice = readIntInput("Please Choose a session by SessionId (0 to return): ");
         if (choice == 0) return new MenuListMovie(this);
@@ -152,7 +154,7 @@ public class MenuPurchaseTicket extends MenuBase {
             if (confirm("Confirm booking? ")) {
                 //Create the booking transaction
                 Booking booking = new Booking(session.getCinema().getCinemaNo(), cineplexLocation, tid,
-                        username, movie, tickets, session, totalPrice);
+                        username, phoneNumber, movie, tickets, session, totalPrice);
                 println("Booking successful");
                 booking.printBookingSummary();
                 movieController.updateMovie(11, movie.getId(), tickets.size());
