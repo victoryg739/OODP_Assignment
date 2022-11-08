@@ -11,6 +11,8 @@ import static view.utilF.read;
 public class CustomerController {
     public final static String FILENAME = "data/customer.txt";
 
+    private static Scanner sc = new Scanner(System.in);
+
     public CustomerController() {
 
     }
@@ -165,6 +167,7 @@ public class CustomerController {
             return false;
         }
     }
+
 
 
 }

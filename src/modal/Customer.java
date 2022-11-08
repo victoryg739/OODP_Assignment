@@ -12,6 +12,8 @@ public class Customer implements Serializable {
     private int customerID;
     private ArrayList<Booking> bookings;
 
+    private String phoneNumber;
+
     public Customer(String username, String password, String email)  {
         this.username = username;
         this.password = password;
@@ -68,4 +70,7 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 }
