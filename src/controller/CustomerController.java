@@ -11,6 +11,15 @@ import static view.utilF.read;
 public class CustomerController {
     public final static String FILENAME = "data/customer.txt";
 
+    private String customerUsername;
+    private String password;
+    private String password2;
+    private String email;
+    private boolean consistentPassword = false;
+    private String phoneNumber;
+
+    private static Scanner sc = new Scanner(System.in);
+
     public CustomerController() {
 
     }
@@ -82,26 +91,6 @@ public class CustomerController {
         return new ArrayList<Customer>();
     }
 
-    //request user for username and email to verify a user
-    public static Customer login() {
-        // Login
-        Customer customer = null;
-        do {
-            String username = read("Username: ");
-            String password = read("Password: ");
-            customer = readByUsername(username);
-            if (customer == null) {
-                System.out.println("Incorrect username or phone number, please try again.");
-            }
-            else { //Verfiy the password to get the correct Customer Object
-                if (customer.getPassword() == password) {
-                    return customer;
-                }
-            }
-        } while (customer == null);
-        return customer;
-    }
-
 
     public static Customer readByUsername(String valueToSearch) {
         ArrayList<Customer> allData = readAll();
@@ -164,6 +153,77 @@ public class CustomerController {
         } else {
             return false;
         }
+    }
+
+    public void registration(){
+        do {
+
+            customerUsername = read("Create customerUsername: ");
+
+            password = read("Create Password: ");
+            while (!validatePasswordStrength(password)) {
+                System.out.println("Please ensure password contains at least 8 characters, 1 Upper case, 1 Lower case, 1 special character ");
+                password = read("Create Password: ");
+            }
+            password2 = read("Re-Enter Password: ");
+
+
+            email = read("Enter email");
+            while (!isValidEmailAddress(email)) {
+                System.out.println("Please ensure you enter a valid Email");
+                email = read("Create Email: ");
+            }
+
+            phoneNumber = read("Enter Phone Number");
+
+            consistentPassword = password.equals(password2);
+
+            // Creating new customer account object
+            Customer customer = new Customer(customerUsername, password, email);
+
+
+            // Create new Customer account when the 2 input passwords match
+            if(consistentPassword){
+                this.createCustomer(customer);
+                System.out.println("You have registered successfully");
+            }
+            else {
+                System.out.println("Password not consistent. Enter again");
+            }
+        }
+        while(!consistentPassword);
+    }
+
+    public static boolean validatePasswordStrength(String password) {
+        // Checking lower alphabet in string
+        int n = password.length();
+        boolean hasLower = false, hasUpper = false,
+                hasDigit = false, specialChar = false;
+        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
+        for (char i : password.toCharArray())
+        {
+            if (Character.isLowerCase(i))
+                hasLower = true;
+            if (Character.isUpperCase(i))
+                hasUpper = true;
+            if (Character.isDigit(i))
+                hasDigit = true;
+            if (set.contains(i))
+                specialChar = true;
+        }
+
+        // Checking Validity of password
+        if (hasDigit && hasLower && hasUpper && specialChar && (n >= 8))
+            return true;
+        else
+            return false;
+    }
+
+    public boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
     }
 
 

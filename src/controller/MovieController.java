@@ -189,7 +189,6 @@ public class MovieController {
         }
         for (int i = 0; i < movieList.size(); i++) {
             Movie m = movieList.get(i);
-            System.out.println(m.getTitle());
             m.printMovie();
 
         }
@@ -197,12 +196,9 @@ public class MovieController {
     }
 
     /* A function to check if this movie is in the session */
-    public boolean validMovieSession(int movieID) {
-        ArrayList<Session> sessionList = sc.read();
-        for (int i = 0; i < sessionList.size(); i++) {
-            if (sessionList.get(i).getMovie().getId() == movieID) {
-                return true;
-            }
+    public boolean validMovie(int movieID) {
+        if(readByID(movieID) != null){
+            return true;
         }
         return false;
     }

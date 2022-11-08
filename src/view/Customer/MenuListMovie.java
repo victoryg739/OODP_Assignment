@@ -44,7 +44,12 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
-                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    if(mc.validMovie(movieID)) {
+                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    }else{
+                        print("Invalid movieID, try again.");
+                        nextMenu = this.getPreviousMenu();
+                    }
                     break;
                 case 2:
                     movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
@@ -68,7 +73,12 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
-                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    if(mc.validMovie(movieID)) {
+                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    }else{
+                        print("Invalid movieID, try again.");
+                        nextMenu = this.getPreviousMenu();
+                    }
                     break;
                 case 2:
                     movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
@@ -93,7 +103,12 @@ public class MenuListMovie extends MenuBase {
             switch (choice) {
                 case 1:
                     int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
-                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    if(mc.validMovie(movieID)) {
+                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    }else{
+                        print("Invalid movieID, try again.");
+                        nextMenu = this.getPreviousMenu();
+                    }
                     break;
                 case 2:
                     movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
