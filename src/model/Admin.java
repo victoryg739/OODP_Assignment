@@ -3,7 +3,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Admin implements Serializable {
+public class Admin implements Serializable , User{
 
     private String username;
     private String password;
