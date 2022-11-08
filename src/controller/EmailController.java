@@ -19,7 +19,6 @@ import static view.utilF.println;
 
 public class EmailController {
     CustomerController cc = new CustomerController();
-    BookingController bc = new BookingController();
     Session newSession = null;
     MimeMessage mimeMessage = null;
 
