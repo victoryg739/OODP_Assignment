@@ -10,14 +10,7 @@ import modal.Enums.*;
 import static view.utilF.print;
 import static view.utilF.println;
 
-/* ToDO list:
-    1. Change getLastID code
-    2. Delete by ID (change the code)
-    3. SortbySale and SortbyRating code
 
-
-*/
-// Database for Admin control //
 public class MovieController {
     public final static String FILENAME = "data/movies.txt";
     SessionController sc = new SessionController();

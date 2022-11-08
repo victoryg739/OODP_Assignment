@@ -22,10 +22,6 @@ import static view.utilF.println;
 public class EmailController {
     CustomerController cc = new CustomerController();
     BookingController bc = new BookingController();
-    //SETUP MAIL SERVER PROPERTIES
-    //DRAFT AN EMAIL
-    //SEND EMAIL
-
     Session newSession = null;
     MimeMessage mimeMessage = null;
 
@@ -42,7 +38,7 @@ public class EmailController {
         print("Email successfully sent!");
     }
 
-    public MimeMessage draftEmail(Booking booking) throws AddressException, MessagingException, IOException {
+    public MimeMessage draftEmail(Booking booking) throws MessagingException {
         String username = booking.getUsername();
         Customer c = cc.readByUsername(username);
         //System.out.println("customer is " + c.getUsername());

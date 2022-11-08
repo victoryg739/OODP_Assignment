@@ -41,16 +41,6 @@ public class MenuPurchaseTicket extends MenuBase {
         this.tempId = tempId;
         this.username = username;
     }
-
-
-    /*
-     List the cineplex with the movie
-     List all the slots available according to the movie information
-     Ask user to select slots, seats.
-     Ask user information whether they are student or senior
-     Get user's information about name, email and phone number
-     Provide the total ticket price to the user
-     */
     public MenuBase execute() throws IOException, AddressException, MessagingException {
 
         printHeader("Menu for Purchasing Ticket:");
@@ -68,13 +58,6 @@ public class MenuPurchaseTicket extends MenuBase {
         //get all the available seats for the selected session
         ArrayList<ArrayList<Seat>> seatList = session.getSeats();
         int col = seatList.get(0).size(), row = seatList.size();
-        for(int i=0; i<seatList.size();i++){
-            for(int j=0;j<seatList.get(0).size();j++){
-                System.out.println(seatList.get(i).get(j).getRow());
-                System.out.println(seatList.get(i).get(j).getCol());
-                System.out.println(seatList.get(i).get(j).isTaken());
-            }
-        }
 
         String cineplexLocation = cineplexController.returnLocationBySessionId(session.getSessionId());
 
@@ -122,24 +105,31 @@ public class MenuPurchaseTicket extends MenuBase {
             else if (movie.getShowingStatus() == Enums.ShowingStatus.PREVIEW) {
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
             }
-            else if (confirm("Are you eligible for student discount?")) { //student price
+            //IF cinemaClass == PLATINUM
+            else if (cinemaClass == Enums.ClassCinema.PLATINUM) {
+                ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
+            }
+            //Check for Student Price
+            else if (confirm("Are you eligible for student discount?")) {
                 age = Enums.AgeType.STUDENT;
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
             }
-            else if (confirm("Are you eligible for senior discount?")) { //senior price
+            //Check for Senior Price
+            else if (confirm("Are you eligible for senior discount?")) {
                 age = Enums.AgeType.SENIOR;
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
             }
-            else if (confirm("Do you have loyalty/credit card?")) { //loyalty card/credit card price
+            //Check for Loyalty Card
+            else if (confirm("Do you have loyalty card?")) {
                 loyaltyCard = true;
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
             }
-            else { //neither student nor senior
+            else { //Normal Price
                 age = Enums.AgeType.NORMAL;
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
             }
 
-            //Check for Blockbuster
+            //Check for Blockbuster ==> +1 to ticketPrice
             ticketPrice = priceManager.isBlockbuster(movieType, ticketPrice);
             //for every seat, generate 1 ticket according to the ticket type
             for (Seat seat : selected) {
