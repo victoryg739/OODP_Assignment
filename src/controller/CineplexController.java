@@ -191,6 +191,38 @@ public class CineplexController {
         }
         return null;
     }
+    public void printByMovieId(int movieId){
+        ArrayList<Cineplex> allData = read();
+        System.out.printf("| %10s | %10s | %10s | %15s | %-30s | %n", "SessionNo","Location", "CinemaNo", "CinemaClass","DateTime");
+
+        String location = "";
+        for(int i =0 ;i<allData.size() ; i++) {
+            location = allData.get(i).getLocation();
+            if(allData.get(i).getSessions() != null ){
+                for(int j=0; j<allData.get(i).getSessions().size();j++){
+                    if(allData.get(i).getSessions().get(j).getMovie().getId() == movieId)
+                        System.out.printf("| %10s | %10s | %10s | %15s | %30s | %n",allData.get(i).getSessions().get(j).getSessionId(),location,allData.get(i).getSessions().get(j).getCinema().getCinemaNo(),allData.get(i).getSessions().get(j).getCinema().getClassCinema(),allData.get(i).getSessions().get(j).getDateTime());
+                    }
+            }
+        }
+
+    }
+
+    public String returnLocationBySessionId(int sessionId) {
+        ArrayList<Cineplex> allData = read();
+        String location = "";
+        for (int i = 0; i < allData.size(); i++) {
+            location = allData.get(i).getLocation();
+            if(allData.get(i).getSessions() != null ){
+                for(int j=0; j<allData.get(i).getSessions().size();j++) {
+                    if(sessionId == allData.get(i).getSessions().get(j).getSessionId()){
+                        return location;
+                    }
+                }
+            }
+        }
+        return location;
+    }
 
     public void printAllCineplex() {
         ArrayList<Cineplex> cp = read();

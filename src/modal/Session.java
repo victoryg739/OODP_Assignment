@@ -22,19 +22,20 @@ public class Session implements Serializable {
 
     }
     public Session(int row, int col , Cinema cinema, Movie movie, int sessionId, Date dateTime, Enums.Day day) {
-        for(int i=0;i<row;i++)
-        {
+        for(int i=0;i<row;i++) {
             this.seats.add(new ArrayList<Seat>());
-            for(int j=0;j<col;j++)
-            {
+            for(int j=0;j<col;j++) {
                 Seat tmpSeat = new Seat();
                 if(i<4 && j<2){
-                    tmpSeat = new Seat(j,i,false,true);
+                    tmpSeat = new Seat(j,i,false,true,false);
 
+                }else if(i>row-2) {
+                    tmpSeat = new Seat(j, i, false, false, true);
                 }else{
-                    tmpSeat = new Seat(j,i,false,false);
+                    tmpSeat = new Seat(j,i,false,false,false);
 
                 }
+
                 this.seats.get(i).add(tmpSeat);
             }
         }
@@ -53,7 +54,7 @@ public class Session implements Serializable {
         {
             for(int j=1;j<=col;j++)
             {
-                Seat tmpseat = new Seat(j,i,false,false);
+                Seat tmpseat = new Seat(j,i,false,false,false);
                 this.seats.get(i).add(tmpseat);
             }
         }
@@ -95,6 +96,8 @@ public class Session implements Serializable {
     public void setDay(Enums.Day day) {
         this.day = day;
     }
+
+    public void setSeatPlan(ArrayList<ArrayList<Seat>> seatList) {this.seats = seatList;}
 
 
 }

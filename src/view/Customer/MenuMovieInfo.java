@@ -28,7 +28,7 @@ public class MenuMovieInfo extends MenuBase {
         movie.printALLInfoMovie();
 
         print("1. Buy Ticket\n" +
-                "2. Back to previous menu\n" +
+                "2. Back to Customer Main Menu\n" +
                 "3. Quit");
         int choice = readIntInput("Choose: ");
         MenuBase nextMenu;
@@ -47,7 +47,7 @@ public class MenuMovieInfo extends MenuBase {
                 nextMenu = new Quit(null);
                 break;
             default:
-                nextMenu = this.getPreviousMenu();
+                nextMenu = new MenuCustomerMain(this);
         }
         return nextMenu;
     }

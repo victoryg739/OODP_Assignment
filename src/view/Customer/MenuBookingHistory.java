@@ -32,7 +32,6 @@ public class MenuBookingHistory extends MenuBase {
      */
     public MenuBase execute() {
         printHeader("Booking History:");
-        println("Please Login Using Username and Email");
         BookingController bookingController = new BookingController();
         int count = 1;
         int seatCount = 1;
@@ -42,7 +41,7 @@ public class MenuBookingHistory extends MenuBase {
 
         //for each booking made, display the respective details:
         for (Booking book : booking) {
-            println("");
+            print(" ");
             print("Booking " + count + " : \n" +
                     "TID: " + book.getTID() +"\n" +
                     "Show Time: " + book.getSession().getDateTime() + " " + book.getMovie().getRuntime() + "\n" +
@@ -53,7 +52,7 @@ public class MenuBookingHistory extends MenuBase {
             for (Ticket ticket : book.getTickets()) {
                 System.out.print(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
                 seatCount++;
-                print("");
+                print(" ");
             }
             seatCount = 1;
         }
