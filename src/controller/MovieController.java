@@ -301,7 +301,12 @@ public class MovieController {
         }
     }
 
-    /* Replace existing file to a new file */
+
+    /**
+     * Replace existing file to a new file
+     * @param filename            File name of the file that it going to be replace
+     * @param data                Data is the new data to be updated
+     */
     public void replaceExistingFile(String filename, ArrayList<Movie> data) {
         File tempFile = new File(filename);
         if (tempFile.exists())

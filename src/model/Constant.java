@@ -12,5 +12,7 @@ public class Constant {
     public static SimpleDateFormat datetimeFormat = new SimpleDateFormat(SESSION_TIMEDATE);
 
     public final static String MOVIEFILE = "data/movies.txt";
+    public final static String HOLIDAYFILE = "data/holidays.txt";
 
+    public final static String SETTINGFILE = "data/settings.txt";
 }
