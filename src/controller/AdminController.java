@@ -3,11 +3,14 @@ package controller;
 import modal.*;
 import java.io.*;
 import java.util.*;
-import modal.Enums.*;
-import view.MenuBase;
-import view.admin.MenuStaffMain;
 
-import static view.utilF.read;
+/**
+ * The main controller class, of the program, controlling the access to database
+ * Also, Contains logic for Authentication (Login) and Registration
+ * @author Tan Wei Zhong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 
 public class AdminController {
@@ -24,7 +27,10 @@ public class AdminController {
     public AdminController(){
 
     }
-    // Create a new Admin account and add into adminAccounts.txt
+    /**
+     * Create a new Admin account and add into adminAccounts.txt
+     * @param admin          admin object
+     */
     public void createAdmin(Admin admin){
         ArrayList<Admin> allData = new ArrayList<Admin>();
         File tempFile = new File(FILENAME);
@@ -63,9 +69,9 @@ public class AdminController {
     }
 
     /**
-     * READ and return an Admin by searching for one with matching username in the Database file
+     * READ and return an Admin username by searching for one with matching username in the adminAccounts.txt file
      * @param valueToSearch     username of admin to search for
-     * @return Admin            Return username if found, else null object
+     * @return String           Return admin username if found, else null object
      */
     public String readByUsername(String valueToSearch) {
         ArrayList<Admin> allData = read();
@@ -78,7 +84,7 @@ public class AdminController {
     }
 
     /**
-     * READ and return an Admin by searching for one with matching password in the Database file
+     * READ and return an admin password by searching for one with matching password in the Database file
      * @param valueToSearch     password of admin to search for
      * @return Admin            Return password if found, else null object
      */

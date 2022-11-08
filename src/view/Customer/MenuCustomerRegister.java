@@ -1,15 +1,9 @@
 package view.Customer;
 
 import controller.CustomerController;
-import modal.Admin;
-import modal.Customer;
 import view.MenuBase;
-import view.admin.MenuStaffLogin;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 import static view.utilF.*;
 

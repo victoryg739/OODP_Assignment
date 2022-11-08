@@ -90,3 +90,9 @@ public class Holiday implements Serializable {
         this.name = name;
     }
 }
+
+/**
+ * Create a new Admin account and add into adminAccounts.txt
+ * @param admin          admin object
+ * @return LocalDate    this Holiday's date
+ */
