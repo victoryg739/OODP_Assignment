@@ -11,5 +11,9 @@ public class Constant {
     public static SimpleDateFormat dateFormatLong = new SimpleDateFormat(FORMAT_DATE_LONG);
     public static SimpleDateFormat datetimeFormat = new SimpleDateFormat(SESSION_TIMEDATE);
 
+    public final static String ADMINACCOUNTSFILE = "data/admin.txt";
+
+    public final static String CUSTOMERACCOUNTFILE = "data/customer.txt";
+
     public final static String MOVIEFILE = "data/movies.txt";
 }
