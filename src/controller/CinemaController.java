@@ -12,25 +12,19 @@ import static view.utilF.*;
 public class CinemaController {
     private CineplexController cineplexController = new CineplexController();
 
-    public final static String FILENAME = "data/cinema.txt";
-
-
-    public final static int NAME = 0;
-    public final static int CINEMAS = 1;
-
     public void append(int row, int col, String cinemaNo, Enums.ClassCinema classCinema, ArrayList<Session> sessions) {
         Cinema cinema = new Cinema(row, col, cinemaNo, classCinema, sessions);
 
         // Creates an ArrayList of movie
         ArrayList<Cinema> allData = new ArrayList<Cinema>();
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.CINEMAFILE);
 
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = read();
         try {
             // Write the data to the movie
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.CINEMAFILE));
             allData.add(cinema);
             out.writeObject(allData);
             out.flush();
@@ -42,11 +36,11 @@ public class CinemaController {
     }
 
     public void replace(ArrayList<Cinema> data) {
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.CINEMAFILE);
         if (tempFile.exists())
             tempFile.delete();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.CINEMAFILE));
             out.writeObject(data);
             out.flush();
             out.close();
@@ -63,7 +57,7 @@ public class CinemaController {
     @SuppressWarnings("unchecked")
     public ArrayList<Cinema> read() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.CINEMAFILE));
             ArrayList<Cinema> cinemaListing = (ArrayList<Cinema>) ois.readObject();
             ois.close();
             return cinemaListing;
@@ -226,8 +220,6 @@ public class CinemaController {
                         System.out.printf(",");
                     }
                     System.out.print(cf.get(a).getSessions().get(i).getSessionId());
-
-
                 }
             } else {
                 System.out.print("No Sessions");

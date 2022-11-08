@@ -38,7 +38,8 @@ public class Session implements Serializable {
      * @param cinema    This is the cinema object that contains cinema information
      * @param movie     This is the movie object that contains movie information.
      * @param sessionId This is the unique sessionId
-     *                  dateTime
+     * @param dateTime  This is the datetime
+     * @param day       This is the day in a range
      */
     public Session(int row, int col, Cinema cinema, Movie movie, int sessionId, Date dateTime, Enums.Day day) {
         for (int i = 0; i < row; i++) {
@@ -64,20 +65,21 @@ public class Session implements Serializable {
         this.day = day;
         this.cinema = cinema;
     }
-
+    /**
+     * Gets the seatingplan
+     *
+     * @return seatingplan got seats.
+     */
     public ArrayList<ArrayList<Seat>> getSeats() {
         return seats;
     }
 
-    public void setSeats(int row, int col) {
-        for (int i = 1; i <= row; i++) {
-            for (int j = 1; j <= col; j++) {
-                Seat tmpseat = new Seat(j, i, false, false, false);
-                this.seats.get(i).add(tmpseat);
-            }
-        }
-    }
 
+    /**
+     * Gets the cinema object
+     *
+     * @return cinema object.
+     */
     public Cinema getCinema() {
         return cinema;
     }
@@ -86,6 +88,11 @@ public class Session implements Serializable {
         this.cinema = cinema;
     }
 
+    /**
+     * Gets the movie object
+     *
+     * @return movie object.
+     */
     public Movie getMovie() {
         return movie;
     }
@@ -94,30 +101,54 @@ public class Session implements Serializable {
         this.movie = movie;
     }
 
+    /**
+     * Gets the session id
+     *
+     * @return session id.
+     */
     public int getSessionId() {
         return sessionId;
     }
 
-    public void setSessionId(int sessionId) {
-        this.sessionId = sessionId;
-    }
-
+    /**
+     * Gets the date time
+     *
+     * @return dateTime.
+     */
     public Date getDateTime() {
         return dateTime;
     }
 
+    /**
+     * Change the datetime of the session
+     *
+     * @param dateTime This changes the datetime
+     */
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
-
+    /**
+     * Gets the enums date range
+     *
+     * @return enums date range.
+     */
     public Enums.Day getDay() {
         return day;
     }
-
+    /**
+     * Change the day of the session
+     *
+     * @param day This changes the day
+     */
     public void setDay(Enums.Day day) {
         this.day = day;
     }
 
+    /**
+     * Change the seating plan of the session
+     *
+     * @param seatList This changes seating plan
+     */
     public void setSeatPlan(ArrayList<ArrayList<Seat>> seatList) {
         this.seats = seatList;
     }

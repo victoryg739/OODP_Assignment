@@ -2,6 +2,13 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Represents a seat inside a cinema
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class Seat implements Serializable {
 
     private int col;
@@ -15,6 +22,15 @@ public class Seat implements Serializable {
     public Seat() {
     }
 
+    /**
+     * Creates a new Cinema with multiple sessions
+     *
+     * @param row      This is the row of the seating plan of the cinema
+     * @param col      This is the column of the seating plan of the cinema
+     * @param taken    This is whether seat is taken
+     * @param stairWay This is whether the seat is not avaliable and is a stariway instead
+     * @param couple   This is whether the seat is a couple seat
+     */
     public Seat(int col, int row, boolean taken, boolean stairWay, boolean couple) {
         this.col = col;
         this.row = row;
@@ -24,22 +40,29 @@ public class Seat implements Serializable {
         this.couple = couple;
     }
 
+    /**
+     * Gets the seat column
+     *
+     * @return seat column
+     */
     public int getCol() {
         return col;
     }
 
-    public void setCol(int col) {
-        this.col = col;
-    }
-
+    /**
+     * Gets the seat row
+     *
+     * @return seat row
+     */
     public int getRow() {
         return row;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
+    /**
+     * Gets the whether seat is taken
+     *
+     * @return seat taken
+     */
     public boolean isTaken() {
         return taken;
     }
@@ -48,6 +71,11 @@ public class Seat implements Serializable {
         this.taken = taken;
     }
 
+    /**
+     * Gets the whether seat is taken
+     *
+     * @return seat taken
+     */
     public boolean isSelected() {
         return selected;
     }
@@ -56,19 +84,22 @@ public class Seat implements Serializable {
         this.selected = selected;
     }
 
+    /**
+     * Gets the whether is stairway
+     *
+     * @return is a stairway
+     */
     public boolean isStairWay() {
         return stairWay;
     }
 
-    public void setStairWay(boolean stairWay) {
-        this.stairWay = stairWay;
-    }
 
+    /**
+     * Gets the whether is a couple seat
+     *
+     * @return is a couple seat
+     */
     public boolean isCouple() {
         return couple;
-    }
-
-    public void setCouple(boolean couple) {
-        this.couple = couple;
     }
 }

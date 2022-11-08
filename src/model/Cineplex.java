@@ -54,7 +54,7 @@ public class Cineplex implements Serializable {
     /**
      * Change the cinemas of this cineplex
      *
-     * @param cinemas This is the change cinemas.
+     * @param cinemas This changes cinemas.
      *                Should be in an arraylist
      */
     public void setCinemas(ArrayList<Cinema> cinemas) {
@@ -73,7 +73,7 @@ public class Cineplex implements Serializable {
     /**
      * Change the sessions of this cineplex
      *
-     * @param sessions This is the change sessions.
+     * @param sessions This changes sessions.
      *                 Should be in an arraylist
      */
     public void setSessions(ArrayList<Session> sessions) {
