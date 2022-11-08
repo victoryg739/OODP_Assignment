@@ -12,6 +12,10 @@ import static view.utilF.println;
 
 public class HolidayController {
 
+    /**
+     * Read the database file of Movie
+     * @return arraylist of Holiday
+     */
     public ArrayList<Holiday> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.HOLIDAYFILE));
