@@ -14,11 +14,12 @@ public class Customer implements Serializable {
 
     private String phoneNumber;
 
-    public Customer(String username, String password, String email)  {
+    public Customer(String username, String password, String email, String phoneNumber)  {
         this.username = username;
         this.password = password;
         this.email = email;
         this.bookings = new ArrayList<>();
+        this.phoneNumber = phoneNumber;
     }
 
     public String getUsername() {
