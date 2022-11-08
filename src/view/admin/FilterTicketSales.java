@@ -7,12 +7,28 @@ import java.util.ArrayList;
 
 import static view.utilF.*;
 
+/**
+ Menu to Filter Ticket sales
+ @author Bryan Tay
+ @version 1.0
+ @since 2022-08-11
+ */
+
+
 public class FilterTicketSales extends MenuBase {
     SettingController sc = new SettingController();
 
     public FilterTicketSales(MenuBase initialMenu) {
         super(initialMenu);
     }
+
+    /**
+     * Display filter review ticket sales for customer menu
+     * Ask user to enable or disable
+     * and bring user back to configure menu.
+     *
+     * @return configure menu
+     */
 
     @Override
     public MenuBase execute() {

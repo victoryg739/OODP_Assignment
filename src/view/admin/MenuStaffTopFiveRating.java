@@ -1,23 +1,27 @@
 package view.admin;
 
 import controller.MovieController;
-import modal.Enums;
-import modal.Movie;
 import view.MenuBase;
 import view.Quit;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+/**
+ Menu to list the top 5 movies by rating
+ @author Bryan Tay
+ @version 1.0
+ @since 2022-08-11
+ */
 
 import static view.utilF.*;
 
 public class MenuStaffTopFiveRating extends MenuBase {
-    private int userID;
     MovieController mc = new MovieController();
     public MenuStaffTopFiveRating(MenuBase initialMenu) {
         super(initialMenu);
     }
+    /**
+     * List all the top 5 movies by rating which is sorted
+     * @return return to the corresponding menu that the user has selected
+     */
 
     @Override
     public MenuBase execute() {

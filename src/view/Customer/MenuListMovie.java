@@ -60,7 +60,7 @@ public class MenuListMovie extends MenuBase {
                     nextMenu =  new MenuStaffTopFiveRating(this);
                     break;
                 default:
-                    nextMenu = this.getPreviousMenu();
+                    nextMenu = new MenuListMovie(this);
                     break;
             }
         /* Flag == 1 implies that it only shows Sales */
@@ -88,7 +88,7 @@ public class MenuListMovie extends MenuBase {
                     nextMenu =  new MenuStaffTopFiveSales(this);
                     break;
                 default:
-                    nextMenu = this.getPreviousMenu();
+                    nextMenu = new MenuListMovie(this);
                     break;
             }
             /* implies that it is default which only shows both Sales and ratings */
@@ -121,7 +121,7 @@ public class MenuListMovie extends MenuBase {
                     nextMenu = new MenuStaffTopFiveRating(this);
                     break;
                 default:
-                    nextMenu = this.getPreviousMenu();
+                    nextMenu = new MenuListMovie(this);
                     break;
             }
         }

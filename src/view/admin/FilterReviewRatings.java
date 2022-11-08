@@ -2,11 +2,17 @@ package view.admin;
 
 import controller.SettingController;
 import view.MenuBase;
-
 import java.util.ArrayList;
-
 import static view.utilF.print;
 import static view.utilF.readIntInput;
+
+
+/**
+ Menu to Filter Review Ratings
+ @author Bryan Tay
+ @version 1.0
+ @since 2022-08-11
+ */
 
 public class FilterReviewRatings extends MenuBase {
     SettingController sc = new SettingController();
@@ -14,6 +20,14 @@ public class FilterReviewRatings extends MenuBase {
     public FilterReviewRatings(MenuBase initialMenu) {
         super(initialMenu);
     }
+
+    /**
+     * Display filter review ratings for customer menu
+     * Ask user to enable or disable
+     * and bring user back to configure menu.
+     *
+     * @return configure menu
+     */
 
     @Override
     public MenuBase execute() {

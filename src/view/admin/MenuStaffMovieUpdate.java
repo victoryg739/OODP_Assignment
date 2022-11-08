@@ -8,23 +8,28 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static view.utilF.*;
-
+/**
+ Menu to update movie by updating the attributes
+ @author Bryan Tay
+ @version 1.0
+ @since 2022-08-11
+ */
 public class MenuStaffMovieUpdate extends MenuBase {
+    MovieController mc = new MovieController();
     public MenuStaffMovieUpdate(MenuBase initialMenu) {
         super(initialMenu);
     }
-
-    MovieController mc = new MovieController();
+    /**
+     * Display update Movie menu
+     * Ask user to input information about the individual attributes
+     * and bring user back to configure menu.
+     *
+     * @return configure menu
+     */
 
     public MenuBase execute() {
-        /*
-        For testing purposes:
-                1. Comment mc.listMovies();
-                2. Uncomment mc.listALLMovies();
-         */
         printHeader("Updating Movie");
         mc.listMovies();
-        //mc.listALLMoviesSettings();
         print("Select movie to be updated: ");
         int movieID = readIntInput("Enter movie ID:");
 
@@ -90,7 +95,7 @@ public class MenuStaffMovieUpdate extends MenuBase {
             case 8:
                 int noOfCast = readIntInput("Enter No of casts: (at least 2)");
                 if (noOfCast < 2){
-                    System.out.println("Invalid casts!");
+                    print("Invalid casts!");
                     return this.getPreviousMenu();
                 }
                 ArrayList<String> casts = new ArrayList<>();
@@ -113,11 +118,11 @@ public class MenuStaffMovieUpdate extends MenuBase {
                 mc.updateMovie(choice, movieID, ss);
                 break;
             default:
-                System.out.println("Wrong input!\n" +
+                print("Wrong input!\n" +
                         "Returning to menu...");
                 return this.getPreviousMenu();
         }
-        System.out.println("Successfully updated Movie details!");
+        print("Successfully updated Movie details!");
         return this.getPreviousMenu();
     }
 }
