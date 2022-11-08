@@ -114,7 +114,6 @@ public class MenuPurchaseTicket extends MenuBase {
             else if (confirm("Are you eligible for student discount?")) { //student price
                 age = Enums.AgeType.STUDENT;
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
-
             }
             else if (confirm("Are you eligible for senior discount?")) { //senior price
                 age = Enums.AgeType.SENIOR;
