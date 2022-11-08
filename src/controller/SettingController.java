@@ -15,12 +15,7 @@ import static view.utilF.print;
 public class SettingController {
 
 
-
     // Write Settings into .txt //
-    /**
-     * A function to write Settings into .txt
-     * @param message            a String to put into
-     */
     public void writeSetting(ArrayList<String> message) {
         try {
             FileWriter myWriter = new FileWriter(Constant.SETTINGFILE);
