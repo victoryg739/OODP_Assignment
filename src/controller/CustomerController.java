@@ -120,15 +120,6 @@ public class CustomerController {
         return null;
     }
 
-    public Customer readByCustomerID(int valueToSearch) {
-        ArrayList<Customer> allData = readAll();
-        for (int i = 0; i < allData.size(); i++) {
-            Customer u = allData.get(i);
-            if (u.getCustomerID() == valueToSearch)
-                return u;
-        }
-        return null;
-    }
 
     public static ArrayList<Booking> retrieveByUsername(String valueToSearch) {
         ArrayList<Customer> allData = readAll();

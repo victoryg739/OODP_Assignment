@@ -16,7 +16,6 @@ public class MenuListMovie extends MenuBase {
         super(initialMenu);
     }
 
-
     public MenuBase execute() {
         MenuBase nextMenu;
 

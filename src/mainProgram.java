@@ -109,11 +109,9 @@ public class mainProgram {
 
             Cinema cinema3 = new Cinema(10, 10, "A3", Enums.ClassCinema.NORMAL, null);
             CustomerController customerController = new CustomerController();
-            Customer customer = new Customer("a", "a", "riven", "999");
-            int temp = customer.getCustomerID();
+            Customer customer = new Customer("a", "a", "rivenbryan@gmail.com", "999");
             //System.out.println(temp);
             customer.setCustomerID(0);
-            temp = customer.getCustomerID();
             //System.out.println(temp);
             customerController.createCustomer(customer);
             ArrayList<Ticket> tickets = new ArrayList<>();

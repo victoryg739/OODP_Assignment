@@ -11,7 +11,6 @@ public class Review implements Serializable {
 
     /**
      * Constructor for Review
-     *
      * @param comment user's comment for the review
      * @param rating  user's rating for the review
      */
@@ -20,41 +19,28 @@ public class Review implements Serializable {
         this.rating = rating;
     }
 
-    public Review() {
-
-    }
-
+    /**
+     * Get Comment
+     * @return comment
+     */
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
+    /**
+     * Get Rating
+     * @return rating
+     */
     public double getRating() {
         return rating;
     }
 
+    /**
+     * Set Rating
+     * @param rating
+     */
     public void setRating(int rating) {
         this.rating = rating;
-    }
-
-    /**
-     * Check if a review already exists
-     *
-     * @param o object need to be checked
-     * @return boolean value of the whether a review exists
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Review)) return false;
-
-        Review review = (Review) o;
-
-        if (rating != review.rating) return false;
-        return getComment() != null ? getComment().equals(review.getComment()) : review.getComment() == null;
     }
 
 }
