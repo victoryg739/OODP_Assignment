@@ -1,5 +1,6 @@
 package controller;
 
+import model.Constant;
 import model.Enums.MovieRating;
 import model.Enums.MovieType;
 import model.Enums.ShowingStatus;

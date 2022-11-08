@@ -21,16 +21,12 @@ public class MenuPurchaseTicket extends MenuBase {
     private PriceManager priceManager;
     private MovieController movieController;
     private CustomerController customerController;
-
     private SessionController sessionController;
-
     private CinemaController cinemaController;
     private BookingController bookingController;
-
-    private int tempId;
     private String username;
 
-    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie, int tempId, String username) {
+    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie,String username) {
         super(previousMenu);
         this.movie = movie;
         this.cineplexController = new CineplexController();
@@ -40,15 +36,23 @@ public class MenuPurchaseTicket extends MenuBase {
         this.sessionController = new SessionController();
         this.cinemaController = new CinemaController();
         this.bookingController = new BookingController();
-        this.tempId = tempId;
         this.username = username;
     }
 
+    /**
+     * List all the sessions available according to the movie inputted previously
+     * Ask user to select sessions and seats.
+     * Check for Holiday, PREVIEW Showing Status and PLATINUM cinemaClass
+     * Ask user information whether they are student or senior
+     * Provide the total ticket price to the user
+     * Once booking is confirmed, send a confirmation email according to the Customer's email
+     * @return  MenuCustomerMain
+     */
     public MenuBase execute() throws IOException, AddressException, MessagingException {
 
         printHeader("Menu for Purchasing Ticket:");
         cineplexController.printByMovieId(movie.getId());
-        Customer customer = customerController.readByCustomerID(tempId);
+        Customer customer = customerController.readByUsername(username);
         String phoneNumber = customer.getPhoneNumber();
         Session session = null;
         int choice = readIntInput("Please Choose a session by SessionId (0 to return): ");
@@ -99,7 +103,6 @@ public class MenuPurchaseTicket extends MenuBase {
                 throw new RuntimeException(e);
             }
             holiday = h.isHoliday(finalDate);
-
             //IF sessionDate is during a holiday
             if (holiday) {
                 ticketPrice = priceManager.calculateTicketPrice(age, movieType, cinemaClass, day, movie.getShowingStatus(), loyaltyCard, holiday);
@@ -162,6 +165,7 @@ public class MenuPurchaseTicket extends MenuBase {
                     seat.setSelected(false);
                     seat.setTaken(true);
                 }
+                customer.addBookings(booking);
                 customerController.CustomerUpdate(username, booking);
                 sessionController.updateSeat(session.getSessionId(), selected, movie, session);
                 EmailController mail = new EmailController();

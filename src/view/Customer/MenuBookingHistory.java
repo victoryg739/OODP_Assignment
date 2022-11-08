@@ -11,15 +11,18 @@ import static view.utilF.*;
 
 
 public class MenuBookingHistory extends MenuBase {
-
-    private int tempID;
     private String username;
 
-    public MenuBookingHistory(MenuBase initialMenu, int tempID, String username) {
+    public MenuBookingHistory(MenuBase initialMenu,String username) {
         super(initialMenu);
-        this.tempID = tempID;
         this.username = username;
     }
+    /**
+     * Display user booking history menu
+     * Display all user booking detail
+     * Return to previous menu when done
+     * @return to previous menu
+     */
 
     public MenuBase execute() {
         printHeader("Booking History:");

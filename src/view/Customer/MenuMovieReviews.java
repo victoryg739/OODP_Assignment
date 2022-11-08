@@ -12,11 +12,18 @@ public class MenuMovieReviews extends MenuBase {
     private final Movie movie;
     MovieController mc = new MovieController();
 
+    /**
+     * Menu to enable user to input the reviews and ratings towards the movie
+     */
     public MenuMovieReviews(MenuBase previousMenu, Movie movie) {
         super(previousMenu);
         this.movie = movie;
     }
 
+    /**
+     * Ask user to input reviews and ratings
+     * @return return the movie infor menu
+     */
     public MenuBase execute() {
 
         if (!mc.validReviewMovie(movie.getId())) {

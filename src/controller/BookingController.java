@@ -37,25 +37,6 @@ public class BookingController {
         return new ArrayList<Booking>();
     }
 
-    /**
-     * Delete a Transaction in the Database file, based on the TID and MovieGoer's username attribute passed
-     *
-     * @param TID        Transaction ID of Transaction which will be deleted
-     * @param customerId customerId of Transaction which will be deleted
-     */
-    public void delete(String TID, int customerId) {
-        ArrayList<Booking> allData = read();
-        Booking booking = null;
-        ArrayList<Booking> returnData = new ArrayList<Booking>();
-
-        for (int i = 0; i < allData.size(); i++) {
-            booking = allData.get(i);
-            if (booking.getTID().equals(TID) && booking.getCustomerId() == customerId)
-                continue;
-            returnData.add(booking);
-        }
-        replaceExistingFile(FILENAME, returnData);
-    }
 
     /**
      * Overwrite Database file with new data of list of Admin
@@ -77,20 +58,6 @@ public class BookingController {
         }
     }
 
-    public ArrayList<Booking> readbyId(int customerId) {
-        ArrayList<Booking> allData = read();
-        Booking booking;
-        int dbId;
-        ArrayList<Booking> returnData = new ArrayList<Booking>();
-        for (int i = 0; i < allData.size(); i++) {
-            booking = allData.get(i);
-            dbId = booking.getCustomerId();
-            if (dbId == customerId) {
-                returnData.add(booking);
-            }
-        }
-        return returnData;
-    }
 
     public ArrayList<Booking> readbyUsername(String username) {
         ArrayList<Booking> allData = read();

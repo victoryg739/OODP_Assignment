@@ -20,8 +20,12 @@ public class MenuSearchMovie extends MenuBase {
     public MenuSearchMovie(MenuBase initialMenu) {
         super(initialMenu);
     }
-
-
+    /**
+     * Ask user to input come part of movie title
+     * Display list of movies whose title contains the string provided by the user
+     * Ask user which movie to check information
+     * @return corresponding menu that the user has selected
+     **/
     public MenuBase execute() {
         MenuBase nextMenu;
 
@@ -39,7 +43,6 @@ public class MenuSearchMovie extends MenuBase {
         printDivider();
         int flag = setc.returnResult(); // a variable to determine what to show to the user
         /* Flag == 2 implies that it only shows Rating */
-
         if (flag == 2) {
             print("1. View Movie Details\n" +
                     "2. Set Movie Review\n" +
@@ -54,7 +57,6 @@ public class MenuSearchMovie extends MenuBase {
                 case 2:
                     movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
                     nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
-
                     break;
                 case 3:
                     nextMenu = new MenuStaffTopFiveRating(this);
