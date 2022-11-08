@@ -177,19 +177,22 @@ public class Movie implements Serializable {
     }
     public void printALLInfoMovie(){
         //Movie Title
-        System.out.println("Title: " + title);
+        print("Title: " + title);
 
         //Movie Status
-        System.out.println("Showing Status: " + showingStatus);
+        print("Showing Status: " + showingStatus);
 
         //Movie Content Rating (PG13, N16, R21, ...)
-        System.out.println("Content Rating: " + ContentRating);
+        print("Content Rating: " + ContentRating);
 
         //Movie Runtime
-        System.out.println("Runtime: " + runtime + " minutes");
+        print("Runtime: " + runtime + " minutes");
+
+        //Movie Type
+        print("Movie Type: " + type);
 
         //Movie Director
-        System.out.println("Director: " + director);
+        print("Director: " + director);
 
         //Movie Cast
         System.out.print("Cast: ");
@@ -199,23 +202,23 @@ public class Movie implements Serializable {
         }
 
         //print the list of cast
-        System.out.println(s.toString());
+        print(s.toString());
 
         //Opening date of the movie
-        System.out.println("Opening: " + DateStart);
+        print("Opening: " + DateStart);
 
         //Ending date of the movie
-        System.out.println("Ending: " + DateEnd);
+        print("Ending: " + DateEnd);
 
         //Movie Synopsis
-        System.out.println("Synopsis: " + synopsis);
+        print("Synopsis: " + synopsis);
 
         //Movie Overall Rating
-        System.out.println("Overall Rating:");
+        print("Overall Rating:");
         System.out.printf("%,.2f\n", getRating());
 
         //Show the last 5 rating together with comments
-        System.out.println("Last 5 reviews: ");
+        print("Last 5 reviews: ");
         int count = 0;
         if (getRating() != 0) {
             for (Review r : getReviews()) {

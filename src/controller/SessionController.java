@@ -169,15 +169,26 @@ public class SessionController {
                         System.out.print("[X]");
                     }
                     else if (seat.isSelected()) {
-                        System.out.print("[#]");
+                        if (seat.isCouple() && j%2 == 0) {
+                            System.out.print("[# ");
+                        }
+                        else if  (seat.isCouple() && j%2 == 1) {
+                            System.out.print(" #]");
+                        }
+                        else {
+                            System.out.print("[#]");
+                        }
+
                     }
                     else if (seat.isStairWay()) {
 
                         System.out.print("   ");
-                    }else if(seat.isCouple() && j%2 == 0) {
-                        System.out.print("[");
-                    }else if(seat.isCouple() && j%2 == 1){
-                        System.out.print("    ]");
+                    }
+                    else if(seat.isCouple() && j%2 == 0) {
+                        System.out.print("[  ");
+                    }
+                    else if(seat.isCouple() && j%2 == 1){
+                        System.out.print("  ]");
                     }
                     else
                         System.out.print("[ ]");
@@ -202,8 +213,9 @@ public class SessionController {
      * check whether the seat is avaliable, and update the information in the data base
      */
 
-    public Seat chooseSeats(ArrayList<ArrayList<Seat>> seatList, int row, int col) {
+    public ArrayList<Seat> chooseSeats(ArrayList<ArrayList<Seat>> seatList, int row, int col) {
         println("Please choose your seat(s).");
+        ArrayList<Seat> selectedSeats = new ArrayList<>();
         int i,j;
         do {
             i = readSeatInput("Please input row number",1,row);
@@ -216,10 +228,20 @@ public class SessionController {
             }
             else break;
         } while (true);
-
+        if (seatList.get(i).get(j).isCouple()) {
+            if (j%2 == 0) {
+                seatList.get(i).get(j+1).setSelected(true);
+                selectedSeats.add(seatList.get(i).get(j+1));
+            }
+            else {
+                seatList.get(i).get(j-1).setSelected(true);
+                selectedSeats.add(seatList.get(i).get(j-1));
+            }
+        }
         seatList.get(i).get(j).setSelected(true);
+        selectedSeats.add(seatList.get(i).get(j));
         println("Selected Seat: Row: " + (i+1) + " Col: " + (j+1));
-        return seatList.get(i).get(j);
+        return selectedSeats;
     }
 
     public void updateSeat(Object valueToSearch, ArrayList<Seat> selectedSeat, Movie movie, Session session) {

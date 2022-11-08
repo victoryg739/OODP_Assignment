@@ -75,8 +75,10 @@ public class MenuPurchaseTicket extends MenuBase {
         while (confirm("Continue to select seats?")) {
             printHeader("Select Seats");
             sessionController.displaySeats(seatList, row, col);
-            Seat selectedSeat = sessionController.chooseSeats(seatList, row, col);
-            selected.add(selectedSeat);
+            ArrayList<Seat> selectedSeat = sessionController.chooseSeats(seatList, row, col);
+            for (int i = 0; i < selectedSeat.size(); i++) {
+                selected.add(selectedSeat.get(i));
+            }
         }
         println("This is your finalized seats");
         sessionController.displaySeats(seatList, row, col);
