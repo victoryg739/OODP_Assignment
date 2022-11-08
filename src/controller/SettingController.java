@@ -1,6 +1,8 @@
 package controller;
 
 
+import model.Constant;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,13 +13,12 @@ import java.util.Scanner;
 import static view.utilF.print;
 
 public class SettingController {
-    public final static String FILENAME = "data/settings.txt";
 
 
     // Write Settings into .txt //
     public void writeSetting(ArrayList<String> message) {
         try {
-            FileWriter myWriter = new FileWriter(FILENAME);
+            FileWriter myWriter = new FileWriter(Constant.SETTINGFILE);
             for (String s : message) {
                 myWriter.write(s);
                 myWriter.write("\n");
@@ -30,7 +31,7 @@ public class SettingController {
 
 
     public void replaceFile(ArrayList<String> message) {
-        File myObj = new File(FILENAME);
+        File myObj = new File(Constant.SETTINGFILE);
         if (myObj.delete()) {
             writeSetting(message);
         } else {
@@ -42,7 +43,7 @@ public class SettingController {
     public ArrayList<String> readSettings() {
         try {
             ArrayList<String> settingList = new ArrayList<>();
-            File myObj = new File(FILENAME);
+            File myObj = new File(Constant.SETTINGFILE);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();

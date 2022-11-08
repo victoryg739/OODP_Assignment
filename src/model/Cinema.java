@@ -97,7 +97,7 @@ public class Cinema implements Serializable {
     /**
      * Change the sessions of the cinema
      *
-     * @param sessions This is the change sessions.
+     * @param sessions This changes sessions.
      *                 Should be in an arraylist
      */
     public void setSessions(ArrayList<Session> sessions) {

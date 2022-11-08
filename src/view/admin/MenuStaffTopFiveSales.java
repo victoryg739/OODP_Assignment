@@ -30,7 +30,7 @@ public class MenuStaffTopFiveSales extends MenuBase {
     public MenuBase execute() {
         MenuBase nextMenu;
         printHeader("Top 5 Movies by Sales");
-        mc.listTopSalesBySales();
+        mc.listTopBySales();
         print("1. Go back to Previous Menu\n" +
                 "2. Quit\n");
         int choice = readIntInput("Choice: ");
