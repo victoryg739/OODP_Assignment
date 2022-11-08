@@ -53,9 +53,6 @@ public class MenuPurchaseTicket extends MenuBase {
      */
     public MenuBase execute() throws IOException, AddressException, MessagingException {
 
-        CineplexController cc = new CineplexController();
-        ArrayList<Session> sessionList = new ArrayList<>();
-
         printHeader("Menu for Purchasing Ticket:");
         cineplexController.printByMovieId(movie.getId());
         Customer customer = customerController.readByCustomerID(tempId);
@@ -66,21 +63,31 @@ public class MenuPurchaseTicket extends MenuBase {
         else if (choice < 0) print("Invalid input! Please try again.");
         else session = sessionController.readById(choice);
 
+        System.out.println(session.getSessionId());
+        System.out.println(session.getSeats().get(0).size());
         //get all the available seats for the selected session
         ArrayList<ArrayList<Seat>> seatList = session.getSeats();
         int col = seatList.get(0).size(), row = seatList.size();
+        for(int i=0; i<seatList.size();i++){
+            for(int j=0;j<seatList.get(0).size();j++){
+                System.out.println(seatList.get(i).get(j).getRow());
+                System.out.println(seatList.get(i).get(j).getCol());
+                System.out.println(seatList.get(i).get(j).isTaken());
+            }
+        }
 
         String cineplexLocation = cineplexController.returnLocationBySessionId(session.getSessionId());
 
         ArrayList<Seat> selected = new ArrayList<Seat>();
-
-        while (confirm("Continue to select seats?")) {
+        boolean flag = true;
+        while (flag) {
             printHeader("Select Seats");
             sessionController.displaySeats(seatList, row, col);
             ArrayList<Seat> selectedSeat = sessionController.chooseSeats(seatList, row, col);
             for (int i = 0; i < selectedSeat.size(); i++) {
                 selected.add(selectedSeat.get(i));
             }
+            flag = confirm("Continue to select seats?");
         }
         println("This is your finalized seats");
         sessionController.displaySeats(seatList, row, col);
@@ -163,6 +170,7 @@ public class MenuPurchaseTicket extends MenuBase {
                     seat.setSelected(false);
                     seat.setTaken(true);
                 }
+                customerController.CustomerUpdate(username, booking);
                 sessionController.updateSeat(session.getSessionId(), selected, movie, session);
                 EmailController mail = new EmailController();
                 mail.setupServerProperties();

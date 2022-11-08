@@ -24,6 +24,8 @@ public class MenuCustomerRegister extends MenuBase {
     private String email;
     private boolean consistentPassword = false;
 
+    private String phoneNumber;
+
     private CustomerController customerCtrl = new CustomerController();
 
     private static Scanner sc = new Scanner(System.in);
@@ -65,10 +67,6 @@ public class MenuCustomerRegister extends MenuBase {
 
             // Display to get new account Username and Password
             customerUsername = read("Create customerUsername: ");
-//            while (!validEmail(customerUsername)) {
-//                System.out.println("Please ensure");
-//                customerUsername = read("Create Email: ");
-//            }
             password = read("Create Password: ");
             while (!validatePasswordStrength(password)) {
                 System.out.println("Please ensure password contains at least 8 characters, 1 Upper case, 1 Lower case, 1 special character ");
@@ -76,11 +74,12 @@ public class MenuCustomerRegister extends MenuBase {
             }
             password2 = read("Re-Enter Password: ");
             email = read("Enter email");
+            phoneNumber = read("Enter Phone Number: ");
 
             consistentPassword = password.equals(password2);
 
             // Creating new customer account object
-            Customer customer = new Customer(customerUsername, password, email);
+            Customer customer = new Customer(customerUsername, password, email, phoneNumber);
 
 
             // Create new Customer account when the 2 input passwords match
