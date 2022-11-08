@@ -19,5 +19,7 @@ public class Constant {
 
     public final static String CINEMAFILE = "data/cinema.txt";
 
+    public final static String SETTINGFILE = "data/settings.txt";
+    public final static String HOLIDAYFILE = "data/holiday.txt";
 
 }

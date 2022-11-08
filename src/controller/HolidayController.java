@@ -1,5 +1,6 @@
 package controller;
 
+import model.Constant;
 import model.Holiday;
 
 import java.io.*;
@@ -11,21 +12,9 @@ import static view.utilF.println;
 
 public class HolidayController {
 
-    /**
-     * File name of Database file to access
-     */
-    public final static String FILENAME = "data/holidays.txt";
-
-    /**
-     * READ and return every Cineplex in the Database file
-     * If Database file not found, ignore error and return empty list
-     *
-     * @return Model.{@link Holiday}   Return list of Holidays if any, else empty list
-     */
-    @SuppressWarnings("unchecked")
     public ArrayList<Holiday> read() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.HOLIDAYFILE));
             ArrayList<Holiday> holidayListing = (ArrayList<Holiday>) ois.readObject();
             ois.close();
             return holidayListing;
@@ -42,17 +31,18 @@ public class HolidayController {
      * If attributes are not allowed, throw error and do nothing
      * If Database file exist, existing records are read and new holiday object is aopended before saving
      * If Database file does not exist, holiday object will be written to a new file and saved
-     *
-     * @param holidayDate Date of this Holiday
+     * @param holidayDate   Date of this Holiday
+     * @param name          Name of the holiday
      */
+
     public void create(String name, Date holidayDate) {
         Holiday holiday = new Holiday(name, holidayDate);
         ArrayList<Holiday> allData = new ArrayList<Holiday>();
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.HOLIDAYFILE);
         if (tempFile.exists())
             allData = read();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.HOLIDAYFILE));
             allData.add(holiday);
             out.writeObject(allData);
             out.flush();
@@ -62,6 +52,10 @@ public class HolidayController {
         }
     }
 
+    /**
+     * Delete a Holiday in the Database file, based on the date attribute passed
+     * @param valueToSearch     Date of Holiday to be deleted
+     */
     public void delete(Date valueToSearch) {
         ArrayList<Holiday> allData = read();
         ArrayList<Holiday> returnData = new ArrayList<Holiday>();
@@ -72,10 +66,15 @@ public class HolidayController {
                 returnData.add(h);
         }
 
-        replaceExistingFile(FILENAME, returnData);
-        System.out.println("Holiday have been deleted!");
+        replaceExistingFile(Constant.HOLIDAYFILE, returnData);
+        print("Holiday have been deleted!");
     }
 
+    /**
+     * Update a Holiday in the Database file, based on the date attribute passed
+     * @param oldDate       old date that user wants to replace
+     * @param newDate       new date that user wants to change
+     */
     public void update(Date oldDate, Date newDate) {
         ArrayList<Holiday> allData = read();
         ArrayList<Holiday> returnData = new ArrayList<Holiday>();
@@ -88,7 +87,7 @@ public class HolidayController {
             }
             returnData.add(h);
         }
-        replaceExistingFile(FILENAME, returnData);
+        replaceExistingFile(Constant.HOLIDAYFILE, returnData);
 
     }
 
@@ -106,7 +105,10 @@ public class HolidayController {
         }
         return false;
     }
-
+    /**
+     * List down all the holiday
+     * @return boolean          returns if there is a list of holiday
+     */
     public boolean listAllHolidays() {
         ArrayList<Holiday> holList = read();
         if (holList.isEmpty()) {
@@ -118,11 +120,19 @@ public class HolidayController {
         }
         return true;
     }
-
+    /**
+     * Print each holiday
+     */
     public void printHol(Holiday holiday) {
+
         System.out.println(holiday.getName() + " " + holiday.getFormatedDate());
     }
 
+    /**
+     * Replace existing file to a new file
+     * @param filename            File name of the file that it going to be replace
+     * @param data                Data is the new data to be updated
+     */
     public void replaceExistingFile(String filename, ArrayList<Holiday> data) {
         File tempFile = new File(filename);
         if (tempFile.exists())
