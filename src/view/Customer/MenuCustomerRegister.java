@@ -38,7 +38,7 @@ public class MenuCustomerRegister extends MenuBase {
 
         switch (choice) {
             case 1:
-                customerCtrl.registration();
+                customerCtrl.customerRegistration();
                 break;
             case 2:
                 return this.getPreviousMenu();

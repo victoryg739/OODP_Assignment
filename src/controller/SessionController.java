@@ -253,9 +253,12 @@ public class SessionController {
                 if(sessionListing.get(j).getSeats()  != null) {
                     seatList = sessionListing.get(j).getSeats(); //old list of seat in cinema
                 }
+                System.out.println(sessionListing.get(j).getSessionId());
                 for (Seat s : selectedSeat) {
                     int row = s.getRow();
                     int col = s.getCol();
+                    System.out.println(row + "," + col);
+
                     seatList.get(row).get(col).setTaken(true);
                 }
             }

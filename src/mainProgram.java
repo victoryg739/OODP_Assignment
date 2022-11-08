@@ -108,7 +108,7 @@ public class mainProgram {
 
             Cinema cinema3 = new Cinema(10,10,"A3", Enums.ClassCinema.NORMAL, null);
             CustomerController customerController = new CustomerController();
-            Customer customer = new Customer("a", "a", "riven");
+            Customer customer = new Customer("a", "a", "riven", "999");
             int temp = customer.getCustomerID();
             //System.out.println(temp);
             customer.setCustomerID(0);
@@ -211,7 +211,7 @@ public class mainProgram {
         ac.createAdmin(rootAdmin);
 
         // Creating Customer account to test
-        Customer testCustomer = new Customer("twz","twz", "rivenbryan@gmail.com");
+        Customer testCustomer = new Customer("twz","twz", "bert0007@e.ntu.edu.sg", "999");
         CustomerController cc = new CustomerController();
         cc.createCustomer(testCustomer);
 

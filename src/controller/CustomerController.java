@@ -155,7 +155,7 @@ public class CustomerController {
         }
     }
 
-    public void registration(){
+    public void customerRegistration(){
         do {
 
             customerUsername = read("Create customerUsername: ");
@@ -179,7 +179,7 @@ public class CustomerController {
             consistentPassword = password.equals(password2);
 
             // Creating new customer account object
-            Customer customer = new Customer(customerUsername, password, email);
+            Customer customer = new Customer(customerUsername, password, email, phoneNumber);
 
 
             // Create new Customer account when the 2 input passwords match
