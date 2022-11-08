@@ -155,7 +155,7 @@ public class CustomerController {
         }
     }
 
-    public void registration(){
+    public void customerRegistration(){
         do {
 
             customerUsername = read("Create customerUsername: ");
