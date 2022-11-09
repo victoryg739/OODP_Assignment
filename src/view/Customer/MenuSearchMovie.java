@@ -10,6 +10,13 @@ import view.admin.MenuStaffTopFiveSales;
 import java.util.ArrayList;
 
 import static view.utilF.*;
+/**
+ * Menu Interface for Customer to search for the movie they want
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 public class MenuSearchMovie extends MenuBase {
 

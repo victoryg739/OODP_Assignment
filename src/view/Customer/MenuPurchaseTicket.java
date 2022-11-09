@@ -15,6 +15,13 @@ import java.util.Date;
 
 import static view.utilF.*;
 
+/**
+ * Menu Interface for Customer to purchase tickets for the selected movie
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuPurchaseTicket extends MenuBase {
     private Movie movie;
     private CineplexController cineplexController;

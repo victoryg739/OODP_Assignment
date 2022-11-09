@@ -9,6 +9,14 @@ import java.util.ArrayList;
 
 import static view.utilF.*;
 
+/**
+ * Menu Interface for Customer to view their booking history
+ * 1 Customer can have multiple booking transactions
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 public class MenuBookingHistory extends MenuBase {
     private String username;

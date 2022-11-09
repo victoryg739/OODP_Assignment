@@ -57,6 +57,11 @@ public class CustomerController {
         }
     }
 
+    /**
+     * Read the database file of Customer
+     *
+     * @return arraylist of Customer files
+     */
     public static ArrayList<Customer> readAll() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.CUSTOMERACCOUNTFILE));
@@ -133,6 +138,12 @@ public class CustomerController {
             return false;
     }
 
+    /**
+     * UPDATE a Customer by updating based on Customer Username
+     *
+     * @param valueToSearch   username of Customer to search for
+     * @param newBooking New Booking of Movie's attribute
+     */
     public void CustomerUpdate(Object valueToSearch, Booking newBooking) {
         ArrayList<Customer> customerList = readAll();
         ArrayList<Booking> bookingList = new ArrayList<Booking>();
@@ -150,6 +161,11 @@ public class CustomerController {
         replace(customerList);
     }
 
+    /**
+     * Replace existing file to a new file
+     *
+     * @param data ArrayList of Customer objects
+     */
     public void replace(ArrayList<Customer> data) {
         File tempFile = new File(Constant.CUSTOMERACCOUNTFILE);
         if (tempFile.exists())

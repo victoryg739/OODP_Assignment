@@ -7,6 +7,13 @@ import view.MenuBase;
 
 import static view.utilF.*;
 
+/**
+ * Menu Interface for Customer to set reviews for a particular movie
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 public class MenuMovieReviews extends MenuBase {
     private final Movie movie;

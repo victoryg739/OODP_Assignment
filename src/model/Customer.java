@@ -3,6 +3,14 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Represents a Customer Object
+ * 1 Customer
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class Customer implements Serializable, User {
     private String username;
     private String password;

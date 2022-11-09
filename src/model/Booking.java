@@ -6,6 +6,14 @@ import java.util.ArrayList;
 import static view.utilF.print;
 import static view.utilF.println;
 
+/**
+ * Represents a booking transaction
+ * A booking can have multiple tickets or seats
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class Booking implements Serializable {
     // tid = XXXYYYYMMDDhhmm (Y : year, M : month, D : day, h : hour, m :
     //minutes, XXX : cinema code in letters)

@@ -7,6 +7,14 @@ import model.Enums.MovieType;
 
 import java.io.Serializable;
 
+/**
+ * Represents a ticket
+ * 1 Ticket is for 1 seat
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 public class Ticket implements Serializable {
 
