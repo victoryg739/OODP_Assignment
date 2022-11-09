@@ -16,9 +16,11 @@ public class SettingController {
 
 
     // Write Settings into .txt //
+
     /**
      * Write Settings into the database .txt file
-     * @param message           An array of string to add/replace into the text file
+     *
+     * @param message An array of string to add/replace into the text file
      */
     public void writeSetting(ArrayList<String> message) {
         try {
@@ -35,7 +37,8 @@ public class SettingController {
 
     /**
      * Replace existing file to a new file
-     * @param message           An array of string to add/replace into the text file
+     *
+     * @param message An array of string to add/replace into the text file
      */
     public void replaceFile(ArrayList<String> message) {
         File myObj = new File(Constant.SETTINGFILE);
@@ -48,7 +51,8 @@ public class SettingController {
 
     /**
      * Function to readSetting files and return a list of Settings
-     * @return            An array of string to add/replace into the text file
+     *
+     * @return An array of string to add/replace into the text file
      */
     public ArrayList<String> readSettings() {
         try {
@@ -71,7 +75,8 @@ public class SettingController {
 
     /**
      * Function to check if the ticket is enabled
-     * @return             true implies that ticket is already enabled
+     *
+     * @return true implies that ticket is already enabled
      */
     public boolean enableTicket(String value) {
         ArrayList<String> settingList;
@@ -92,11 +97,12 @@ public class SettingController {
      */
 
     /**
-     *  Function to set 3 cases
-     *  1. Show Rating
-     *  2. Show Review
-     *  3. Show both Rating and Review
-     * @return             flag that determines the decision that admin chose for the moviegoer's display
+     * Function to set 3 cases
+     * 1. Show Rating
+     * 2. Show Review
+     * 3. Show both Rating and Review
+     *
+     * @return flag that determines the decision that admin chose for the moviegoer's display
      */
     public int returnResult() {
         // Default: Only show rating and sales
@@ -114,8 +120,9 @@ public class SettingController {
         }
 
     }
+
     /**
-     *  Print the current setting for moviegoer
+     * Print the current setting for moviegoer
      */
     public void printSettings() {
         print("Currently Display enabled:");

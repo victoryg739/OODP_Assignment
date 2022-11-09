@@ -22,6 +22,7 @@ public class MenuMovieReviews extends MenuBase {
 
     /**
      * Ask user to input reviews and ratings
+     *
      * @return return the movie infor menu
      */
     public MenuBase execute() {

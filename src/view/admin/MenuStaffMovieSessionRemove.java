@@ -10,13 +10,12 @@ import static view.utilF.readIntInput;
 
 public class MenuStaffMovieSessionRemove extends MenuBase {
 
-    public MenuStaffMovieSessionRemove(MenuBase initialMenu) {
-        super(initialMenu);
-    }
-
     private CineplexController cineplexCtrler = new CineplexController();
     private CinemaController cinemaCtrler = new CinemaController();
     private SessionController sessionCtrler = new SessionController();
+    public MenuStaffMovieSessionRemove(MenuBase initialMenu) {
+        super(initialMenu);
+    }
 
     public MenuBase execute() {
         printHeader("Deleting Session");

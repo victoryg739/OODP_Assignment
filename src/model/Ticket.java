@@ -23,6 +23,7 @@ public class Ticket implements Serializable {
 
     /**
      * Booking CLass constructor
+     *
      * @param age
      * @param day
      * @param classCinema
@@ -41,6 +42,7 @@ public class Ticket implements Serializable {
 
     /**
      * Get Day
+     *
      * @return Day
      */
     public Day getDay() {
@@ -49,6 +51,7 @@ public class Ticket implements Serializable {
 
     /**
      * Set Day
+     *
      * @param day
      */
     public void setDay(Day day) {
@@ -57,6 +60,7 @@ public class Ticket implements Serializable {
 
     /**
      * Get Seat
+     *
      * @return seat
      */
     public Seat getSeat() {

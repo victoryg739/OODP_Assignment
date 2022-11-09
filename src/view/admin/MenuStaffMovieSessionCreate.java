@@ -16,15 +16,13 @@ import static view.utilF.*;
 
 public class MenuStaffMovieSessionCreate extends MenuBase {
 
-    public MenuStaffMovieSessionCreate(MenuBase initialMenu) {
-        super(initialMenu);
-    }
-
     private CineplexController cineplexCtrler = new CineplexController();
     private CinemaController cinemaCtrler = new CinemaController();
     private MovieController movieCtrler = new MovieController();
     private SessionController sessionCtrler = new SessionController();
-
+    public MenuStaffMovieSessionCreate(MenuBase initialMenu) {
+        super(initialMenu);
+    }
 
     public MenuBase execute() {
         printHeader("Creating a new movie session");

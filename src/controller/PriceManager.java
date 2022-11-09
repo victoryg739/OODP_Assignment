@@ -1,5 +1,6 @@
 package controller;
 
+import model.Constant;
 import model.Enums;
 import model.Price;
 
@@ -7,9 +8,13 @@ import java.io.*;
 
 
 public class PriceManager {
-
-    public final static String FILENAME = "data/price.txt";
-
+    /**
+     * if is blockbuster then we add blockbuster price
+     *
+     * @param movieType This is the enum movie type
+     * @param price     This is the price
+     * @return the calculated price
+     */
     public double isBlockbuster(Enums.MovieType movieType, double price) {
         if (movieType == Enums.MovieType.BLOCKBUSTER) {
             return price + 1;
@@ -18,8 +23,20 @@ public class PriceManager {
         }
     }
 
+    /**
+     * Calculate the ticket price based on the parameters
+     *
+     * @param ageType       This is age of moviegoer
+     * @param movieType     This is the type of movie
+     * @param classCinema   This is the cinema class
+     * @param day           This is the range of the day
+     * @param showingStatus This is the showing status
+     * @param loyaltyCard   This is to see whether there is loyalty card
+     * @param holiday       This is to see whether the session is a holiday
+     * @return the calculated price
+     */
     public double calculateTicketPrice(Enums.AgeType ageType, Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day, Enums.ShowingStatus showingStatus, Boolean loyaltyCard, Boolean holiday) {
-        File f = new File(FILENAME);
+        File f = new File(Constant.PRICEFILE);
         Price price = new Price();
         if (!f.exists()) {
             replace(price);
@@ -104,8 +121,18 @@ public class PriceManager {
 
     }
 
+    /**
+     * Update the ticket price based on the parameters
+     *
+     * @param ageType       This is age of moviegoer
+     * @param movieType     This is the type of movie
+     * @param classCinema   This is the cinema class
+     * @param day           This is the range of the day
+     * @param showingStatus This is the showing status
+     * @param loyaltyCard   This is to see whether there is loyalty card
+     */
     public void updateTicketPrice(Enums.AgeType ageType, Enums.MovieType movieType, Enums.ClassCinema classCinema, Enums.Day day, Enums.ShowingStatus showingStatus, Boolean loyaltyCard, double newPrice) {
-        File f = new File(FILENAME);
+        File f = new File(Constant.PRICEFILE);
 
         Price price = new Price();
         price = read();
@@ -187,9 +214,14 @@ public class PriceManager {
         replace(price);
     }
 
+    /**
+     * Read and return Price in the Database file
+     *
+     * @return database of Price    if empty return empty price object
+     */
     public Price read() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.PRICEFILE));
             Price price = (Price) ois.readObject();
             ois.close();
             return price;
@@ -200,12 +232,17 @@ public class PriceManager {
         return new Price();
     }
 
+    /**
+     * Replace price database file
+     *
+     * @param data price object
+     */
     public void replace(Price data) {
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.PRICEFILE);
         if (tempFile.exists())
             tempFile.delete();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.PRICEFILE));
             out.writeObject(data);
             out.flush();
             out.close();

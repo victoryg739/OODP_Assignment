@@ -1,6 +1,7 @@
 package controller;
 
 import model.Booking;
+import model.Constant;
 import model.Customer;
 
 import java.io.*;
@@ -8,9 +9,18 @@ import java.util.*;
 
 import static view.utilF.read;
 
-public class CustomerController {
-    public final static String FILENAME = "data/customer.txt";
+/**
+ * The main controller class, of the program, controlling the access to DataFile
+ * Also, Contains logic for Authentication (Login) and Registration
+ *
+ * @author Tan Wei Zhong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
+public class CustomerController {
+
+    private static Scanner sc = new Scanner(System.in);
     private String customerUsername;
     private String password;
     private String password2;
@@ -18,24 +28,26 @@ public class CustomerController {
     private boolean consistentPassword = false;
     private String phoneNumber;
 
-    private static Scanner sc = new Scanner(System.in);
-
     public CustomerController() {
 
     }
 
-    // Creates a movie and writes it to customer.txt
+    /**
+     * Create a new Customer account and add into customerAccounts.txt
+     *
+     * @param customer customer object
+     */
     public static void createCustomer(Customer customer) {
         // Creates an ArrayList of customer
         ArrayList<Customer> allData = new ArrayList<Customer>();
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.CUSTOMERACCOUNTFILE);
 
         // If it exists then read() the existing data
         if (tempFile.exists())
             allData = readAll();
         try {
             // Write the data to the movie
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.CUSTOMERACCOUNTFILE));
             allData.add(customer);
             out.writeObject(allData);
             out.flush();
@@ -43,6 +55,82 @@ public class CustomerController {
         } catch (IOException e) {
             // ignore error
         }
+    }
+
+    public static ArrayList<Customer> readAll() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.CUSTOMERACCOUNTFILE));
+            ArrayList<Customer> customerListing = (ArrayList<Customer>) ois.readObject();
+            ois.close();
+            return customerListing;
+        } catch (ClassNotFoundException | IOException e) {
+            // ignore error
+        }
+        return new ArrayList<Customer>();
+    }
+
+    /**
+     * READ and return a Customer username by searching for one with matching username in the customerAccounts.txt file
+     *
+     * @param valueToSearch username of admin to search for
+     * @return String           Return Customer username if found, else null object
+     */
+    public static Customer readByUsername(String valueToSearch) {
+        ArrayList<Customer> allData = readAll();
+        for (int i = 0; i < allData.size(); i++) {
+            Customer c = allData.get(i);
+            if (c.getUsername().equals(valueToSearch))
+                return c;
+        }
+        return null;
+    }
+
+    /**
+     * READ and return a customer password by searching for one with matching password in the customerAccounts.txt file
+     *
+     * @param valueToSearch password of customer to search for
+     * @return String            Return password if found, else null object
+     */
+
+    public static Customer readByPassword(String valueToSearch) {
+        ArrayList<Customer> allData = readAll();
+        for (int i = 0; i < allData.size(); i++) {
+            Customer c = allData.get(i);
+            if (c.getPassword().equals(valueToSearch))
+                return c;
+        }
+        return null;
+    }
+
+    /**
+     * Function to prompt user to create a STRONG password
+     * which is called by MenuStaffRegister
+     *
+     * @param password password input from user
+     * @return Boolean            Returns true if user input a STRONG password , else false
+     */
+    public static boolean validatePasswordStrength(String password) {
+        // Checking lower alphabet in string
+        int n = password.length();
+        boolean hasLower = false, hasUpper = false,
+                hasDigit = false, specialChar = false;
+        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
+        for (char i : password.toCharArray()) {
+            if (Character.isLowerCase(i))
+                hasLower = true;
+            if (Character.isUpperCase(i))
+                hasUpper = true;
+            if (Character.isDigit(i))
+                hasDigit = true;
+            if (set.contains(i))
+                specialChar = true;
+        }
+
+        // Checking Validity of password
+        if (hasDigit && hasLower && hasUpper && specialChar && (n >= 8))
+            return true;
+        else
+            return false;
     }
 
     public void CustomerUpdate(Object valueToSearch, Booking newBooking) {
@@ -63,11 +151,11 @@ public class CustomerController {
     }
 
     public void replace(ArrayList<Customer> data) {
-        File tempFile = new File(FILENAME);
+        File tempFile = new File(Constant.CUSTOMERACCOUNTFILE);
         if (tempFile.exists())
             tempFile.delete();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.CUSTOMERACCOUNTFILE));
             out.writeObject(data);
             out.flush();
             out.close();
@@ -76,62 +164,14 @@ public class CustomerController {
         }
     }
 
-    public static ArrayList<Customer> readAll() {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
-            ArrayList<Customer> customerListing = (ArrayList<Customer>) ois.readObject();
-            ois.close();
-            return customerListing;
-        } catch (ClassNotFoundException | IOException e) {
-            // ignore error
-        }
-        return new ArrayList<Customer>();
-    }
-
-
-    public static Customer readByUsername(String valueToSearch) {
-        ArrayList<Customer> allData = readAll();
-        for (int i = 0; i < allData.size(); i++) {
-            Customer c = allData.get(i);
-            if (c.getUsername().equals(valueToSearch))
-                return c;
-        }
-        return null;
-    }
-
     /**
-     * READ and return an Admin by searching for one with matching email in the Database file
+     * Authenticates username and password entered by user with the username and password in the customerAccounts.txt file
+     * which is called by menuCustomerLogin
      *
-     * @param valueToSearch Email of admin to search for
-     * @return Admin            Return Admin if found, else null object
+     * @param username username input from user
+     * @param password password input from user
+     * @return Boolean            Return true if found, else false
      */
-
-    public static Customer readByPassword(String valueToSearch) {
-        ArrayList<Customer> allData = readAll();
-        for (int i = 0; i < allData.size(); i++) {
-            Customer c = allData.get(i);
-            if (c.getPassword().equals(valueToSearch))
-                return c;
-        }
-        return null;
-    }
-
-
-    public static ArrayList<Booking> retrieveByUsername(String valueToSearch) {
-        ArrayList<Customer> allData = readAll();
-        ArrayList<Booking> returnData = new ArrayList<>();
-        for (int i = 0; i < allData.size(); i++) {
-            Customer c = allData.get(i);
-            //compare the customer object with the one that login
-            if (c.getUsername().equals(valueToSearch)) { //if found correct
-                returnData = c.getBookings();
-                return returnData;
-            }
-
-        }
-        return null;
-    }
-
     public boolean authenticate(String username, String password) {
         // Case : There is no customer object in the file
         if (readByUsername(username) == null || readByPassword(password) == null) {
@@ -143,6 +183,12 @@ public class CustomerController {
         }
     }
 
+    /**
+     * Registers a new customer account by taking in the username and password input from the user
+     * Validates the password to ensure that it follows the guideline of a STRONG password
+     * Ensure password created is what user intended by prompting the user to re-enter password
+     * Writes the validated username and password into the customerAccounts.txt file
+     */
     public void customerRegistration() {
         do {
 
@@ -181,30 +227,12 @@ public class CustomerController {
         while (!consistentPassword);
     }
 
-    public static boolean validatePasswordStrength(String password) {
-        // Checking lower alphabet in string
-        int n = password.length();
-        boolean hasLower = false, hasUpper = false,
-                hasDigit = false, specialChar = false;
-        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
-        for (char i : password.toCharArray()) {
-            if (Character.isLowerCase(i))
-                hasLower = true;
-            if (Character.isUpperCase(i))
-                hasUpper = true;
-            if (Character.isDigit(i))
-                hasDigit = true;
-            if (set.contains(i))
-                specialChar = true;
-        }
-
-        // Checking Validity of password
-        if (hasDigit && hasLower && hasUpper && specialChar && (n >= 8))
-            return true;
-        else
-            return false;
-    }
-
+    /**
+     * Validate if user inputs an email address that follows valid email format
+     *
+     * @param email email input from user
+     * @return Boolean            Returns true if matches email format, else false
+     */
     public boolean isValidEmailAddress(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);

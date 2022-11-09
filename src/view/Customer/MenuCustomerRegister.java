@@ -10,13 +10,12 @@ import static view.utilF.*;
 
 public class MenuCustomerRegister extends MenuBase {
 
+    private static Scanner sc = new Scanner(System.in);
+    private CustomerController customerCtrl = new CustomerController();
+
     public MenuCustomerRegister(MenuBase initialMenu) {
         super(initialMenu);
     }
-
-    private CustomerController customerCtrl = new CustomerController();
-
-    private static Scanner sc = new Scanner(System.in);
 
     // Registration Menu to create new accounts
     public MenuBase execute() {

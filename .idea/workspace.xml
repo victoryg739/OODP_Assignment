@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated" />
+    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated Format">
+      <change beforePath="$PROJECT_DIR$/src/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuCustomerRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuCustomerRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionRemove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffMovieSessionUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/MenuStaffRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/MenuStaffRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,8 +72,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="mainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mainProgram" />
+    <configuration name="MainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainProgram" />
       <module name="OODP_Assignment" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -67,7 +81,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.mainProgram" />
+        <item itemvalue="Application.MainProgram" />
       </list>
     </recent_temporary>
   </component>
@@ -357,19 +371,19 @@
       <option name="project" value="LOCAL" />
       <updated>1667922387358</updated>
     </task>
-    <task id="LOCAL-00040" summary="updated">
-      <created>1667923579783</created>
+    <task id="LOCAL-00040" summary="updated Format">
+      <created>1667925461617</created>
       <option name="number" value="00040" />
       <option name="presentableId" value="LOCAL-00040" />
       <option name="project" value="LOCAL" />
-      <updated>1667923579783</updated>
+      <updated>1667925461617</updated>
     </task>
-    <task id="LOCAL-00041" summary="updated">
-      <created>1667924605391</created>
+    <task id="LOCAL-00041" summary="updated Format">
+      <created>1667927575861</created>
       <option name="number" value="00041" />
       <option name="presentableId" value="LOCAL-00041" />
       <option name="project" value="LOCAL" />
-      <updated>1667924605391</updated>
+      <updated>1667927575861</updated>
     </task>
     <task id="LOCAL-00042" summary="updated">
       <created>1667924707588</created>
@@ -425,9 +439,9 @@
     <MESSAGE value="fix errors" />
     <MESSAGE value="test" />
     <MESSAGE value="csa" />
-    <MESSAGE value="updated Format" />
     <MESSAGE value="updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+    <MESSAGE value="updated Format" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated Format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -438,7 +452,7 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mainProgram.java</url>
+          <url>file://$PROJECT_DIR$/src/MainProgram.java</url>
           <line>1</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>

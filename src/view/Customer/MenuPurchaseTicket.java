@@ -26,7 +26,7 @@ public class MenuPurchaseTicket extends MenuBase {
     private BookingController bookingController;
     private String username;
 
-    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie,String username) {
+    public MenuPurchaseTicket(MenuBase previousMenu, Movie movie, String username) {
         super(previousMenu);
         this.movie = movie;
         this.cineplexController = new CineplexController();
@@ -46,7 +46,8 @@ public class MenuPurchaseTicket extends MenuBase {
      * Ask user information whether they are student or senior
      * Provide the total ticket price to the user
      * Once booking is confirmed, send a confirmation email according to the Customer's email
-     * @return  MenuCustomerMain
+     *
+     * @return MenuCustomerMain
      */
     public MenuBase execute() throws IOException, AddressException, MessagingException {
 

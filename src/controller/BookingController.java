@@ -11,6 +11,7 @@ public class BookingController {
      * Create Booking object and store it in the Database file
      * If Database file exist, existing records are read and new Booking object is appended before saving
      * If Database file does not exist, Booking object will be written to a new file and saved
+     *
      * @param booking
      */
 
@@ -33,6 +34,7 @@ public class BookingController {
 
     /**
      * Read the database file of Booking
+     *
      * @return arraylist of Booking files
      */
     public ArrayList<Booking> read() {
@@ -50,7 +52,8 @@ public class BookingController {
 
     /**
      * Overwrite Database file with new data of list of Booking
-     * @param filename to check for
+     *
+     * @param filename   to check for
      * @param returnData New ArrayList of Transaction to be written to the file
      */
     public void replaceExistingFile(String filename, ArrayList<Booking> returnData) {
@@ -69,7 +72,8 @@ public class BookingController {
 
     /**
      * A function to read the Customer username and return ArrayList of Booking that is purchased by user
-     * @param valueToSearch            Object that is used
+     *
+     * @param valueToSearch Object that is used
      * @return ArrayList of Booking
      */
     public ArrayList<Booking> readbyUsername(Object valueToSearch) {
