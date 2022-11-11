@@ -515,7 +515,6 @@ public class utilF {
     /**
      * Method to print divider
      *
-     * @return the divider String
      */
     public static void printDivider() {
         print("===============================================");

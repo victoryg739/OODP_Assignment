@@ -141,7 +141,7 @@ public class Movie implements Serializable {
     /**
      * Get the MovieType of this Movie
      *
-     * @return type    MovieType of this Movie
+     * @param type    MovieType of this Movie
      */
     public void setType(MovieType type) {
         this.type = type;
@@ -353,7 +353,7 @@ public class Movie implements Serializable {
     /**
      * Get list of reviews
      *
-     * @return ArrayList<Review>
+     * @return reviews
      */
 
     public ArrayList<Review> getReviews() {

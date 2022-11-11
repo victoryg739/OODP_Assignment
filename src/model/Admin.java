@@ -23,8 +23,8 @@ public class Admin implements Serializable, User {
     /**
      * Admin Class constructor
      *
-     * @param username
-     * @param password
+     * @param username username of Admin
+     * @param password password of Admin
      */
 
     public Admin(String username, String password) {

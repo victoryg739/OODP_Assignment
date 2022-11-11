@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static view.utilF.*;
-/**
  /**
  * The Cineplex controller class, of the program, controlling each of the cineplex
  * Write, read, replace Cineplex into database
@@ -215,7 +214,7 @@ public class CineplexController {
 
     /**
      * Returns location corresponding to the sessionID
-     *
+     * @param sessionId sessionID of Cineplex
      * @return location
      */
     public String returnLocationBySessionId(int sessionId) {

@@ -15,10 +15,19 @@ import java.io.IOException;
 public abstract class MenuBase {
     private MenuBase initialMenu;
 
+    /**
+     * This method set intialMenu
+     *
+     */
     public MenuBase(MenuBase initialMenu) {
         this.initialMenu = initialMenu;
     }
 
+    /**
+     * This method invokes previous menu page if is not null
+     *
+     * @return previous menu
+     */
     protected MenuBase getPreviousMenu() {
         if (initialMenu == null) {
             return this;

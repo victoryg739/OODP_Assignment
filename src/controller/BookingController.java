@@ -21,7 +21,7 @@ public class BookingController {
      * If Database file exist, existing records are read and new Booking object is appended before saving
      * If Database file does not exist, Booking object will be written to a new file and saved
      *
-     * @param booking
+     * @param booking booking object
      */
 
     public void create(Booking booking) {

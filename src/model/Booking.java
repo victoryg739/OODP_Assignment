@@ -119,7 +119,7 @@ public class Booking implements Serializable {
     /**
      * Set Session Object
      *
-     * @param session
+     * @param session session object
      */
     public void setSession(Session session) {
         this.session = session;

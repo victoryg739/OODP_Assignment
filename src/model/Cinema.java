@@ -71,9 +71,6 @@ public class Cinema implements Serializable {
         return cinemaNo;
     }
 
-    public void setCinemaNo(String cinemaNo) {
-        this.cinemaNo = cinemaNo;
-    }
 
     /**
      * Gets the cinema class of the cinema

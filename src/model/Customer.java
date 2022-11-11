@@ -26,10 +26,10 @@ public class Customer implements Serializable, User {
     /**
      * Customer CLass constructor
      *
-     * @param username
-     * @param email
-     * @param password
-     * @param phoneNumber
+     * @param username username of Customer
+     * @param email email of Customer
+     * @param password password of Customer
+     * @param phoneNumber phone number of Customer
      */
 
     public Customer(String username, String password, String email, String phoneNumber) {
@@ -52,7 +52,7 @@ public class Customer implements Serializable, User {
     /**
      * Set Customer username
      *
-     * @param username
+     * @param username username of customer
      */
     public void setUsername(String username) {
         this.username = username;
@@ -79,7 +79,7 @@ public class Customer implements Serializable, User {
     /**
      * Set booking ArrayList
      *
-     * @@param bookings
+     * @@param bookings arraylist of bookings of customer
      */
     public void setBookings(ArrayList<Booking> bookings) {
         this.bookings = bookings;
@@ -88,7 +88,7 @@ public class Customer implements Serializable, User {
     /**
      * Set Customer ID
      *
-     * @param customerID
+     * @param customerID customerId of customer
      */
     public void setCustomerID(int customerID) {
         this.customerID = customerID;

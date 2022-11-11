@@ -16,7 +16,8 @@ import java.io.IOException;
 public class MainProgram {
 
     /**
-     * Entry Program
+     * Main program
+     * @param args arguments if applicable
      */
     public static void main(String[] args) throws IOException, MessagingException {
         /* For Testing Purposes */
