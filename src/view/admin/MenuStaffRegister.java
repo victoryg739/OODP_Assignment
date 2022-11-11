@@ -7,17 +7,29 @@ import java.util.Scanner;
 
 import static view.utilF.*;
 
-
+/**
+ * Menu Page for Staff to register a new account
+ *
+ * @author Tan Wei Zhong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuStaffRegister extends MenuBase {
 
     private static Scanner sc = new Scanner(System.in);
-    // Instantiate AdminController object to use methods
     private AdminController adminsCtrl = new AdminController();
 
     public MenuStaffRegister(MenuBase initialMenu) {
         super(initialMenu);
     }
 
+    /**
+     * Display Staff Registration menu
+     * Allows user to go back previous menu or Continue with registration
+     * Redirects User to either Admin Registration Menu or Previous Menu
+     *
+     * @return adminRegistration || getPreviousMenu
+     */
     // Registration Menu to create new accounts
     public MenuBase execute() {
 

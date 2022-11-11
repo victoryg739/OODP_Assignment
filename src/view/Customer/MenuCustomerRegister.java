@@ -7,7 +7,13 @@ import java.util.Scanner;
 
 import static view.utilF.*;
 
-
+/**
+ * Menu Page for Customer to register a new account
+ *
+ * @author Tan Wei Zhong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuCustomerRegister extends MenuBase {
 
     private static Scanner sc = new Scanner(System.in);
@@ -17,7 +23,13 @@ public class MenuCustomerRegister extends MenuBase {
         super(initialMenu);
     }
 
-    // Registration Menu to create new accounts
+    /**
+     * Display Staff Registration menu
+     * Allows user to go back previous menu or Continue with registration
+     * Redirects User to either Customer Registration Menu or Previous Menu
+     *
+     * @return customerRegistration || getPreviousMenu
+     */
     public MenuBase execute() {
 
         int choice;

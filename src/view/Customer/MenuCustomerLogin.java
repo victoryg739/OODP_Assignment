@@ -7,6 +7,13 @@ import view.MenuBase;
 
 import static view.utilF.*;
 
+/**
+ * Menu Page which prompts Customer to login
+ *
+ * @author Tan Wei Zhong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuCustomerLogin extends MenuBase {
 
     private int a;
@@ -18,6 +25,14 @@ public class MenuCustomerLogin extends MenuBase {
         this.movie = movie;
     }
 
+    /**
+     * Display Customer Login menu
+     * Prompts Customer whether he has an account
+     * Authenticates Username and Password input with the ones Datafile
+     * Redirects User to either Purchase Ticket Menu, Booking History Menu or Customer Registration Menu
+     *
+     * @return MenuPurchaseTicket || MenuBookingHistory || MenuCustomerRegister
+     */
     public MenuBase execute() {
 
         MenuBase nextMenu = this;
