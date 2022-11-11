@@ -5,13 +5,19 @@ import view.Quit;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-/*
-
-The start of the program
+/**
+ * The Entry of the program
+ * Creates the default settings, movie, cinema and an admin account
+ * Creates a menu to execute untl the nextMenu becomes quit
+ * @author Bryan Tay Peng Keat
+ * @version 1.0
+ * @since 2022-08-11
  */
-
 public class MainProgram {
 
+    /**
+     * Entry Program
+     */
     public static void main(String[] args) throws IOException, MessagingException {
         /* For Testing Purposes */
         Tester tester = new Tester();

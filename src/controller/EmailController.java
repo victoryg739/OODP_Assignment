@@ -15,6 +15,13 @@ import static view.utilF.print;
 import static view.utilF.println;
 
 
+/**
+ * The Email controller class, of the program, controlling the flow of the email sent to a person email
+ * Control function to sendEmail, draftEmail and set up settings
+ * @author Bryan Tay Peng Keat
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class EmailController {
     CustomerController cc = new CustomerController();
     Session newSession = null;

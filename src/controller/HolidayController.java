@@ -9,7 +9,14 @@ import java.util.Date;
 
 import static view.utilF.print;
 import static view.utilF.println;
-
+/**
+ * The Holiday controller class, of the program, controlling each of the Holiday
+ * Write, read, replace Holiday into database
+ * Also controls the logic and control of the Holiday object
+ * @author Bryan Tay Peng Keat
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class HolidayController {
 
     /**

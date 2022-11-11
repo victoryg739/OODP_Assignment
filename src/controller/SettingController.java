@@ -12,6 +12,16 @@ import java.util.Scanner;
 
 import static view.utilF.print;
 
+
+/**
+ * The Setting controller class, of the program, controlling the settings of the moviegoer
+ * Write, read, replace settings
+ * Also controls validation of settings
+ * @author Bryan Tay Peng Keat
+ * @version 1.0
+ * @since 2022-08-11
+ */
+
 public class SettingController {
 
 
