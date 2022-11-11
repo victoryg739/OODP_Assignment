@@ -235,7 +235,7 @@ public class CustomerController {
             // Create new Customer account when the 2 input passwords match
             if (consistentPassword) {
                 this.createCustomer(customer);
-                System.out.println("You have registered successfully");
+                System.out.println("You have registered Customer Account successfully");
             } else {
                 System.out.println("Password not consistent. Enter again");
             }
