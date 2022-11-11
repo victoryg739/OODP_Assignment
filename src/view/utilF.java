@@ -32,7 +32,12 @@ public class utilF {
         return input;
     }
 
-    //Method to check the int value
+    /**
+     * Method to notify user about the input Int
+     *
+     * @param Message info about input
+     * @return validate Int otherwise Exception
+     */
     public static int readIntInput(String Message) {
         System.out.println(Message);
         while (true) {
@@ -44,13 +49,16 @@ public class utilF {
             }
         }
     }
-
+    /**
+     * Method to notify user about the input String for DateTime
+     *
+     * @param msg info about input
+     * @return validate String otherwise Exception
+     */
 
     public static Date readDateTime(String msg) {
         SimpleDateFormat sdf;
-
         sdf = Constant.datetimeFormat;
-
         do {
             try {
                 String date = read(msg + " (" + sdf.toPattern() + "): ");
@@ -60,7 +68,12 @@ public class utilF {
             }
         } while (true);
     }
-
+    /**
+     * Method to return the Enum.Day class based on the date input
+     *
+     * @param date
+     * @return Enums.Day class
+     */
     public static Enums.Day returnEnumsDay(Date date) {
         int dayOfWeek = date.getDay();
         int hours = date.getHours();
@@ -126,9 +139,11 @@ public class utilF {
         } while (true);
     }
 
-
-    /* Tester function */
-
+    /**
+     * Method to notify user about the input Date
+     *
+     * @return validate Date Object
+     */
     public static Date readDate() {
         String label = "01/05/1998";
         String format = Constant.FORMAT_DATE_SHORT;
@@ -144,7 +159,6 @@ public class utilF {
         do {
             try {
                 String date = label + " (" + format + "): ";
-                //String date = read(label + " (" + format + "): ");
                 return sdf.parse(date);
             } catch (ParseException ime) {
                 System.out.println("Please enter a correct date format");
@@ -153,6 +167,12 @@ public class utilF {
         } while (true);
     }
 
+    /**
+     * Method to notify user about the input Int to return the correct showing status
+     *
+     * @param message info about input
+     * @return validate Enum.ShowingStatus class otherwise Exception
+     */
     public static Enums.ShowingStatus readShowingStatus(String message) {
         Enums.ShowingStatus ss;
         System.out.println(message);
@@ -179,7 +199,6 @@ public class utilF {
                         ss = Enums.ShowingStatus.NOW_SHOWING;
                         break;
                 }
-
                 return ss;
             } catch (NumberFormatException e) {
                 System.out.println("Please, input a valid decimal number. ");
@@ -187,7 +206,12 @@ public class utilF {
         }
 
     }
-
+    /**
+     * Method to notify user about the input Int to return the correct Enum.MovieRating class
+     *
+     * @param Message info about input
+     * @return Enum.MovieRating class otherwise Exception
+     */
     public static Enums.MovieRating readMovieRatingInput(String Message) {
         Enums.MovieRating movieRating;
         System.out.println(Message);
@@ -195,7 +219,6 @@ public class utilF {
             try {
                 String s = sc.next();
                 int c = Integer.parseInt(s);
-
                 switch (c) {
                     case 1:
                         movieRating = Enums.MovieRating.G;
@@ -217,14 +240,18 @@ public class utilF {
                         movieRating = Enums.MovieRating.G;
                         break;
                 }
-
                 return movieRating;
             } catch (NumberFormatException e) {
                 System.out.println("Please, input a valid decimal number. ");
             }
         }
     }
-
+    /**
+     * Method to notify user about the input Int to return the correct Enum.MovieType class
+     *
+     * @param Message info about input
+     * @return Enum.MovieType class otherwise Exception
+     */
     public static Enums.MovieType readMovieTypeInput(String Message) {
         Enums.MovieType movieType;
         System.out.println(Message);
@@ -255,7 +282,12 @@ public class utilF {
             }
         }
     }
-
+    /**
+     * Method to notify user about the input Int to return the correct Enum.Day class
+     *
+     * @param Message info about input
+     * @return Enum.MovieDay class otherwise Exception
+     */
     public static Enums.Day readDay(String Message) {
         Enums.Day day;
         System.out.println(Message);
@@ -263,7 +295,6 @@ public class utilF {
             try {
                 String s = sc.next();
                 int c = Integer.parseInt(s);
-
                 switch (c) {
                     case 1:
                         day = Enums.Day.MON_WED_BEF_SIX;
@@ -298,7 +329,12 @@ public class utilF {
             }
         }
     }
-
+    /**
+     * Method to notify user about the input Int to return the correct Enum.ClassCinema class
+     *
+     * @param Message info about input
+     * @return Enum.ClassCinema class otherwise Exception
+     */
     public static Enums.ClassCinema readClassCinema(String Message) {
         Enums.ClassCinema classCinema;
         System.out.println(Message);
@@ -328,7 +364,12 @@ public class utilF {
             }
         }
     }
-
+    /**
+     * Method to notify user about the input Int to return the correct Enum.AgeType class
+     *
+     * @param Message info about input
+     * @return Enum.AgeType class otherwise Exception
+     */
     public static Enums.AgeType readAgeType(String Message) {
         Enums.AgeType ageType;
         System.out.println(Message);
@@ -336,7 +377,6 @@ public class utilF {
             try {
                 String s = sc.next();
                 int c = Integer.parseInt(s);
-
                 switch (c) {
                     case 1:
                         ageType = Enums.AgeType.NORMAL;
@@ -351,20 +391,20 @@ public class utilF {
                         System.out.println("Default age type normal selected! ");
                         ageType = Enums.AgeType.NORMAL;
                         break;
-
                 }
-
-
                 return ageType;
             } catch (NumberFormatException e) {
                 System.out.println("Please, input a valid decimal number. ");
             }
         }
     }
-
-
-    /*
-     method to notify user the allowable range of seat input
+    /**
+     * Method to notify user about the seat input Int
+     *
+     * @param message info about input
+     * @param min info about the minimmum value user can input
+     * @param max info about hte maximum value user can input
+     * @return the Int value for the seat
      */
     public static int readSeatInput(String message, int min, int max) {
         int c = 0;
@@ -378,7 +418,14 @@ public class utilF {
         } while (!(c >= min && c <= max));
         return c;
     }
-
+    /**
+     * Method to notify user about the Review input Int
+     *
+     * @param message info about input
+     * @param min info about the minimum value user can input
+     * @param max info about hte maximum value user can input
+     * @return the Int value for the review
+     */
     public static int readReviewInput(String message, int min, int max) {
         int c = 0;
         do {
@@ -391,21 +438,18 @@ public class utilF {
         } while (!(c >= min && c <= max));
         return c;
     }
-
-    //Method function to print the menu
-    public static void printMenu(ArrayList<String> choices, int choiceIdFrom) {
-        for (String choice : choices) {
-            System.out.println(((choiceIdFrom++) + ": " + choice));
-            System.out.println();
-        }
-    }
-
     /*
      Confirmation Message:
      This method only accept 'Yes' or 'No' as input
      return true  if input is 'Yes' or
      return false if input is 'No'
      Otherwise it will repeatedly prompt user for input
+     */
+    /**
+     * Method to notify user about the confirmation
+     *
+     * @param message info about input
+     * @return Boolean value (True/False)
      */
     public static boolean confirm(String message) {
         while (true) {
@@ -416,8 +460,11 @@ public class utilF {
                 return false;
         }
     }
-
-    // Function to get maximum length of a string
+    /**
+     * Method to get the max length for String
+     * @para
+     * @return the Int len value of the string
+     */
     private static int getMaxLength(String... strings) {
         int len = Integer.MIN_VALUE;
         for (String str : strings) {
@@ -425,8 +472,13 @@ public class utilF {
         }
         return len;
     }
-
-    // Function to fill the string with len repeats of character ch
+    /**
+     * Method to fill the characters with len
+     *
+     * @param ch character to fill up
+     * @param len max length of the string
+     * @return the String
+     */
     private static String fill(char ch, int len) {
         StringBuilder sb = new StringBuilder(len);
         for (int i = 0; i < len; i++) {
@@ -435,17 +487,22 @@ public class utilF {
         return sb.toString();
     }
 
-    // Function to pad the string
+    /**
+     * Method to pad the String
+     *
+     * @param str String to pad
+     * @param len maximum length of the String
+     * @return the padded String
+     */
     private static String padString(String str, int len) {
         StringBuilder sb = new StringBuilder(str);
         return sb.append(fill(' ', len - str.length())).toString();
     }
-
-    // Function to Print the Header
-    // 1. Determine length of the longest string
-    // 2. Building a top and bottom " = " line
-    // 3. Perform padding on the string
-    // 4. Output padding in this format | Str |
+    /**
+     * Method to print string in Header format
+     *
+     * @param strings to print in Header format
+     */
     public static void printHeader(String... strings) {
         int maxBoxWidth = getMaxLength(strings);
         String line = "=" + fill('=', maxBoxWidth + 2) + "=";
@@ -456,14 +513,25 @@ public class utilF {
         System.out.println(line);
     }
 
+    /**
+     * Method to print divider
+     *
+     * @return the divider String
+     */
     public static void printDivider() {
         print("===============================================");
     }
-
+    /**
+     * Print Message
+     * @param message message to be display
+     */
     public static void print(String message) {
         System.out.println(message);
     }
-
+    /**
+     * Print Message with an extra line
+     * @param message message to be display
+     */
     public static void println(String message) {
         System.out.println(message + "\n");
     }
