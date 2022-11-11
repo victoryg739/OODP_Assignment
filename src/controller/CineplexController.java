@@ -12,13 +12,6 @@ import static view.utilF.*;
 public class CineplexController {
 
 
-
-
-
-    public final static int NAME = 0;
-    public final static int CINEMAS = 1;
-
-
     public void append(String location, ArrayList<Cinema> cinemas, ArrayList<Session> sessions) {
         // Creates a movie object
         Cineplex cineplex = new Cineplex(location, cinemas, sessions);

@@ -10,6 +10,13 @@ import view.admin.MenuStaffTopFiveSales;
 import java.util.ArrayList;
 
 import static view.utilF.*;
+/**
+ * Menu Interface for Customer to search for the movie they want
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 public class MenuSearchMovie extends MenuBase {
 
@@ -20,10 +27,12 @@ public class MenuSearchMovie extends MenuBase {
     public MenuSearchMovie(MenuBase initialMenu) {
         super(initialMenu);
     }
+
     /**
      * Ask user to input come part of movie title
      * Display list of movies whose title contains the string provided by the user
      * Ask user which movie to check information
+     *
      * @return corresponding menu that the user has selected
      **/
     public MenuBase execute() {

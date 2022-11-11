@@ -3,7 +3,15 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Customer implements Serializable {
+/**
+ * Represents a Customer Object
+ * 1 Customer
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
+public class Customer implements Serializable, User {
     private String username;
     private String password;
 
@@ -17,6 +25,7 @@ public class Customer implements Serializable {
 
     /**
      * Customer CLass constructor
+     *
      * @param username
      * @param email
      * @param password
@@ -33,6 +42,7 @@ public class Customer implements Serializable {
 
     /**
      * Get Customer username
+     *
      * @return username
      */
     public String getUsername() {
@@ -41,6 +51,7 @@ public class Customer implements Serializable {
 
     /**
      * Set Customer username
+     *
      * @param username
      */
     public void setUsername(String username) {
@@ -49,6 +60,7 @@ public class Customer implements Serializable {
 
     /**
      * Get Customer password
+     *
      * @return password
      */
     public String getPassword() {
@@ -57,6 +69,7 @@ public class Customer implements Serializable {
 
     /**
      * Get booking ArrayList
+     *
      * @return booking ArrayList
      */
     public ArrayList<Booking> getBookings() {
@@ -64,15 +77,8 @@ public class Customer implements Serializable {
     }
 
     /**
-     * Set Customer ID
-     * @param customerID
-     */
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
-
-    /**
      * Set booking ArrayList
+     *
      * @@param bookings
      */
     public void setBookings(ArrayList<Booking> bookings) {
@@ -80,7 +86,17 @@ public class Customer implements Serializable {
     }
 
     /**
+     * Set Customer ID
+     *
+     * @param customerID
+     */
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    /**
      * Add Booking Object to the Customer's Arraylist of objects
+     *
      * @param new_bookings
      */
     public void addBookings(Booking new_bookings) {
@@ -91,8 +107,10 @@ public class Customer implements Serializable {
             this.bookings.add(new_bookings);
         }
     }
+
     /**
      * Get Customer email
+     *
      * @return email
      */
 
@@ -102,6 +120,7 @@ public class Customer implements Serializable {
 
     /**
      * Get Customer Phone Number
+     *
      * @return phoneNumber
      */
     public String getPhoneNumber() {

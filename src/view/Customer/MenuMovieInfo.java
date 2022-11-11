@@ -7,6 +7,13 @@ import view.Quit;
 
 import static view.utilF.*;
 
+/**
+ * Menu Interface to print out all the movie information
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuMovieInfo extends MenuBase {
     private final Movie movie;
 

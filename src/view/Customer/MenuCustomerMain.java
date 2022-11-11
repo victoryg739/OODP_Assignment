@@ -5,6 +5,13 @@ import view.MenuBase;
 
 import static view.utilF.*;
 
+/**
+ * Menu Interface for Customer when they first open the app
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuCustomerMain extends MenuBase {
     public MenuCustomerMain(MenuBase initialMenu) {
         super(initialMenu);
@@ -19,6 +26,7 @@ public class MenuCustomerMain extends MenuBase {
      * 2. List all movies
      * 3. View Booking history ( login required through MenuCustomerLogin)
      * 4. Back to previous menu
+     *
      * @return to the menu that the user has selected
      */
     public MenuBase execute() {

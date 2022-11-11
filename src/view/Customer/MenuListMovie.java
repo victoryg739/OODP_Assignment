@@ -5,9 +5,15 @@ import controller.SettingController;
 import view.MenuBase;
 import view.admin.MenuStaffTopFiveRating;
 import view.admin.MenuStaffTopFiveSales;
-
 import static view.utilF.*;
 
+/**
+ * Menu Interface to list all the movies for the customer to access (purchase tickets or set reviews)
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuListMovie extends MenuBase {
     MovieController mc = new MovieController();
     SettingController setc = new SettingController();

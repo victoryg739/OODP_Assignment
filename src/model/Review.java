@@ -3,7 +3,12 @@ package model;
 import java.io.Serializable;
 
 /**
- * The model to hold a review and rating to a movie.
+ * Represents 1 Review Object
+ * A review contains comment and the rating
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
  */
 public class Review implements Serializable {
     private String comment;
@@ -11,6 +16,7 @@ public class Review implements Serializable {
 
     /**
      * Constructor for Review
+     *
      * @param comment user's comment for the review
      * @param rating  user's rating for the review
      */
@@ -21,6 +27,7 @@ public class Review implements Serializable {
 
     /**
      * Get Comment
+     *
      * @return comment
      */
     public String getComment() {
@@ -29,6 +36,7 @@ public class Review implements Serializable {
 
     /**
      * Get Rating
+     *
      * @return rating
      */
     public double getRating() {
@@ -37,6 +45,7 @@ public class Review implements Serializable {
 
     /**
      * Set Rating
+     *
      * @param rating
      */
     public void setRating(int rating) {

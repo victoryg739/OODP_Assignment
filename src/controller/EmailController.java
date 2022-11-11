@@ -10,6 +10,7 @@ import javax.mail.Transport;
 import javax.mail.internet.*;
 import java.io.IOException;
 import java.util.Properties;
+
 import static view.utilF.print;
 import static view.utilF.println;
 
@@ -20,7 +21,7 @@ public class EmailController {
     MimeMessage mimeMessage = null;
 
     /**
-     *  Function to send email to a particular person
+     * Function to send email to a particular person
      */
     public void sendEmail() throws MessagingException {
         String fromUser = "moblimamoviebooking1@gmail.com";  //Enter sender email id
@@ -36,7 +37,7 @@ public class EmailController {
 
 
     /**
-     *  Function to draft an email
+     * Function to draft an email
      */
     public MimeMessage draftEmail(Booking booking) throws AddressException, MessagingException, IOException {
         String username = booking.getUsername();
@@ -56,8 +57,9 @@ public class EmailController {
         print("Sending booking to your email...");
         return mimeMessage;
     }
+
     /**
-     *  Function to set the server properties
+     * Function to set the server properties
      */
     public void setupServerProperties() {
         Properties properties = System.getProperties();

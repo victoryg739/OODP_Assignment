@@ -6,6 +6,14 @@ import java.util.ArrayList;
 import static view.utilF.print;
 import static view.utilF.println;
 
+/**
+ * Represents a booking transaction
+ * A booking can have multiple tickets or seats
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class Booking implements Serializable {
     // tid = XXXYYYYMMDDhhmm (Y : year, M : month, D : day, h : hour, m :
     //minutes, XXX : cinema code in letters)
@@ -39,15 +47,16 @@ public class Booking implements Serializable {
 
     /**
      * Booking CLass constructor
+     *
      * @param cinemaNo
      * @param cineplexLocation
-     * @param tid unique tid
+     * @param tid              unique tid
      * @param username
      * @param phoneNumber
      * @param movie
-     * @param tickets tickets along with booking
+     * @param tickets          tickets along with booking
      * @param session
-     * @param totalPrice totalprice for all tickets
+     * @param totalPrice       totalprice for all tickets
      */
     public Booking(String cinemaNo, String cineplexLocation, String tid, String username, String phoneNumber, Movie movie,
                    ArrayList<Ticket> tickets, Session session, double totalPrice) {
@@ -61,15 +70,19 @@ public class Booking implements Serializable {
         this.username = username;
         this.cineplexLocation = cineplexLocation;
     }
+
     /**
      * Get Ticket ID
+     *
      * @return TID of booking
      */
     public String getTID() {
         return tid;
     }
+
     /**
      * Get Movie Object
+     *
      * @return Movie Object
      */
     public Movie getMovie() {
@@ -78,6 +91,7 @@ public class Booking implements Serializable {
 
     /**
      * Set Movie Object
+     *
      * @param movie
      */
     public void setMovie(Movie movie) {
@@ -86,6 +100,7 @@ public class Booking implements Serializable {
 
     /**
      * Get list of Tickets
+     *
      * @return ArrayList<Ticket>
      */
     public ArrayList<Ticket> getTickets() {
@@ -94,6 +109,7 @@ public class Booking implements Serializable {
 
     /**
      * Get Session Object
+     *
      * @return Session Object
      */
     public Session getSession() {
@@ -102,6 +118,7 @@ public class Booking implements Serializable {
 
     /**
      * Set Session Object
+     *
      * @param session
      */
     public void setSession(Session session) {
@@ -110,6 +127,7 @@ public class Booking implements Serializable {
 
     /**
      * Get total price of the booking transaction
+     *
      * @return totalPrice
      */
     public double getTotalPrice() {
@@ -118,6 +136,7 @@ public class Booking implements Serializable {
 
     /**
      * Get Customer ID
+     *
      * @return customerId
      */
     public int getCustomerId() {
@@ -126,6 +145,7 @@ public class Booking implements Serializable {
 
     /**
      * Get Customer Username
+     *
      * @return username
      */
     public String getUsername() {
@@ -152,6 +172,7 @@ public class Booking implements Serializable {
 
     /**
      * Print Email Booking Summary
+     *
      * @return String of the summary
      */
     public String printEmailBookingSummary() {

@@ -13,9 +13,9 @@ public class Price implements Serializable {
 
     private double[] price;
 
-/**
- * Creates an array of default prices
- */
+    /**
+     * Creates an array of default prices
+     */
     public Price() {
         price = new double[]{28, 38, 8.50, 9.50, 11, 11, 15, 7, 8.50, 9.50, 11, 9, 11, 15, 4, 8.50, 9.50, 11, 11, 15, 9.50, 7};
     }
@@ -32,7 +32,7 @@ public class Price implements Serializable {
     /**
      * Change the sessions of the cinema
      *
-     * @param index price based on index.
+     * @param index    price based on index.
      * @param newPrice new price updated
      */
     public void setPrice(int index, double newPrice) {
