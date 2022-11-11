@@ -7,34 +7,27 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static view.utilF.*;
-
+/**
+ /**
+ * The Cineplex controller class, of the program, controlling each of the cineplex
+ * Write, read, replace Cineplex into database
+ * Also controls the logic and control of the cineplex object
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 public class CineplexController {
 
 
-    public void append(String location, ArrayList<Cinema> cinemas, ArrayList<Session> sessions) {
-        // Creates a movie object
-        Cineplex cineplex = new Cineplex(location, cinemas, sessions);
-
-        // Creates an ArrayList of movie
-        ArrayList<Cineplex> allData = new ArrayList<Cineplex>();
-        File tempFile = new File(Constant.CINEPLEXFILE);
-
-        // If it exists then read() the existing data
-        if (tempFile.exists())
-            allData = read();
-        try {
-            // Write the data to the movie
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.CINEPLEXFILE));
-            allData.add(cineplex);
-            out.writeObject(allData);
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            // ignore error
-        }
-    }
-
+    /**
+     * Appends cineplex session with location
+     *
+     * @param location This is the location of cineplex.
+     * @param cinemaNo  This is the Cinemas contains inside that cineplex.
+     * @param session This is the Sessions contains inside that cineplex
+     */
     public void appendByLocation(String location, String cinemaNo, Session session) {
         ArrayList<Cineplex> allData = read();
 
@@ -67,6 +60,13 @@ public class CineplexController {
         replace(allData);
     }
 
+    /**
+     * Update cineplex information with sessionId
+     *
+     * @param choice This is the choice to update by either movie or the day
+     * @param sessionId  This is the sessionID in sessions
+     * @param newValue Any new value object parse in
+     */
 
     public void updateCineplex(int choice, int sessionId, Object newValue) {
         ArrayList<Cineplex> allData = read();
@@ -108,6 +108,11 @@ public class CineplexController {
         replace(allData);
     }
 
+    /**
+     * Remove session inside Cineplex
+     *
+     * @param sessionId  This is the sessionID in sessions
+     */
     public void removeSession(int sessionId) {
         ArrayList<Cineplex> allData = read();
 
@@ -136,7 +141,11 @@ public class CineplexController {
         replace(allData);
     }
 
-
+    /**
+     * Replace existing cineplex data file with new cineplex data file
+     *
+     * @param data  New cineplex data file
+     */
     public void replace(ArrayList<Cineplex> data) {
         File tempFile = new File(Constant.CINEPLEXFILE);
         if (tempFile.exists())
@@ -151,6 +160,11 @@ public class CineplexController {
         }
     }
 
+    /**
+     * Read the cineplex file
+     *
+     * @return cineplex data
+     */
     public ArrayList<Cineplex> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.CINEPLEXFILE));
@@ -158,16 +172,14 @@ public class CineplexController {
             ois.close();
             return cineplex;
         } catch (ClassNotFoundException | IOException e) {
-            // ignore error
         }
         return new ArrayList<Cineplex>();
     }
 
     /**
-     * READ and return Cineplex based on name passed in the Database file
+     * Get Cineplex object by location
      *
-     * @param name Name of cineplex to search for
-     * @return Cineplex     Return Cineplex if found, else null object
+     * @return Cineplex object
      */
     public Cineplex readByLocation(String location) {
         ArrayList<Cineplex> allData = read();
@@ -179,6 +191,11 @@ public class CineplexController {
         return null;
     }
 
+    /**
+     * Print cineplex information tied to the movieID
+     *
+     * @param movieId movieID of a movie
+     */
     public void printByMovieId(int movieId) {
         ArrayList<Cineplex> allData = read();
         System.out.printf("| %10s | %10s | %10s | %15s | %-30s | %n", "SessionNo", "Location", "CinemaNo", "CinemaClass", "DateTime");
@@ -196,6 +213,11 @@ public class CineplexController {
 
     }
 
+    /**
+     * Returns location corresponding to the sessionID
+     *
+     * @return location
+     */
     public String returnLocationBySessionId(int sessionId) {
         ArrayList<Cineplex> allData = read();
         String location = "";
@@ -211,7 +233,10 @@ public class CineplexController {
         }
         return location;
     }
-
+    /**
+     * Print all cineplex data
+     *
+     */
     public void printAllCineplex() {
         ArrayList<Cineplex> cp = read();
         println("");

@@ -6,6 +6,13 @@ import view.Quit;
 
 import static view.utilF.*;
 
+/**
+ * Menu Page for Staff to show top 5 ratings
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuStaffTopFiveRating extends MenuBase {
     MovieController mc = new MovieController();
 

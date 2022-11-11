@@ -11,6 +11,15 @@ import java.util.Date;
 
 import static view.utilF.*;
 
+/**
+ * The Session controller class, of the program, controlling each of the session
+ * Write, read, replace Session into database
+ * Also controls the logic and control of the session object
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class SessionController {
 
     /**
@@ -144,7 +153,19 @@ public class SessionController {
         replace(sessionArrayList);
     }
 
-
+    /**
+     * Check Session file empty or no
+     *
+     * @return true = session is empty or else false = session is not empty
+     */
+    public boolean sessionIsEmpty(){
+        ArrayList<Session> sf = read();
+        if(sf.size() == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
     /**
      * Print all session information
      */

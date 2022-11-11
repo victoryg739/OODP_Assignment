@@ -6,6 +6,15 @@ import model.Constant;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * The Booking controller class, of the program, controlling each of the Booking
+ * Write, read, replace Booking into database
+ * Also controls the logic and control of the Booking object
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class BookingController {
     /**
      * Create Booking object and store it in the Database file

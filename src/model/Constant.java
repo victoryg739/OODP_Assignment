@@ -1,7 +1,13 @@
 package model;
 
 import java.text.SimpleDateFormat;
-
+/**
+ * Represents all final date formats and file strings
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class Constant {
     public static final String FORMAT_DATE_SHORT = "dd/MM/yyyy";
     public static final String FORMAT_DATE_LONG = "dd MM yyyy";

@@ -11,10 +11,24 @@ import static view.utilF.*;
 public class MenuConfigurePrice extends MenuBase {
     public PriceManager priceManager = new PriceManager();
 
+    /**
+     * Menu to configure Pricing for admin
+     *
+     * @author Victor Yoong
+     * @version 1.0
+     * @since 2022-08-11
+     */
     public MenuConfigurePrice(MenuBase initialMenu) {
         super(initialMenu);
     }
 
+    /**
+     * Ask user to input pricing attributes and then update it
+     * to the price data file
+     * Return to main staff menu
+     *
+     * @return corresponding menu that the user has selected
+     */
     public MenuBase execute() {
         Enums.AgeType ageType;
         Enums.MovieType movieType;

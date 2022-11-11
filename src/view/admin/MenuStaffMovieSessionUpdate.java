@@ -9,7 +9,13 @@ import view.MenuBase;
 import java.util.Date;
 
 import static view.utilF.*;
-
+/**
+ * Menu to update session from data file
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuStaffMovieSessionUpdate extends MenuBase {
 
     private CineplexController cineplexCtrler = new CineplexController();
@@ -20,43 +26,19 @@ public class MenuStaffMovieSessionUpdate extends MenuBase {
         super(initialMenu);
     }
 
+    /**
+     * Display updating Session menu
+     * User can choose to update by movieID or session date
+     *
+     * @return configure menu
+     */
     public MenuBase execute() {
+        if (sessionCtrler.sessionIsEmpty()) {
+            System.out.println("There is no sessions found!");
+            return getPreviousMenu();
+        }
         printHeader("Updating Session");
         sessionCtrler.printAllSession();
-
-//        System.out.println("List of Cineplexes");
-//        ArrayList<Cineplex> cineplexArray = cineplexCtrler.read(); //using cinplexcontroller to read the cineplex object from the dat file
-//        if (cineplexArray.isEmpty()) {
-//            System.out.println("There are no cineplexes registered!");
-//            return getPreviousMenu();
-//        }
-//
-//        for(int i = 0; i<cineplexArray.size(); i++) {
-//            cineplexArray.get(i);
-//            System.out.print(cineplexArray.get(i).getLocation()+":");
-//            ArrayList<Cinema> cinemaArray = cineplexArray.get(i).getCinemas();
-//            for(int j= 0;j < cinemaArray.size();j++){
-//                System.out.print(cinemaArray.get(j).getCinemaNo()+ " ");
-//
-//            }
-//            System.out.print("\n");
-//        }
-//
-//
-//
-//        String cineplexLocation = read("Enter Cineplex Location:");
-//        Cineplex cineplex  = cineplexCtrler.readByLocation(cineplexLocation);
-//
-//
-//        if (cineplex == null) {
-//            System.out.println("Cineplex does not exist!\n" +
-//                    "Returning to menu...");
-//            return getPreviousMenu();
-//        }
-//
-//        System.out.println("\nCinemas in " + cineplex.getLocation()+ ": \n");
-//        ArrayList<Cinema> cinemaArray = cineplex.getCinemas();
-//        cinemaArray.forEach(Cinema -> System.out.println("Cinema No:" + Cinema.getCinemaNo()));
 
         int session_id = readIntInput("Enter session id: ");
         if (sessionCtrler.readById(session_id) == null) {

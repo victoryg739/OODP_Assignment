@@ -6,7 +6,13 @@ import model.Price;
 
 import java.io.*;
 
-
+/**
+ * Price calculation all done here
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class PriceManager {
     /**
      * if is blockbuster then we add blockbuster price

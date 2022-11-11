@@ -1,6 +1,12 @@
 package model;
 
-// Might need to change MovieType - Blockbuster
+/**
+ * Represents constant variables
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class Enums {
 
     public enum AgeType {

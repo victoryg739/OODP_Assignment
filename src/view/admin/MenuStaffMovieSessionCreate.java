@@ -14,6 +14,14 @@ import java.util.Date;
 
 import static view.utilF.*;
 
+/**
+ * Configure for admin to create a session
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
+
 public class MenuStaffMovieSessionCreate extends MenuBase {
 
     private CineplexController cineplexCtrler = new CineplexController();
@@ -24,6 +32,13 @@ public class MenuStaffMovieSessionCreate extends MenuBase {
         super(initialMenu);
     }
 
+    /**
+     * Display create new session menu
+     * Ask user to input information of the new session
+     * Return to main staff menu
+     *
+     * @return corresponding menu that the user has selected
+     */
     public MenuBase execute() {
         printHeader("Creating a new movie session");
         println("List of Cineplexes");

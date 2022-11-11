@@ -8,6 +8,16 @@ import java.util.Date;
 
 import static view.utilF.*;
 
+/**
+ /**
+ * The Cinema controller class, of the program, controlling each of the Cinema
+ * Write, read, replace Cinema into database
+ * Also controls the logic and control of the Cinema object
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 public class CinemaController {
     private CineplexController cineplexController = new CineplexController();
