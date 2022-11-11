@@ -16,7 +16,14 @@ import java.util.Date;
 import static view.utilF.print;
 import static view.utilF.println;
 
-
+/**
+ * The Movie controller class, of the program, controlling each of the Movie
+ * Write, read, replace Movie into database
+ * Also controls the logic and control of the movie object
+ * @author Bryan Tay Peng Keat
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MovieController {
 
     public MovieController() {

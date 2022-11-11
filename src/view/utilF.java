@@ -12,7 +12,6 @@ import java.util.Scanner;
 /* Functions to help us to process printing/reading inputs */
 @SuppressWarnings("deprecation")
 public class utilF {
-    public static int SCREEN_WIDTH = 80;
     private static Scanner sc = new Scanner(System.in);
 
     /**

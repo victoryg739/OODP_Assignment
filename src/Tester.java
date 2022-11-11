@@ -2,19 +2,41 @@ import controller.*;
 import model.*;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static view.utilF.readDate;
 
-
+/**
+ * The Creation of default variable is done here
+ * Creates the default settings, movie, cinema and an admin account
+ * Creates a menu to execute untl the nextMenu becomes quit
+ * @author Bryan Tay Peng Keat
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class Tester {
 
+
+    /**
+     * Creates default settings for Moviegoer's display
+     * Default settings will be sales and rating written to the textfile
+     */
     public void createDefaultSettings() throws IOException {
         File myObj = new File(Constant.SETTINGFILE);
         myObj.createNewFile();
+        FileWriter myWriter = new FileWriter(Constant.SETTINGFILE);
+        myWriter.write("sales");
+        myWriter.write("\n");
+        myWriter.write("ratings");
+        myWriter.close();
     }
 
+    /**
+     * Creates 10 default movie that can be viewed by Moviegoers
+     * We create the ticket sales as well as it is one of the attribute of movies
+     */
     public void createDefaultMovie() {
         File f = new File(Constant.MOVIEFILE);
         if (!f.exists()) {
@@ -94,6 +116,9 @@ public class Tester {
         }
     }
 
+    /**
+     * Creates 10 cinema for demo/testing purposes
+     */
     public void createCineplexCinema() {
         File fCinema = new File(Constant.CINEMAFILE);
 
@@ -144,17 +169,14 @@ public class Tester {
             cinplexCtrler.replace(cineplexArrayList);
         }
     }
-
+    /**
+     * Creates a default admin account for backend access
+     */
     public void createDefaultAccount() {
         // Create Root Admin Account
-        Admin rootAdmin = new Admin("a", "a");
+        Admin rootAdmin = new Admin("admin", "Admin123!");
         AdminController ac = new AdminController();
         ac.createAdmin(rootAdmin);
-
-        // Creating Customer account to test
-        Customer testCustomer = new Customer("twz", "twz", "bert0007@e.ntu.edu.sg", "999");
-        CustomerController cc = new CustomerController();
-        CustomerController.createCustomer(testCustomer);
     }
 }
 
