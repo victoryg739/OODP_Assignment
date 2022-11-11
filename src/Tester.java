@@ -2,6 +2,7 @@ import controller.*;
 import model.*;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,6 +14,11 @@ public class Tester {
     public void createDefaultSettings() throws IOException {
         File myObj = new File(Constant.SETTINGFILE);
         myObj.createNewFile();
+        FileWriter myWriter = new FileWriter(Constant.SETTINGFILE);
+        myWriter.write("sales");
+        myWriter.write("\n");
+        myWriter.write("ratings");
+        myWriter.close();
     }
 
     public void createDefaultMovie() {

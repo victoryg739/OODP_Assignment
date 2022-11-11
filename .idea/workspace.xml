@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated Format">
-      <change beforePath="$PROJECT_DIR$/src/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuBookingHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuBookingHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuCustomerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuCustomerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuListMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuMovieInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
