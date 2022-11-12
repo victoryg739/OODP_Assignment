@@ -38,23 +38,18 @@ public class MenuSearchMovie extends MenuBase {
 
         //obtain a ArrayList of Movie objects with the same name list
         ArrayList<Movie> movieList = mc.readByTitle(movieName);
+        System.out.println(movieList.get(0).getTitle());
+
+        if(movieList.isEmpty()){
+            System.out.println("hello");
+            print("Sorry, no result found.");
+            return this.getPreviousMenu();
+        }
         if (sessionlist.isEmpty()) {
             print("Sorry, no result found.");
-            print("1. Back\n" +
-                    "2. Quit\n");
-
-            choice = readIntInput("Choice: ");
-
-            switch (choice){
-                case 1:
-                    nextMenu = this.getPreviousMenu();
-                    break;
-                default:
-                    nextMenu = new Quit(this);
-                    break;
-            }
-
+            return this.getPreviousMenu();
         }
+
         else { // if movie is found
             mc.listMovies(Enums.ShowingStatus.PREVIEW, Enums.ShowingStatus.NOW_SHOWING, movieList);
             print("===============================================");
