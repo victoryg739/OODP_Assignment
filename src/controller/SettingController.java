@@ -1,6 +1,8 @@
 package controller;
 
 
+import model.Constant;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -10,14 +12,29 @@ import java.util.Scanner;
 
 import static view.utilF.print;
 
+
+/**
+ * The Setting controller class, of the program, controlling the settings of the moviegoer
+ * Write, read, replace settings
+ * Also controls validation of settings
+ * @author Bryan Tay Peng Keat
+ * @version 1.0
+ * @since 2022-08-11
+ */
+
 public class SettingController {
-    public final static String FILENAME = "data/settings.txt";
 
 
     // Write Settings into .txt //
+
+    /**
+     * Write Settings into the database .txt file
+     *
+     * @param message An array of string to add/replace into the text file
+     */
     public void writeSetting(ArrayList<String> message) {
         try {
-            FileWriter myWriter = new FileWriter(FILENAME);
+            FileWriter myWriter = new FileWriter(Constant.SETTINGFILE);
             for (String s : message) {
                 myWriter.write(s);
                 myWriter.write("\n");
@@ -28,10 +45,13 @@ public class SettingController {
         }
     }
 
-
-
-    public void replaceFile(ArrayList<String> message){
-        File myObj = new File(FILENAME);
+    /**
+     * Replace existing file to a new file
+     *
+     * @param message An array of string to add/replace into the text file
+     */
+    public void replaceFile(ArrayList<String> message) {
+        File myObj = new File(Constant.SETTINGFILE);
         if (myObj.delete()) {
             writeSetting(message);
         } else {
@@ -39,11 +59,15 @@ public class SettingController {
         }
     }
 
-    /* Function to readSetting files and return a list of Settings */
+    /**
+     * Function to readSetting files and return a list of Settings
+     *
+     * @return An array of string to add/replace into the text file
+     */
     public ArrayList<String> readSettings() {
         try {
             ArrayList<String> settingList = new ArrayList<>();
-            File myObj = new File(FILENAME);
+            File myObj = new File(Constant.SETTINGFILE);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
@@ -59,6 +83,11 @@ public class SettingController {
         return null;
     }
 
+    /**
+     * Function to check if the ticket is enabled
+     *
+     * @return true implies that ticket is already enabled
+     */
     public boolean enableTicket(String value) {
         ArrayList<String> settingList;
         settingList = readSettings();
@@ -76,30 +105,42 @@ public class SettingController {
     2. Show Review
     3. Show both Rating and Review
      */
-    public int returnResult(){
+
+    /**
+     * Function to set 3 cases
+     * 1. Show Rating
+     * 2. Show Review
+     * 3. Show both Rating and Review
+     *
+     * @return flag that determines the decision that admin chose for the moviegoer's display
+     */
+    public int returnResult() {
         // Default: Only show rating and sales
-        if(enableTicket("sales") && enableTicket("ratings")){
+        if (enableTicket("sales") && enableTicket("ratings")) {
             return 3;
             // Only show ratings
-        }else if(enableTicket("ratings")){
+        } else if (enableTicket("ratings")) {
             return 2;
-        }else if(enableTicket("sales")){
+        } else if (enableTicket("sales")) {
             // Show sales
             return 1;
-        }else{
+        } else {
             // Show None
             return 3;
         }
 
     }
 
-    public void printSettings(){
+    /**
+     * Print the current setting for moviegoer
+     */
+    public void printSettings() {
         print("Currently Display enabled:");
         ArrayList<String> settingList = readSettings();
-        if(settingList.isEmpty()){
+        if (settingList.isEmpty()) {
             print("[]");
         }
-        for(String s: settingList){
+        for (String s : settingList) {
             print("[" + s + "]");
         }
     }

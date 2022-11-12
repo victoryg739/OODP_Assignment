@@ -1,33 +1,40 @@
 package view.admin;
 
 import controller.MovieController;
-import modal.Enums;
-import modal.Movie;
 import view.MenuBase;
 import view.Quit;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import static view.utilF.*;
 
+/**
+ * Menu Page for Staff to show top 5 ratings
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuStaffTopFiveRating extends MenuBase {
-    private int userID;
     MovieController mc = new MovieController();
+
     public MenuStaffTopFiveRating(MenuBase initialMenu) {
         super(initialMenu);
     }
+
+    /**
+     * List all the top 5 movies by rating which is sorted
+     *
+     * @return return to the corresponding menu that the user has selected
+     */
 
     @Override
     public MenuBase execute() {
         MenuBase nextMenu;
         printHeader("Top 5 Movies by Rating");
-        mc.listTopSalesByRating();
+        mc.listTopByRating();
         print("1. Go back to Previous Menu\n" +
                 "2. Quit\n");
         int choice = readIntInput("Choice: ");
-        switch(choice){
+        switch (choice) {
             case 2:
                 nextMenu = new Quit(this);
                 System.out.println("Thank you for using our MOBLIMA APP");

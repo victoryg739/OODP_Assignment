@@ -1,18 +1,37 @@
 package controller;
 
-import java.io.*;
-import java.util.*;
-import modal.*;
+import model.Booking;
+import model.Constant;
 
+import java.io.*;
+import java.util.ArrayList;
+
+/**
+ * The Booking controller class, of the program, controlling each of the Booking
+ * Write, read, replace Booking into database
+ * Also controls the logic and control of the Booking object
+ *
+ * @author Victor Yoong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class BookingController {
-    public final static String FILENAME = "data/booking.txt";
+    /**
+     * Create Booking object and store it in the Database file
+     * If Database file exist, existing records are read and new Booking object is appended before saving
+     * If Database file does not exist, Booking object will be written to a new file and saved
+     *
+     * @param booking booking object
+     */
 
     public void create(Booking booking) {
         ArrayList<Booking> allData = new ArrayList<Booking>();
-        File tempFile = new File(FILENAME);
-        if (tempFile.exists()) allData = read();
+        File tempFile = new File(Constant.BOOKINGFILE);
+        if (tempFile.exists()) {
+            allData = read();
+        }
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constant.BOOKINGFILE));
             allData.add(booking);
             out.writeObject(allData);
             out.flush();
@@ -22,9 +41,14 @@ public class BookingController {
         }
     }
 
+    /**
+     * Read the database file of Booking
+     *
+     * @return arraylist of Booking files
+     */
     public ArrayList<Booking> read() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.BOOKINGFILE));
             ArrayList<Booking> allData = (ArrayList<Booking>) ois.readObject();
             ois.close();
             return allData;
@@ -34,30 +58,12 @@ public class BookingController {
         return new ArrayList<Booking>();
     }
 
-    /**
-     * Delete a Transaction in the Database file, based on the TID and MovieGoer's username attribute passed
-     * @param TID           Transaction ID of Transaction which will be deleted
-     * @param username      Username of Transaction which will be deleted
-     */
-    public void delete(String TID, String username) {
-        ArrayList<Booking> allData = read();
-        Booking booking = null;
-        ArrayList<Booking> returnData = new ArrayList<Booking>();
-
-        for (int i=0; i<allData.size(); i++){
-            booking = allData.get(i);
-            if (booking.getTID().equals(TID)
-                    && booking.getEmail().equals(username))
-                continue;
-            returnData.add(booking);
-        }
-        replaceExistingFile(FILENAME, returnData);
-    }
 
     /**
-     * Overwrite Database file with new data of list of Admin
-     * @param filename      Filename to check for
-     * @param returnData    New ArrayList of Transaction to be written to the file
+     * Overwrite Database file with new data of list of Booking
+     *
+     * @param filename   to check for
+     * @param returnData New ArrayList of Transaction to be written to the file
      */
     public void replaceExistingFile(String filename, ArrayList<Booking> returnData) {
         File tempFile = new File(filename);
@@ -73,19 +79,24 @@ public class BookingController {
         }
     }
 
-    public ArrayList<Booking> readByUsername(String inputUsername) {
+    /**
+     * A function to read the Customer username and return ArrayList of Booking that is purchased by user
+     *
+     * @param valueToSearch Object that is used
+     * @return ArrayList of Booking
+     */
+    public ArrayList<Booking> readbyUsername(Object valueToSearch) {
         ArrayList<Booking> allData = read();
-        Booking booking = null;
-        String dbUsername = null;
+        Booking booking;
+        String dbUsername;
         ArrayList<Booking> returnData = new ArrayList<Booking>();
         for (int i = 0; i < allData.size(); i++) {
             booking = allData.get(i);
-            dbUsername = booking.getEmail();
-            if (dbUsername.toLowerCase().contains(inputUsername.toLowerCase())) {
+            dbUsername = booking.getUsername();
+            if (dbUsername.toLowerCase().equals(valueToSearch.toString().toLowerCase())) {
                 returnData.add(booking);
             }
         }
         return returnData;
     }
-
 }

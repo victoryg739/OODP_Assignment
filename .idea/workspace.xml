@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0588c5fa-8b27-4dab-a208-df0667ac0b80" name="Changes" comment="test">
+    <list default="true" id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated Format">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Customer/MenuSearchMovie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CineplexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CineplexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MenuBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MenuBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/utilF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/utilF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,10 +50,10 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/aloys/OneDrive - Nanyang Technological University/NTU/Year 2 Sem 1/SC2002 Object Oriented Design and Programming/Assignment/MenuConsole&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Victor/Downloads/Telegram Desktop/javax.mail.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
   }
 }</component>
@@ -61,8 +67,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="mainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mainProgram" />
+    <configuration name="MainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainProgram" />
       <module name="OODP_Assignment" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -70,14 +76,14 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.mainProgram" />
+        <item itemvalue="Application.MainProgram" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f468962b-f2d4-424d-b41c-cddfe917ccb2" name="Changes" comment="updated Format" />
+      <changelist id="cd3ce49a-3977-4508-9ea7-1cec8ecba6e1" name="Changes" comment="updated Format" />
       <created>1666417652481</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -85,6 +91,7 @@
       <workItem from="1666538442252" duration="238000" />
       <workItem from="1666591451198" duration="5390000" />
       <workItem from="1667108903653" duration="17137000" />
+      <workItem from="1667788228585" duration="3422000" />
     </task>
     <task id="LOCAL-00001" summary="hello test">
       <created>1666420532309</created>
@@ -254,14 +261,147 @@
       <option name="project" value="LOCAL" />
       <updated>1667711750619</updated>
     </task>
-    <task id="LOCAL-00025" summary="test">
-      <created>1667714938883</created>
+    <task id="LOCAL-00025" summary="csa">
+      <created>1667739804289</created>
       <option name="number" value="00025" />
       <option name="presentableId" value="LOCAL-00025" />
       <option name="project" value="LOCAL" />
-      <updated>1667714938883</updated>
+      <updated>1667739804289</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="updated Format">
+      <created>1667753292747</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1667753292747</updated>
+    </task>
+    <task id="LOCAL-00027" summary="updated Format">
+      <created>1667754612348</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1667754612349</updated>
+    </task>
+    <task id="LOCAL-00028" summary="updated Format">
+      <created>1667755392470</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1667755392470</updated>
+    </task>
+    <task id="LOCAL-00029" summary="updated Format">
+      <created>1667756448094</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1667756448094</updated>
+    </task>
+    <task id="LOCAL-00030" summary="updated Format">
+      <created>1667789080145</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1667789080145</updated>
+    </task>
+    <task id="LOCAL-00031" summary="updated Format">
+      <created>1667789599657</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1667789599657</updated>
+    </task>
+    <task id="LOCAL-00032" summary="updated Format">
+      <created>1667814168353</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1667814168353</updated>
+    </task>
+    <task id="LOCAL-00033" summary="updated Format">
+      <created>1667822232638</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1667822232638</updated>
+    </task>
+    <task id="LOCAL-00034" summary="updated Format">
+      <created>1667833082557</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1667833082557</updated>
+    </task>
+    <task id="LOCAL-00035" summary="updated Format">
+      <created>1667842107281</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1667842107281</updated>
+    </task>
+    <task id="LOCAL-00036" summary="updated">
+      <created>1667917959730</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1667917959730</updated>
+    </task>
+    <task id="LOCAL-00037" summary="updated">
+      <created>1667918682185</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1667918682185</updated>
+    </task>
+    <task id="LOCAL-00038" summary="updated Format">
+      <created>1667919549430</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1667919549430</updated>
+    </task>
+    <task id="LOCAL-00039" summary="updated Format">
+      <created>1667922387358</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1667922387358</updated>
+    </task>
+    <task id="LOCAL-00040" summary="updated Format">
+      <created>1667925461617</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1667925461617</updated>
+    </task>
+    <task id="LOCAL-00041" summary="updated Format">
+      <created>1667927575861</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1667927575861</updated>
+    </task>
+    <task id="LOCAL-00042" summary="updated">
+      <created>1667924707588</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1667924707588</updated>
+    </task>
+    <task id="LOCAL-00043" summary="updated Format">
+      <created>1668144312655</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1668144312655</updated>
+    </task>
+    <task id="LOCAL-00044" summary="updated Format">
+      <created>1668147399433</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1668147399433</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,10 +445,12 @@
     <MESSAGE value="commit for Review" />
     <MESSAGE value="commit for MenuShow Rating" />
     <MESSAGE value="commmit" />
-    <MESSAGE value="updated Format" />
     <MESSAGE value="fix errors" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="csa" />
+    <MESSAGE value="updated" />
+    <MESSAGE value="updated Format" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated Format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -319,7 +461,7 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mainProgram.java</url>
+          <url>file://$PROJECT_DIR$/src/MainProgram.java</url>
           <line>1</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
@@ -327,7 +469,14 @@
           <properties class="java.lang.ClassCastException" package="java.lang" />
           <option name="timeStamp" value="7" />
         </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="9" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/OODP_Assignment$mainProgram.ic" NAME="mainProgram Coverage Results" MODIFIED="1667624966497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

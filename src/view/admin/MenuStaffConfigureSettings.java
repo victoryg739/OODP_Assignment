@@ -1,18 +1,37 @@
 package view.admin;
 
-import controller.PriceManager;
 import view.MenuBase;
 
-
-import java.util.*;
 import static view.utilF.*;
 
-public class MenuStaffConfigureSettings extends MenuBase {
+;
 
-    private PriceManager priceCtrl = new PriceManager();
+/**
+ * Menu to Configure for admin to configure settings
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
+ */
+public class MenuStaffConfigureSettings extends MenuBase {
     public MenuStaffConfigureSettings(MenuBase initialMenu) {
         super(initialMenu);
     }
+
+
+    /**
+     * Display options that Admin can configure system settings
+     * Ask user which settings admin want to configure
+     * and bring user to next stage of application
+     * Consist of four menu
+     * 1. Configure Price
+     * 2. Holiday
+     * 3. Configure admin account
+     * 4. Configure Moviegoer's display info
+     * 5. Back
+     *
+     * @return return to the corresponding menu that the user has selected
+     */
 
     public MenuBase execute() {
         int choice;
@@ -20,7 +39,7 @@ public class MenuStaffConfigureSettings extends MenuBase {
         printHeader("Configure System Settings");
         print("1. Configure Price \n" +
                 "2. Configure Holiday \n" +
-                "3. Configure new admin account \n" +
+                "3. Configure admin account \n" +
                 "4. Configure Moviegoer's display info\n" +
                 "5. Back\n");
         choice = readIntInput("Enter Choice: ");

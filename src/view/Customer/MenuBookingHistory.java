@@ -1,20 +1,24 @@
 package view.Customer;
 
 import controller.BookingController;
-import controller.CustomerController;
-import modal.*;
+import model.Booking;
+import model.Ticket;
 import view.MenuBase;
 
-import java.util.*;
+import java.util.ArrayList;
+
 import static view.utilF.*;
 
-/* ToDO list:
-    1. Present the date and time for each booking transaction
-    Need to check with Victor about his datetimeFormat
-*/
+/**
+ * Menu Interface for Customer to view their booking history
+ * 1 Customer can have multiple booking transactions
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 public class MenuBookingHistory extends MenuBase {
-
     private String username;
 
     public MenuBookingHistory(MenuBase initialMenu, String username) {
@@ -22,51 +26,42 @@ public class MenuBookingHistory extends MenuBase {
         this.username = username;
     }
 
-    /*
-     Display user booking history menu
-     Ask user for login information
-     Display all user booking detail
-     Return to previous menu when done
+    /**
+     * Display user booking history menu
+     * Display all user booking detail
+     * Return to previous menu when done
+     *
+     * @return to previous menu
      */
+
     public MenuBase execute() {
         printHeader("Booking History:");
-        println("Please Login Using Username and Email");
+        BookingController bookingController = new BookingController();
+        int count = 1;
+        int seatCount = 1;
 
-        CustomerController customerController = new CustomerController();
+        ArrayList<Booking> booking = bookingController.readbyUsername(username);
+        println("In total, " + booking.size() + " bookings found under " + username + ".");
 
-        Customer customer;
-        CustomerController cController = new CustomerController();
-        customer = cController.readByUsername(username);
-
-//        Customer tempCustomer = customerController.readByUsername(customer.getUsername());
-//        //wrong password
-//        if (!tempCustomer.getPassword().equals(customer.getPassword())) {
-//            customer = null;
-//        }
-
-        if (customer != null) { //if login successful
-            ArrayList<Booking> booking = customerController.retrieveByUsername(username);
-            println("In total, " + booking.size() + " bookings found under " + username + ".");
-            int count = 1;
-
-            //Once the user login, for each booking made, display the respective details:
-            for (Booking book : booking) {
-                println("");
-                println("Booking " + count + " :");
-                count++;
-                System.out.println("TID: " + book.getTID());
-                System.out.println("Show Time: " + book.getSession().getDateTime() + " " + book.getMovie().getRuntime());
-                System.out.println("Total Price (GST included): S$" + book.getTotalPrice());
-                System.out.println("Movie: " + book.getMovie().getTitle());
-                System.out.println("Seats :");
-                for (Ticket ticket : book.getTicket()) {
-                    System.out.println("Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
-                }
+        //for each booking made, display the respective details:
+        for (Booking book : booking) {
+            print(" ");
+            print("Booking " + count + " : \n" +
+                    "TID: " + book.getTID() + "\n" +
+                    "Show Time: " + book.getSession().getDateTime() + " " + book.getMovie().getRuntime() + "\n" +
+                    "Total Price (GST included): S$" + book.getTotalPrice() + "\n" +
+                    "Movie: " + book.getMovie().getTitle() + "\n" +
+                    "Seats : ");
+            count++;
+            for (Ticket ticket : book.getTickets()) {
+                System.out.print(seatCount + ") Row: " + (ticket.getSeat().getRow() + 1) + " Col: " + (ticket.getSeat().getCol() + 1));
+                seatCount++;
+                print(" ");
             }
+            seatCount = 1;
         }
-        while (readIntInput("Press 0 to return to previous menu: ") != 0) ;
-        return this.getPreviousMenu();
+        while (readIntInput("Press 0 to return to Customer Main Menu: ") != 0) ;
+        return new MenuCustomerMain(this);
     }
-
 }
 

@@ -1,87 +1,132 @@
 package view.Customer;
 
 import controller.MovieController;
-import controller.SessionController;
-import modal.Enums;
-import modal.Movie;
-import modal.Session;
+import controller.SettingController;
+import model.Movie;
 import view.MenuBase;
-import view.Quit;
 import view.admin.MenuStaffTopFiveRating;
+import view.admin.MenuStaffTopFiveSales;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import static view.utilF.*;
-/* ToDO list:
-    1. Remove the space in the input name and search
-    eg. Iron Man == IronMan
-*/
+/**
+ * Menu Interface for Customer to search for the movie they want
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 public class MenuSearchMovie extends MenuBase {
 
 
-    private MovieController mc = new MovieController();
+    MovieController mc = new MovieController();
+    SettingController setc = new SettingController();
+
     public MenuSearchMovie(MenuBase initialMenu) {
         super(initialMenu);
     }
 
+    /**
+     * Ask user to input come part of movie title
+     * Display list of movies whose title contains the string provided by the user
+     * Ask user which movie to check information
+     *
+     * @return corresponding menu that the user has selected
+     **/
     public MenuBase execute() {
-        SessionController sc = new SessionController();
-        ArrayList<Session> sessionlist = sc.read();
-        MenuBase nextMenu = null;
-        String movieName;
-        int choice;
+        MenuBase nextMenu;
 
         printHeader("Movie Search");
-        movieName = read("Input movie name to search: ");
+        String movieName = read("Input movie name to search: ");
 
-        //obtain a ArrayList of Movie objects with the same name list
         ArrayList<Movie> movieList = mc.readByTitle(movieName);
-        System.out.println(movieList.get(0).getTitle());
-
-        if(movieList.isEmpty()){
-            System.out.println("hello");
-            print("Sorry, no result found.");
-            return this.getPreviousMenu();
-        }
-        if (sessionlist.isEmpty()) {
+        // If session is Empty or MovieList is Empty then no results found
+        if (movieList.isEmpty()) {
             print("Sorry, no result found.");
             return this.getPreviousMenu();
         }
 
-        else { // if movie is found
-            mc.listMovies(Enums.ShowingStatus.PREVIEW, Enums.ShowingStatus.NOW_SHOWING, movieList);
-            print("===============================================");
-            print("1. Buy Ticket/ Set Review\n" +
-                    "2. Back \n" +
-                    "3. Quit\n");
-
-            choice = readIntInput("Choice: ");
+        mc.listMovies(movieList);
+        printDivider();
+        int flag = setc.returnResult(); // a variable to determine what to show to the user
+        /* Flag == 2 implies that it only shows Rating */
+        if (flag == 2) {
+            print("1. View Movie Details\n" +
+                    "2. Set Movie Review\n" +
+                    "3. Show top 5 movies by ratings \n" +
+                    "4. Back\n");
+            int choice = readIntInput("Enter choice: ");
             switch (choice) {
                 case 1:
-                    int movieID = readIntInput("Enter movieID: ");
-
-                    if(mc.validMovieSession(movieID)) {
-                        nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
-                    }else {
-                        print("Invalid movieID");
-                    }
+                    int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
                     break;
                 case 2:
-                    nextMenu = this.getPreviousMenu();
+                    movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
+                    nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
+                    break;
+                case 3:
+                    nextMenu = new MenuStaffTopFiveRating(this);
                     break;
                 default:
-                    nextMenu = new Quit(this);
+                    nextMenu = this.getPreviousMenu();
                     break;
             }
+            /* Flag == 1 implies that it only shows Sales */
+        } else if (flag == 1) {
+            print("1. View Movie Details\n" +
+                    "2. Set Movie Review\n" +
+                    "3. Show top 5 by sales \n" +
+                    "4. Back\n");
+            int choice = readIntInput("Enter choice: ");
+            switch (choice) {
+                case 1:
+                    int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    break;
+                case 2:
+                    movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
+                    nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
+                    break;
+                case 3:
+                    nextMenu = new MenuStaffTopFiveSales(this);
+                    break;
+                default:
+                    nextMenu = this.getPreviousMenu();
+                    break;
+            }
+            /* implies that it is default which only shows both Sales and ratings */
+        } else {
+            print("1. View Movie Details\n" +
+                    "2. Set Movie Review\n" +
+                    "3. Show top 5 by sales \n" +
+                    "4. Show top 5 by ratings \n" +
+                    "5. Back\n");
+            int choice = readIntInput("Enter choice: ");
 
+            switch (choice) {
+                case 1:
+                    int movieID = readIntInput("Which movie would you like to know more? (MovieID): ");
+                    nextMenu = new MenuMovieInfo(this, mc.read().get(movieID));
+                    break;
+                case 2:
+                    movieID = readIntInput("Which movie would you like to set a review? (MovieID): ");
+                    nextMenu = new MenuMovieReviews(this, mc.readByID(movieID));
+                    break;
+                case 3:
+                    nextMenu = new MenuStaffTopFiveSales(this);
+                    break;
+                case 4:
+                    nextMenu = new MenuStaffTopFiveRating(this);
+                    break;
+                default:
+                    nextMenu = this.getPreviousMenu();
+                    break;
+            }
         }
         return nextMenu;
-
     }
-
-
-
-    }
+}
 

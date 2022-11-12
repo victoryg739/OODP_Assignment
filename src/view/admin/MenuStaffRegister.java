@@ -1,86 +1,57 @@
 package view.admin;
 
 import controller.AdminController;
-import modal.Admin;
 import view.MenuBase;
+
 import java.util.Scanner;
-import static view.utilF.read;
 
-import java.io.*;
-import java.util.*;
+import static view.utilF.*;
 
-
+/**
+ * Menu Page for Staff to register a new account
+ *
+ * @author Tan Wei Zhong
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class MenuStaffRegister extends MenuBase {
+
+    private static Scanner sc = new Scanner(System.in);
+    private AdminController adminsCtrl = new AdminController();
 
     public MenuStaffRegister(MenuBase initialMenu) {
         super(initialMenu);
     }
-    private String staffUsername;
-    private String password;
-    private String password2;
-    private int role;
-    private boolean consistentPassword = false;
 
-    // Instantiate AdminController object to use methods
-    private AdminController adminsCtrl = new AdminController();
-
-    private static Scanner sc = new Scanner(System.in);
-
-    // Function to prompt user to create a strong password
-    public static boolean validatePasswordStrength(String password) {
-        // Checking lower alphabet in string
-        int n = password.length();
-        boolean hasLower = false, hasUpper = false,
-                hasDigit = false, specialChar = false;
-        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
-        for (char i : password.toCharArray())
-        {
-            if (Character.isLowerCase(i))
-                hasLower = true;
-            if (Character.isUpperCase(i))
-                hasUpper = true;
-            if (Character.isDigit(i))
-                hasDigit = true;
-            if (set.contains(i))
-                specialChar = true;
-        }
-
-        // Checking Validity of password
-        if (hasDigit && hasLower && hasUpper && specialChar && (n >= 8))
-            return true;
-        else
-            return false;
-    }
-
+    /**
+     * Display Staff Registration menu
+     * Allows user to go back previous menu or Continue with registration
+     * Redirects User to either Admin Registration Menu or Previous Menu
+     *
+     * @return adminRegistration || getPreviousMenu
+     */
     // Registration Menu to create new accounts
-    public MenuBase execute(){
-        do {
+    public MenuBase execute() {
 
-            // Task : Make sure Username not duplicated in txt file then can create
+        int choice;
 
-            // Display to get new account Username and Password
-            staffUsername = read("Create staffUsername: ");
-            password = read("Create Password: ");
-            while (!validatePasswordStrength(password)) {
-                System.out.println("Please ensure password contains at least 8 characters, 1 Upper case, 1 Lower case, 1 special character ");
-                password = read("Create Password: ");
-            }
-            password2 = read("Re-Enter Password: ");
-            consistentPassword = password.equals(password2);
+        printHeader(" Admin Registration ");
+        print("1. Continue Registration        \n" +
+                "2. Previous Menu         \n");
+        choice = readIntInput("Enter your choice");
 
-            // Creating new staff account object
-            Admin admin = new Admin(staffUsername, password);
+        MenuBase nextMenu = this;
 
-            // Create new admin account when the 2 input passwords match
-            if(consistentPassword){
-                adminsCtrl.createAdmin(admin);
-                System.out.println("You have registered Staff Account successfully");
-            }
-            else {
-                System.out.println("Password not consistent. Enter again");
-            }
+        switch (choice) {
+            case 1:
+                adminsCtrl.adminRegistration();
+                break;
+            case 2:
+                return this.getPreviousMenu();
+            default:
+                System.out.println("Please enter an option between 1-2");
+                break;
         }
-        while(!consistentPassword);
 
         return this.getPreviousMenu();
     }

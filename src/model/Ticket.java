@@ -1,11 +1,24 @@
-package modal;
-import modal.Enums.*;
+package model;
 
+import model.Enums.AgeType;
+import model.Enums.ClassCinema;
+import model.Enums.Day;
+import model.Enums.MovieType;
 
-public class Ticket {
+import java.io.Serializable;
+
+/**
+ * Represents a ticket
+ * 1 Ticket is for 1 seat
+ *
+ * @author Aloysius Tan
+ * @version 1.0
+ * @since 2022-08-11
+ */
+
+public class Ticket implements Serializable {
 
     private double price;
-    //enumaration
     private MovieType movieType; // 3D or blockbuster
     private ClassCinema classCinema; // platinum suites or normal
     private AgeType age; // age of movie goer e.g adult/child
@@ -13,8 +26,19 @@ public class Ticket {
     private Seat seat; // each ticket is tied to a seat
 
 
-    public Ticket(){}
+    public Ticket() {
+    }
 
+    /**
+     * Booking CLass constructor
+     *
+     * @param age
+     * @param day
+     * @param classCinema
+     * @param price
+     * @param seat
+     * @param movieType
+     */
     public Ticket(double price, MovieType movieType, ClassCinema classCinema, AgeType age, Day day, Seat seat) {
         this.price = price;
         this.movieType = movieType;
@@ -24,57 +48,31 @@ public class Ticket {
         this.seat = seat;
     }
 
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public MovieType getMovieType() {
-        return movieType;
-    }
-
-    public void setMovieType(MovieType movieType) {
-        this.movieType = movieType;
-    }
-
-    public ClassCinema getClassCinema() {
-        return classCinema;
-    }
-
-    public void setClassCinema(ClassCinema classCinema) {
-        this.classCinema = classCinema;
-    }
-
-    public AgeType getAge() {
-        return age;
-    }
-
-    public void setAge(AgeType age) {
-        this.age = age;
-    }
-
+    /**
+     * Get Day
+     *
+     * @return Day
+     */
     public Day getDay() {
         return day;
     }
 
+    /**
+     * Set Day
+     *
+     * @param day
+     */
     public void setDay(Day day) {
         this.day = day;
     }
 
+    /**
+     * Get Seat
+     *
+     * @return seat
+     */
     public Seat getSeat() {
         return seat;
     }
-
-    public void setSeat(Seat seat) {
-        this.seat = seat;
-    }
-
-
-
-
 
 }

@@ -1,19 +1,38 @@
 package view.admin;
 
-import modal.Enums.*;
-import controller.*;
+import controller.MovieController;
+import model.Enums.MovieRating;
+import model.Enums.MovieType;
+import model.Enums.ShowingStatus;
 import view.MenuBase;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+
 import static view.utilF.*;
+
+/**
+ * Configure for admin to create a movie
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
+ */
 
 public class MenuStaffMovieCreate extends MenuBase {
     MovieController adminC = new MovieController();
+
     public MenuStaffMovieCreate(MenuBase initialMenu) {
         super(initialMenu);
     }
 
-
+    /**
+     * Display create new movie menu
+     * Ask user to input information of the new movie
+     * Return to main staff menu
+     *
+     * @return corresponding menu that the user has selected
+     */
     public MenuBase execute() {
         printHeader("Creating movie listing....");
         String title = read("Enter movie title: ");
@@ -41,23 +60,23 @@ public class MenuStaffMovieCreate extends MenuBase {
                 "	2. PREVIEW\n" +
                 "	3. NOW_SHOWING\n" +
                 "Select movie type (number): ");
-        if(DateEnd.before(DateStart)){
+        if (DateEnd.before(DateStart)) {
             System.out.println("Invalid Movie End Date!");
             return this.getPreviousMenu();
         }
 
         ArrayList<String> casts = new ArrayList<>();
         int noOfCast = readIntInput("Enter No of casts: (at least 2)");
-        if (noOfCast < 2){
+        if (noOfCast < 2) {
             System.out.println("Invalid casts!");
             return this.getPreviousMenu();
         }
 
         for (int i = 0; i < noOfCast; i++) {
-            casts.add(read("Enter name of cast " + (i+1) + ": "));
+            casts.add(read("Enter name of cast " + (i + 1) + ": "));
         }
         String director = read("Enter Director:");
-        adminC.createMovie(title, movieType, movieRating, ss,synopsis, runtime, DateStart, DateEnd, casts, director);
+        adminC.createMovie(title, movieType, movieRating, ss, synopsis, runtime, DateStart, DateEnd, casts, director);
 
         return this.getPreviousMenu();
     }

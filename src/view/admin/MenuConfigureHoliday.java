@@ -4,10 +4,30 @@ import view.MenuBase;
 
 import static view.utilF.*;
 
+/**
+ * Menu to Configure holiday
+ *
+ * @author Bryan Tay
+ * @version 1.0
+ * @since 2022-08-11
+ */
+
 public class MenuConfigureHoliday extends MenuBase {
     public MenuConfigureHoliday(MenuBase initialMenu) {
         super(initialMenu);
     }
+
+    /**
+     * Ask user to choice which holiday to configure
+     * and bring user to next stage of application
+     * Consist of four menu
+     * 1. Add new Holiday
+     * 2. Update Holiday
+     * 3. Remove Holiday
+     * 4. Quit
+     *
+     * @return return to the corresponding menu that the user has selected
+     */
 
     public MenuBase execute() {
         int choice;

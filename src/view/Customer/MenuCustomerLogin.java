@@ -1,15 +1,20 @@
 package view.Customer;
 
-import controller.AdminController;
 import controller.CustomerController;
-import modal.Customer;
-import modal.Movie;
+import model.Customer;
+import model.Movie;
 import view.MenuBase;
-import view.admin.MenuStaffMain;
 
 import static view.utilF.*;
 
-public class MenuCustomerLogin extends MenuBase{
+/**
+ * Menu Page which prompts Customer to login
+ *
+ * @author Tan Wei Zhong
+ * @version 1.0
+ * @since 2022-08-11
+ */
+public class MenuCustomerLogin extends MenuBase {
 
     private int a;
     private Movie movie;
@@ -20,6 +25,14 @@ public class MenuCustomerLogin extends MenuBase{
         this.movie = movie;
     }
 
+    /**
+     * Display Customer Login menu
+     * Prompts Customer whether he has an account
+     * Authenticates Username and Password input with the ones Datafile
+     * Redirects User to either Purchase Ticket Menu, Booking History Menu or Customer Registration Menu
+     *
+     * @return MenuPurchaseTicket || MenuBookingHistory || MenuCustomerRegister
+     */
     public MenuBase execute() {
 
         MenuBase nextMenu = this;
@@ -34,7 +47,7 @@ public class MenuCustomerLogin extends MenuBase{
 
             // Authenticate Username and Password
             if (custCtrl.authenticate(username, password)) {
-
+                Customer customer = custCtrl.readByUsername(username);
                 switch (a) {
                     case 1:
                         nextMenu = new MenuPurchaseTicket(this, movie, username);
@@ -43,12 +56,10 @@ public class MenuCustomerLogin extends MenuBase{
                         nextMenu = new MenuBookingHistory(this, username);
                         break;
                 }
-            }
-            else{
+            } else {
                 println("Wrong username or password");
             }
-        }
-        else {
+        } else {
             nextMenu = new MenuCustomerRegister(this);
         }
 
